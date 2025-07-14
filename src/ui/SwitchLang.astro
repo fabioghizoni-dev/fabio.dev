@@ -1,0 +1,129 @@
+---
+const languages = [
+  {
+    code: "pt",
+    name: "Português",
+    country: "Brazil",
+    variants: [
+      { code: "pt-BR", country: "Brazil", name: "Português (Brasil)" },
+      { code: "pt-PT", country: "Portugal", name: "Português (Portugal)" },
+    ],
+  },
+  {
+    code: "en",
+    name: "English",
+    country: "United States",
+    variants: [
+      { code: "en-US", country: "United States", name: "English (US)" },
+      { code: "en-GB", country: "United Kingdom", name: "English (UK)" },
+      { code: "en-AU", country: "Australia", name: "English (Australia)" },
+    ],
+  },
+  {
+    code: "es",
+    name: "Español",
+    country: "Mexico",
+    variants: [
+      { code: "es-ES", country: "Spain", name: "Español (España)" },
+      { code: "es-MX", country: "Mexico", name: "Español (México)" },
+    ],
+  },
+  {
+    code: "fr",
+    name: "Français",
+    country: "France",
+    variants: [
+      { code: "fr-FR", country: "France", name: "Français (France)" },
+      { code: "fr-CA", country: "Canada", name: "Français (Canada)" },
+    ],
+  },
+  {
+    code: "de",
+    name: "Deutsch",
+    country: "Germany",
+    variants: [
+      { code: "de-DE", country: "Germany", name: "Deutsch (Deutschland)" },
+    ],
+  },
+  {
+    code: "ja",
+    name: "日本語",
+    country: "Japan",
+    variants: [{ code: "ja-JP", country: "Japan", name: "日本語 (日本)" }],
+  },
+  {
+    code: "zh",
+    name: "中文",
+    country: "China",
+    variants: [
+      { code: "zh-CN", country: "China", name: "中文 (简体)" },
+      { code: "zh-TW", country: "Taiwan", name: "中文 (繁體)" },
+    ],
+  },
+  {
+    code: "hi",
+    name: "हिन्दी",
+    country: "India",
+    variants: [{ code: "hi-IN", country: "India", name: "हिन्दी (भारत)" }],
+  },
+  {
+    code: "ru",
+    name: "Русский",
+    country: "Russia",
+    variants: [{ code: "ru-RU", country: "Russia", name: "Русский (Россия)" }],
+  },
+  {
+    code: "ko",
+    name: "한국어",
+    country: "South Korea",
+    variants: [
+      { code: "ko-KR", country: "South Korea", name: "한국어 (대한민국)" },
+    ],
+  },
+];
+const defaultSpanClass = `flex relative w-7 h-7 justify-center items-center p-0.5 pb-1 rounded-md transition ease-in-out 
+  duration-300 cursor-pointer`;
+---
+
+<span translate="no" title="Mudar linguagem" aria-label="Mudar linguagem" class="flex flex-col relative justify-center items-center 
+  font-noto-sans-jp text-lg font-bold">
+  <button id="btn-a" class={`${defaultSpanClass} z-1 bg-white border-3 border-black -ml-7`}>A</button>
+  <button id="btn-jp" class={`${defaultSpanClass} z-0 bg-black text-white -mt-4`}>文</button>
+  <ul id="list-langs" class="hidden bg-black text-white absolute z-10 top-full mt-1 p-2 gap-1 right-0 
+    font-noto-sans-jp text-2xl rounded">
+    {languages.map(lang => (
+      <li title={lang.name}>
+        {lang.country}
+      </li>
+    ))}
+  </ul>
+</span>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+  const btnA = document.getElementById("btn-a");
+  const btnJP = document.getElementById("btn-jp");
+  const listLangs = document.getElementById("list-langs");
+  if (btnA && btnJP && listLangs) {
+    let isJp = false;
+    const toggle = () => {
+      isJp = !isJp; 
+      if (isJp) {
+        listLangs.classList.remove("hidden");
+        btnA.classList.add("bg-black", "text-white", "z-0");
+        btnJP.classList.remove("bg-black", "text-white", "z-0");
+        btnA.classList.remove("bg-white", "border-3", "border-black", "z-1");
+        btnJP.classList.add("bg-white", "border-3", "border-black", "z-1");
+      } else {
+        listLangs.classList.add("hidden");
+        btnJP.classList.add("bg-black", "text-white", "z-0");
+        btnA.classList.remove("bg-black", "text-white", "z-0");
+        btnA.classList.add("bg-white", "border-3", "border-black", "z-1");
+        btnJP.classList.remove("bg-white", "border-3", "border-black", "z-1");
+      }
+    };
+    // Adiciona o evento de clique
+    btnA.addEventListener("click", toggle);
+    btnJP.addEventListener("click", toggle);
+  }});
+</script>

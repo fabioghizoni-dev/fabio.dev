@@ -9,8 +9,12 @@ import { IoIosPower } from "react-icons/io";
     class="flex flex-col w-full h-full bg-beige justify-center items-center rounded-lg"
   >
     <!-- Tela do monitor -->
-    <div class="relative w-78% h-78% bg-black rounded overflow-hidden">
-
+    <div class="relative w-78% h-78% bg-black text-green-500 font-mono p-2 rounded overflow-hidden">
+      <p>[OK] Loading: <span id="time-loading" class="text-white/80"> ...</span></p>
+      <p>[TIME] Time: <span id="time" class="text-white/80"> ...</span></p>
+      <p>[DATE] Date: <span id="date" class="text-white/80"> ...</span></p>
+      <p>[OK] Resolution: <span id="resolution" class="text-white/80"> ...</span></p>
+      <p>[URL] Url: <span id="url" class="text-white/80"> ...</span></p>
     </div>
     <div class="flex w-full absolute bottom-22 justify-between items-center">
       <button
@@ -61,3 +65,23 @@ import { IoIosPower } from "react-icons/io";
   <div class="w-5/12 h-4 bg-beige" />
   <div class="w-9/12 h-6 bg-beige rounded-full" />
 </div>
+
+<script is:inline>
+  window.addEventListener("load", () => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const day = String(now.getDate()).padStart(2, "0");
+    const hours = String(now.getHours()).padStart(2, "0");
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const timeLoading = (performance.now() / 1000).toFixed(2);
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    const seconds = String(now.getSeconds()).padStart(2, "0");
+    document.getElementById("url").textContent = `${window.location.href} ;`;
+    document.getElementById("date").textContent = `${day}/${month}/${year} ;`;
+    document.getElementById("time-loading").textContent = `${timeLoading}s ;`;
+    document.getElementById("resolution").textContent = `${width}x${height} ;`;
+    document.getElementById("time").textContent = `${hours}:${minutes}:${seconds} ;`;
+  });
+</script>

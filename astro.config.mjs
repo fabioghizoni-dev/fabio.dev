@@ -7,6 +7,9 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   server: { host: true },
   integrations: [react()],
-  // @ts-expect-error: tailwindcss not PluginOption[];
-  vite: { plugins: [tailwindcss()] },
+  vite: {
+    // @ts-expect-error;
+    plugins: [tailwindcss()],
+    server: { watch: { usePolling: true, interval: 100 } },
+  },
 });

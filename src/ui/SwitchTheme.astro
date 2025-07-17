@@ -3,12 +3,12 @@ import { HiSun } from "react-icons/hi2";
 import { IoIosMoon } from "react-icons/io";
 ---
 
-<HiSun id="btn-sun" title="Modo light" aria-label="Modo light"
-  className={`bg-black text-white w-10 h-10 absolute cursor-pointer top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-    rounded-full`}/>
-<IoIosMoon id="btn-moon" title="Modo dark" aria-label="Modo dark" 
-  className={`bg-black text-white w-10 h-10 absolute cursor-pointer top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden 
-    rounded-full`}/>
+<!-- Mode Dark -->
+<IoIosMoon id="btn-moon" title="Modo dark" aria-label="Modo dark" className={`absolute w-12 h-12 text-purple-blue cursor-pointer 
+  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden rounded-full`}/>
+<!-- Mode Light -->
+<HiSun id="btn-sun" title="Modo light" aria-label="Modo light" className={`absolute w-12 h-12 text-purple-blue cursor-pointer 
+  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full`}/>
 
 <script is:inline>
   document.addEventListener("DOMContentLoaded", () => {

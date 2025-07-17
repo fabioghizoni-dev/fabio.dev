@@ -10,6 +10,8 @@
   --color-beige-dark: #8a7a63;
   --animate-show: show 0.2s ease-in-out forwards;
   --animate-hide: hide 0.2s ease-in-out forwards;
+  --color-purple-default: oklch(60.83% 0.297 312.11);
+  --color-purple-blue: oklch(51.98% 0.288 289.11);
   --font-noto-sans-jp: "Noto Sans JP", arial, sans-serif, ui-monospace,
     monospace;
   @keyframes show {
@@ -34,5 +36,8 @@
   }
   .light {
     --background-default: oklch(0.9 0 0);
+  }
+  .noise {
+    filter: url(#noise);
   }
 }

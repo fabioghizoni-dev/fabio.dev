@@ -1,11 +1,21 @@
 ---
+const alt = "Logo Fábio Ghizoni";
+const title = "Voltar para a página inicial";
 import SwitchLang from "../ui/SwitchLang.astro";
 import SwitchTheme from "../ui/SwitchTheme.astro";
 ---
 
-<header class="flex w-full fixed top-0 justify-between items-center p-1">
-  <img loading="eager" src="/logo.svg" alt="Logo Fábio Ghizoni" class="w-20"/>
+<nav class="flex w-full fixed bg-black top-0 justify-between items-center p-1 z-1">
+  <img alt={alt} title={title} loading="eager" src="/Logo.svg" onclick="goHome()" class="w-20 cursor-pointer"/>
   <SwitchTheme />
   <SwitchLang />
-</header>
+</nav>
+
+<script is:inline>
+  function goHome() {
+    if (window.location.pathname !== "/") {
+      window.location.href = "/";
+      }
+  }
+</script>
 

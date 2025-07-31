@@ -1,0 +1,18 @@
+---
+import { Icon } from "astro-icon/components";
+import WhatsIcon from "../ui/WhatsIcon.astro";
+const { href, title, icon = "whatsapp" } = Astro.props;
+const isCustom = icon === "whatsapp";
+---
+
+<a
+  href={href}
+  title={title}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="flex items-center justify-center gap-3 p-4 bg-black/30 border border-white/20 rounded-lg text-white/80 
+    hover:bg-white/10 hover:text-white transition-all duration-300"
+>
+  <span>{title}</span>
+  {isCustom ? <WhatsIcon class="w-7.5 h-7.5"/> : <Icon name={icon} class="w-8 h-8"/>}
+</a>

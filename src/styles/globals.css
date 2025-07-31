@@ -5,20 +5,59 @@
   --spacing-11%: 11%;
   --spacing-25%: 25%;
   --spacing-78%: 78%;
-  --color-beige: #c7b086;
   --spacing-0.8: 0.188rem;
-  --color-beige-dark: #8a7a63;
+  --color-gray-default: oklch(0.235 0 0);
+  --animate-blur: blur 1.4s linear forwards;
+  --color-beige: oklch(0.7667 0.0624 82.38);
+  --drop-shadow-text-white: 0 0 0.08rem white;
+  --animate-draw: draw 4s ease-in-out forwards;
+  --color-beige-dark: oklch(0.5879 0.0389 76.8);
   --animate-show: show 0.2s ease-in-out forwards;
   --animate-hide: hide 0.2s ease-in-out forwards;
-  --color-purple-default: oklch(60.83% 0.297 312.11);
   --color-purple-blue: oklch(51.98% 0.288 289.11);
-  --font-noto-sans-jp: "Noto Sans JP", arial, sans-serif, ui-monospace,
-    monospace;
+  --animate-show-y: show-y 0.5s ease-in-out forwards;
+  --animate-show-x: show-x 0.5s ease-in-out forwards;
+  --color-purple-default: oklch(60.83% 0.297 312.11);
+  --animate-show-logo: show-logo 0.5s ease-in-out forwards;
+  --animate-opacity: opacity 0.4s ease-in-out infinite alternate;
+  --drop-shadow-text-green: 0 0 0.08rem oklch(0.8664 0.294827 142.4953);
+  --font-noto-sans-jp: "Noto Sans JP", arial, sans-serif, ui-monospace, monospace;
+  --animate-draw-fill: draw-fill 2s linear .10s forwards, draw-reverse 2s ease-in-out .9s forwards;
   @keyframes show {
     0% {
       width: 0;
       height: 0;
       opacity: 0;
+    }
+  }
+  @keyframes show-y {
+    0% {
+      opacity: 0;
+      transform: scale(0.6) translateY(-1rem);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  @keyframes show-x {
+    0% {
+      opacity: 0;
+      transform: scale(0.6) translateX(1rem);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateX(0);
+    }
+  }
+  @keyframes show-logo {
+    0% {
+      opacity: 0.4;
+      transform: translateX(-6rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
     }
   }
   @keyframes hide {
@@ -28,16 +67,67 @@
       opacity: 0;
     }
   }
+  @keyframes draw-fill {
+    from {
+      fill-opacity: 0;
+    }
+    to {
+      fill-opacity: 1;
+    }
+  }
+  @keyframes draw {
+    from {
+      stroke-dasharray: 500;
+      stroke-dashoffset: 500;
+    }
+    to {
+      stroke-dasharray: none;
+      stroke-dashoffset: none;
+    }
+  }
+  @keyframes draw-reverse {
+    from {
+      stroke-dasharray: none;
+      stroke-dashoffset: none;
+    }
+    to {
+      stroke-dasharray: 500;
+      stroke-dashoffset: 500;
+    }
+  }
+  @keyframes opacity {
+    from {
+      mask-image: linear-gradient(transparent, transparent);
+    }
+  }
+  @keyframes blur {
+    from {
+      opacity: 0;
+      filter: blur(0.125rem);
+    }
+    to {
+      opacity: 1;
+    } 
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: oklch(0.3052 0 0);
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background-color: transparent;
 }
 
 @layer {
-  .dark {
-    --background-default: oklch(0.9 0 0);
-  }
-  .light {
-    --background-default: oklch(0.9 0 0);
-  }
   .noise {
     filter: url(#noise);
   }
+  .whats-border {
+    stroke-miterlimit: 10;
+    stroke-width: 0.088rem;
+  }  
 }

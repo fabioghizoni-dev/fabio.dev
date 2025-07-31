@@ -1,12 +1,14 @@
 ---
 const alt = "Logo Fábio Ghizoni";
 const title = "Voltar para a página inicial";
+import { Image } from "astro:assets";
 import SwitchLang from "../ui/SwitchLang.astro";
 import SwitchTheme from "../ui/SwitchTheme.astro";
+import Logo from "../../public/Logo.svg";
 ---
 
-<nav class="flex w-full fixed top-0 justify-between items-center p-1 z-1">
-  <img alt={alt} title={title} loading="eager" src="/Logo.svg" onclick="goHome()" class="w-20 cursor-pointer"/>
+<nav class="flex bg-white/20 w-full fixed top-0 justify-between items-center p-1 z-1 backdrop-blur-3xl">
+  <Image alt={alt} src={Logo} title={title} loading="eager" onclick="goHome()" class="w-20 cursor-pointer animate-show-logo"/>
   <SwitchTheme />
   <SwitchLang />
 </nav>

@@ -85,10 +85,10 @@ const defaultSpanClass = `flex relative w-7 h-7 justify-center items-center p-0.
   duration-300 cursor-pointer`;
 ---
 
-<span translate="no" title="Mudar linguagem" aria-label="Mudar linguagem" class="flex flex-col relative justify-center items-center 
-  font-noto-sans-jp text-lg font-bold">
-  <button id="btn-a" class={`${defaultSpanClass} z-1 bg-white border-3 border-black -ml-7`}>A</button>
-  <button id="btn-jp" class={`${defaultSpanClass} z-0 bg-black text-white -mt-4`}>文</button>
+<span translate="no" title="Mudar linguagem" aria-label="Mudar linguagem" class="flex flex-col relative justify-center 
+  items-center font-noto-sans-jp text-lg font-bold">
+  <button id="btn-a" class={`${defaultSpanClass} z-1 bg-white border-3 border-black -ml-7 animate-show-y`}>A</button>
+  <button id="btn-jp" class={`${defaultSpanClass} z-0 bg-black text-white -mt-4 animate-show-x`}>文</button>
   <ul id="list-langs" class="hidden bg-black text-white absolute z-10 top-full mt-1 p-2 gap-1 right-0 
     font-noto-sans-jp text-2xl rounded">
     {languages.map(lang => (

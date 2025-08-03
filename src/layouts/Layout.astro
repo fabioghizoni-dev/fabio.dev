@@ -4,32 +4,44 @@ import SpeedInsights from "@vercel/speed-insights/astro";
 import CopyRight from "../components/CopyRight.astro";
 import NavBar from "../components/NavBar.astro";
 import "../styles/globals.css";
-const { title = "Web | Fábio Ghizoni", description = `Bem vindo ao meu site de portfólio, sinta-se à vontade para explorar e conhecer 
-	mais sobre o site e sobre mim. Aqui você encontrará meus projetos e informações sobre, minhas habilidade e experiências.` } = 
-Astro.props;
+import NoiseBg from "../ui/NoiseBg.astro";
+const {
+  title = "Web | Fábio Ghizoni",
+  description = `Bem vindo ao meu site de portfólio, sinta-se à vontade para explorar e conhecer 
+	mais sobre o site e sobre mim. Aqui você encontrará meus projetos e informações sobre, minhas habilidade e experiências.`,
+} = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-	<head>
-		<title>{title}</title>
-		<meta charset="UTF-8" />
-		<meta name="description" content={description}>
-		<meta name="generator" content={Astro.generator} />
-		<link rel="icon" type="image/svg+xml" href="/Logo.svg"/>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />		
-		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
-	</head>
-	<body class="flex flex-col w-full min-h-screen bg-blue-500/40 justify-between items-center">
-	
-		<Analytics /> 
-		<SpeedInsights />
+  <head>
+    <title>{title}</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/Logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Noto+Sans+JP:wght@100..900&display=swap"
+    />
+  </head>
+  <body
+    class="flex flex-col w-full min-h-screen bg-blue-500/40 justify-between items-center
+		selection:bg-black selection:text-white"
+  >
+    <Analytics />
+    <SpeedInsights />
 
-		<NavBar />
-			<slot />
-		<CopyRight />
-		
-	</body>
+    <NavBar />
+    <NoiseBg />
+    <slot />
+    <CopyRight />
+  </body>
 </html>

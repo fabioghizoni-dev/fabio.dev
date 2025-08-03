@@ -3,27 +3,54 @@ import DynamicLink from "../ui/DynamicLink.astro";
 ---
 
 <section
-  class="flex flex-col w-full min-h-screen justify-center items-center font-noto-sans-jp gap-8"
+  class="flex flex-col w-full min-h-screen justify-center items-center font-cascadia-code gap-8"
 >
   <h1 class="text-4xl font-medium">Entre em contato</h1>
   <h2 class="max-w-2xl text-2xl text-center">
-    Estou sempre aberto a novas oportunidades e colaborações. Sinta-se à vontade
-    para entrar em contato através de qualquer um dos canais abaixo.
+    Estou sempre aberto a novas oportunidades e colaborações. Sinta-se à vontade para entrar em
+    contato através de qualquer um dos canais abaixo.
   </h2>
   <div class="flex gap-8 justify-center items-center">
-    <DynamicLink title="Whatsapp" href="https://wa.me/5543998280078"/>
-    <DynamicLink title="Instagram" href="https://www.instagram.com/fabio.ghizoni_" icon="line-md:instagram"/>
-    <DynamicLink title="Linkedln" href="https://www.linkedin.com/in/f%C3%A1bioghizoni" icon="line-md:linkedin"/>
+    <DynamicLink title="Whatsapp" href="https://wa.me/5543998280078" />
+    <DynamicLink
+      title="Instagram"
+      name="line-md:instagram"
+      href="https://www.instagram.com/fabio.ghizoni_"
+    />
+    <DynamicLink title="Github" name="line-md:github" href="https://github.com/fabioghizoni-dev" />
+    <DynamicLink
+      title="Linkedln"
+      name="line-md:linkedin"
+      href="https://www.linkedin.com/in/f%C3%A1bioghizoni"
+    />
   </div>
   <form action="">
     <label for="name" class="text-2xl">Seu nome</label>
-    <input required id="name" name="name" type="text" autocomplete="name" placeholder="Seu nome aqui">
+    <input
+      required
+      id="name"
+      name="name"
+      type="text"
+      autocomplete="name"
+      placeholder="Seu nome aqui"
+    />
     <label for="email" class="text-2xl">Seu e-mail</label>
-    <input required id="email" name="email" type="text" autocomplete="email" placeholder="seu.email@example.com">
+    <input
+      required
+      id="email"
+      name="email"
+      type="text"
+      autocomplete="email"
+      placeholder="seu.email@example.com"
+    />
     <label for="message" class="text-2xl">Sua mensagem</label>
-    <textarea required rows="6" id="message" name="message" placeholder="Escreva sua mensagem aqui..." >
+    <textarea
+      required
+      rows="6"
+      id="message"
+      name="message"
+      placeholder="Escreva sua mensagem aqui..."
+    >
     </textarea>
   </form>
 </section>
-
-

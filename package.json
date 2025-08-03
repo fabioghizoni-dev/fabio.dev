@@ -1,13 +1,4 @@
 {
-  "type": "module",
-  "version": "0.0.1",
-  "name": "my-portfolio-astro",
-  "scripts": {
-    "astro": "astro",
-    "build": "astro build",
-    "dev": "astro dev --host",
-    "preview": "astro preview"
-  },
   "dependencies": {
     "@iconify-json/flowbite": "^1.2.5",
     "@iconify-json/ic": "^1.2.2",
@@ -22,5 +13,14 @@
   },
   "devDependencies": {
     "astro-icon": "^1.1.5"
-  }
+  },
+  "name": "my-portfolio-astro",
+  "scripts": {
+    "astro": "astro",
+    "build": "astro build",
+    "dev": "astro dev --host",
+    "preview": "astro preview"
+  },
+  "type": "module",
+  "version": "0.0.1"
 }

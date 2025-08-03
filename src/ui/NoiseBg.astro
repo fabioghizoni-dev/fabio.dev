@@ -1,9 +1,15 @@
-<div class="absolute inset-0 bg-gradient-to-bl from-purple-500 via-blue-600 to-purple-300 opacity-60
-  -z-1">
+<div
+  class="absolute inset-0 bg-gradient-to-bl from-purple-blue via-amber-600 to-blue-600 opacity-75 -z-1"
+>
   <svg width="100%" height="100%">
     <filter id="noise" aria-label="Filter Noise Gradient">
-      <feTurbulence type="fractalNoise" baseFrequency="3" numOctaves="3" stitchTiles="stitch" />
+      <feTurbulence
+        seed="2"
+        baseFrequency="3"
+        type="fractalNoise"
+        stitchTiles="stitch"
+        numOctaves="3"></feTurbulence>
     </filter>
-    <rect filter="url(#noise)" width="100%" height="100%"/>
-  </svg>  
+    <rect filter="url(#noise)" width="100%" height="100%"></rect>
+  </svg>
 </div>

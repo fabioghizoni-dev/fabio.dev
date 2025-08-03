@@ -15,6 +15,7 @@
   --animate-show: show 0.2s ease-in-out forwards;
   --animate-hide: hide 0.2s ease-in-out forwards;
   --color-purple-blue: oklch(51.98% 0.288 289.11);
+  --animate-draw-fill: draw-fill 2s linear forwards;
   --animate-show-y: show-y 0.5s ease-in-out forwards;
   --animate-show-x: show-x 0.5s ease-in-out forwards;
   --color-purple-default: oklch(60.83% 0.297 312.11);
@@ -22,7 +23,7 @@
   --animate-opacity: opacity 0.4s ease-in-out infinite alternate;
   --drop-shadow-text-green: 0 0 0.08rem oklch(0.8664 0.294827 142.4953);
   --font-noto-sans-jp: "Noto Sans JP", arial, sans-serif, ui-monospace, monospace;
-  --animate-draw-fill: draw-fill 2s linear .10s forwards, draw-reverse 2s ease-in-out .9s forwards;
+  --font-cascadia-code: "Cascadia Code", arial, sans-serif, ui-monospace, monospace;
   @keyframes show {
     0% {
       width: 0;
@@ -85,16 +86,6 @@
       stroke-dashoffset: none;
     }
   }
-  @keyframes draw-reverse {
-    from {
-      stroke-dasharray: none;
-      stroke-dashoffset: none;
-    }
-    to {
-      stroke-dasharray: 500;
-      stroke-dashoffset: 500;
-    }
-  }
   @keyframes opacity {
     from {
       mask-image: linear-gradient(transparent, transparent);
@@ -103,11 +94,11 @@
   @keyframes blur {
     from {
       opacity: 0;
-      filter: blur(0.125rem);
+      filter: blur(0.2rem);
     }
     to {
       opacity: 1;
-    } 
+    }
   }
 }
 
@@ -120,14 +111,6 @@
 
 body {
   background-color: transparent;
-}
-
-@layer {
-  .noise {
-    filter: url(#noise);
-  }
-  .whats-border {
-    stroke-miterlimit: 10;
-    stroke-width: 0.088rem;
-  }  
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }

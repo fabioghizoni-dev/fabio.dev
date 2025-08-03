@@ -1,7 +1,6 @@
 ---
 const alt = "Logo Fábio Ghizoni";
 import { Image } from "astro:assets";
-import logo from "../../public/Logo.svg";
 const title = "Voltar para a página inicial";
 import SwitchLang from "../ui/SwitchLang.astro";
 import SwitchTheme from "../ui/SwitchTheme.astro";
@@ -12,11 +11,11 @@ import SwitchTheme from "../ui/SwitchTheme.astro";
 >
   <Image
     alt={alt}
-    src={logo}
     width={80}
     height={80}
     title={title}
     loading="eager"
+    src="/Logo.svg"
     onclick="goHome()"
     class="w-20 cursor-pointer animate-show-logo"
   />

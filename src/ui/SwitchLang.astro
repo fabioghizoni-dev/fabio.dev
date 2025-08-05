@@ -85,20 +85,22 @@ const defaultSpanClass = `flex relative w-7 h-7 justify-center items-center p-0.
   translate="no"
   title="Mudar linguagem"
   aria-label="Mudar linguagem"
-  class="flex flex-col relative justify-center
-  items-center font-noto-sans-jp text-lg font-bold"
+  class="relative flex flex-col justify-center items-center font-noto-sans-jp text-lg font-bold"
 >
   <button
     id="btn-a"
+    type="button"
     class={`${defaultSpanClass} z-1 bg-white border-3 border-black -ml-7 animate-show-y`}>A</button
   >
-  <button id="btn-jp" class={`${defaultSpanClass} z-0 bg-black text-white -mt-4 animate-show-x`}
-    >文</button
+  <button
+    id="btn-jp"
+    type="button"
+    class={`${defaultSpanClass} z-0 bg-black text-white -mt-4 animate-show-x`}>文</button
   >
   <ul
     id="list-langs"
-    class="hidden bg-black text-white absolute z-10 top-full mt-1 p-2 gap-1 right-0
-    font-noto-sans-jp text-2xl rounded"
+    class="hidden bg-black text-white absolute z-10 top-full mt-1 p-2 gap-1 right-0 font-noto-sans-jp
+      text-2xl rounded"
   >
     {languages.map((lang) => <li title={lang.name}>{lang.country}</li>)}
   </ul>

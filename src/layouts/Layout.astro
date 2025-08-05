@@ -4,7 +4,6 @@ import SpeedInsights from "@vercel/speed-insights/astro";
 import CopyRight from "../components/CopyRight.astro";
 import NavBar from "../components/NavBar.astro";
 import "../styles/globals.css";
-import NoiseBg from "../ui/NoiseBg.astro";
 const {
   title = "Web | Fábio Ghizoni",
   description = `Bem vindo ao meu site de portfólio, sinta-se à vontade para explorar e conhecer 
@@ -23,24 +22,20 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Noto+Sans+JP:wght@100..900&display=swap"
     />
   </head>
   <body
-    class="flex flex-col w-full min-h-screen bg-blue-500/40 justify-between items-center
-		selection:bg-black selection:text-white"
+    class="flex flex-col w-full min-h-screen bg-blue-500/40 justify-between items-center dark:selection:bg-purple-blue
+      dark:selection:text-white selection:bg-purple-blue selection:text-purple-blue"
   >
     <Analytics />
     <SpeedInsights />
 
     <NavBar />
-    <NoiseBg />
     <slot />
     <CopyRight />
   </body>

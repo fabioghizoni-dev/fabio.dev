@@ -2,29 +2,38 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<!-- Mode Dark -->
-<Icon
-  id="btn-moon"
-  title="Modo dark"
-  aria-label="Modo dark"
-  name="line-md:sunny-filled-loop-to-moon-filled-alt-loop-transition"
-  class="absolute w-12 h-12 text-black cursor-pointer top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden rounded-full"
-/>
-<!-- Mode Light -->
-<Icon
-  id="btn-sun"
-  title="Modo light"
-  aria-label="Modo light"
-  name="line-md:moon-filled-alt-to-sunny-filled-loop-transition"
-  class="absolute w-12 h-12 text-black cursor-pointer top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
-/>
+<button
+  type="button"
+  role="button"
+  id="btn-theme"
+  aria-label="Botão para trocar tema"
+  class="relative flex w-12 h-12 ml-auto justify-center items-center overflow-hidden"
+>
+  <!-- Mode Dark -->
+  <Icon
+    id="btn-moon"
+    title="Modo dark"
+    aria-label="Modo dark"
+    name="line-md:sunny-filled-loop-to-moon-filled-alt-loop-transition"
+    class="absolute w-12 h-12 text-purple-blue cursor-pointer rounded-full"
+  />
+  <!-- Mode Light -->
+  <Icon
+    id="btn-sun"
+    title="Modo light"
+    aria-label="Modo light"
+    name="line-md:moon-filled-alt-to-sunny-filled-loop-transition"
+    class="absolute w-12 h-12 text-purple-blue cursor-pointer hidden rounded-full"
+  />
+</button>
 
 <script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
     const btnSun = document.getElementById("btn-sun");
     const btnMoon = document.getElementById("btn-moon");
+    const btnTheme = document.getElementById("btn-theme");
     if (btnSun && btnMoon) {
-      let isDark = false;
+      let isDark = true;
       const hide = (el) => {
         el.classList.add("animate-hide");
         el.addEventListener(
@@ -57,8 +66,7 @@ import { Icon } from "astro-icon/components";
           hide(btnMoon);
         }
       };
-      btnSun.addEventListener("click", toggle);
-      btnMoon.addEventListener("click", toggle);
+      btnTheme.addEventListener("click", toggle);
     }
   });
 </script>

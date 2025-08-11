@@ -8,6 +8,7 @@ import SwitchTheme from "../ui/SwitchTheme.astro";
 
 <nav role="navigation" class="flex w-full fixed top-0 justify-between items-center gap-4 p-1 z-1">
   <Image
+    id="logo"
     alt={alt}
     width={80}
     height={80}
@@ -27,4 +28,10 @@ import SwitchTheme from "../ui/SwitchTheme.astro";
       window.location.href = "/";
     }
   }
+  const elImg = document.getElementById("logo");
+  elImg.addEventListener("error", (e) => {
+    const img = e.currentTarget;
+    console.error("Erro ao carregar imagem no caminho: " + img.src);
+    img.src = "/Logo.png";
+  });
 </script>

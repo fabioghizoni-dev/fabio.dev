@@ -1,14 +1,8 @@
 ---
-const { class: className } = Astro.props;
+const { name, class: className } = Astro.props;
 ---
 
-<svg
-  id="whats"
-  data-name="whats"
-  class={className}
-  viewBox="0 0 17.87 17.88"
-  xmlns="http://www.w3.org/2000/svg"
->
+<svg id={name} data-name={name} class={className} viewBox="0 0 17.87 17.88" xmlns="http://www.w3.org/2000/svg">
   <g>
     <path
       class="fill-none animate-draw stroke-white"

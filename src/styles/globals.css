@@ -31,6 +31,7 @@
   --animate-show-x: show-x 0.5s ease-in-out forwards;
   --animate-show-logo: show-logo 0.5s ease-in-out forwards;
   --animate-opacity: opacity 0.4s ease-in-out infinite alternate;
+  --animate-show-y-bottom: show-y-bottom 0.4s ease-in-out forwards;
 
   /* drop-shadow */
   --drop-shadow-text-white: 0 0 0.08rem white;
@@ -56,6 +57,12 @@
     100% {
       opacity: 1;
       transform: scale(1) translateY(0);
+    }
+  }
+  @keyframes show-y-bottom {
+    from {
+      opacity: 0;
+      transform: translateY(2rem);
     }
   }
   @keyframes show-x {

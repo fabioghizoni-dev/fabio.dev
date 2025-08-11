@@ -1,5 +1,5 @@
 ---
-import DynamicButton from "../ui/DynamicButton.astro";
+import SocialButton from "../ui/SocialButton.astro";
 ---
 
 <section class="flex flex-col w-full min-h-screen justify-center items-center font-cascadia-code gap-8">
@@ -9,10 +9,10 @@ import DynamicButton from "../ui/DynamicButton.astro";
     qualquer um dos canais abaixo.
   </h2>
   <div class="flex gap-8 justify-center items-center">
-    <DynamicButton title="Whatsapp" href="https://wa.me/5543998280078" />
-    <DynamicButton title="Instagram" name="line-md:instagram" href="https://www.instagram.com/fabio.ghizoni_" />
-    <DynamicButton title="Github" name="line-md:github" href="https://github.com/fabioghizoni-dev" />
-    <DynamicButton title="Linkedln" name="line-md:linkedin" href="https://www.linkedin.com/in/f%C3%A1bioghizoni" />
+    <SocialButton title="Whatsapp" name="whatsapp" href="https://wa.me/5543998280078" />
+    <SocialButton title="Instagram" name="line-md:instagram" href="https://www.instagram.com/fabio.ghizoni_" />
+    <SocialButton title="Github" name="line-md:github" href="https://github.com/fabioghizoni-dev" />
+    <SocialButton title="Linkedln" name="line-md:linkedin" href="https://www.linkedin.com/in/f%C3%A1bioghizoni" />
   </div>
   <form action="" class="flex flex-col gap-4 max-w-4xl text-2xl">
     <label for="name" class="text-2xl font-medium">Seu nome</label>
@@ -23,7 +23,7 @@ import DynamicButton from "../ui/DynamicButton.astro";
       type="text"
       autocomplete="name"
       placeholder="Seu nome aqui"
-      class="border-2 px-4 py-2 rounded-lg placeholder:text-purple-blue/50"
+      class="border-2 px-4 py-2 rounded-lg placeholder:text-black/50"
     />
     <label for="email" class="text-2xl">Seu e-mail</label>
     <input
@@ -33,9 +33,17 @@ import DynamicButton from "../ui/DynamicButton.astro";
       name="email"
       autocomplete="email"
       placeholder="seu.email@example.com"
-      class="border-2 px-4 py-2 rounded-lg placeholder:text-purple-blue/50"
+      class="border-2 px-4 py-2 rounded-lg placeholder:text-black/50"
     />
     <label for="message" class="text-2xl">Sua mensagem</label>
-    <textarea required rows="6" id="message" name="message" placeholder="Escreva sua mensagem aqui..."> </textarea>
+    <textarea
+      required
+      rows="6"
+      id="message"
+      name="message"
+      placeholder="Escreva sua mensagem aqui..."
+      class="border-2 px-4 py-2 rounded-lg text-black placeholder:text-black/50"
+    >
+    </textarea>
   </form>
 </section>

@@ -1,10 +1,9 @@
 ---
-import { ClientRouter } from "astro:transitions";
 import { barArt, fabioArt, keywords } from "../ui/AsciiArts";
 const helloWorld = ["O", "l", "á\u00A0", "m", "u", "n", "d", "o", "!", "!"];
 ---
 
-<h1 class="flex flex-col text-4xl font-cascadia-code font-black justify-center items-center gap-4">
+<h1 class="flex flex-col text-4xl text-left font-cascadia-code font-black justify-center items-start gap-4">
   <p id="hello-world" class="inline text-gray-800">
     {
       helloWorld.map((letter, i) => (
@@ -17,7 +16,7 @@ const helloWorld = ["O", "l", "á\u00A0", "m", "u", "n", "d", "o", "!", "!"];
   </p>
   <div
     translate="no"
-    class="flex bg-gradient-to-br bg-clip-text text-transparent from-purple-500 via-purple-blue to-orange-500 text-xs
+    class="flex bg-gradient-to-br bg-clip-text text-transparent from-blue-700 to-rose-500 text-xs
       sm:text-sm md:text-base lg:text-lg leading-none tracking-tight justify-center items-center"
   >
     <pre id="ascii-art" class="">{fabioArt}</pre>

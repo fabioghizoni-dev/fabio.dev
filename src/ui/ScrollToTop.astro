@@ -1,0 +1,26 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<Icon
+  id="arrow-up"
+  name="ep:arrow-up-bold"
+  class=`fixed hidden w-12 h-12 bg-black/50 text-purple-blue right-4 bottom-4 rounded-full p-1 animate-show-y-bottom transition-all ease-in-out 
+    duration-300`
+/>
+
+<script is:inline>
+  const arrowUp = document.getElementById("arrow-up");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 1) {
+      arrowUp.classList.remove("hidden");
+    } else {
+      arrowUp.classList.add("hidden");
+    }
+  });
+  arrowUp.addEventListener("click", () => {
+    if (window.scrollY > 0) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  });
+</script>

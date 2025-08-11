@@ -6,10 +6,7 @@ import SwitchLang from "../ui/SwitchLang.astro";
 import SwitchTheme from "../ui/SwitchTheme.astro";
 ---
 
-<nav
-  role="navigation"
-  class="flex bg-blue-700/30 w-full fixed top-0 border-b-2 border-purple-blue justify-between items-center gap-4 p-1 z-1 backdrop-blur-3xl"
->
+<nav role="navigation" class="flex w-full fixed top-0 justify-between items-center gap-4 p-1 z-1">
   <Image
     alt={alt}
     width={80}
@@ -18,7 +15,7 @@ import SwitchTheme from "../ui/SwitchTheme.astro";
     loading="eager"
     src="/Logo.svg"
     onclick="goHome()"
-    class="w-20 cursor-pointer animate-show-logo"
+    class="h-8 cursor-pointer animate-show-logo"
   />
   <SwitchTheme />
   <SwitchLang />

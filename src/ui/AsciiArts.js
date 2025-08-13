@@ -21,11 +21,15 @@ const u = ["██╗   ██╗", "██║   ██║", "██║   ██
 const v = ["██╗   ██╗", "██║   ██║", "██║   ██║", "╚██╗ ██╔╝", " ╚████╔╝ ", "  ╚═══╝  "];
 const x = ["██╗  ██╗", "╚██╗██╔╝", " ╚███╔╝ ", " ██╔██╗ ", "██╔╝ ██╗", "╚═╝  ╚═╝"];
 const z = ["███████╗", "╚══███╔╝", "  ███╔╝ ", " ███╔╝  ", "███████╗", "╚══════╝"];
+const slash = ["    ██╗", "   ██╔╝", "  ██╔╝ ", " ██╔╝  ", "██╔╝   ", "╚═╝    "];
+const question = ["██████╗ ", "╚════██╗", "  ▄███╔╝", "  ▀▀══╝ ", "  ██╗   ", "  ╚═╝   "];
 const dash = ["        ", "        ", "███████╗", "╚══════╝", "        ", "        "];
 const space = ["     ", "     ", "     ", "     ", "     ", "     "];
 const point = ["   ", "   ", "   ", "   ", "██╗", "╚═╝"];
+const parenthesis_left = ["  ██╗", " ██╔╝", " ██║ ", " ██║ ", " ╚██╗", "  ╚═╝"];
+const parenthesis_right = ["██╗  ", "╚██╗ ", " ██║ ", " ██║ ", "██╔╝ ", "╚═╝  "];
 
-export const barArt = ["█╗", "█║", "█║", "█║", "█║", "█║", "╚╝"].join("\n");
+export const bar = ["█╗", "█║", "█║", "█║", "█║", "█║", "╚╝"].join("\n");
 
 let current = 0;
 const letters = {
@@ -53,11 +57,17 @@ const letters = {
   x,
   z,
   "-": dash,
-  " ": space,
   ".": point,
+  "/": slash,
+  " ": space,
+  "?": question,
+  "(": parenthesis_left,
+  ")": parenthesis_right,
 };
-export const keywords = ["Meu nome é", "Eu sou um dev", "Sinta-se a vontade para explorar"];
-export const fabioArt = f.map((_, y) => `${f[y]} ${a[y]} ${b[y]} ${i[y]} ${o[y]}`).join("\n");
+export const keywords = ["Seja", "Vamos"];
+export const fabio = f
+  .map((_, y) => `${c[y]} ${o[y]} ${n[y]} ${v[y]} ${e[y]} ${r[y]} ${s[y]} ${a[y]} ${r[y]}`)
+  .join("\n");
 
 /**
  * @param {HTMLElement} elKeywords - Elemento HTML em que as palavras vão alternar
@@ -80,7 +90,7 @@ export function keywordAlternate(elKeywords = document.getElementById("keywords"
  * @param {number} pause - Tempo (em ms) de pausa após a palavra ser exibida.
  */
 export async function animateAsciiText(
-  words = ["FABIO HENRIQUE", "FULL-STACK", "MEU SITE"],
+  words = ["BEM VINDO(A)", "CONVERSAR?"],
   id = "ascii-art",
   delay = 300,
   pause = 1500
@@ -94,8 +104,8 @@ export async function animateAsciiText(
 
   while (true) {
     for (const word of words) {
-      const chars = word.toLowerCase().split("");
       let current = Array(6).fill("");
+      const chars = word.toLowerCase().split("");
 
       for (const char of chars) {
         const block = letters[char];

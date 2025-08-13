@@ -1,0 +1,71 @@
+---
+const alt = "Logo Fábio Ghizoni";
+import { Image } from "astro:assets";
+const title = "Voltar para a página inicial";
+import SwitchLang from "../ui/test/SwitchLang.astro";
+import SwitchTheme from "../ui/test/SwitchTheme.astro";
+---
+
+<header
+  id="header"
+  role="heading"
+  class="fixed hidden opacity-0 w-full top-0 justify-between items-center gap-4 px-2 py-1 z-1 overflow-hidden transition-all ease-in-out
+    duration-500"
+>
+  <Image
+    id="logo"
+    alt={alt}
+    width={80}
+    height={80}
+    title={title}
+    loading="eager"
+    src="/Logo.svg"
+    onclick="goHome()"
+    class="h-9 cursor-pointer animate-show-logo"
+  />
+  <ul class="flex justify-center items-center text-xl font-bold text-purple-blue font-cascadia-code gap-4">
+    <li onclick="goSection(`about-me`)" class="cursor-pointer">Sobre mim</li>
+    <li onclick="goSection(`contact-me`)" class="cursor-pointer">Contacte-me</li>
+  </ul>
+  <SwitchTheme />
+  <SwitchLang />
+</header>
+
+<script is:inline>
+  function goHome() {
+    if (window.location.pathname !== "/") {
+      window.location.href = "/";
+    }
+  }
+  function goSection(id) {
+    const section = document.getElementById(id);
+    section.scrollIntoView({ behavior: "smooth" });
+  }
+
+  const header = document.getElementById("header");
+
+  function headerHiddenOnLoad() {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > 200) {
+      header.classList.add("hidden");
+      header.classList.remove("flex");
+    } else {
+      header.classList.add("flex");
+      header.classList.remove("hidden");
+    }
+  }
+
+  function updateHeaderVisibility() {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > 200) {
+      header.classList.remove("opacity-100");
+      header.classList.add("opacity-0", "animate-height", "-translate-y-3");
+    } else {
+      header.classList.add("opacity-100");
+      header.classList.remove("opacity-0", "animate-height", "-translate-y-3");
+    }
+  }
+
+  headerHiddenOnLoad();
+  window.addEventListener("scroll", updateHeaderVisibility);
+</script>

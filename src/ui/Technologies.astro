@@ -1,0 +1,31 @@
+---
+const technologies = [
+  "Next.js",
+  "Astro",
+  "Delphi",
+  "Tortoise",
+  "Github",
+  "Figma",
+  "React",
+  "Javascript",
+  "Illustrator",
+  "Typescript",
+  "Python",
+  "Git",
+  "Kotlin",
+  "React Native",
+  "Object Pascal",
+];
+---
+
+<div class="relative w-full overflow-hidden animate-horz-loop">
+  <div class="">
+    {
+      [...technologies, ...technologies].map((technologie) => (
+        <span id="tech" class="after:mx-10 after:content-['•'] text-white text-2xl text-nowrap font-cascadia-code">
+          {technologie}
+        </span>
+      ))
+    }
+  </div>
+</div>

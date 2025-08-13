@@ -2,7 +2,7 @@
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import CopyRight from "../components/CopyRight.astro";
-import NavBar from "../components/NavBar.astro";
+import Header from "../components/Header.astro";
 import "../styles/globals.css";
 const {
   title = "Web | Fábio Ghizoni",
@@ -35,7 +35,7 @@ const {
     <Analytics />
     <SpeedInsights />
 
-    <NavBar />
+    <Header />
     <slot />
     <CopyRight />
   </body>

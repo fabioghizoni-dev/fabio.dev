@@ -8,6 +8,7 @@
   --spacing-11%: 11%;
   --spacing-25%: 25%;
   --spacing-78%: 78%;
+  --spacing-105%: 105%;
   --spacing-7.2: 1.75rem;
   --spacing-0.8: 0.188rem;
 
@@ -24,14 +25,17 @@
   --animate-blur: blur 1.4s linear forwards;
   --animate-draw: draw 4s ease-in-out forwards;
   --animate-char: char 1s ease-in-out forwards;
+  --animate-height: height 0.4s linear forwards;
   --animate-show: show 0.2s ease-in-out forwards;
   --animate-hide: hide 0.2s ease-in-out forwards;
   --animate-draw-fill: draw-fill 2s linear forwards;
   --animate-show-y: show-y 0.5s ease-in-out forwards;
   --animate-show-x: show-x 0.5s ease-in-out forwards;
+  --animate-horz-loop: horz-loop 20s linear infinite;
   --animate-show-logo: show-logo 0.5s ease-in-out forwards;
   --animate-opacity: opacity 0.4s ease-in-out infinite alternate;
   --animate-show-y-bottom: show-y-bottom 0.4s ease-in-out forwards;
+  --animate-hide-y-bottom: hide-y-bottom 0.4s ease-in-out forwards;
 
   /* drop-shadow */
   --drop-shadow-text-white: 0 0 0.08rem white;
@@ -62,7 +66,21 @@
   @keyframes show-y-bottom {
     from {
       opacity: 0;
-      transform: translateY(2rem);
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes hide-y-bottom {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(100%);
     }
   }
   @keyframes show-x {
@@ -132,6 +150,22 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+  @keyframes horz-loop {
+    from {
+      transform: translateX(0%);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes height {
+    from {
+      height: fit-content;
+    }
+    to {
+      height: 0;
     }
   }
 }

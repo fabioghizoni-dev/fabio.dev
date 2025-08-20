@@ -19,10 +19,12 @@ const s = ["███████╗", "██╔════╝", "████
 const t = ["████████╗", "╚══██╔══╝", "   ██║   ", "   ██║   ", "   ██║   ", "   ╚═╝   "];
 const u = ["██╗   ██╗", "██║   ██║", "██║   ██║", "██║   ██║", "╚██████╔╝", " ╚═════╝ "];
 const v = ["██╗   ██╗", "██║   ██║", "██║   ██║", "╚██╗ ██╔╝", " ╚████╔╝ ", "  ╚═══╝  "];
+const w = ["██╗    ██╗", "██║    ██║", "██║ █╗ ██║", "██║███╗██║", "╚███╔███╔╝", " ╚══╝╚══╝ "];
 const x = ["██╗  ██╗", "╚██╗██╔╝", " ╚███╔╝ ", " ██╔██╗ ", "██╔╝ ██╗", "╚═╝  ╚═╝"];
 const z = ["███████╗", "╚══███╔╝", "  ███╔╝ ", " ███╔╝  ", "███████╗", "╚══════╝"];
 const slash = ["    ██╗", "   ██╔╝", "  ██╔╝ ", " ██╔╝  ", "██╔╝   ", "╚═╝    "];
 const question = ["██████╗ ", "╚════██╗", "  ▄███╔╝", "  ▀▀══╝ ", "  ██╗   ", "  ╚═╝   "];
+const exclamation = ["██╗", "██║", "██║", "╚═╝", "██╗", "╚═╝"];
 const dash = ["        ", "        ", "███████╗", "╚══════╝", "        ", "        "];
 const space = ["     ", "     ", "     ", "     ", "     ", "     "];
 const point = ["   ", "   ", "   ", "   ", "██╗", "╚═╝"];
@@ -54,6 +56,7 @@ const letters = {
   t,
   u,
   v,
+  w,
   x,
   z,
   "-": dash,
@@ -61,16 +64,17 @@ const letters = {
   "/": slash,
   " ": space,
   "?": question,
+  "!": exclamation,
   "(": parenthesis_left,
   ")": parenthesis_right,
 };
-export const keywords = ["Seja", "Vamos"];
+export const keywords = ["Be", "Let's", "Hello"];
 export const fabio = f
   .map((_, y) => `${c[y]} ${o[y]} ${n[y]} ${v[y]} ${e[y]} ${r[y]} ${s[y]} ${a[y]} ${r[y]}`)
   .join("\n");
 
 /**
- * @param {HTMLElement} elKeywords - Elemento HTML em que as palavras vão alternar
+ * @param {HTMLElement} elKeywords - HTML element in which words will alternate.
  */
 export function keywordAlternate(elKeywords = document.getElementById("keywords")) {
   if (!elKeywords) return;
@@ -84,13 +88,13 @@ export function keywordAlternate(elKeywords = document.getElementById("keywords"
 }
 
 /**
- * @param {string[]} words - Lista de palavras para alternar na animação.
- * @param {string} id - ID do elemento HTML onde a animação será exibida.
- * @param {number} delay - Tempo (em ms) entre cada letra sendo "digitada".
- * @param {number} pause - Tempo (em ms) de pausa após a palavra ser exibida.
+ * @param {string[]} words - List of words to toggle in the animation.
+ * @param {string} id - ID of the HTML element where the animation will be displayed.
+ * @param {number} delay - Time (in ms) between each letter being "typed".
+ * @param {number} pause - Time (in ms) of pause after the word is displayed.
  */
 export async function animateAsciiText(
-  words = ["BEM VINDO(A)", "CONVERSAR?"],
+  words = ["WELCOME", "TALK?", "WORLD!"],
   id = "ascii-art",
   delay = 300,
   pause = 1500
@@ -98,7 +102,7 @@ export async function animateAsciiText(
   const elAscii = document.getElementById(id);
 
   if (!elAscii) {
-    console.error(`Elemento não existe ou não foi renderizado, id:${id}`);
+    console.error(`Element does not exist or was not rendered, id:${id}`);
     return;
   }
 

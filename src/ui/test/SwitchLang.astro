@@ -85,8 +85,8 @@ const defaultSpanClass = `flex relative w-6.5 h-6.5 justify-center items-center 
 
 <span
   translate="no"
-  title="Mudar linguagem"
-  aria-label="Mudar linguagem"
+  title="Change language"
+  aria-label="Change language"
   class="relative flex flex-col justify-center items-center font-noto-sans-jp text-lg font-bold"
 >
   <button id="btn-a" type="button" class={`${defaultSpanClass} z-1 bg-white border-3 border-black -ml-7 animate-show-y`}
@@ -102,7 +102,7 @@ const defaultSpanClass = `flex relative w-6.5 h-6.5 justify-center items-center 
   >
     {
       languages.map((lang) => (
-        <li title={lang.name} onclick="">
+        <li title={lang.name}>
           <Icon name="line-md:check-all" class="inline-flex" />
           {lang.country}
         </li>
@@ -120,21 +120,25 @@ const defaultSpanClass = `flex relative w-6.5 h-6.5 justify-center items-center 
       let isJp = false;
       const toggle = () => {
         isJp = !isJp;
+        listLangs.classList.toggle("hidden");
+        // Change styles for button
         if (isJp) {
-          listLangs.classList.remove("hidden");
-          btnA.classList.add("bg-black", "text-white", "z-0");
+          // Remove classes
           btnJP.classList.remove("bg-black", "text-white", "z-0");
           btnA.classList.remove("bg-white", "border-3", "border-black", "z-1");
+          // Add classes
+          btnA.classList.add("bg-black", "text-white", "z-0");
           btnJP.classList.add("bg-white", "border-3", "border-black", "z-1");
         } else {
-          listLangs.classList.add("hidden");
-          btnJP.classList.add("bg-black", "text-white", "z-0");
+          // Remove classes
           btnA.classList.remove("bg-black", "text-white", "z-0");
-          btnA.classList.add("bg-white", "border-3", "border-black", "z-1");
           btnJP.classList.remove("bg-white", "border-3", "border-black", "z-1");
+          // Add classes
+          btnJP.classList.add("bg-black", "text-white", "z-0");
+          btnA.classList.add("bg-white", "border-3", "border-black", "z-1");
         }
       };
-      // Adiciona o evento de clique
+      // Add event listener on buttons
       btnA.addEventListener("click", toggle);
       btnJP.addEventListener("click", toggle);
     }

@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+/* dark theme in "data-theme" */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+* {
+  /* remove serration */
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: oklch(0.3052 0 0);
+    --foreground: #ededed;
+  }
+}
+
 @theme inline {
   /* z */
   --z-index-1: 1;
@@ -20,6 +36,7 @@
   --color-beige-dark: oklch(0.5879 0.0389 76.8);
   --color-purple-blue: oklch(51.98% 0.288 289.11);
   --color-purple-default: oklch(60.83% 0.297 312.11);
+  --color-purple-custom: oklch(0.3793 0.1283 324.71);
 
   /* animations */
   --animate-blur: blur 1.4s linear forwards;
@@ -44,6 +61,7 @@
   /* fonts */
   --font-noto-sans-jp: "Noto Sans JP", arial, sans-serif, ui-monospace, monospace;
   --font-cascadia-code: "Cascadia Code", arial, sans-serif, ui-monospace, monospace;
+  --font-space-grotesk: "Space Grotesk", arial, sans-serif, ui-monospace, monospace;
 
   /* keyframes */
   @keyframes show {
@@ -153,9 +171,6 @@
     }
   }
   @keyframes horz-loop {
-    from {
-      transform: translateX(0%);
-    }
     to {
       transform: translateX(-50%);
     }
@@ -168,17 +183,4 @@
       height: 0;
     }
   }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: oklch(0.3052 0 0);
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background-color: transparent;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
 }

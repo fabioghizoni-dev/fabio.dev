@@ -6,30 +6,31 @@ import Header from "../components/Header.astro";
 import "../styles/globals.css";
 const {
   title = "Web | Fábio Ghizoni",
-  description = `Bem vindo ao meu site de portfólio, sinta-se à vontade para explorar e conhecer 
-	mais sobre o site e sobre mim. Aqui você encontrará meus projetos e informações sobre, minhas habilidade e experiências.`,
+  description = `Welcome to my portfolio website. Feel free to explore and learn more about the site and me. Here you'll 
+    find my projects and information about my skills and experiences.`,
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
   <head>
     <title>{title}</title>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-    <link rel="icon" type="image/svg+xml" href="/Logo.svg" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Noto+Sans+JP:wght@100..900&display=swap"
     />
   </head>
   <body
-    class="flex flex-col w-full min-h-screen bg-blue-500/40 justify-between items-center dark:selection:bg-white
+    class="flex flex-col w-full min-h-screen bg-white dark:bg-black justify-between items-center dark:selection:bg-white
       dark:selection:text-purple-blue selection:bg-purple-blue selection:text-white"
   >
     <Analytics />

@@ -1,31 +1,9 @@
 ---
 import { bar, fabio, keywords } from "../ui/AsciiArts";
-const helloWorld = [
-  "O",
-  "l",
-  "á,\u00A0",
-  "e",
-  "u\u00A0",
-  "s",
-  "o",
-  "u\u00A0",
-  "F",
-  "á",
-  "b",
-  "i",
-  "o\u00A0",
-  "G",
-  "h",
-  "i",
-  "z",
-  "o",
-  "n",
-  "i",
-  ",",
-];
+const helloWorld = ["I'm\u00A0", "F", "á", "b", "i", "o\u00A0", "G", "h", "i", "z", "o", "n", "i", ","];
 ---
 
-<h1 class="flex flex-col text-4xl text-left font-cascadia-code font-black justify-center items-start gap-4">
+<h1 class="flex flex-col text-4xl text-left font-space-grotesk font-black justify-center items-start gap-4">
   <p id="hello-world" class="inline text-gray-800">
     {
       helloWorld.map((letter, i) => (

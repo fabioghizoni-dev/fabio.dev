@@ -9,8 +9,9 @@ import SwitchTheme from "../ui/test/SwitchTheme.astro";
 <header
   id="header"
   role="heading"
-  class="fixed hidden opacity-0 w-full top-0 justify-between items-center gap-4 px-2 py-1 z-1 overflow-hidden transition-all ease-in-out
-    duration-500"
+  aria-level="1"
+  class="fixed hidden w-full top-0 justify-between items-center border-b-2 border-purple-blue backdrop-blur-3xl gap-4 px-2
+    py-1 z-1"
 >
   <Image
     id="logo"
@@ -19,13 +20,13 @@ import SwitchTheme from "../ui/test/SwitchTheme.astro";
     height={80}
     title={title}
     loading="eager"
-    src="/Logo.svg"
+    src="/logo.svg"
     onclick="goHome()"
     class="h-9 cursor-pointer animate-show-logo"
   />
   <ul class="flex justify-center items-center text-xl font-bold text-purple-blue font-cascadia-code gap-4">
-    <li onclick="goSection(`about-me`)" class="cursor-pointer">Sobre mim</li>
-    <li onclick="goSection(`contact-me`)" class="cursor-pointer">Contacte-me</li>
+    <li onclick="goSection(`about-me`)" class="cursor-pointer">About me</li>
+    <li onclick="goSection(`contact-me`)" class="cursor-pointer">Contact me</li>
   </ul>
   <SwitchTheme />
   <SwitchLang />
@@ -46,16 +47,18 @@ import SwitchTheme from "../ui/test/SwitchTheme.astro";
 
   function headerHiddenOnLoad() {
     const currentScrollY = window.scrollY;
-    if (currentScrollY > 200) {
-      header.classList.add("hidden");
-      header.classList.remove("flex");
+    if (currentScrollY <= 200) {
+      // hidden to flex
+      header.classList.replace("hidden", "flex");
+      header.classList.add("transition-all", "ease-in-out", "duration-500");
     } else {
-      header.classList.add("flex");
-      header.classList.remove("hidden");
+      // flex to hidden
+      header.classList.replace("flex", "hidden");
+      header.classList.remove("transition-all", "ease-in-out", "duration-500");
     }
   }
 
-  function updateHeaderVisibility() {
+  /* function updateHeaderVisibility() {
     const currentScrollY = window.scrollY;
     if (currentScrollY > 200) {
       header.classList.remove("opacity-100");
@@ -64,8 +67,8 @@ import SwitchTheme from "../ui/test/SwitchTheme.astro";
       header.classList.add("opacity-100");
       header.classList.remove("opacity-0", "animate-height", "-translate-y-3");
     }
-  }
+  } */
 
   headerHiddenOnLoad();
-  window.addEventListener("scroll", updateHeaderVisibility);
+  //window.addEventListener("scroll", updateHeaderVisibility);
 </script>

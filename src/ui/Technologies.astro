@@ -30,12 +30,12 @@ const technologiesData = [
 const technologies = [...technologiesData, ...technologiesData];
 ---
 
-<div class="relative w-full bg-black border-y border-white/20 py-2 overflow-hidden">
-  <div class="flex w-max justify-center items-center gap-10 will-change-transform animate-horz-loop">
+<div class="relative w-full group bg-black border-y border-white/20 py-2 overflow-hidden">
+  <div class="flex w-max justify-center items-center gap-10 will-change-transform animate-horz-loop group-hover:pause">
     {
       technologies.map((tech) => {
         const CustomIcon = tech.customIcon || Icon;
-        const baseIconClass = tech.name === "Astro" || "Node.js" ? "w-10 h-10" : "";
+        const baseIconClass = ["Astro", "Node.js"].includes(tech.name) && "w-10 h-10";
         return (
           <span
             class="flex justify-center items-center gap-2 text-white text-center text-3xl text-nowrap font-cascadia-code 

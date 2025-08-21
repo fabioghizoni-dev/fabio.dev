@@ -10,26 +10,27 @@ import SwitchTheme from "../ui/test/SwitchTheme.astro";
   id="header"
   role="heading"
   aria-level="1"
-  class="fixed hidden w-full top-0 justify-between items-center border-b-2 border-purple-blue backdrop-blur-3xl gap-4 px-2
-    py-1 z-1"
+  class="fixed hidden w-full p-2 z-1 no-transition animate-height transition-all ease-in-out duration-500"
 >
-  <Image
-    id="logo"
-    alt={alt}
-    width={80}
-    height={80}
-    title={title}
-    loading="eager"
-    src="/logo.svg"
-    onclick="goHome()"
-    class="h-9 cursor-pointer animate-show-logo"
-  />
-  <ul class="flex justify-center items-center text-xl font-bold text-purple-blue font-cascadia-code gap-4">
-    <li onclick="goSection(`about-me`)" class="cursor-pointer">About me</li>
-    <li onclick="goSection(`contact-me`)" class="cursor-pointer">Contact me</li>
-  </ul>
-  <SwitchTheme />
-  <SwitchLang />
+  <div class="flex max-w-8xl justify-between items-center gap-4 p-2 mx-auto rounded-full">
+    <Image
+      id="logo"
+      alt={alt}
+      width={80}
+      height={80}
+      title={title}
+      loading="eager"
+      src="/logo.svg"
+      onclick="goHome()"
+      class="h-10 p-0.5 rounded-xl backdrop-blur-3xl cursor-pointer animate-show-logo"
+    />
+    <ul class="flex justify-center items-center ml-auto text-xl font-bold text-purple-blue font-cascadia-code gap-4">
+      <li onclick="goSection(`about-me`)" class="cursor-pointer">About me</li>
+      <li onclick="goSection(`contact-me`)" class="cursor-pointer">Contact me</li>
+    </ul>
+    <SwitchTheme />
+    <SwitchLang />
+  </div>
 </header>
 
 <script is:inline>
@@ -44,31 +45,28 @@ import SwitchTheme from "../ui/test/SwitchTheme.astro";
   }
 
   const header = document.getElementById("header");
+  const headerClasses = header.classList;
 
+  // on load page
   function headerHiddenOnLoad() {
     const currentScrollY = window.scrollY;
-    if (currentScrollY <= 200) {
-      // hidden to flex
-      header.classList.replace("hidden", "flex");
-      header.classList.add("transition-all", "ease-in-out", "duration-500");
-    } else {
-      // flex to hidden
-      header.classList.replace("flex", "hidden");
-      header.classList.remove("transition-all", "ease-in-out", "duration-500");
+    if (currentScrollY <= 300) {
+      // header visible
+      headerClasses.remove("hidden");
     }
   }
 
-  /* function updateHeaderVisibility() {
+  function updateHeaderVisibility() {
     const currentScrollY = window.scrollY;
-    if (currentScrollY > 200) {
-      header.classList.remove("opacity-100");
-      header.classList.add("opacity-0", "animate-height", "-translate-y-3");
+    if (currentScrollY >= 300) {
+      // maior ent deve desaparecer com animate reverse...
+      headerClasses.remove("no-transition");
+      headerClasses.add("reverse");
     } else {
-      header.classList.add("opacity-100");
-      header.classList.remove("opacity-0", "animate-height", "-translate-y-3");
+      headerClasses.remove("reverse");
     }
-  } */
+  }
 
-  headerHiddenOnLoad();
-  //window.addEventListener("scroll", updateHeaderVisibility);
+  window.addEventListener("DOMContentLoaded", headerHiddenOnLoad);
+  window.addEventListener("scroll", updateHeaderVisibility);
 </script>

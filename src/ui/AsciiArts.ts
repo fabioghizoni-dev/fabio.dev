@@ -34,7 +34,7 @@ const parenthesis_right = ["██╗  ", "╚██╗ ", " ██║ ", " █�
 export const bar = ["█╗", "█║", "█║", "█║", "█║", "█║", "╚╝"].join("\n");
 
 let current = 0;
-const letters = {
+const letters: Record<string, string[]> = {
   a,
   b,
   c,

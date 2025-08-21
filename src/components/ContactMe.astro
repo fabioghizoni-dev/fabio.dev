@@ -7,13 +7,13 @@ import SocialButton from "../ui/SocialButton.astro";
   <h2 class="max-w-2xl text-2xl text-center">
     I'm always open to new opportunities and collaborations. Feel free to contact me through any of the channels below.
   </h2>
-  <div class="flex gap-8 justify-center items-center">
+  <div class="flex flex-wrap gap-8 justify-center items-center">
     <SocialButton title="Whatsapp" name="whatsapp" href="https://wa.me/5543998280078" />
     <SocialButton title="Instagram" name="line-md:instagram" href="https://www.instagram.com/fabio.ghizoni_" />
     <SocialButton title="Github" name="line-md:github" href="https://github.com/fabioghizoni-dev" />
-    <SocialButton title="Linkedln" name="line-md:linkedin" href="https://www.linkedin.com/in/f%C3%A1bioghizoni" />
+    <SocialButton title="LinkedIn" name="line-md:linkedin" href="https://www.linkedin.com/in/f%C3%A1bioghizoni" />
   </div>
-  <form action="" class="flex flex-col gap-4 max-w-4xl text-2xl">
+  <form action="" class="flex flex-col gap-4 max-w-4xl text-white text-2xl">
     <label for="name" class="text-2xl font-medium">Your name</label>
     <input
       required
@@ -41,8 +41,11 @@ import SocialButton from "../ui/SocialButton.astro";
       id="message"
       name="message"
       placeholder="Write your message here..."
-      class="border-2 px-4 py-2 rounded-lg text-black placeholder:text-black/50"
+      class="bg-white border-2 px-4 py-2 rounded-lg text-black placeholder:text-black/50"
     >
     </textarea>
+    <button type="submit" class="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg text-xl hover:bg-blue-700 transition"
+      >Send message</button
+    >
   </form>
 </section>

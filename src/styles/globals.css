@@ -4,6 +4,10 @@
   animation-direction: reverse;
 }
 
+@utility transition-border {
+  transition-property: border;
+}
+
 @utility pause {
   animation-play-state: paused;
   -o-animation-play-state: paused;
@@ -24,6 +28,7 @@
 
 * {
   /* remove serration */
+  text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
@@ -45,8 +50,12 @@
   --spacing-78%: 78%;
   --spacing-105%: 105%;
   --spacing-8xl: 90rem;
-  --spacing-7.2: 1.75rem;
   --spacing-0.8: 0.188rem;
+  --spacing-9.5: 2.375rem;
+  --spacing-8.5: 2.125rem;
+  --spacing-9.8: 2.388rem;
+  --spacing-9.9: 2.438rem;
+  --spacing-10.2: 2.625rem;
 
   --text-min: 0.2rem;
 
@@ -69,6 +78,7 @@
   --animate-show-y: show-y 0.5s ease-in-out forwards;
   --animate-show-x: show-x 0.5s ease-in-out forwards;
   --animate-horz-loop: horz-loop 20s linear infinite;
+  --animate-pulse-border: 1.5s pulse-border 0s infinite;
   --animate-show-logo: show-logo 0.5s ease-in-out forwards;
   --animate-opacity: opacity 0.4s ease-in-out infinite alternate;
   --animate-show-y-bottom: show-y-bottom 0.4s ease-in-out forwards;
@@ -206,6 +216,17 @@
     100% {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+  @keyframes pulse-border {
+    0% {
+      box-shadow: 0 0 0 var(--color-purple-blue);
+    }
+    70% {
+      box-shadow: 0 0 0 0.25rem var(--color-purple-blue);
+    }
+    100% {
+      box-shadow: 0 0 0 var(--color-purple-blue);
     }
   }
 }

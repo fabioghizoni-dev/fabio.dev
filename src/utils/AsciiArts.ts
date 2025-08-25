@@ -76,7 +76,7 @@ export const fabio = f
 /**
  * @param {HTMLElement} elKeywords - HTML element in which words will alternate.
  */
-export function keywordAlternate(elKeywords = document.getElementById("keywords")) {
+export function keywordAlternate(elKeywords: HTMLElement | null = document.getElementById("keywords")) {
   if (!elKeywords) return;
 
   current = (current + 1) % keywords.length;
@@ -94,11 +94,11 @@ export function keywordAlternate(elKeywords = document.getElementById("keywords"
  * @param {number} pause - Time (in ms) of pause after the word is displayed.
  */
 export async function animateAsciiText(
-  words = ["WELCOME", "TALK?", "WORLD!"],
-  id = "ascii-art",
-  delay = 300,
-  pause = 1500
-) {
+  words: string[] = ["WELCOME", "TALK?", "WORLD!"],
+  id: string = "ascii-art",
+  delay: number = 300,
+  pause: number = 1500
+): Promise<void> {
   const elAscii = document.getElementById(id);
 
   if (!elAscii) {

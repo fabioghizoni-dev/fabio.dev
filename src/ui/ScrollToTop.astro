@@ -6,19 +6,22 @@ import { Icon } from "astro-icon/components";
   id="arrow-up"
   name="ep:arrow-up-bold"
   title="Scroll to top of page"
-  class=`fixed opacity-0 w-12 h-12 bg-black/50 dark:bg-blue-500 text-purple-blue right-4 bottom-4 rounded-full p-1 
-    cursor-pointer transition-all ease-in-out duration-500`
+  class=`fixed opacity-0 pointer-events-none w-12 h-12 bg-gradient-to-b from-purple-default to-cyan-500 text-white right-4 
+    bottom-4 rounded-full p-1 cursor-pointer transition-all ease-in-out duration-500`
 />
 
 <script is:inline>
   const arrowUp = document.getElementById("arrow-up");
+  let isVisible = false;
   window.addEventListener("scroll", () => {
-    if (window.scrollY > 200) {
-      arrowUp.classList.add("animate-show-y-bottom");
-      arrowUp.classList.remove("animate-hide-y-bottom");
-    } else {
-      arrowUp.classList.add("animate-hide-y-bottom");
-      arrowUp.classList.remove("animate-show-y-bottom");
+    if (window.scrollY >= 300 && !isVisible) {
+      isVisible = true;
+      arrowUp.classList.remove("animate-hide-y-bottom", "opacity-0", "pointer-events-none");
+      arrowUp.classList.add("animate-show-y-bottom", "opacity-100", "pointer-events-auto");
+    } else if (window.scrollY < 300 && isVisible) {
+      isVisible = false;
+      arrowUp.classList.remove("animate-show-y-bottom", "opacity-100", "pointer-events-auto");
+      arrowUp.classList.add("animate-hide-y-bottom", "opacity-0", "pointer-events-none");
     }
   });
   arrowUp.addEventListener("click", () => {

@@ -1,15 +1,12 @@
 ---
 import { Icon } from "astro-icon/components";
+import cn from "../utils/cn";
+const finalClass =
+  cn(`relative flex min-w-8 min-h-8 w-8 h-8 p-0.5 ml-auto justify-center items-center hover:text-purple-blue text-white
+    cursor-pointer rounded-md overflow-hidden transition-all ease-in-out duration-300`);
 ---
 
-<button
-  type="button"
-  role="button"
-  id="btn-theme"
-  aria-label="Button to change theme"
-  class="relative flex w-8 h-8 ml-auto justify-center items-center hover:bg-purple-blue hover:text-black text-white/80
-    cursor-pointer rounded-md overflow-hidden transition-all ease-in-out duration-300"
->
+<button type="button" role="button" id="btn-theme" aria-label="Button to change theme" class={finalClass}>
   <!-- Mode Dark -->
   <Icon
     id="btn-moon"
@@ -23,51 +20,9 @@ import { Icon } from "astro-icon/components";
     id="btn-sun"
     title="Light mode"
     aria-label="Light mode"
-    name="line-md:moon-filled-to-sunny-filled-loop-transition"
     class="absolute w-11/12 h-11/12 hidden"
+    name="line-md:moon-filled-to-sunny-filled-loop-transition"
   />
 </button>
 
-<script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
-    const btnSun = document.getElementById("btn-sun");
-    const btnMoon = document.getElementById("btn-moon");
-    const btnTheme = document.getElementById("btn-theme");
-    if (btnSun && btnMoon && btnTheme) {
-      const hide = (el) => {
-        el.classList.add("animate-hide");
-        el.addEventListener(
-          "animationend",
-          () => {
-            el.classList.remove("animate-hide");
-            el.classList.add("hidden");
-          },
-          { once: true }
-        );
-      };
-      const show = (el) => {
-        el.classList.remove("hidden");
-        el.classList.add("animate-show");
-        el.addEventListener(
-          "animationend",
-          () => {
-            el.classList.remove("animate-show");
-          },
-          { once: true }
-        );
-      };
-      let isDarkMode = true;
-      const toggle = () => {
-        isDarkMode = !isDarkMode;
-        if (isDarkMode) {
-          hide(btnSun);
-          show(btnMoon);
-        } else {
-          show(btnSun);
-          hide(btnMoon);
-        }
-      };
-      btnTheme.addEventListener("click", toggle);
-    }
-  });
-</script>
+<script src="../scripts/SwitchTheme.js"></script>

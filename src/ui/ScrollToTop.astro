@@ -1,32 +1,20 @@
 ---
 import { Icon } from "astro-icon/components";
+import cn from "../utils/cn";
+
+const finalClass =
+  cn(`fixed opacity-0 pointer-events-none w-12 h-12 bg-gradient-to-br from-purple-default to-cyan-500 text-white right-4 
+    bottom-4 rounded-full p-1 cursor-pointer hover:from-cyan-500 hover:to-purple-default hover:text-gray-default 
+      hover:contrast-125 transition-all ease-in-out duration-500`);
 ---
 
 <Icon
   id="arrow-up"
+  role="button"
+  type="button"
   name="ep:arrow-up-bold"
   title="Scroll to top of page"
-  class=`fixed opacity-0 pointer-events-none w-12 h-12 bg-gradient-to-b from-purple-default to-cyan-500 text-white right-4 
-    bottom-4 rounded-full p-1 cursor-pointer transition-all ease-in-out duration-500`
+  class={finalClass}
 />
 
-<script is:inline>
-  const arrowUp = document.getElementById("arrow-up");
-  let isVisible = false;
-  window.addEventListener("scroll", () => {
-    if (window.scrollY >= 300 && !isVisible) {
-      isVisible = true;
-      arrowUp.classList.remove("animate-hide-y-bottom", "opacity-0", "pointer-events-none");
-      arrowUp.classList.add("animate-show-y-bottom", "opacity-100", "pointer-events-auto");
-    } else if (window.scrollY < 300 && isVisible) {
-      isVisible = false;
-      arrowUp.classList.remove("animate-show-y-bottom", "opacity-100", "pointer-events-auto");
-      arrowUp.classList.add("animate-hide-y-bottom", "opacity-0", "pointer-events-none");
-    }
-  });
-  arrowUp.addEventListener("click", () => {
-    if (window.scrollY > 0) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  });
-</script>
+<script src="../scripts/ScrollToTop.js"></script>

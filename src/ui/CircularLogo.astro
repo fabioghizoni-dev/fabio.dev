@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import cn from "../utils/cn";
+
+interface Props extends astroHTML.JSX.HTMLAttributes {
+  src?: string;
+  text?: string;
+  class?: string;
+  isAnimated?: boolean;
+}
+
+const {
+  isAnimated,
+  id = "circular-logo",
+  src = "/fabio_minor.jpg",
+  class: className = "relative group",
+  text = "• FÁBIO HENRIQUE • FULL-STACK DEVELOPER • DESIGNER • AI • DATABASES",
+  ...props
+} = Astro.props as Props;
+---
+
+<span id={id} class={className} {...props}>
+  <svg
+    id="circular-text"
+    viewBox="0 0 500 500"
+    class={cn(
+      `absolute inset-0 -m-10 whitespace-pre text-4xl font-bold font-space-grotesk ${
+        isAnimated ? "animate-spin-slow group-hover:pause" : ""
+      }`
+    )}
+  >
+    <path id="curve" fill="none" d="M250,250 m-200,0 a200,200 0 1,1 400,0 a200,200 0 1,1 -400,0"></path>
+    <text>
+      <textPath href="#curve" class="fill-gray-default">
+        {text}
+      </textPath>
+    </text>
+  </svg>
+  <Image
+    role="img"
+    width={100}
+    height={100}
+    loading="eager"
+    src={src}
+    alt="Fábio Henrique Elegant and Social"
+    class="w-64 h-64 rounded-full"
+  />
+</span>

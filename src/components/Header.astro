@@ -1,19 +1,21 @@
 ---
-const alt = "Logo Fábio Ghizoni";
-const title = "Return to home page";
 import { Image } from "astro:assets";
+import ListItem from "../ui/ListItem.astro";
 import SwitchLang from "../ui/SwitchLang.astro";
 import SwitchTheme from "../ui/SwitchTheme.astro";
+
+const alt = "Logo Fábio Ghizoni";
+const title = "Return to home page";
 ---
 
-<header
-  id="header"
-  role="heading"
-  aria-level="1"
-  class="fixed w-full p-2 z-1 no-transition animate-height transition-all ease-in-out duration-500"
+<div
+  id="div-header"
+  class="fixed hidden w-full p-2 z-1 no-transition animate-height transition-all ease-in-out duration-500"
 >
-  <div
-    class="flex max-w-7xl bg-gray-default border border-white/35 justify-between items-center gap-4 p-2 mx-auto rounded-full"
+  <header
+    role="heading"
+    aria-level="1"
+    class="flex max-w-7xl bg-gray-default border border-white/35 justify-between items-center gap-6 p-2 mx-auto rounded-full"
   >
     <Image
       id="logo"
@@ -23,58 +25,21 @@ import SwitchTheme from "../ui/SwitchTheme.astro";
       title={title}
       loading="eager"
       src="/logo.svg"
-      onclick="goHome()"
       class="h-8 p-0.5 cursor-pointer animate-show-logo"
     />
-    <ul class="flex justify-center items-center ml-auto text-xl font-bold text-white font-cascadia-code gap-4">
-      <li onclick="goSection(`hero`)" class="cursor-pointer" title="Go to home">Home</li>
-      <li onclick="goSection(`about-me`)" class="cursor-pointer" title="Go to about section">About me</li>
-      <li onclick="goSection(`contact-me`)" class="cursor-pointer" title="Go to contact section">Contact me</li>
+    <ul class="flex justify-center items-center ml-auto text-xl font-bold text-white font-cascadia-code gap-8">
+      <ListItem icon="material-symbols:home-rounded"><span class="hidden sm:block">Home</span></ListItem>
+      <ListItem icon="mdi:about" id="li-about-me" title="Go to about section">
+        <span class="hidden sm:block">About me</span>
+      </ListItem>
+      <ListItem icon="mdi:contact" id="li-contact-me" title="Go to contact section">
+        <span class="hidden sm:block">Contact me</span>
+      </ListItem>
     </ul>
+
     <SwitchTheme />
     <SwitchLang />
-  </div>
-</header>
+  </header>
+</div>
 
-<script is:inline>
-  function goHome() {
-    if (window.location.pathname !== "/") {
-      window.location.href = "/";
-    }
-  }
-
-  function goSection(id) {
-    const section = document.getElementById(id);
-    section.scrollIntoView({ behavior: "smooth" });
-  }
-
-  // get header element
-  const header = document.getElementById("header");
-  // header classes
-  const headerClass = header.classList;
-
-  function headerHiddenOnLoad() {
-    const currentScrollY = window.scrollY;
-    if (currentScrollY <= 300) {
-      // header visible
-      headerClass.remove("hidden");
-    }
-  }
-
-  function updateHeaderVisibility() {
-    let isVisible = true;
-    const currentScrollY = window.scrollY;
-    // scroll >= 300 and header visible
-    if (currentScrollY >= 300 && isVisible) {
-      isVisible = false;
-      headerClass.remove("no-transition");
-      headerClass.add("reverse");
-      // scroll < 300 and header invisible
-    } else if (currentScrollY < 300 && !isVisible) {
-      isVisible = true;
-      headerClass.remove("reverse", "no-transition");
-    }
-  }
-  window.addEventListener("DOMContentLoaded", headerHiddenOnLoad);
-  window.addEventListener("scroll", updateHeaderVisibility);
-</script>
+<script src="../scripts/Header.js"></script>

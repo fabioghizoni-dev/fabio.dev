@@ -8,19 +8,13 @@
   transition-property: border;
 }
 
-@utility pause {
-  animation-play-state: paused;
-  -o-animation-play-state: paused;
-  -moz-animation-play-state: paused;
-  -webkit-animation-play-state: paused;
+@utility no-transition {
+  animation: none;
+  transition: none;
 }
 
-@utility no-transition {
-  animation: none !important;
-  transition: none !important;
-  -o-transition: none !important;
-  -moz-transition: none !important;
-  -webkit-transition: none !important;
+@utility pause {
+  animation-play-state: paused;
 }
 
 /* dark theme in "data-theme" */
@@ -49,6 +43,7 @@
   --spacing-25%: 25%;
   --spacing-78%: 78%;
   --spacing-105%: 105%;
+  --spacing-1.8: 0.313rem;
   --spacing-8xl: 90rem;
   --spacing-0.8: 0.188rem;
   --spacing-9.5: 2.375rem;
@@ -56,8 +51,10 @@
   --spacing-9.8: 2.388rem;
   --spacing-9.9: 2.438rem;
   --spacing-10.2: 2.625rem;
+  --spacing-59ch: 59ch;
 
   --text-min: 0.2rem;
+  --text-1xl: 1.488rem;
 
   /* colors and gradients */
   --color-gray-default: oklch(0.235 0 0);
@@ -71,6 +68,7 @@
   --animate-blur: blur 1.4s linear forwards;
   --animate-draw: draw 4s ease-in-out forwards;
   --animate-char: char 1s ease-in-out forwards;
+  --animate-spin-slow: spin 16s linear infinite;
   --animate-height: height 0.4s linear forwards;
   --animate-show: show 0.2s ease-in-out forwards;
   --animate-hide: hide 0.2s ease-in-out forwards;
@@ -78,7 +76,7 @@
   --animate-show-y: show-y 0.5s ease-in-out forwards;
   --animate-show-x: show-x 0.5s ease-in-out forwards;
   --animate-horz-loop: horz-loop 20s linear infinite;
-  --animate-pulse-border: 1.5s pulse-border 0s infinite;
+  --animate-pulse-border: 2s pulse-border 0s infinite;
   --animate-show-logo: show-logo 0.5s ease-in-out forwards;
   --animate-opacity: opacity 0.4s ease-in-out infinite alternate;
   --animate-show-y-bottom: show-y-bottom 0.4s ease-in-out forwards;
@@ -89,9 +87,12 @@
   --drop-shadow-text-green: 0 0 0.08rem oklch(0.8664 0.294827 142.4953);
 
   /* fonts */
-  --font-noto-sans-jp: "Noto Sans JP", arial, sans-serif, ui-monospace, monospace;
-  --font-cascadia-code: "Cascadia Code", arial, sans-serif, ui-monospace, monospace;
-  --font-space-grotesk: "Space Grotesk", arial, sans-serif, ui-monospace, monospace;
+  --font-noto-sans-jp:
+    "Noto Sans JP", arial, sans-serif, ui-monospace, monospace;
+  --font-cascadia-code:
+    "Cascadia Code", arial, sans-serif, ui-monospace, monospace;
+  --font-space-grotesk:
+    "Space Grotesk", arial, sans-serif, ui-monospace, monospace;
 
   /* keyframes */
   @keyframes show {
@@ -219,14 +220,11 @@
     }
   }
   @keyframes pulse-border {
-    0% {
-      box-shadow: 0 0 0 var(--color-purple-blue);
+    from {
+      box-shadow: 0 0 0 0 var(--color-purple-blue);
     }
-    70% {
-      box-shadow: 0 0 0 0.25rem var(--color-purple-blue);
-    }
-    100% {
-      box-shadow: 0 0 0 var(--color-purple-blue);
+    to {
+      box-shadow: 0 0 0 1rem transparent;
     }
   }
 }

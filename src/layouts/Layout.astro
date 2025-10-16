@@ -1,44 +1,71 @@
 ---
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
+import { ClientRouter } from "astro:transitions";
 import CopyRight from "../components/CopyRight.astro";
 import Header from "../components/Header.astro";
 import "../styles/globals.css";
+import cn from "../utils/cn";
+
+interface Props {
+  lang?: string;
+  title?: string;
+  header?: boolean;
+  footer?: boolean;
+  iconHref?: string;
+  dataTheme?: string;
+  generator?: string;
+  bodyClass?: string;
+  description?: string;
+}
+
 const {
+  header,
+  footer,
+  lang = "en",
+  dataTheme = "dark",
   iconHref = "/logo.svg",
+  generator = Astro.generator,
   title = "Portfólio | Fábio Ghizoni",
+  bodyClass = "justify-between items-center",
   description = `Welcome to my portfolio website. Feel free to explore and learn more about the site and me. Here you'll 
     find my projects and information about my skills and experiences.`,
-} = Astro.props;
+} = Astro.props as Props;
+
+const baseBodyClass = `flex flex-col w-full min-h-screen bg-white dark:bg-black dark:selection:bg-white dark:selection:text-purple-blue 
+  selection:bg-purple-blue selection:text-white`;
 ---
 
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang={lang} data-theme={dataTheme}>
   <head>
-    <title>{title}</title>
+    <ClientRouter />
+
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
-    <meta name="generator" content={Astro.generator} />
-    <link rel="icon" type="image/svg+xml" href={iconHref} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta name="generator" content={generator} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" />
+
+    <!-- Title -->
+    <title>{title}</title>
+
+    <!-- Icon -->
+    <link rel="icon" type="image/svg+xml" href={iconHref} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link crossorigin rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Noto+Sans+JP:wght@100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Noto+Sans+JP:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap"
     />
   </head>
-  <body
-    class="flex flex-col w-full min-h-screen bg-white dark:bg-black justify-between items-center dark:selection:bg-white
-      dark:selection:text-purple-blue selection:bg-purple-blue selection:text-white"
-  >
+  <body class={cn(bodyClass, baseBodyClass)}>
     <Analytics />
     <SpeedInsights />
 
-    <Header />
+    {header && <Header />}
     <slot />
-    <CopyRight />
+    {footer && <CopyRight />}
   </body>
 </html>

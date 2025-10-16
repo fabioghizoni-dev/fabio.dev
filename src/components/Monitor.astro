@@ -7,26 +7,37 @@ import { Image } from "astro:assets";
   <!-- IBM Monitor (Made by Fábio Ghizoni) -->
   <div class="flex flex-col w-150 h-150 relative justify-center items-center">
     <!-- Monitor main body -->
-    <div class="flex flex-col w-full h-full bg-beige justify-center items-center rounded-lg">
+    <div
+      class="flex flex-col w-full h-full bg-beige justify-center items-center rounded-lg"
+    >
       <!-- Monitor Screen -->
-      <div class="relative w-78% h-78% bg-black text-green-400 font-mono p-2 rounded overflow-hidden">
-        <p class="inline drop-shadow-text-green">[OK]</p><span class="text-white/80 drop-shadow-text-white">
+      <div
+        class="relative w-78% h-78% bg-black text-green-400 font-mono p-2 rounded overflow-hidden"
+      >
+        <p class="inline drop-shadow-text-green">[OK]</p><span
+          class="text-white/80 drop-shadow-text-white"
+        >
           Loading: <span id="time-loading"> ...</span></span
         >
         <br />
-        <p class="inline drop-shadow-text-green">[TIME]</p><span class="text-white/80 drop-shadow-text-white">
+        <p class="inline drop-shadow-text-green">[TIME]</p><span
+          class="text-white/80 drop-shadow-text-white"
+        >
           Time: <span id="time"> ...</span></span
         >
         <br />
-        <p class="inline drop-shadow-text-green">[DATE]</p><span class="text-white/80 drop-shadow-text-white"
+        <p class="inline drop-shadow-text-green">[DATE]</p><span
+          class="text-white/80 drop-shadow-text-white"
           >Date: <span id="date"> ...</span></span
         >
         <br />
-        <p class="inline drop-shadow-text-green">[OK]</p><span class="text-white/80 drop-shadow-text-white"
+        <p class="inline drop-shadow-text-green">[OK]</p><span
+          class="text-white/80 drop-shadow-text-white"
           >Resolution: <span id="resolution"> ...</span></span
         >
         <br />
-        <p class="inline drop-shadow-text-green">[URL]</p><span class="text-white/80 drop-shadow-text-white"
+        <p class="inline drop-shadow-text-green">[URL]</p><span
+          class="text-white/80 drop-shadow-text-white"
           >Url: <span id="url"> ...</span></span
         >
       </div>
@@ -45,7 +56,9 @@ import { Image } from "astro:assets";
             class="w-full h-full -rotate-20 opacity-60"
           />
         </button>
-        <span class="flex flex-col h-10 justify-center items-center gap-1.5 opacity-60">
+        <span
+          class="flex flex-col h-10 justify-center items-center gap-1.5 opacity-60"
+        >
           <Icon name="mdi:power" class="w-6 h-6 stroke-14" />
           <span class="w-4.5 h-1 bg-black rounded-xs"></span>
         </span>
@@ -54,13 +67,20 @@ import { Image } from "astro:assets";
         >
           <span class="w-11/12 h-11/12 bg-black/10 rounded-full"></span>
         </button>
-        <span translate="no" class="inline-block text-2xl self-start opacity-60 font-serif mr-16">
-          G<span class="inline-block -translate-y-1">7</span><span class="font-sans">0</span>
+        <span
+          translate="no"
+          class="inline-block text-2xl self-start opacity-60 font-serif mr-16"
+        >
+          G<span class="inline-block -translate-y-1">7</span><span
+            class="font-sans">0</span
+          >
         </span>
       </div>
     </div>
     <!-- Buttons at the bottom of the monitor -->
-    <div class="flex w-10/12 h-1/12 bg-beige gap-1 justify-between p-1 rounded-b-md">
+    <div
+      class="flex w-10/12 h-1/12 bg-beige gap-1 justify-between p-1 rounded-b-md"
+    >
       <button class="w-full min-w-8 min-h-8 bg-white/80 rounded-xs">⚡</button>
       <button class="w-full min-w-8 min-h-8 bg-white/80 rounded-xs">◐</button>
       <button class="w-full min-w-8 min-h-8 bg-white/80 rounded-xs">↕</button>
@@ -94,6 +114,7 @@ import { Image } from "astro:assets";
     document.getElementById("date").textContent = `${day}/${month}/${year}`;
     document.getElementById("time-loading").textContent = `${timeLoading}s`;
     document.getElementById("resolution").textContent = `${width}x${height}`;
-    document.getElementById("time").textContent = `${hours}:${minutes}:${seconds}`;
+    document.getElementById("time").textContent =
+      `${hours}:${minutes}:${seconds}`;
   });
 </script>

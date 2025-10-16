@@ -1,20 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ListItem from "../ui/ListItem.astro";
 ---
 
 <Layout
+  header
+  footer
   title="404 | Fábio Ghizoni"
-  description=`Página 404 | Rota não encontrada, volte para a página inicial clicando na logo
-  no canto superior esquerdo ou no botão "inicial" no meio da tela!!`
+  description=`Page 404 | Route not found, return to the home page by clicking on the logo in the upper left corner 
+    or the "home" button in the middle of the screen!!`
 >
-  <h1 class="text-5xl text-center font-noto-sans-jp tracking-wide leading-tight">
+  <h1 class="text-5xl text-center text-white font-noto-sans-jp tracking-wide leading-tight">
     Page not found | 404, <br />return to the home
-    <a
-      href="/"
-      class="relative inline-block after:w-0 after:h-0.8 after:block after:bg-black after:transition-all
-      after:rounded-md after:duration-300 hover:after:w-full"
-    >
-      page
-    </a>
+    <ListItem href="/" variant="primary" underlineHeight="0.8" underlineColor="white/60">page</ListItem>
   </h1>
 </Layout>

@@ -1,11 +1,43 @@
+---
+interface Props {
+  id?: string;
+  seed?: string;
+  type?: string;
+  filterId?: string;
+  ariaLabel?: string;
+  numOctaves?: string;
+  stitchTiles?: string;
+  baseFrequency?: string;
+  style?: astroHTML.JSX.SVGAttributes["style"];
+}
+
+const {
+  seed = "2",
+  id = "preview",
+  numOctaves = "2",
+  filterId = "noise",
+  baseFrequency = "0.4",
+  type = "fractalNoise",
+  stitchTiles = "stitch",
+  ariaLabel = "Filter Noise Gradient",
+  style = "mix-blend-mode: soft-light;",
+} = Astro.props as Props;
+---
+
 <div
+  id={id}
   class="absolute inset-0 opacity-80 bg-gradient-to-r from-red-400 to-purple-400 dark:from-orange-600
   dark:to-purple-blue -z-1"
 >
   <svg width="100%" height="100%">
-    <filter id="noise" aria-label="Filter Noise Gradient">
-      <feTurbulence seed="2" numOctaves="2" type="fractalNoise" stitchTiles="stitch" baseFrequency="0.4"></feTurbulence>
+    <filter id={filterId} aria-label={ariaLabel}>
+      <feTurbulence
+        seed={seed}
+        numOctaves={numOctaves}
+        type={type}
+        stitchTiles={stitchTiles}
+        baseFrequency={baseFrequency}></feTurbulence>
     </filter>
-    <rect width="100%" height="100%" filter="url(#noise)" style="mix-blend-mode: soft-light;"></rect>
+    <rect width="100%" height="100%" filter=`url(#${filterId})` style={style}></rect>
   </svg>
 </div>

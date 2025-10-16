@@ -7,7 +7,7 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   integrations: [astroIcon()],
   vite: {
-    // @ts-expect-error;
     plugins: [tailwindcss()],
   },
+  site: "https://portfolio-fabio-main.vercel.app/",
 });

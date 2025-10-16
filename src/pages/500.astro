@@ -1,0 +1,17 @@
+---
+import Layout from "../layouts/Layout.astro";
+interface Props {
+  error: unknown;
+}
+const { error } = Astro.props as Props;
+---
+
+<Layout
+  header
+  footer
+  title="500 | Fábio Ghizoni"
+  description=`Page 500 | Internal server error, please try again later or return to the home page by clicking the logo 
+    in the upper left corner or the "home" button in the middle of the screen!!`
+>
+  <h1>{error instanceof Error ? error.message : error}</h1>
+</Layout>

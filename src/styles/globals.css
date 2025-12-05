@@ -1,0 +1,84 @@
+@import "tailwindcss";
+@import "./utilities.css";
+@import "./keyframes.css";
+
+* {
+  /* remove serration */
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (max-width: 768px) {
+
+  #bar,
+  #ascii-art {
+    font-family: "Cascadia Code", monospace !important;
+  }
+}
+
+@theme inline {
+  /* z */
+  --z-index-1: 1;
+
+  --tracking-max: -0.08rem;
+
+  /* spaces */
+  --spacing-11%: 11%;
+  --spacing-25%: 25%;
+  --spacing-78%: 78%;
+  --spacing-105%: 105%;
+  --spacing-1.8: 0.313rem;
+  --spacing-8xl: 90rem;
+  --spacing-0.8: 0.188rem;
+  --spacing-9.5: 2.375rem;
+  --spacing-8.5: 2.125rem;
+  --spacing-9.8: 2.388rem;
+  --spacing-9.9: 2.438rem;
+  --spacing-10.2: 2.625rem;
+  --spacing-59ch: 59ch;
+
+  --text-min: 0.2rem;
+  --text-1xl: 1.488rem;
+  --text-mobile: 0.5rem;
+
+  --background-image-background: url(/background.jpg);
+
+  /* colors and gradients */
+  --color-gray-default: oklch(0.235 0 0);
+  --color-beige: oklch(0.7667 0.0624 82.38);
+  --color-beige-dark: oklch(0.5879 0.0389 76.8);
+  --color-purple-blue: oklch(51.98% 0.288 289.11);
+  --color-purple-default: oklch(60.83% 0.297 312.11);
+  --color-purple-custom: oklch(0.3793 0.1283 324.71);
+
+  /* animations */
+  --animate-blur: blur 1.4s linear forwards;
+  --animate-draw: draw 4s ease-in-out forwards;
+  --animate-char: char 1s ease-in-out forwards;
+  --animate-spin-slow: spin 16s linear infinite;
+  --animate-height: height 0.4s linear forwards;
+  --animate-show: show 0.2s ease-in-out forwards;
+  --animate-hide: hide 0.2s ease-in-out forwards;
+  --animate-draw-fill: draw-fill 2s linear forwards;
+  --animate-show-y: show-y 0.5s ease-in-out forwards;
+  --animate-show-x: show-x 0.5s ease-in-out forwards;
+  --animate-horz-loop: horz-loop 20s linear infinite;
+  --animate-pulse-border: 2s pulse-border 0s infinite;
+  --animate-show-logo: show-logo 0.5s ease-in-out forwards;
+  --animate-opacity: opacity 0.4s ease-in-out infinite alternate;
+  --animate-show-y-bottom: show-y-bottom 0.4s ease-in-out forwards;
+  --animate-hide-y-bottom: hide-y-bottom 0.4s ease-in-out forwards;
+
+  /* drop-shadow */
+  --drop-shadow-text-white: 0 0 0.08rem white;
+  --drop-shadow-text-green: 0 0 0.08rem oklch(0.8664 0.294827 142.4953);
+
+  /* fonts */
+  --font-noto-sans-jp:
+    "Noto Sans JP", arial, sans-serif, ui-monospace, monospace;
+  --font-cascadia-code:
+    "Cascadia Code", monospace, ui-monospace, arial, sans-serif;
+  --font-space-grotesk:
+    "Space Grotesk", arial, sans-serif, ui-monospace, monospace;
+}

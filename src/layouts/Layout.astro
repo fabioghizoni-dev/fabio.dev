@@ -1,0 +1,75 @@
+---
+import Analytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
+import { ClientRouter } from "astro:transitions";
+import CopyRight from "../components/CopyRight.astro";
+import Header from "../components/Header.astro";
+import "../styles/globals.css";
+import Modal from "../ui/Modal.astro";
+import cn from "../utils/cn";
+
+interface Props {
+  lang?: string;
+  title?: string;
+  header?: boolean;
+  footer?: boolean;
+  iconHref?: string;
+  dataTheme?: string;
+  generator?: string;
+  bodyClass?: string;
+  description?: string;
+  clientRouter?: boolean;
+}
+
+const {
+  header,
+  footer,
+  lang = "en",
+  bodyClass = "",
+  dataTheme = "dark",
+  clientRouter = true,
+  iconHref = "/logo.svg",
+  generator = Astro.generator,
+  title = "Portfólio | Fábio Ghizoni",
+  description = `Welcome to my portfolio website. Feel free to explore and learn more about the site and me. 
+    Here you'll find my projects and information about my skills and experiences.`,
+} = Astro.props as Props;
+
+const baseBodyClass = `flex flex-col justify-between items-center w-full min-h-screen bg-white dark:bg-black 
+  dark:selection:bg-white dark:selection:text-purple-blue selection:bg-purple-blue selection:text-white`;
+---
+
+<!doctype html>
+<html lang={lang} data-theme={dataTheme}>
+  <head>
+    {clientRouter && <ClientRouter />}
+
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={generator} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title -->
+    <title>{title}</title>
+
+    <!-- Icon -->
+    <link rel="icon" type="image/svg+xml" href={iconHref} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link crossorigin rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Noto+Sans+JP:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap"
+    />
+  </head>
+  <body class={cn(baseBodyClass, bodyClass)}>
+    <Analytics />
+    <SpeedInsights />
+
+    {header && <Header />}
+    <Modal />
+    <slot />
+    {footer && <CopyRight />}
+  </body>
+</html>

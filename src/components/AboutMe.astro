@@ -1,0 +1,52 @@
+---
+import cn from "../utils/cn";
+
+const calculateAge = (birthDate: string) => {
+  const today = new Date();
+  const birth = new Date(birthDate);
+  const month = today.getMonth() - birth.getMonth();
+  let age = today.getFullYear() - birth.getFullYear();
+
+  if (month < 0 || (month === 4 && today.getDate() < 30)) {
+    age--;
+  }
+  return age;
+};
+
+const currentAge = calculateAge("2005-05-30");
+
+const aboutMeClass = cn(
+  `flex relative flex-col w-full h-fit min-h-screen justify-center items-center 
+    gap-4 p-8 font-cascadia-code text-white`,
+);
+---
+
+<section id="about-me" class={aboutMeClass}>
+  <div
+    class="absolute inset-0 -z-10 bg-gradient-to-tr from-indigo-500 via-purple-500 to-blue-500
+  dark:from-indigo-900 dark:via-purple-900 dark:to-blue-900 transition-colors ease-in-out duration-1000"
+  >
+  </div>
+  <div class="flex flex-col max-w-8xl h-full justify-center items-center gap-8">
+    <h2 id="about" class="text-4xl font-bold">
+      About
+      <span
+        id="me"
+        class="bg-white text-gray-default rounded p-0.5 -ml-3 hover:bg-transparent hover:text-white
+          transition-colors ease-in-out duration-300"
+        >me</span
+      >
+    </h2>
+    <p class="bg-gray-default text-xl text-justify p-4 rounded-md">
+      Hello!! My name is Fábio, I'm {currentAge} years old, and I live in Manoel
+      Ribas, Paraná - Brazil. I'm a very curious guy who enjoys learning how everything
+      works. That's why I'm passionate about technology, which is a very broad and
+      interesting field. I'm a full-stack developer, creating intuitive and dynamic
+      interfaces with interactivity and accessibility. My main experience is in the
+      web, but I've also developed desktop and mobile applications. I graduated with
+      a degree in Systems Analysis and Development and am now seeking to learn more
+      about various technologies, such as Python, Kotlin, Swift, React Native, and
+      more.
+    </p>
+  </div>
+</section>

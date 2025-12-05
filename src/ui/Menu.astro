@@ -1,0 +1,41 @@
+---
+import cn from "../utils/cn";
+import UnderlineButton from "./UnderlineButton.astro";
+
+const ulClass =
+  cn(`hidden md:flex justify-center items-center text-xl ml-auto font-bold text-white 
+    font-cascadia-code gap-8`);
+---
+
+<>
+  <button
+    id="menu"
+    role="button"
+    class="flex flex-col w-8 h-6 md:hidden justify-between items-center gap-1 mr-2 p-0.5 cursor-pointer"
+  >
+    <div
+      class="bg-gradient-to-r from-purple-default to-purple-blue w-full h-1 rounded-full"
+    >
+    </div>
+    <div
+      class="bg-gradient-to-r from-purple-default to-purple-blue w-full h-1 rounded-full"
+    >
+    </div>
+    <div
+      class="bg-gradient-to-r from-purple-default to-purple-blue w-full h-1 rounded-full"
+    >
+    </div>
+  </button>
+
+  <ul id="list-menu" class={ulClass}>
+    <UnderlineButton>Home</UnderlineButton>
+    <UnderlineButton id="li-about-me" title="Go to about section">
+      About me
+    </UnderlineButton>
+    <UnderlineButton id="li-contact-me" title="Go to contact section">
+      Contact me
+    </UnderlineButton>
+  </ul>
+</>
+
+<script src="../scripts/Menu.ts"></script>

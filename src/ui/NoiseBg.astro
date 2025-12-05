@@ -1,0 +1,63 @@
+---
+import cn from "../utils/cn";
+
+interface Props extends astroHTML.JSX.HTMLAttributes {
+  id?: string;
+  type?: string;
+  random?: boolean;
+  filterId?: string;
+  ariaLabel?: string;
+  seed?: astroHTML.JSX.SVGAttributes["seed"];
+  style?: astroHTML.JSX.SVGAttributes["style"];
+  /** To change the background color/gradient, use the `bg-value`/`bg-[value]` attribute of `tailwindcss`. */
+  class?: astroHTML.JSX.HTMLAttributes["class"];
+  numOctaves?: astroHTML.JSX.SVGAttributes["numOctaves"];
+  stitchTiles?: astroHTML.JSX.SVGAttributes["stitchTiles"];
+  baseFrequency?: astroHTML.JSX.SVGAttributes["baseFrequency"];
+}
+
+let {
+  seed = "1",
+  numOctaves = "1",
+  baseFrequency = "0.7",
+} = Astro.props as Props;
+
+const {
+  random,
+  id = "preview",
+  class: className,
+  filterId = "noise",
+  type = "fractalNoise",
+  stitchTiles = "stitch",
+  ariaLabel = "Filter Noise Gradient",
+  style = "mix-blend-mode: soft-light;",
+} = Astro.props as Props;
+
+if (random) {
+  // Between 1 and 9999
+  seed = Math.floor(Math.random() * 9999).toString();
+  // Between 0.1 and 1.5
+  baseFrequency = (Math.random() * 1.4 + 0.1).toFixed(3);
+  // Between 1 and 5
+  numOctaves = Math.floor(Math.random() * 4 + 1).toString();
+}
+
+const baseClass = `absolute inset-0 opacity-100 bg-gradient-to-br from-red-400 to-purple-blue 
+  dark:from-gray-500 dark:to-gray-default -z-1`;
+const finalClass = cn(baseClass, className);
+---
+
+<div id={id} class={finalClass}>
+  <svg width="100%" height="100%">
+    <filter id={filterId} aria-label={ariaLabel}>
+      <feTurbulence
+        seed={seed}
+        numOctaves={numOctaves}
+        type={type}
+        stitchTiles={stitchTiles}
+        baseFrequency={baseFrequency}></feTurbulence>
+    </filter>
+    <rect width="100%" height="100%" filter=`url(#${filterId})` style={style}
+    ></rect>
+  </svg>
+</div>

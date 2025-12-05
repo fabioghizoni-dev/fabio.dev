@@ -1,0 +1,37 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props as Props;
+---
+
+<div
+  class={`${className} flex flex-col sm:flex-row text-nowrap justify-center items-center gap-4`}
+>
+  <div
+    class="flex bg-gradient-to-r from-purple-default to-purple-blue justify-center items-center
+      gap-1 px-6 py-2 rounded-full"
+  >
+    <Icon
+      name="material-symbols:star-rounded"
+      class="w-6 h-6 text-yellow-500 brightness-200 animate-pulse"
+    />
+    <span class="text-white font-cascadia-code mt-0.5"
+      >Full-Stack Developer</span
+    >
+  </div>
+  <a
+    role="link"
+    href="/cv-fabio.pdf"
+    download="cv-fabio.pdf"
+    aria-label="Download CV"
+    class="flex justify-center items-center gap-2 bg-purple-blue text-white font-cascadia-code font-bold
+      animate-pulse-border rounded-full px-6 py-2 cursor-pointer hover:opacity-80 transition-opacity ease-in-out duration-300"
+  >
+    Download CV
+    <Icon name="material-symbols:download" class="w-6 h-6" />
+  </a>
+</div>

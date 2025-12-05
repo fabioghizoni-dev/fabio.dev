@@ -1,0 +1,66 @@
+---
+import { Icon } from "astro-icon/components";
+import { buildLanguages } from "../scripts/i18n/Languages.ts";
+import cn from "../utils/cn";
+
+const languages = buildLanguages(
+  import.meta.glob("/src/i18n/*.json", { eager: true })
+);
+
+interface Props {
+  id?: string;
+  class?: string;
+  type?: astroHTML.JSX.ButtonHTMLAttributes["type"];
+  role?: astroHTML.JSX.ButtonHTMLAttributes["role"];
+  title?: astroHTML.JSX.ButtonHTMLAttributes["title"];
+  translate?: astroHTML.JSX.ButtonHTMLAttributes["translate"];
+  "aria-label"?: astroHTML.JSX.ButtonHTMLAttributes["aria-label"];
+}
+
+const {
+  role = "button",
+  type = "button",
+  translate = "no",
+  id = "btn-lang",
+  title = "Change language",
+  "aria-label": ariaLabel = title,
+} = Astro.props;
+---
+
+<button
+  type={type}
+  role={role}
+  translate={translate}
+  id={id}
+  title={title}
+  aria-label={ariaLabel}
+  class={cn(
+    `relative hidden sm:block min-w-8 min-h-8 w-8 h-8 p-0.5 text-1xl mr-2 font-cascadia-code font-bold 
+      cursor-pointer`
+  )}
+>
+  <Icon
+    name="material-symbols:translate"
+    class="text-white hover:text-purple-blue size-full"
+  />
+  <ul
+    role="list"
+    id="list-langs"
+    class={cn(
+      `invisible max-h-0 bg-gray-default absolute z-10 left-1/2 translate-y-3.5 -translate-x-1/2 font-normal 
+        font-noto-sans-jp text-2xl rounded p-1 overflow-hidden transition ease-in-out duration-300`
+    )}
+  >
+    {
+      Object.entries(languages).map(([code, config]) => {
+        return (
+          <li role="listitem" title={code} class="text-white text-nowrap">
+            {code}
+          </li>
+        );
+      })
+    }
+  </ul>
+</button>
+
+<script src="../scripts/SwitchLang.js"></script>

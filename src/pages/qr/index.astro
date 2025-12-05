@@ -1,0 +1,29 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const description = `QR Code Page | Page for generating custom QR Codes with parameters and attributes sent 
+  via URL.`;
+---
+
+<Layout
+  clientRouter={false}
+  title="QR Code | Fábio Ghizoni"
+  bodyClass="flex-row justify-center items-center gap-10 overflow-hidden"
+  description={description}
+>
+  <div id="qr" class="scale-90"></div>
+  <h2
+    class="flex flex-col justify-center items-center gap-1 font-cascadia-code
+      text-2xl text-white"
+  >
+    Are you unsure how it works?
+    <a
+      href="/qr/info"
+      class="bg-gradient-to-r from-purple-default to-purple-blue font-space-grotesk
+        font-bold px-3 py-1 rounded"
+      >Click here</a
+    >
+  </h2>
+</Layout>
+
+<script src="../../scripts/QrCode.ts"></script>

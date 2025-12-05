@@ -1,0 +1,38 @@
+---
+import { Icon } from "astro-icon/components";
+import cn from "../utils/cn";
+const finalClass =
+  cn(`relative hidden sm:flex min-w-8 min-h-8 w-8 h-8 p-0.5 ml-auto justify-center items-center 
+    text-white cursor-pointer rounded-md hover:text-purple-blue overflow-hidden transition-all ease-in-out 
+      duration-300`);
+
+const themeTitle = (theme: "Dark" | "Light" = "Dark") =>
+  `${theme} mode\nActive: ${theme}`;
+---
+
+<button
+  type="button"
+  role="button"
+  id="btn-theme"
+  aria-label="Button to change theme"
+  class={finalClass}
+>
+  <!-- Mode Dark -->
+  <Icon
+    id="moon"
+    title={themeTitle()}
+    aria-label={themeTitle()}
+    class="absolute w-11/12 h-11/12"
+    name="line-md:sunny-filled-loop-to-moon-filled-loop-transition"
+  />
+  <!-- Mode Light -->
+  <Icon
+    id="sun"
+    title={themeTitle("Light")}
+    aria-label={themeTitle("Light")}
+    class="absolute w-11/12 h-11/12 hidden"
+    name="line-md:moon-filled-to-sunny-filled-loop-transition"
+  />
+</button>
+
+<script src="../scripts/SwitchTheme.js"></script>

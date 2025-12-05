@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/Layout.astro";
+import UnderlineButton from "../ui/UnderlineButton.astro";
+
+const description = `Page 404 | Route not found, return to the home page by clicking on the logo in the upper 
+  left corner or the "home" button in the middle of the screen!!`;
+---
+
+<Layout header footer title="404 | Fábio Ghizoni" description={description}>
+  <h1
+    class="text-5xl text-center text-white font-noto-sans-jp tracking-wide leading-tight"
+  >
+    Page not found | 404, <br />return to the home
+    <UnderlineButton
+      href="/"
+      variant="primary"
+      class="h-0.8 after:bg-white/60 text-5xl">page</UnderlineButton
+    >
+  </h1>
+</Layout>

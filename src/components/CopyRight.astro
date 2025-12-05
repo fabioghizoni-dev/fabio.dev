@@ -1,0 +1,28 @@
+---
+import cn from "../utils/cn";
+
+const date = new Date();
+const anchorClass =
+  cn(`font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-default to-purple-blue
+    hover:from-purple-blue hover:to-purple-default transition-colors ease-in-out duration-300`);
+---
+
+<footer
+  role="contentinfo"
+  class="flex bg-black w-full min-h-10 text-white justify-center items-center mt-6"
+>
+  <p class="text-base md:text-lg font-space-grotesk">
+    &copy; {date.getFullYear()}
+    <span class="sr-only">- Author:</span>
+    <a
+      role="link"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://www.instagram.com/fabio.ghizoni_"
+      class={anchorClass}
+    >
+      Fábio Ghizoni.
+    </a>
+    All rights reserved.
+  </p>
+</footer>

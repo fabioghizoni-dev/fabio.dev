@@ -1,24 +1,6 @@
 @import "tailwindcss";
-
-@utility reverse {
-  animation-direction: reverse;
-}
-
-@utility transition-border {
-  transition-property: border;
-}
-
-@utility no-transition {
-  animation: none;
-  transition: none;
-}
-
-@utility pause {
-  animation-play-state: paused;
-}
-
-/* dark theme in "data-theme" */
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@import "./utilities.css";
+@import "./keyframes.css";
 
 * {
   /* remove serration */
@@ -27,16 +9,19 @@
   -webkit-font-smoothing: antialiased;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: oklch(0.3052 0 0);
-    --foreground: #ededed;
+@media (max-width: 768px) {
+
+  #bar,
+  #ascii-art {
+    font-family: "Cascadia Code", monospace !important;
   }
 }
 
 @theme inline {
   /* z */
   --z-index-1: 1;
+
+  --tracking-max: -0.08rem;
 
   /* spaces */
   --spacing-11%: 11%;
@@ -55,6 +40,9 @@
 
   --text-min: 0.2rem;
   --text-1xl: 1.488rem;
+  --text-mobile: 0.5rem;
+
+  --background-image-background: url(/background.jpg);
 
   /* colors and gradients */
   --color-gray-default: oklch(0.235 0 0);
@@ -90,141 +78,7 @@
   --font-noto-sans-jp:
     "Noto Sans JP", arial, sans-serif, ui-monospace, monospace;
   --font-cascadia-code:
-    "Cascadia Code", arial, sans-serif, ui-monospace, monospace;
+    "Cascadia Code", monospace, ui-monospace, arial, sans-serif;
   --font-space-grotesk:
     "Space Grotesk", arial, sans-serif, ui-monospace, monospace;
-
-  /* keyframes */
-  @keyframes show {
-    0% {
-      width: 0;
-      height: 0;
-      opacity: 0;
-    }
-  }
-  @keyframes show-y {
-    0% {
-      opacity: 0;
-      transform: scale(0.6) translateY(-1rem);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-  }
-  @keyframes show-y-bottom {
-    from {
-      opacity: 0;
-      transform: translateY(100%);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  @keyframes hide-y-bottom {
-    from {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    to {
-      opacity: 0;
-      transform: translateY(100%);
-    }
-  }
-  @keyframes show-x {
-    0% {
-      opacity: 0;
-      transform: scale(0.6) translateX(1rem);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1) translateX(0);
-    }
-  }
-  @keyframes show-logo {
-    0% {
-      opacity: 0.4;
-      transform: translateX(-6rem);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  @keyframes hide {
-    100% {
-      width: 0;
-      height: 0;
-      opacity: 0;
-    }
-  }
-  @keyframes draw-fill {
-    from {
-      fill-opacity: 0;
-    }
-    to {
-      fill-opacity: 1;
-    }
-  }
-  @keyframes draw {
-    from {
-      stroke-dasharray: 500;
-      stroke-dashoffset: 500;
-    }
-    to {
-      stroke-dasharray: none;
-      stroke-dashoffset: none;
-    }
-  }
-  @keyframes opacity {
-    from {
-      mask-image: linear-gradient(transparent, transparent);
-    }
-  }
-  @keyframes blur {
-    from {
-      opacity: 0;
-      filter: blur(0.2rem);
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  @keyframes char {
-    from {
-      opacity: 0;
-      transform: translateY(-3rem);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  @keyframes horz-loop {
-    to {
-      transform: translateX(-50%);
-    }
-  }
-  @keyframes height {
-    0% {
-      opacity: 0;
-      transform: translateY(-100%);
-    }
-    50% {
-      opacity: 0.2;
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  @keyframes pulse-border {
-    from {
-      box-shadow: 0 0 0 0 var(--color-purple-blue);
-    }
-    to {
-      box-shadow: 0 0 0 1rem transparent;
-    }
-  }
 }

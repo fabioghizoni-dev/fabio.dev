@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "US": {
+      "about-me": {
+        "me": "me",
+        "about": "About",
+        "about-me-text": "Hello! My name is Fábio, I'm 20 years old, and I live in Manoel Ribas, Paraná – Brazil. I'm a very curious person who loves learning how everything works. That's why I'm passionate about technology, a very broad and fascinating field. I'm a full-stack developer, creating intuitive and dynamic interfaces with interactivity and accessibility. My main experience is in web development, but I've also built desktop and mobile applications. I graduated with a degree in Systems Analysis and Development, and I'm now seeking to learn more about various technologies such as Python, Kotlin, Swift, React Native, and others."
+      }
+    },
+    "GB": {
+      "about-me": {
+        "me": "me",
+        "about": "About",
+        "about-me-text": "Hello! My name is Fábio, I'm 20 years old and I live in Manoel Ribas, Paraná – Brazil. I'm a very curious person who enjoys learning how things work. That's why I'm passionate about technology, a very broad and interesting field. I'm a full-stack developer, creating intuitive and dynamic interfaces with interactivity and accessibility. My main experience is in web development, but I've also developed desktop and mobile applications. I graduated with a degree in Systems Analysis and Development and I'm now looking to learn more about various technologies such as Python, Kotlin, Swift, React Native, and more."
+      }
+    },
+    "AU": {
+      "about-me": {
+        "me": "me",
+        "about": "About",
+        "about-me-text": "Hi! My name is Fábio, I'm 20 years old and I live in Manoel Ribas, Paraná – Brazil. I'm a very curious person who loves learning how things work. That’s why I’m passionate about technology, a broad and fascinating field. I’m a full-stack developer, creating intuitive and dynamic interfaces with interactivity and accessibility. My main experience is in web development, but I’ve also built desktop and mobile apps. I graduated in Systems Analysis and Development and I'm now keen to learn more about technologies like Python, Kotlin, Swift, React Native, and others."
+      }
+    }
+  }
+}

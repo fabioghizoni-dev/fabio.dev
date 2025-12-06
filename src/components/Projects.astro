@@ -1,0 +1,13 @@
+---
+import Project from "../ui/Project.astro";
+
+const { class: className } = Astro.props;
+---
+
+<section
+  id="projects"
+  class={`flex flex-col justify-center items-center h-fit min-h-screen w-full text-white ${className}`}
+>
+  <h1 class="text-4xl font-bold font-cascadia-code">Projects</h1>
+  <Project />
+</section>

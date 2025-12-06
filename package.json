@@ -1,19 +1,20 @@
 {
   "dependencies": {
-    "@iconify-json/fluent-emoji-flat": "^1.2.5",
-    "@iconify-json/icon-park-outline": "^1.2.4",
-    "@iconify-json/typcn": "^1.2.2",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
-    "astro": "^5.13.11",
+    "astro": "^5.16.3",
     "astro-icon": "^1.1.5",
     "qr-code-styling": "^1.9.2",
-    "resend": "^4.8.0"
+    "resend": "^4.8.0",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@iconify-json/akar-icons": "^1.2.7",
     "@iconify-json/devicon": "^1.2.44",
     "@iconify-json/ep": "^1.2.3",
+    "@iconify-json/fluent-emoji-flat": "^1.2.5",
+    "@iconify-json/icon-park-outline": "^1.2.4",
+    "@iconify-json/typcn": "^1.2.2",
     "@iconify-json/fe": "^1.2.4",
     "@iconify-json/flowbite": "^1.2.7",
     "@iconify-json/ic": "^1.2.4",

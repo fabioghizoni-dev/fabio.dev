@@ -1,22 +1,30 @@
 ---
 import { Image } from "astro:assets";
-import ListItem from "../ui/ListItem.astro";
+import ChristmasLights from "../ui/ChristmasLights.astro";
+import Menu from "../ui/Menu.astro";
 import SwitchLang from "../ui/SwitchLang.astro";
 import SwitchTheme from "../ui/SwitchTheme.astro";
+import cn from "../utils/cn";
 
 const alt = "Logo Fábio Ghizoni";
 const title = "Return to home page";
+
+const cnClasses = {
+  divHeader: cn(
+    "fixed hidden w-full mb-6 p-2 z-1 no-transition transition ease-in-out duration-500"
+  ),
+  header:
+    cn(`flex relative max-w-7xl bg-gray-default border border-white/35 justify-between items-center gap-6 p-2 
+    mx-auto rounded-full`),
+};
+
+const today = new Date();
+const showChristmasLights = today <= new Date("2026-01-31T23:59:59");
 ---
 
-<div
-  id="div-header"
-  class="fixed hidden w-full p-2 z-1 no-transition animate-height transition-all ease-in-out duration-500"
->
-  <header
-    role="heading"
-    aria-level="1"
-    class="flex max-w-7xl bg-gray-default border border-white/35 justify-between items-center gap-6 p-2 mx-auto rounded-full"
-  >
+<div id="div-header" class={cnClasses.divHeader}>
+  <header id="header" role="heading" aria-level="1" class={cnClasses.header}>
+    {showChristmasLights && <ChristmasLights />}
     <Image
       id="logo"
       alt={alt}
@@ -25,21 +33,12 @@ const title = "Return to home page";
       title={title}
       loading="eager"
       src="/logo.svg"
-      class="h-8 p-0.5 cursor-pointer animate-show-logo"
+      class="h-8 p-0.5 object-contain object-left cursor-pointer animate-show-logo"
     />
-    <ul class="flex justify-center items-center ml-auto text-xl font-bold text-white font-cascadia-code gap-8">
-      <ListItem icon="material-symbols:home-rounded"><span class="hidden sm:block">Home</span></ListItem>
-      <ListItem icon="mdi:about" id="li-about-me" title="Go to about section">
-        <span class="hidden sm:block">About me</span>
-      </ListItem>
-      <ListItem icon="mdi:contact" id="li-contact-me" title="Go to contact section">
-        <span class="hidden sm:block">Contact me</span>
-      </ListItem>
-    </ul>
-
+    <Menu />
     <SwitchTheme />
     <SwitchLang />
   </header>
 </div>
 
-<script src="../scripts/Header.js"></script>
+<script src="../scripts/Header.ts"></script>

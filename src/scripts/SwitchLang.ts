@@ -1,16 +1,28 @@
-// add event listener when loading DOM
+
 document.addEventListener("DOMContentLoaded", () => {
-  // get HTML element
+
   const btnLang = document.getElementById("btn-lang");
   const listLangs = document.getElementById("list-langs");
   if (listLangs && btnLang) {
     let isJp = true;
+    const show = () => {
+      isJp = true;
+      listLangs.classList.remove("max-h-0", "invisible");
+    }
+    const hide = () => {
+      isJp = false;
+      listLangs.classList.add("max-h-0", "invisible");
+    }
     const toggle = () => {
-      isJp = !isJp;
-      listLangs.classList.toggle("invisible");
-      listLangs.classList.toggle("max-h-0");
+      if (isJp) {
+        hide();
+      } else {
+        show();
+      }
     };
-    // add event listener on buttons
+
     btnLang.addEventListener("click", toggle);
   }
 });
+
+

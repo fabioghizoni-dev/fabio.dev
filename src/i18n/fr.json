@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "FR": {
+      "about-me": {
+        "me": "de moi",
+        "about": "À propos",
+        "about-me-text": "Bonjour ! Je m'appelle Fábio, j'ai 20 ans et j'habite à Manoel Ribas, Paraná - Brésil. Je suis quelqu'un de très curieux qui aime comprendre comment tout fonctionne. C’est pourquoi je suis passionné par la technologie, un domaine très vaste et intéressant. Je suis développeur full-stack et je crée des interfaces intuitives et dynamiques, avec interactivité et accessibilité. Mon expérience principale est dans le web, mais j’ai également développé des applications desktop et mobiles. J'ai obtenu un diplôme en Analyse et Développement de Systèmes et je cherche maintenant à en apprendre davantage sur diverses technologies telles que Python, Kotlin, Swift, React Native, entre autres."
+      }
+    },
+    "CA": {
+      "about-me": {
+        "me": "de moi",
+        "about": "À propos",
+        "about-me-text": "Salut ! Je m'appelle Fábio, j'ai 20 ans et je vis à Manoel Ribas, Paraná - Brésil. Je suis quelqu’un de très curieux qui aime comprendre comment les choses fonctionnent. C’est pour ça que la technologie me passionne, un domaine très vaste et intéressant. Je suis développeur full-stack et je crée des interfaces intuitives et dynamiques avec interactivité et accessibilité. Mon expérience principale est sur le web, mais j’ai aussi développé des applications desktop et mobiles. J’ai obtenu un diplôme en Analyse et Développement de Systèmes et je cherche maintenant à apprendre davantage sur diverses technologies comme Python, Kotlin, Swift, React Native, etc."
+      }
+    }
+  }
+}

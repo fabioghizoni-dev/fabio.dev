@@ -6,14 +6,25 @@ interface Props {
   borderClass?: string;
 }
 
-const { name, class: className = "w-7 h-7", borderClass, phoneClass } = Astro.props as Props;
+const {
+  name,
+  phoneClass,
+  borderClass,
+  class: className = "w-7 h-7",
+} = Astro.props as Props;
 ---
 
-<svg id={name} data-name={name} class={className} viewBox="0 0 17.87 17.88" xmlns="http://www.w3.org/2000/svg">
+<svg
+  id={name}
+  data-name={name}
+  class={className}
+  viewBox="0 0 17.87 17.88"
+  xmlns="http://www.w3.org/2000/svg"
+>
   <g>
     <path
-      class=`fill-none ${borderClass ? borderClass: "stroke-white"} animate-draw`
       style="stroke-miterlimit: 10; stroke-width: 0.088rem;"
+      class=`fill-none ${borderClass ? borderClass: "stroke-white"} animate-draw`
       d="M14.76,3.12c-1.55-1.56-3.62-2.42-5.82-2.42C4.4.7.7,4.4.7,8.94c0,1.55.44,3.07,1.26,4.38l.2.31-.83,3.04,3.12-.82.3.18c1.27.75,2.72,1.15,4.2,1.15,4.54,0,8.24-3.69,8.22-8.23,0-2.19-.86-4.29-2.41-5.83Z"
     ></path>
     <path

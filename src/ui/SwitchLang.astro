@@ -1,35 +1,11 @@
 ---
 import { Icon } from "astro-icon/components";
+import { buildLanguages } from "../scripts/i18n/Languages.ts";
 import cn from "../utils/cn";
 
-const languages = {
-  es: [
-    { code: "es-ES", name: "Español (España)" },
-    { code: "es-MX", name: "Español (México)" },
-  ],
-  fr: [
-    { code: "fr-FR", name: "Français (France)" },
-    { code: "fr-CA", name: "Français (Canada)" },
-  ],
-  pt: [
-    { code: "pt-BR", name: "Português (Brasil)" },
-    { code: "pt-PT", name: "Português (Portugal)" },
-  ],
-  en: [
-    { code: "en-US", name: "English (US)" },
-    { code: "en-GB", name: "English (UK)" },
-    { code: "en-AU", name: "English (Australia)" },
-  ],
-  zh: [
-    { code: "zh-CN", country: "China", name: "中文 (简体)" },
-    { code: "zh-TW", country: "Taiwan", name: "中文 (繁體)" },
-  ],
-  hi: [{ code: "hi-IN", country: "India", name: "हिन्दी (भारत)" }],
-  ja: [{ code: "ja-JP", country: "Japan", name: "日本語 (日本)" }],
-  ru: [{ code: "ru-RU", country: "Russia", name: "Русский (Россия)" }],
-  ko: [{ code: "ko-KR", country: "South Korea", name: "한국어 (대한민국)" }],
-  de: [{ code: "de-DE", country: "Germany", name: "Deutsch (Deutschland)" }],
-};
+const languages = buildLanguages(
+  import.meta.glob("/src/i18n/*.json", { eager: true })
+);
 
 interface Props {
   id?: string;
@@ -58,35 +34,28 @@ const {
   id={id}
   title={title}
   aria-label={ariaLabel}
-  class={cn(`relative min-w-8 min-h-8 w-8 h-8 p-0.5 text-1xl mr-2 font-cascadia-code font-bold cursor-pointer`)}
+  class={cn(
+    `relative hidden sm:block min-w-8 min-h-8 w-8 h-8 p-0.5 text-1xl mr-2 font-cascadia-code font-bold 
+      cursor-pointer`
+  )}
 >
-  <Icon name="material-symbols:translate" class="text-white hover:text-purple-blue size-full" />
+  <Icon
+    name="material-symbols:translate"
+    class="text-white hover:text-purple-blue size-full"
+  />
   <ul
     role="list"
     id="list-langs"
     class={cn(
-      `invisible max-h-0 bg-gray-default absolute z-10 left-1/2 translate-y-3.5 -translate-x-1/2 font-normal font-noto-sans-jp text-2xl rounded 
-        overflow-hidden transform transition-transform ease-in-out duration-300`
+      `invisible max-h-0 bg-gray-default absolute z-10 left-1/2 translate-y-3.5 -translate-x-1/2 font-normal 
+        font-noto-sans-jp text-2xl rounded p-1 overflow-hidden transition ease-in-out duration-300`
     )}
   >
     {
-      Object.entries(languages).map(([code, variants]) => {
-        const hasVariants = variants && variants.length > 0;
+      Object.entries(languages).map(([code, config]) => {
         return (
           <li role="listitem" title={code} class="text-white text-nowrap">
-            {code === "??" && <Icon name="line-md:check-all" class="inline-flex" />}
             {code}
-
-            {hasVariants && (
-              <ul role="list" class="ml-4 mt-1 hidden">
-                {variants.map((variant) => (
-                  <li role="listitem" title={variant.name} class="text-white/50 text-nowrap">
-                    {variant.name === "??" && <Icon name="line-md:check-all" class="inline-flex" />}
-                    {variant.code}
-                  </li>
-                ))}
-              </ul>
-            )}
           </li>
         );
       })

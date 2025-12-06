@@ -1,88 +1,37 @@
 ---
 import { Icon } from "astro-icon/components";
 import Layout from "../../layouts/Layout.astro";
+import AboutQrCode from "../../ui/AboutQrCode.astro";
+import ExampleQrCode from "../../ui/ExampleQrCode.astro";
+import HowWorksQrCode from "../../ui/HowWorksQrCode.astro";
+import QrInfoTable from "../../ui/QrInfoTable.astro";
+import ResultQrCode from "../../ui/ResultQrCode.astro";
+
+const description = `Page QR Info | Information page about the QR Code generator, including usage instructions and 
+  available parameters.`;
 ---
 
-<Layout>
-  <section class="flex flex-col text-white">
+<Layout
+  title="QR Info | Fábio Ghizoni"
+  bodyClass="flex-row justify-center items-center"
+  description={description}
+>
+  <section class="flex flex-col text-white gap-4">
     <h1 class="text-3xl font-bold">Gerador de QR Code</h1>
-    <div class="bg-gray-900 border border-gray-700 rounded-lg p-2">
-      <h2 class="flex items-center font-space-grotesk font-bold italic text-xl">
-        <Icon name="typcn:info" class="text-yellow-400 mr-2" /> Como funciona
-      </h2>
-      <p class="text-gray-300 text-lg mt-1">
-        Gere QR Codes personalizados com base em parâmetros fornecidos via URL. Você pode definir dados, cores, formas e
-        até baixar o resultado automaticamente.
-      </p>
-    </div>
-    <div class="bg-gray-900 border border-gray-700 rounded-lg p-2">
-      <h2 class="flex items-center font-space-grotesk font-bold italic text-xl">
-        <Icon name="line-md:link" class="text-slate-400 mr-2" /> Exemplo de uso
-      </h2>
-      <div class="bg-gray-800 text-green-300 px-3 py-2 mt-1 rounded">
-        http://localhost:4321/qr?data=https://openai.com&size=300&shape=rounded&download=png&name=meu-qr
-      </div>
-    </div>
-    <div class="bg-gray-900 border border-gray-700 rounded-lg p-2">
-      <h2 class="flex items-center font-space-grotesk font-bold italic text-xl">
-        <Icon name="fluent-emoji-flat:inbox-tray" class="mr-2" /> Resultado
-      </h2>
-      <p class="text-gray-300 text-lg mt-1">
-        O QR Code será gerado com os parâmetros definidos e o arquivo <code class="bg-gray-800 text-white px-1 rounded"
-          >meu-qr.png</code
-        >
-        será baixado automaticamente.
-      </p>
-    </div>
-    <div class="bg-gray-900 border border-gray-700 rounded-lg p-2">
-      <h2 class="flex items-center font-space-grotesk font-bold italic text-xl">
-        <Icon name="fluent-emoji-flat:books" class="mr-2" /> Sobre
-      </h2>
-      <p class="text-gray-300 text-lg mt-1">
-        Esta aplicação utiliza a biblioteca
-        <a href="https://github.com/kozakdenys/qr-code-styling" class="text-blue-400 underline" target="_blank">
-          qr-code-styling
-        </a>
-        para gerar QR Codes com alta personalização.
-      </p>
-    </div>
+    <HowWorksQrCode />
+    <ExampleQrCode />
+    <ResultQrCode />
+    <AboutQrCode />
   </section>
-  <section>
-    <div class="bg-gray-900 border border-gray-700 rounded-lg p-5 overflow-x-auto">
-      <h2 class="text-xl font-semibold mb-4">
-        <Icon name="icon-park-outline:setting-config" /> Parâmetros disponíveis
-      </h2>
-      <table class="min-w-full text-sm text-left text-gray-300">
-        <thead class="bg-gray-800 text-xs uppercase text-gray-400">
-          <tr>
-            <th class="px-4 py-2">Parâmetro</th>
-            <th class="px-4 py-2">Tipo</th>
-            <th class="px-4 py-2">Descrição / Valores</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td class="px-4 py-1">data</td><td>string</td><td>Texto ou URL codificada</td></tr>
-          <tr><td class="px-4 py-1">size</td><td>number</td><td>Largura e altura iguais</td></tr>
-          <tr><td class="px-4 py-1">w</td><td>number</td><td>Largura personalizada</td></tr>
-          <tr><td class="px-4 py-1">h</td><td>number</td><td>Altura personalizada</td></tr>
-          <tr><td class="px-4 py-1">margin</td><td>number</td><td>Margem externa (padrão: 10)</td></tr>
-          <tr><td class="px-4 py-1">shape</td><td>enum</td><td><code>square</code>, <code>rounded</code></td></tr>
-          <tr><td class="px-4 py-1">type</td><td>enum</td><td><code>svg</code> ou <code>canvas</code></td></tr>
-          <tr><td class="px-4 py-1">dotsColor</td><td>string</td><td>Cor dos pontos (ex: <code>#000</code>)</td></tr>
-          <tr><td class="px-4 py-1">dotsType</td><td>enum</td><td><code>rounded</code>, <code>square</code></td></tr>
-          <tr><td class="px-4 py-1">bgColor</td><td>string</td><td>Cor de fundo do QR</td></tr>
-          <tr><td class="px-4 py-1">bgRound</td><td>number</td><td>Arredondamento do fundo (0–1)</td></tr>
-          <tr><td class="px-4 py-1">img</td><td>string</td><td>URL da imagem central</td></tr>
-          <tr><td class="px-4 py-1">imgSize</td><td>number</td><td>Tamanho relativo da imagem (0–1)</td></tr>
-          <tr><td class="px-4 py-1">imgMargin</td><td>number</td><td>Margem ao redor da imagem</td></tr>
-          <tr
-            ><td class="px-4 py-2">download</td><td>enum</td><td
-              ><code>svg</code>, <code>png</code>, <code>jpeg</code>, <code>webp</code></td
-            ></tr
-          >
-          <tr><td class="px-4 py-2">name</td><td>string</td><td>Nome do arquivo baixado</td></tr>
-        </tbody>
-      </table>
-    </div>
+  <section
+    class="bg-gray-900 border border-gray-700 rounded-lg p-5 overflow-x-auto
+      hover:border-purple-blue/80 transition-colors ease-in-out duration-200"
+  >
+    <h2
+      class="flex text-white text-xl font-semibold justify-center items-center gap-2 mb-4"
+    >
+      <Icon name="icon-park-outline:setting-config" /> Parâmetros disponíveis
+    </h2>
+    <QrInfoTable />
   </section>
 </Layout>

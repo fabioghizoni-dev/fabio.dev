@@ -7,7 +7,7 @@ import type {
 import QRCode from "qr-code-styling";
 
 addEventListener("DOMContentLoaded", () => {
-  // Get params in uri
+
   const params = new URLSearchParams(window.location.search);
 
   const getParam = <T = string>(key: string, fallback?: T): T | null => {
@@ -28,7 +28,7 @@ addEventListener("DOMContentLoaded", () => {
   const bgRound = getParam<number>("bgRound", 0.05)!;
   const imgMargin = getParam<number>("imgMargin", 10)!;
   const data = getParam("data", "https://chatgpt.com/")!;
-  const width = size ?? getParam<number>("w", innerWidth)!;
+  const width = size ?? getParam<number>("w", innerHeight)!;
   const height = size ?? getParam<number>("h", innerHeight)!;
 
   // QR Code options
@@ -53,17 +53,15 @@ addEventListener("DOMContentLoaded", () => {
       color: bgColor,
     },
   };
-  // QR Code init
+
   const qr = new QRCode(qrOptions);
 
   const qrDiv = document.getElementById("qr")!;
   if (qrDiv) qr.append(qrDiv);
 
-  // Download options
   const hasDownloadParam = params.has("download");
   const downloadExtension = params.get("download") || "svg";
 
-  // File Extension typing
   const validExtensions: FileExtension[] = [
     "svg",
     "png",

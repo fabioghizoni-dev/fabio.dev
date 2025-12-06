@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "BR": {
+      "about-me": {
+        "me": "mim",
+        "about": "Sobre",
+        "about-me-text": "Olá!! Meu nome é Fábio, tenho 20 anos e moro em Manoel Ribas, Paraná - Brasil. Sou uma pessoa muito curiosa e gosto de aprender como tudo funciona. Por isso sou apaixonado por tecnologia, uma área muito ampla e interessante. Sou desenvolvedor full-stack e crio interfaces intuitivas e dinâmicas com interatividade e acessibilidade. Minha principal experiência é com web, mas também já desenvolvi aplicações desktop e mobile. Sou formado em Análise e Desenvolvimento de Sistemas e agora busco aprender mais sobre diversas tecnologias, como Python, Kotlin, Swift, React Native e outras."
+      }
+    },
+    "PT": {
+      "about-me": {
+        "me": "mim",
+        "about": "Sobre",
+        "about-me-text": "Olá!! O meu nome é Fábio, tenho 20 anos e vivo em Manoel Ribas, Paraná - Brasil. Sou uma pessoa muito curiosa e gosto de aprender como tudo funciona. É por isso que sou apaixonado por tecnologia, uma área bastante ampla e interessante. Sou programador full-stack e crio interfaces intuitivas e dinâmicas, com interatividade e acessibilidade. A minha principal experiência é na web, mas também desenvolvi aplicações desktop e mobile. Licenciei-me em Análise e Desenvolvimento de Sistemas e estou agora a procurar aprender mais sobre várias tecnologias, como Python, Kotlin, Swift, React Native, entre outras."
+      }
+    }
+  }
+}

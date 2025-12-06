@@ -1,17 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ListItem from "../ui/ListItem.astro";
+import UnderlineButton from "../ui/UnderlineButton.astro";
+
+const description = `Page 404 | Route not found, return to the home page by clicking on the logo in the upper 
+  left corner or the "home" button in the middle of the screen!!`;
 ---
 
-<Layout
-  header
-  footer
-  title="404 | Fábio Ghizoni"
-  description=`Page 404 | Route not found, return to the home page by clicking on the logo in the upper left corner 
-    or the "home" button in the middle of the screen!!`
->
-  <h1 class="text-5xl text-center text-white font-noto-sans-jp tracking-wide leading-tight">
+<Layout header footer title="404 | Fábio Ghizoni" description={description}>
+  <h1
+    class="text-5xl text-center text-white font-noto-sans-jp tracking-wide leading-tight"
+  >
     Page not found | 404, <br />return to the home
-    <ListItem href="/" variant="primary" underlineHeight="0.8" underlineColor="white/60">page</ListItem>
+    <UnderlineButton
+      href="/"
+      variant="primary"
+      class="h-0.8 after:bg-white/60 text-5xl">page</UnderlineButton
+    >
   </h1>
 </Layout>

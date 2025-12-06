@@ -1,0 +1,132 @@
+@keyframes show {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+}
+@keyframes show-y {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(-1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+@keyframes show-y-bottom {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes hide-y-bottom {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+@keyframes show-x {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateX(1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+}
+@keyframes show-logo {
+  0% {
+    opacity: 0.4;
+    transform: translateX(-6rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes hide {
+  100% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+}
+@keyframes draw-fill {
+  from {
+    fill-opacity: 0;
+  }
+  to {
+    fill-opacity: 1;
+  }
+}
+@keyframes draw {
+  from {
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+  }
+  to {
+    stroke-dasharray: none;
+    stroke-dashoffset: none;
+  }
+}
+@keyframes opacity {
+  from {
+    mask-image: linear-gradient(transparent, transparent);
+  }
+}
+@keyframes blur {
+  from {
+    opacity: 0;
+    filter: blur(0.2rem);
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes char {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes horz-loop {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes height {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulse-border {
+  from {
+    box-shadow: 0 0 0 0 var(--color-purple-blue);
+  }
+  to {
+    box-shadow: 0 0 0 1rem transparent;
+  }
+}

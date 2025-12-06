@@ -4,34 +4,42 @@ import cn from "../utils/cn";
 
 interface Props extends astroHTML.JSX.HTMLAttributes {
   src?: string;
+  /** The text must be 70 characters long. */
   text?: string;
-  class?: string;
   isAnimated?: boolean;
+  classTextPath?: string;
+  class?: astroHTML.JSX.HTMLAttributes["class"];
 }
 
 const {
   isAnimated,
   id = "circular-logo",
   src = "/fabio_minor.jpg",
-  class: className = "relative group",
-  text = "• FÁBIO HENRIQUE • FULL-STACK DEVELOPER • DESIGNER • AI • DATABASES",
+  class: className = "relative size-64 group",
+  text = "• CYBERSECURITY • DEVOPS • UI • DATABASES • UX • DESIGNER • AI • CLOUD",
   ...props
 } = Astro.props as Props;
 ---
 
-<span id={id} class={className} {...props}>
+<span id={id} class={cn(className)} {...props}>
   <svg
     id="circular-text"
     viewBox="0 0 500 500"
     class={cn(
-      `absolute inset-0 -m-10 whitespace-pre text-4xl font-bold font-space-grotesk ${
+      `absolute inset-0 -m-10 whitespace-pre text-4xl font-space-grotesk ${
         isAnimated ? "animate-spin-slow group-hover:pause" : ""
       }`
     )}
   >
-    <path id="curve" fill="none" d="M250,250 m-200,0 a200,200 0 1,1 400,0 a200,200 0 1,1 -400,0"></path>
+    <path
+      id="curve"
+      fill="none"
+      d="M250,250 m-200,0 a200,200 0 1,1 400,0 a200,200 0 1,1 -400,0"></path>
     <text>
-      <textPath href="#curve" class="fill-gray-default">
+      <textPath
+        href="#curve"
+        class="fill-gray-default dark:fill-white select-none"
+      >
         {text}
       </textPath>
     </text>
@@ -43,6 +51,6 @@ const {
     loading="eager"
     src={src}
     alt="Fábio Henrique Elegant and Social"
-    class="w-64 h-64 rounded-full"
+    class="size-full rounded-full"
   />
 </span>

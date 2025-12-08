@@ -43,6 +43,7 @@
   --text-mobile: 0.5rem;
 
   --background-image-background: url(/background.jpg);
+  --background-image-light: radial-gradient(125% 125% at 50% 90%, transparent 40%, var(--color-purple-blue) 100%);
 
   /* colors and gradients */
   --color-gray-default: oklch(0.235 0 0);
@@ -60,6 +61,7 @@
   --animate-height: height 0.4s linear forwards;
   --animate-show: show 0.2s ease-in-out forwards;
   --animate-hide: hide 0.2s ease-in-out forwards;
+  --animate-blink: blink 1.6s ease-in-out infinite;
   --animate-draw-fill: draw-fill 2s linear forwards;
   --animate-show-y: show-y 0.5s ease-in-out forwards;
   --animate-show-x: show-x 0.5s ease-in-out forwards;

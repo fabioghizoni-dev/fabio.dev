@@ -4,7 +4,7 @@ import { buildLanguages } from "../scripts/i18n/Languages.ts";
 import cn from "../utils/cn";
 
 const languages = buildLanguages(
-  import.meta.glob("/src/i18n/*.json", { eager: true })
+  import.meta.glob("/src/i18n/*.json", { eager: true }),
 );
 
 interface Props {
@@ -35,8 +35,7 @@ const {
   title={title}
   aria-label={ariaLabel}
   class={cn(
-    `relative hidden sm:block min-w-8 min-h-8 w-8 h-8 p-0.5 text-1xl mr-2 font-cascadia-code font-bold 
-      cursor-pointer`
+    "relative hidden sm:block min-w-8 min-h-8 w-8 h-8 p-0.5 text-1xl font-cascadia-code font-bold cursor-pointer",
   )}
 >
   <Icon
@@ -48,7 +47,7 @@ const {
     id="list-langs"
     class={cn(
       `invisible max-h-0 bg-gray-default absolute z-10 left-1/2 translate-y-3.5 -translate-x-1/2 font-normal 
-        font-noto-sans-jp text-2xl rounded p-1 overflow-hidden transition ease-in-out duration-300`
+        font-noto-sans-jp text-2xl rounded p-1 overflow-hidden transition ease-in-out duration-300`,
     )}
   >
     {

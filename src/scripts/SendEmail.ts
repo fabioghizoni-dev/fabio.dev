@@ -42,8 +42,7 @@ export const sendEmail = async (data: ContactFormData) => {
   }
 };
 
-// Handler para formulário HTML (chamado no lado cliente)
-export const handleContactForm = (formElement: HTMLFormElement | null) => {
+export const handleContactForm = (formElement: HTMLFormElement | null = document.getElementById("contact-form") as HTMLFormElement) => {
   if (!formElement) return;
 
   formElement.addEventListener("submit", async (e) => {
@@ -80,3 +79,7 @@ export const handleContactForm = (formElement: HTMLFormElement | null) => {
     }
   });
 };
+
+document.addEventListener("DOMContentLoaded", () =>
+  document.getElementById("submit")?.addEventListener("click", () => handleContactForm())
+)

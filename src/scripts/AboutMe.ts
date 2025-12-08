@@ -1,4 +1,4 @@
-const calculateAge = (birthDate: string): number => {
+export const calculateAge = (birthDate: string) => {
   const today = new Date();
   const birth = new Date(birthDate);
   const month = today.getMonth() - birth.getMonth();
@@ -8,15 +8,4 @@ const calculateAge = (birthDate: string): number => {
     age--;
   }
   return age;
-}
-
-addEventListener("DOMContentLoaded", () => {
-  const currentAge = calculateAge("2005-05-30");
-  const aboutEl = document.getElementById("about");
-  if (aboutEl) {
-    aboutEl.textContent = aboutEl.textContent.replace(
-      "????",
-      String(currentAge)
-    );
-  }
-})
+};

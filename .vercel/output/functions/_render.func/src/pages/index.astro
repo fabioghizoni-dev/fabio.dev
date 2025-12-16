@@ -1,0 +1,18 @@
+---
+import AboutMe from "../components/AboutMe.astro";
+import ContactMe from "../components/ContactMe.astro";
+import HeroSection from "../components/HeroSection.astro";
+import Projects from "../components/Projects.astro";
+import Layout from "../layouts/Layout.astro";
+import ScrollToTop from "../ui/ScrollToTop.astro";
+import Technologies from "../ui/Technologies.astro";
+---
+
+<Layout header footer title="Web | Fábio Ghizoni">
+  <HeroSection />
+  <AboutMe />
+  <Projects class="hidden" />
+  <Technologies />
+  <ContactMe />
+  <ScrollToTop />
+</Layout>

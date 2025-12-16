@@ -21,29 +21,37 @@
   /* z */
   --z-index-1: 1;
 
-  --tracking-max: -0.08rem;
-
   /* spaces */
   --spacing-11%: 11%;
   --spacing-25%: 25%;
   --spacing-78%: 78%;
   --spacing-105%: 105%;
-  --spacing-1.8: 0.313rem;
-  --spacing-8xl: 90rem;
   --spacing-0.8: 0.188rem;
-  --spacing-9.5: 2.375rem;
+  --spacing-0.9: 0.2rem;
+  --spacing-1.2: 0.3rem;
+  --spacing-1.8: 0.313rem;
   --spacing-8.5: 2.125rem;
+  --spacing-9.5: 2.375rem;
   --spacing-9.8: 2.388rem;
   --spacing-9.9: 2.438rem;
   --spacing-10.2: 2.625rem;
+  --spacing-8xl: 90rem;
+  /* characters spaces */
   --spacing-59ch: 59ch;
 
+  /* text sizes */
   --text-min: 0.2rem;
   --text-1xl: 1.488rem;
-  --text-mobile: 0.5rem;
+  --text-mobile: 0.52rem;
 
-  --background-image-background: url(/background.jpg);
-  --background-image-light: radial-gradient(125% 125% at 50% 90%, transparent 40%, var(--color-purple-blue) 100%);
+  /* border radius */
+  --radius-1/2: 50%;
+
+  /* tracking text */
+  --tracking-max: -0.08rem;
+
+  /* blurs */
+  --blur-1: blur(0.063rem);
 
   /* colors and gradients */
   --color-gray-default: oklch(0.235 0 0);
@@ -52,6 +60,10 @@
   --color-purple-blue: oklch(51.98% 0.288 289.11);
   --color-purple-default: oklch(60.83% 0.297 312.11);
   --color-purple-custom: oklch(0.3793 0.1283 324.71);
+
+  /* background */
+  --background-image-background: url(/background.jpg);
+  --background-image-light: radial-gradient(125% 125% at 50% 90%, transparent 40%, var(--color-purple-blue) 100%);
 
   /* animations */
   --animate-blur: blur 1.4s linear forwards;
@@ -72,7 +84,8 @@
   --animate-show-y-bottom: show-y-bottom 0.4s ease-in-out forwards;
   --animate-hide-y-bottom: hide-y-bottom 0.4s ease-in-out forwards;
 
-  /* drop-shadow */
+  /* shadow and drop-shadow */
+  --shadow-light: 0 0 6px var(--tw-shadow-color);
   --drop-shadow-text-white: 0 0 0.08rem white;
   --drop-shadow-text-green: 0 0 0.08rem oklch(0.8664 0.294827 142.4953);
 

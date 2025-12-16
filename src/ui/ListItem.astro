@@ -1,6 +1,5 @@
 ---
 import { Icon } from "astro-icon/components";
-import { Fragment } from "astro/compiler-runtime";
 import cn from "../utils/cn";
 
 interface Props {
@@ -13,7 +12,9 @@ interface Props {
   underlineHeight?: string;
   variant?: "default" | "primary";
   type?: astroHTML.JSX.AnchorHTMLAttributes["type"];
-  role?: astroHTML.JSX.AnchorHTMLAttributes["role"] | astroHTML.JSX.LiHTMLAttributes["role"];
+  role?:
+    | astroHTML.JSX.AnchorHTMLAttributes["role"]
+    | astroHTML.JSX.LiHTMLAttributes["role"];
 }
 
 const {
@@ -36,7 +37,10 @@ const underlineSide = (side: "before" | "after", width = "1/2") => {
 };
 
 const isPrimary = variant === "primary" ? underlineSide("after", "full") : "";
-const isDefault = variant === "default" ? `${underlineSide("before")} ${underlineSide("after")}` : "";
+const isDefault =
+  variant === "default"
+    ? `${underlineSide("before")} ${underlineSide("after")}`
+    : "";
 
 const Tag = href ? "a" : "li";
 const baseClass =
@@ -44,7 +48,15 @@ const baseClass =
 const finalClass = cn(`${baseClass} ${isDefault || isPrimary} ${className}`);
 ---
 
-<Tag href={href} role={role} type={type} id={id} data-variant={variant} title={title} class={finalClass}>
+<Tag
+  href={href}
+  role={role}
+  type={type}
+  id={id}
+  data-variant={variant}
+  title={title}
+  class={finalClass}
+>
   <slot />
   {icon && <Icon name={icon} class="block sm:hidden size-8" />}
 </Tag>

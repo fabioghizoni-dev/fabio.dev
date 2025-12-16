@@ -1,4 +1,5 @@
 ---
+import { actions } from "astro:actions";
 import SocialButton from "../ui/SocialButton.astro";
 import cn from "../utils/cn";
 ---
@@ -36,9 +37,10 @@ import cn from "../utils/cn";
     >
   </div>
   <form
+    method="post"
     id="contact-form"
-    action=""
-    class="flex flex-col gap-4 w-full max-w-2xl text-white text-base md:text-2xl"
+    action={actions.send}
+    class="flex flex-col gap-4 w-full max-w-2xl text-gray-default dark:text-white text-base md:text-2xl"
   >
     <div class="flex flex-col gap-2">
       <label for="name" class="text-base md:text-2xl font-medium"
@@ -92,5 +94,3 @@ import cn from "../utils/cn";
     </button>
   </form>
 </section>
-
-<script src="../scripts/SendEmail.ts"></script>

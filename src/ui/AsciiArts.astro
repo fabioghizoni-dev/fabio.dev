@@ -1,5 +1,5 @@
 ---
-import { bar, fabio } from "../scripts/AsciiArts";
+import { bar, fabio } from "../scripts/ascii-arts/letters.ts";
 import cn from "../utils/cn";
 
 interface Props {
@@ -23,7 +23,7 @@ const nameArray = [
 ];
 const baseClass = `flex flex-col text-3xl lg:text-4xl text-left font-space-grotesk font-black justify-center items-start gap-2`;
 const divClass = `flex relative min-w-59ch bg-gradient-to-br bg-clip-text text-transparent from-blue-800 to-rose-600 contrast-125 
-  dark:contrast-100 dark:from-sky-400 dark:to-fuchsia-500 text-mobile sm:text-sm md:text-base lg:text-lg leading-none tracking-max 
+  dark:contrast-100 dark:from-sky-400 dark:to-fuchsia-500 text-lg leading-none tracking-max 
     justify-start items-center`;
 
 const { class: className } = Astro.props as Props;
@@ -57,8 +57,8 @@ const { class: className } = Astro.props as Props;
     <pre id="ascii-art">{fabio}</pre>
     <pre
       id="bar"
-      class="animate-opacity transition-opacity duration-500 ease-in-out">{bar}</pre>
+      class="hidden md:block animate-opacity transition-opacity duration-500 ease-in-out">{bar.ascii}</pre>
   </div>
 </h1>
 
-<script src="../scripts/AsciiArts.ts"></script>
+<script src="../scripts/ascii-arts/ascii-arts.ts"></script>

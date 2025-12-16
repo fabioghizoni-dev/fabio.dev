@@ -66,7 +66,7 @@ const {
   ],
 } = Astro.props as Props;
 
-const baseBodyClass = `flex flex-col justify-between items-center w-full min-h-screen bg-white dark:bg-black 
+const baseBodyClass = `flex flex-col justify-between items-center w-full min-h-screen bg-white/80 dark:bg-black 
   dark:selection:bg-white dark:selection:text-purple-blue selection:bg-purple-blue selection:text-white
   transition-colors ease-in-out duration-500`;
 ---
@@ -123,5 +123,18 @@ const baseBodyClass = `flex flex-col justify-between items-center w-full min-h-s
     <Modal />
     <slot />
     {footer && <CopyRight />}
+
+    <script>
+      import c from "clogs.ts";
+      (() => {
+        try {
+          const savedLang = localStorage.getItem("site:lang") || "en";
+          document.documentElement.lang = savedLang;
+          c.log(`🌐 Language initialized: ${savedLang}`);
+        } catch (error) {
+          c.warn("Error initializing language:", error);
+        }
+      })();
+    </script>
   </body>
 </html>

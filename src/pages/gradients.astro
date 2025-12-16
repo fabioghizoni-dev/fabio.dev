@@ -271,7 +271,7 @@ const description = `Page Gradients | Page for generating custom gradients with 
       // Vincular cor ↔ texto
       colorInput.addEventListener(
         "input",
-        () => (textInput.value = colorInput.value)
+        () => (textInput.value = colorInput.value),
       );
       textInput.addEventListener("input", () => {
         if (/^#([0-9A-F]{3}){1,2}$/i.test(textInput.value.trim())) {
@@ -291,7 +291,7 @@ const description = `Page Gradients | Page for generating custom gradients with 
 
       colorInput.addEventListener(
         "input",
-        () => (textInput.value = colorInput.value)
+        () => (textInput.value = colorInput.value),
       );
       textInput.addEventListener("input", () => {
         if (/^#([0-9A-F]{3}){1,2}$/i.test(textInput.value.trim())) {

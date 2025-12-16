@@ -15,7 +15,7 @@ let isVisible: boolean = window.scrollY <= 300;
 
 export const showHeader = (el: HTMLElement, animation: boolean = true
 ): void => {
-  let cls: DOMTokenList = el.classList;
+  const cls: DOMTokenList = el.classList;
 
   if (animation) {
     cls.remove("hidden", "reverse", "no-transition", "animate-height");
@@ -28,7 +28,7 @@ export const showHeader = (el: HTMLElement, animation: boolean = true
 };
 
 export const hideHeader = (el: HTMLElement, animation: boolean = true): void => {
-  let cls: DOMTokenList = el.classList;
+  const cls: DOMTokenList = el.classList;
 
   if (animation) {
     cls.remove("hidden", "no-transition", "animate-height");
@@ -55,25 +55,25 @@ export const setupHeader = (divHeader: HTMLElement | null = document.getElementB
   };
 
   const updateHeaderVisibility = () => {
-    if (window.scrollY <= 300 && !isVisible) {
+    if (!isVisible && window.scrollY <= 300) {
       showHeader(divHeader);
-    } else if (window.scrollY > 300 && isVisible) {
+    } else if (isVisible && window.scrollY > 300) {
       hideHeader(divHeader);
-    }
+    };
   };
   headerHiddenOnLoad();
   window.addEventListener("scroll", updateHeaderVisibility);
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  let logo: HTMLElement | null = document.getElementById("logo");
+  const logo: HTMLElement | null = document.getElementById("logo");
   logo?.addEventListener("click", goHome);
 
-  let li_home: HTMLElement | null = document.getElementById("li-home");
+  const li_home: HTMLElement | null = document.getElementById("li-home");
 
-  let li_about_me: HTMLElement | null = document.getElementById("li-about-me");
+  const li_about_me: HTMLElement | null = document.getElementById("li-about-me");
 
-  let li_contact_me: HTMLElement | null =
+  const li_contact_me: HTMLElement | null =
     document.getElementById("li-contact-me");
 
   li_home?.addEventListener("click", () => {
@@ -87,3 +87,5 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   setupHeader();
 });
+
+document.addEventListener("astro:page-load", () => setupHeader());

@@ -1,6 +1,5 @@
 export function initModal(id: string = "first-modal"): void {
-  const modal = document.getElementById(id);
-  if (!modal) return;
+  const modal = document.getElementById(id)!;
 
   const okBtn = modal.querySelector("[data-modal-ok]");
   const closeBtn = modal.querySelector("[data-modal-close]");
@@ -9,16 +8,16 @@ export function initModal(id: string = "first-modal"): void {
   const hideModal = (): void => {
     localStorage.setItem(id, "1");
     modal.classList.replace("flex", "hidden");
+    modal.setAttribute("aria-hidden", "true");
   };
 
   const showModal = (): void => {
     modal.classList.replace("hidden", "flex");
+    modal.setAttribute("aria-hidden", "false");
   };
 
   const shown = localStorage.getItem(id);
-  if (!shown) {
-    showModal();
-  }
+  if (!shown) showModal();
 
   closeBtn?.addEventListener("click", hideModal);
   okBtn?.addEventListener("click", hideModal);

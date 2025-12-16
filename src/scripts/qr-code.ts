@@ -6,7 +6,7 @@ import type {
 } from "qr-code-styling";
 import QRCode from "qr-code-styling";
 
-addEventListener("DOMContentLoaded", () => {
+const initQrCode = () => {
 
   const params = new URLSearchParams(window.location.search);
 
@@ -81,4 +81,6 @@ addEventListener("DOMContentLoaded", () => {
       extension: downloadExtension as FileExtension,
     });
   }
-});
+}
+
+addEventListener("DOMContentLoaded", initQrCode);

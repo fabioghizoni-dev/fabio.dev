@@ -1,3 +1,7 @@
+@utility content-str {
+  content: "";
+}
+
 @utility reverse {
   animation-direction: reverse;
 }

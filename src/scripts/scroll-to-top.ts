@@ -37,9 +37,9 @@ const onScrollWindow = () => {
   }
 };
 
-window.addEventListener("scroll", onScrollWindow);
-window.addEventListener("DOMContentLoaded", onLoadPage)
-
+addEventListener("scroll", onScrollWindow);
+addEventListener("astro:page-load", onLoadPage);
+addEventListener("DOMContentLoaded", onLoadPage);
 
 const onClickArrowUp = () => {
   if (window.scrollY > 0) {

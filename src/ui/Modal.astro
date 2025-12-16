@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import cn from "../utils/cn";
+import SwitchLang from "./SwitchLang.astro";
 
 interface Props extends astroHTML.JSX.HTMLAttributes {
   id?: string;
@@ -13,6 +14,7 @@ const { id = "first-modal" } = Astro.props as Props;
   id={id}
   role="dialog"
   aria-modal="true"
+  aria-hidden="true"
   data-modal-backdrop
   aria-label="Welcome modal"
   class="fixed inset-0 hidden items-center justify-center bg-black/50 z-50 p-4"
@@ -20,13 +22,20 @@ const { id = "first-modal" } = Astro.props as Props;
   <div
     class="bg-white dark:bg-gray-default rounded-lg shadow-xl max-w-2xl w-full p-5 relative"
   >
-    <Icon
-      data-modal-close
-      aria-label="Fechar modal"
-      name="line-md:menu-to-close-transition"
-      class={cn(`absolute top-2 right-2 size-6 text-gray-500 hover:text-purple-blue 
-        dark:hover:text-gray-300 cursor-pointer transition-colors ease-in-out duration-200`)}
-    />
+    <div class="absolute flex justify-center items-center gap-2 top-2 right-2">
+      <SwitchLang
+        class="size-6 min-w-6 min-h-6"
+        iconClass="text-gray-500 hover:text-purple-blue dark:hover:text-gray-300"
+      />
+      <Icon
+        data-modal-close
+        title="Close modal"
+        aria-label="Close modal"
+        name="line-md:menu-to-close-transition"
+        class={cn(`size-6 text-gray-500 hover:text-purple-blue dark:hover:text-gray-300 cursor-pointer 
+          transition-colors ease-in-out duration-200`)}
+      />
+    </div>
     <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
       Welcome to my website
     </h2>

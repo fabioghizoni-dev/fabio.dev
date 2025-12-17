@@ -102,10 +102,10 @@ const baseBodyClass = `flex flex-col justify-between items-center w-full min-h-s
 
     <!-- Twitter Card -->
     <meta name="twitter:title" content={title} />
-    <meta name="twitter:creator" content="@seuUser" />
-    <meta name="twitter:description" content={removeSpaces(description)} />
+    <meta name="twitter:creator" content="@FGhizoni28539" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={`${siteUrl}/logo_neon.svg`} />
+    <meta name="twitter:description" content={removeSpaces(description)} />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -124,17 +124,6 @@ const baseBodyClass = `flex flex-col justify-between items-center w-full min-h-s
     <slot />
     {footer && <CopyRight />}
 
-    <script>
-      import c from "clogs.ts";
-      (() => {
-        try {
-          const savedLang = localStorage.getItem("site:lang") || "en";
-          document.documentElement.lang = savedLang;
-          c.log(`🌐 Language initialized: ${savedLang}`);
-        } catch (error) {
-          c.warn("Error initializing language:", error);
-        }
-      })();
-    </script>
+    <script src="../scripts/layout.ts"></script>
   </body>
 </html>

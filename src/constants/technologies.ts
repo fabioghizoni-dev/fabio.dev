@@ -42,3 +42,4 @@ const technologiesData = [
 export default technologiesData;
 
 export const duplicateTechnologies = [...technologiesData, ...technologiesData];
+

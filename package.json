@@ -35,7 +35,6 @@
     "astro": "astro",
     "build": "astro build",
     "dev": "astro dev --host",
-    "preview": "astro preview",
     "format": "prettier . --write"
   },
   "type": "module",

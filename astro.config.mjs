@@ -2,6 +2,7 @@
 import tailwindcss from "@tailwindcss/vite";
 import astroIcon from "astro-icon";
 import { defineConfig } from "astro/config";
+import { fileURLToPath } from "url";
 
 import vercel from "@astrojs/vercel";
 
@@ -15,6 +16,11 @@ export default defineConfig({
   integrations: [astroIcon()],
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        "@": fileURLToPath(new URL("./src", import.meta.url)),
+      }
+    }
   },
   i18n: {
     defaultLocale: "en",

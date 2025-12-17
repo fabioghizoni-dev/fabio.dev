@@ -1,8 +1,7 @@
 ---
+import { languages } from "@/scripts/i18n/languages";
+import cn from "@/utils/cn";
 import { Icon } from "astro-icon/components";
-import c from "clogs.ts/src/c";
-import { languages } from "../scripts/i18n/languages";
-import cn from "../utils/cn";
 
 interface Props {
   id?: string;
@@ -34,8 +33,6 @@ const iconFinalClass = cn(
   "text-white hover:text-purple-blue size-full transition-colors ease-in-out duration-200",
   iconClass,
 );
-
-c.log(languages);
 ---
 
 <button

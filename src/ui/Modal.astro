@@ -1,32 +1,48 @@
 ---
 import { Icon } from "astro-icon/components";
-import cn from "../utils/cn";
+import cn, { removeSpaces } from "../utils/cn";
 import SwitchLang from "./SwitchLang.astro";
 
 interface Props extends astroHTML.JSX.HTMLAttributes {
   id?: string;
+  open?: boolean;
+  message?: string;
+  btnLabel?: string;
+  switchLang?: boolean;
 }
 
-const { id = "first-modal" } = Astro.props as Props;
+const {
+  open = false,
+  switchLang = true,
+  id = "first-modal",
+  btnLabel = "Okay, continue",
+  title = "Welcome to my website",
+  message = removeSpaces(`This website is still under development, therefore it may contain incomplete components and information. 
+    I thank you for your understanding!`),
+} = Astro.props as Props;
 ---
 
 <div
   id={id}
   role="dialog"
   aria-modal="true"
-  aria-hidden="true"
+  aria-hidden={`${!open ? "true" : "false"}`}
   data-modal-backdrop
   aria-label="Welcome modal"
-  class="fixed inset-0 hidden items-center justify-center bg-black/50 z-50 p-4"
+  class={`fixed inset-0 ${!open ? "hidden" : "flex"} items-center justify-center bg-black/50 z-50 p-4`}
 >
   <div
     class="bg-white dark:bg-gray-default rounded-lg shadow-xl max-w-2xl w-full p-5 relative"
   >
     <div class="absolute flex justify-center items-center gap-2 top-2 right-2">
-      <SwitchLang
-        class="size-6 min-w-6 min-h-6"
-        iconClass="text-gray-500 hover:text-purple-blue dark:hover:text-gray-300"
-      />
+      {
+        switchLang && (
+          <SwitchLang
+            class="size-6 min-w-6 min-h-6"
+            iconClass="text-gray-500 hover:text-purple-blue dark:hover:text-gray-300"
+          />
+        )
+      }
       <Icon
         data-modal-close
         title="Close modal"
@@ -37,12 +53,11 @@ const { id = "first-modal" } = Astro.props as Props;
       />
     </div>
     <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-      Welcome to my website
+      {title}
     </h2>
 
     <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-      This website is still under development, therefore it may contain
-      incomplete components and information. I thank you for your understanding!
+      {message}
     </p>
 
     <div class="flex justify-end gap-3">
@@ -51,10 +66,16 @@ const { id = "first-modal" } = Astro.props as Props;
         class="bg-purple-600 hover:bg-purple-700 dark:bg-purple-700 dark:hover:bg-purple-600 text-white
           px-4 py-2 rounded-md font-medium cursor-pointer transition-colors ease-in-out duration-200"
       >
-        Okay, continue
+        {btnLabel}
       </button>
     </div>
   </div>
 </div>
 
-<script src="../scripts/Modal.ts"></script>
+{
+  !open ? (
+    <script src="../scripts/modal.ts" />
+  ) : (
+    <script src="../scripts/contact-modal.ts" />
+  )
+}

@@ -1,3 +1,4 @@
+import { z } from "astro/zod";
 import { ActionError, defineAction } from "astro:actions";
 import c, { foreground, strColor } from "clogs.ts";
 import { Resend } from "resend";
@@ -8,36 +9,44 @@ const resend = new Resend(import.meta.env.RESEND_API_KEY);
 export const server = {
   send: defineAction({
     accept: "form",
-    handler: async (form) => {
-      const name = form.get("name");
-      const email = form.get("email");
-      const message = form.get("message");
+    input: z.object({
+      name: z.string(),
+      message: z.string(),
+      email: z.string().email(),
+    }),
+    handler: async (input) => {
+      const { name, email, message } = input;
 
       c.log(`Name from: ${name}`);
       c.log(`Email from: ${email}`);
       c.log(`Message from: ${message}`);
 
-      if (!name || !email || !message) throw new ActionError({ code: "BAD_REQUEST", message: "Missing fields" });
-      c.error(strColor("BAD_REQUEST", foreground.red));
+      if (!name || !email || !message) {
+        c.error(`${strColor("BAD_REQUEST", foreground.red)}: Missing fields`);
+        throw new ActionError({ code: "BAD_REQUEST", message: "Missing fields" })
+      };
 
       const html = getHtml(name, email, message);
 
-      const { data, error } = await resend.emails.send({
-        html: html,
-        replyTo: email as string,
-        to: "dev6solucoes@gmail.com",
-        subject: `Message from ${name}`,
-        from: `Dev <delivered@resend.dev>`,
-      });
+      try {
+        const { data, error } = await resend.emails.send({
+          html: html,
+          replyTo: email as string,
+          to: "dev6solucoes@gmail.com",
+          subject: `Message from ${name}`,
+          from: `Dev <delivered@resend.dev>`,
+        });
 
-      if (error) {
-        c.error(`{\n${error.name}\n${error.message}\n}`);
-        throw new ActionError({ code: "BAD_REQUEST", message: `{\n${error.name}\n${error.message}\n}` })
-      };
+        if (error) {
+          c.error(`{\n${error.name}\n${error.message}\n}`);
+          throw new ActionError({ code: "BAD_REQUEST", message: `{\n${error.name}\n${error.message}\n}` })
+        };
 
-      c.log(`data: ${JSON.stringify(data, null, 2)}`);
+        c.log(`data: ${JSON.stringify(data, null, 2)}`);
 
-      return data;
+        return { success: true, data };
+
+      } catch (err) { c.error(`Error while trying to send email: ${err}`) };
     },
   }),
 };

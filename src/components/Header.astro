@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+import ChristmasLights from "../ui/ChristmasLights.astro";
+import Menu from "../ui/Menu.astro";
+import SwitchLang from "../ui/SwitchLang.astro";
+import SwitchTheme from "../ui/SwitchTheme.astro";
+import cn from "../utils/cn";
+
+const alt = "Logo Fábio Ghizoni";
+const title = "Return to home page";
+
+const cnClasses = {
+  divHeader: cn(
+    "fixed hidden w-full mb-6 p-2 z-1 no-transition transition ease-in-out duration-500",
+  ),
+  header:
+    cn(`flex relative max-w-7xl bg-gray-default border border-white/35 justify-between items-center gap-6 px-4 py-2 
+    mx-auto rounded-full`),
+};
+
+const today = new Date();
+const showChristmasLights = today <= new Date("2026-01-31T23:59:59");
+---
+
+<div id="div-header" class={cnClasses.divHeader}>
+  <header id="header" role="heading" aria-level="1" class={cnClasses.header}>
+    {showChristmasLights && <ChristmasLights />}
+    <Image
+      id="logo"
+      alt={alt}
+      width={80}
+      height={80}
+      title={title}
+      loading="eager"
+      src="/logo.svg"
+      class="h-8 p-0.5 object-contain object-left cursor-pointer animate-show-logo"
+    />
+    <Menu />
+    <SwitchTheme />
+    <SwitchLang />
+  </header>
+</div>
+
+<script src="../scripts/header.ts"></script>

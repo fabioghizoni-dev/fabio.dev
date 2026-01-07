@@ -1,0 +1,41 @@
+---
+export interface Props {
+  name?: string;
+  email?: string;
+  message?: string;
+}
+
+const {
+  name = "Fábio Ghizoni",
+  email = "teste@gmail.com",
+  message = "Olá, eu sou Fábio, tudo bem com vc?",
+} = Astro.props as Props;
+---
+
+<section style="width: 100%; padding: 2rem; box-sizing: border-box;">
+  <div
+    style="margin: 0 auto; max-width: 36rem; padding: 2rem; border-radius: 0.5rem; background-color: oklch(99% 0 0); 
+    box-shadow: 0 0.25rem 0.5rem oklch(0% 0 0 / 0.1);"
+  >
+    <h1 style="font-size: 1.25rem; margin-bottom: 1rem; color: oklch(25% 0 0);">
+      📩 Novo contato pelo site
+    </h1>
+    <p
+      style="font-size: 1rem; line-height: 1.5; color: oklch(30% 0 0); margin: 0.5rem 0;"
+    >
+      <span style="font-weight: bold;">Nome:</span>
+      {name}
+    </p>
+    <p
+      style="font-size: 1rem; line-height: 1.5; color: oklch(30% 0 0); margin: 0.5rem 0;"
+    >
+      <span style="font-weight: bold;">Email:</span>
+      {email}
+    </p>
+    <div
+      style="margin-top: 1rem; padding: 1rem; background-color: oklch(97% 0 0); border-radius: 0.25rem; white-space: pre-line;"
+    >
+      {message}
+    </div>
+  </div>
+</section>

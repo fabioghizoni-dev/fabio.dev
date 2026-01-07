@@ -1,0 +1,116 @@
+---
+import { actions } from "astro:actions";
+import Modal from "../ui/Modal.astro";
+import SocialButton from "../ui/SocialButton.astro";
+import cn from "../utils/cn";
+
+let showModal = false;
+const actionResult = Astro.getActionResult(actions.send);
+if (actionResult) if (actionResult.data) showModal = true;
+---
+
+<section
+  id="contact-me"
+  class={cn(
+    "flex bg-light flex-col w-full min-h-screen justify-center items-center font-cascadia-code gap-8 px-4 py-12",
+  )}
+>
+  {
+    showModal && (
+      <Modal
+        open
+        btnLabel="Ok"
+        switchLang={false}
+        id="modal-success-email"
+        title="Email sent successfully!"
+        message="Thank you for contacting me. Keep an eye on your email, I'll reply shortly."
+      />
+    )
+  }
+  <h1 class="text-3xl dark:text-white md:text-4xl font-medium text-center">
+    Get in touch
+  </h1>
+  <h2 class="max-w-5xl dark:text-white text-lg md:text-2xl text-center">
+    I'm always open to new opportunities and collaborations. Feel free to
+    contact me through any of the channels below.
+  </h2>
+  <div class="flex flex-wrap gap-4 md:gap-8 justify-center items-center">
+    <SocialButton>Whatsapp</SocialButton>
+    <SocialButton
+      title="Instagram"
+      name="line-md:instagram"
+      href="https://www.instagram.com/fabio.ghizoni_">Instagram</SocialButton
+    >
+    <SocialButton
+      title="Github"
+      name="line-md:github"
+      href="https://github.com/fabioghizoni-dev">Github</SocialButton
+    >
+    <SocialButton
+      title="LinkedIn"
+      name="line-md:linkedin"
+      href="https://www.linkedin.com/in/f%C3%A1bioghizoni"
+      >LinkedIn</SocialButton
+    >
+  </div>
+  <form
+    method="post"
+    id="contact-form"
+    name="contact-form"
+    action={actions.send}
+    class="flex flex-col gap-4 w-full max-w-2xl text-gray-default dark:text-white text-base md:text-2xl"
+  >
+    <div class="flex flex-col gap-2">
+      <label for="name" class="text-base md:text-2xl font-medium"
+        >Your name</label
+      >
+      <input
+        required
+        id="name"
+        name="name"
+        type="text"
+        autocomplete="name"
+        placeholder="Your name here"
+        class="border-2 border-white/30 px-3 md:px-4 py-2 rounded-lg placeholder:text-white/50 bg-black text-white focus:outline-none focus:border-white/70 transition"
+      />
+    </div>
+    <div class="flex flex-col gap-2">
+      <label for="email" class="text-base md:text-2xl font-medium"
+        >Your e-mail</label
+      >
+      <input
+        required
+        id="email"
+        type="email"
+        name="email"
+        autocomplete="email"
+        placeholder="your.email@example.com"
+        class="border-2 border-white/30 px-3 md:px-4 py-2 rounded-lg placeholder:text-white/50 bg-black text-white focus:outline-none focus:border-white/70 transition"
+      />
+    </div>
+    <div class="flex flex-col gap-2">
+      <label for="message" class="text-base md:text-2xl font-medium"
+        >Your message</label
+      >
+      <textarea
+        required
+        rows="6"
+        id="message"
+        name="message"
+        placeholder="Write your message here..."
+        class="border-2 border-white/30 bg-black px-3 md:px-4 py-2 rounded-lg text-white placeholder:text-white/50 focus:outline-none focus:border-white/70 transition resize-none"
+      ></textarea>
+    </div>
+    <button
+      id="submit"
+      type="submit"
+      class={cn(
+        `flex justify-center items-center gap-4 bg-linear-to-r from-purple-default to-purple-blue text-white px-6 py-3 mt-4 
+          cursor-pointer rounded-lg text-base md:text-xl transition hover:text-white/70 disabled:opacity-50 
+            disabled:cursor-not-allowed`,
+      )}
+    >
+      Send message
+    </button>
+  </form>
+</section>

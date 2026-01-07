@@ -1,0 +1,57 @@
+---
+import { Icon } from "astro-icon/components";
+import type { ComponentProps } from "astro/types";
+import WhatsIcon from "../ui/WhatsIcon.astro";
+import cn from "../utils/cn";
+
+type Rel = astroHTML.JSX.AnchorHTMLAttributes["rel"];
+type Target = astroHTML.JSX.AnchorHTMLAttributes["target"];
+type ComponentsProps = Omit<ComponentProps<typeof Icon>, "name"> &
+  ComponentProps<typeof WhatsIcon>;
+
+interface Props extends ComponentsProps {
+  rel?: Rel;
+  href?: string;
+  name?: string;
+  title?: string;
+  target?: Target;
+}
+
+const {
+  target = "_blank",
+  name = "whatsapp",
+  title = "Whatsapp",
+  rel = "noopener noreferrer",
+  href = "https://wa.me/5543998280078",
+  ...rest
+} = Astro.props as Props;
+
+const baseClass = `group flex items-center justify-center gap-3 px-4 py-3 bg-purple-blue rounded-lg text-white 
+  transition-colors duration-300 ease-in-out hover:bg-purple-blue/70 hover:contrast-125`;
+
+const finalClass = cn(baseClass);
+---
+
+<a href={href} title={title} target={target} rel={rel} class={finalClass}>
+  <span
+    class="text-shadow-white group-hover:text-shadow-2xs transition-colors duration-300 ease-in-out"
+  >
+    <slot />
+  </span>
+  {
+    name === "whatsapp" ? (
+      <WhatsIcon
+        name={name}
+        phoneClass="fill-white group-hover:fill-gray-default transition-colors duration-300 ease-in-out"
+        borderClass="stroke-white group-hover:stroke-gray-default transition-colors duration-300 ease-in-out"
+        {...rest}
+      />
+    ) : (
+      <Icon
+        name={name}
+        class="w-8 h-8 group-hover:text-gray-default transition-colors duration-300 ease-in-out"
+        {...rest}
+      />
+    )
+  }
+</a>

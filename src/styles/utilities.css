@@ -1,0 +1,23 @@
+@utility content-str {
+  content: "";
+}
+
+@utility reverse {
+  animation-direction: reverse;
+}
+
+@utility transition-border {
+  transition-property: border;
+}
+
+@utility no-transition {
+  animation: none;
+  transition: none;
+}
+
+@utility pause {
+  animation-play-state: paused;
+}
+
+/* dark theme in "data-theme" */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));

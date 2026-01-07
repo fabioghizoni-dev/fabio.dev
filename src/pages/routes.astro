@@ -1,0 +1,48 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const files = import.meta.glob("/src/pages/**/*.{astro,md,mdx,jsx,tsx}", {
+  eager: false,
+});
+
+const routes = Object.keys(files)
+  .map((p) => {
+    let path =
+      p
+        .replace("/src/pages", "")
+        .replace(/index\.(astro|md|mdx|jsx|tsx)$/, "")
+        .replace(/\.(astro|md|mdx|jsx|tsx)$/, "") || "/";
+
+    if (path !== "/" && path.endsWith("/")) path = path.slice(0, -1);
+
+    return path;
+  })
+  .filter((r) => !["/404", "/500"].includes(r))
+  .sort((a, b) => a.length - b.length || a.localeCompare(b));
+
+const displayRoutes = routes.map((path) => ({
+  path,
+  name:
+    path === "/"
+      ? "Home"
+      : path.replace(/^\//, "").replace(/(^\w)/, (c) => c.toUpperCase()),
+}));
+
+const description = `Page Routes | Page listing all routes available on the website for easy navigation.`;
+---
+
+<Layout
+  title="Routes | Fábio Ghizoni"
+  bodyClass="justify-center items-center"
+  description={description}
+>
+  <ul translate="no" class="text-white">
+    {
+      displayRoutes.map((r) => (
+        <li title={r.path}>
+          <a href={r.path}>{r.name}</a>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>

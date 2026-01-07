@@ -1,0 +1,129 @@
+---
+import Analytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
+import { ClientRouter } from "astro:transitions";
+import CopyRight from "../components/CopyRight.astro";
+import Header from "../components/Header.astro";
+import "../styles/globals.css";
+import Modal from "../ui/Modal.astro";
+import cn, { removeSpaces } from "../utils/cn";
+
+interface Props {
+  lang?: string;
+  title?: string;
+  author?: string;
+  header?: boolean;
+  footer?: boolean;
+  siteUrl?: string;
+  iconHref?: string;
+  dataTheme?: string;
+  generator?: string;
+  bodyClass?: string;
+  keywords?: string[];
+  description?: string;
+  clientRouter?: boolean;
+}
+
+const {
+  header,
+  footer,
+  lang = "en",
+  bodyClass = "",
+  dataTheme = "dark",
+  clientRouter = true,
+  iconHref = "/logo.svg",
+  author = "Fábio Ghizoni",
+  generator = Astro.generator,
+  title = "Portfólio | Fábio Ghizoni",
+  siteUrl = "https://portfolio-fabio-main.vercel.app",
+  description = `Welcome to my portfolio website. Feel free to explore and learn more about the site and me. 
+    Here you'll find my projects and information about my skills and experiences.`,
+  keywords = [
+    "Astro",
+    "React",
+    "Node.js",
+    "Database",
+    "Back-end",
+    "Front-end",
+    "Portfolio",
+    "Developer",
+    "TypeScript",
+    "JavaScript",
+    "UI/UX Design",
+    "Tailwind CSS",
+    "Web Developer",
+    "Fábio Ghizoni",
+    "Paraná Brazil",
+    "Tech Portfolio",
+    "Web Development",
+    "API development",
+    "Software Engineer",
+    "Desenvolvedor Web",
+    "Responsive Design",
+    "Full-stack Developer",
+    "Programador Full-stack",
+    "Web Application Development",
+  ],
+} = Astro.props as Props;
+
+const baseBodyClass = `flex flex-col justify-between items-center w-full min-h-screen bg-white/80 dark:bg-black 
+  dark:selection:bg-white dark:selection:text-purple-blue selection:bg-purple-blue selection:text-white
+  transition-colors ease-in-out duration-500`;
+---
+
+<!doctype html>
+<html lang={lang} data-theme={dataTheme}>
+  <head>
+    {clientRouter && <ClientRouter />}
+
+    <meta charset="UTF-8" />
+    <meta name="language" content={lang} />
+    <meta name="author" content={author} />
+    <meta name="generator" content={generator} />
+    <meta name="description" content={removeSpaces(description)} />
+    <link rel="canonical" href={siteUrl} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content={dataTheme === "dark" ? "#000" : "#fff"} />
+    <meta name="keywords" content={keywords.join(", ")} />
+
+    <!-- Title -->
+    <title>{title}</title>
+
+    <!-- Icon -->
+    <link rel="icon" type="image/svg+xml" href={iconHref} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={removeSpaces(description)} />
+    <meta property="og:site_name" content="Portfólio | Fábio Ghizoni" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:image" content={`${siteUrl}/logo_neon.svg`} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:creator" content="@FGhizoni28539" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={`${siteUrl}/logo_neon.svg`} />
+    <meta name="twitter:description" content={removeSpaces(description)} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link crossorigin rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Noto+Sans+JP:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap"
+    />
+  </head>
+  <body class={cn(baseBodyClass, bodyClass)}>
+    <Analytics />
+    <SpeedInsights />
+
+    {header && <Header />}
+    <Modal />
+    <slot />
+    {footer && <CopyRight />}
+
+    <script src="../scripts/layout.ts"></script>
+  </body>
+</html>

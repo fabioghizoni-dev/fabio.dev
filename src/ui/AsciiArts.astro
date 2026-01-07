@@ -1,0 +1,64 @@
+---
+import { bar, fabio } from "../scripts/ascii-arts/letters.ts";
+import cn from "../utils/cn";
+
+interface Props {
+  class?: string;
+}
+
+const nameArray = [
+  "F",
+  "á",
+  "b",
+  "i",
+  "o\u00A0",
+  "G",
+  "h",
+  "i",
+  "z",
+  "o",
+  "n",
+  "i",
+  ",",
+];
+const baseClass = `flex flex-col text-3xl lg:text-4xl text-left font-space-grotesk font-black justify-center items-start gap-2`;
+const divClass = `flex relative min-w-59ch bg-gradient-to-br bg-clip-text text-transparent from-blue-800 to-rose-600 contrast-125 
+  dark:contrast-100 dark:from-sky-400 dark:to-fuchsia-500 text-lg leading-none tracking-max 
+    justify-start items-center`;
+
+const { class: className } = Astro.props as Props;
+---
+
+<h1 class={cn(baseClass, className)}>
+  <p
+    id="hello-world"
+    class="inline text-nowrap text-gray-800 dark:text-white/80"
+  >
+    <span class="inline-block opacity-0 animate-char"> I'm </span>
+    <br class="md:hidden" />
+    {
+      nameArray.map((letter, i) => (
+        <span
+          translate="no"
+          style={`animation-delay: ${i * 0.08}s;`}
+          class="inline-block opacity-0 animate-char"
+        >
+          {letter}
+        </span>
+      ))
+    }
+    <span
+      lang="en"
+      id="keywords"
+      class="inline-block animate-blur transition-all duration-500 ease-in-out"
+    ></span>
+  </p>
+  <div translate="no" class={divClass}>
+    <pre id="ascii-art">{fabio}</pre>
+    <pre
+      id="bar"
+      class="hidden md:block animate-opacity transition-opacity duration-500 ease-in-out">{bar.ascii}</pre>
+  </div>
+</h1>
+
+<script src="../scripts/ascii-arts/ascii-arts.ts"></script>

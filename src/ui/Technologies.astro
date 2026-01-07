@@ -1,0 +1,51 @@
+---
+import { Icon } from "astro-icon/components";
+import technologiesData, {
+  duplicateTechnologies,
+} from "../constants/technologies";
+import cn from "../utils/cn";
+
+interface Props {
+  class?: string;
+  /** It only returns a visual list of the technologies. */
+  list?: (typeof technologiesData)[number]["name"][];
+}
+
+const { list, class: className = "" } = Astro.props as Props;
+
+const baseClass =
+  "relative w-full group bg-white dark:bg-black border-y-2 dark:border-y border-gray-default/20 dark:border-white/20 py-2 overflow-hidden";
+const finalClass = cn(baseClass, className);
+---
+
+{
+  list ? (
+    <div class="">
+      <Icon name="akar-icons:node-fill" />
+    </div>
+  ) : (
+    <div class={finalClass}>
+      <div
+        translate="no"
+        class="flex w-max justify-center items-center gap-10 will-change-transform animate-horz-loop group-hover:pause"
+      >
+        {duplicateTechnologies.map((tech) => {
+          const CustomIcon = tech.customIcon || Icon;
+          return (
+            <span
+              class="flex justify-center items-center gap-2 text-gray-default dark:text-white text-center text-3xl text-nowrap 
+                font-cascadia-code font-bold"
+            >
+              {tech.name}
+              <CustomIcon
+                name={tech.icon}
+                aria-label={`Icon of ${tech.name}`}
+                class={`${tech.class || ""}`}
+              />
+            </span>
+          );
+        })}
+      </div>
+    </div>
+  )
+}

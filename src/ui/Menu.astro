@@ -1,0 +1,50 @@
+---
+import { Icon } from "astro-icon/components";
+import cn from "../utils/cn";
+import UnderlineButton from "./UnderlineButton.astro";
+
+const ulClass = cn(
+  `hidden md:flex justify-center items-center text-xl ml-auto font-bold text-white font-cascadia-code gap-8`,
+);
+---
+
+<>
+  <button
+    id="menu"
+    role="button"
+    class="flex relative md:hidden flex-col w-8 h-6 justify-between items-center p-0.5 cursor-pointer"
+  >
+    <div
+      class="bg-linear-to-r from-purple-default to-purple-blue self-end w-9/12 h-0.9 min-h-0.9 rounded-full"
+    >
+    </div>
+    <div
+      class="bg-linear-to-r from-purple-default to-purple-blue w-full h-0.9 min-h-0.9 rounded-full"
+    >
+    </div>
+    <div
+      class="bg-linear-to-r from-purple-default to-purple-blue w-full h-0.9 min-h-0.9 rounded-full"
+    >
+    </div>
+  </button>
+
+  <ul id="list-menu" class={ulClass}>
+    <Icon
+      data-menu-close
+      title="Close modal"
+      aria-label="Close modal"
+      name="line-md:menu-to-close-transition"
+      class={cn(`md:hidden size-6 text-gray-500 hover:text-purple-blue dark:hover:text-gray-300 cursor-pointer 
+        transition-colors ease-in-out duration-200`)}
+    />
+    <UnderlineButton>Home</UnderlineButton>
+    <UnderlineButton id="li-about-me" title="Go to about section">
+      About me
+    </UnderlineButton>
+    <UnderlineButton id="li-contact-me" title="Go to contact section">
+      Contact me
+    </UnderlineButton>
+  </ul>
+</>
+
+<script src="../scripts/menu.ts"></script>

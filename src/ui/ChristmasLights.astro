@@ -1,0 +1,38 @@
+---
+import cn from "../utils/cn";
+
+const lights = Array.from({ length: 20 });
+const delays = lights.map(() => (Math.random() * 2).toFixed(2));
+
+const colors = [
+  "bg-red-500 shadow-red-400",
+  "bg-blue-500 shadow-blue-400",
+  "bg-green-500 shadow-green-400",
+  "bg-yellow-500 shadow-yellow-300",
+];
+
+const lightBaseClass = `relative w-3 h-6 rounded-1/2 opacity-95 animate-blink shadow-light nth-[3n]:hidden 
+        md:nth-[3n]:block first:-translate-y-1.2 last:-translate-y-1.2`;
+
+const lightClass =
+  cn(`after:absolute after:content-str after:top-1 after:left-1/2 after:h-2.5 after:w-0.8 after:-translate-x-1/2 after:rounded-sm 
+  after:bg-white/70 after:opacity-90 after:blur-1`);
+const lightFinalClass = cn(lightBaseClass, lightClass);
+---
+
+<div
+  class="absolute -bottom-4 left-0 w-full flex justify-between gap-2 pointer-events-none -z-5 px-2"
+>
+  {
+    lights.map((_, i) => {
+      const delay = delays[i];
+      const color = colors[i % 4];
+      return (
+        <div
+          style={`animation-delay: ${delay}s;`}
+          class={`${color ? color : ""} ${lightFinalClass}`}
+        />
+      );
+    })
+  }
+</div>

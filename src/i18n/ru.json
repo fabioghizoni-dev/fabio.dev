@@ -1,0 +1,97 @@
+{
+  "name": "English",
+  "header": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "return_home": "Return to home page",
+    "change_language": "Change language",
+    "change_theme": "Change theme"
+  },
+  "hero": {
+    "badge": "Full-Stack Developer",
+    "cv_download": "Download CV"
+  },
+  "about-me": {
+    "me": "me",
+    "about": "About",
+    "about-me-text": "Hello! My name is Fábio, I'm 20 years old, and I live in Manoel Ribas, Paraná – Brazil. I'm a very curious person who loves learning how everything works. That's why I'm passionate about technology, a very broad and fascinating field. I'm a full-stack developer, creating intuitive and dynamic interfaces with interactivity and accessibility. My main experience is in web development, but I've also built desktop and mobile applications. I graduated with a degree in Systems Analysis and Development, and I'm now seeking to learn more about various technologies such as Python, Kotlin, Swift, React Native, and others."
+  },
+  "projects": {
+    "title": "Projects",
+    "see_project": "See project"
+  },
+  "contact": {
+    "title": "Get in touch",
+    "subtitle": "I'm always open to new opportunities and collaborations. Feel free to contact me through any of the channels below.",
+    "form": {
+      "name": "Your name",
+      "name_placeholder": "Your name here",
+      "email": "Your e-mail",
+      "email_placeholder": "your.email@example.com",
+      "message": "Your message",
+      "message_placeholder": "Write your message here...",
+      "submit": "Send message"
+    },
+    "social": {
+      "whatsapp": "Whatsapp",
+      "instagram": "Instagram",
+      "github": "Github",
+      "linkedin": "LinkedIn"
+    }
+  },
+  "qr": {
+    "title": "QR Code Generator",
+    "description": "Description / Values",
+    "question": "Are you unsure how it works?",
+    "click_here": "Click here",
+    "how_works_title": "How it works",
+    "how_works_description": "Generate personalized QR Codes based on parameters provided via URL. You can set data, colors, shapes and even download the result automatically.",
+    "example_title": "Usage example",
+    "result_title": "Result",
+    "result_description": "The QR Code will be generated with the defined parameters and the file meu-qr.png will be downloaded automatically.",
+    "about_title": "About",
+    "about_description": "This application uses the qr-code-styling library to generate QR Codes with high customization.",
+    "parameters_title": "Available parameters",
+    "parameter": "Parameter",
+    "type": "Type",
+    "data": "Text or encoded URL",
+    "size": "Equal width and height",
+    "width": "Custom width",
+    "height": "Custom height",
+    "margin": "External margin (default: 10)",
+    "shape": "square, rounded",
+    "type_format": "svg or canvas"
+  },
+  "components": {
+    "title": "Site Components",
+    "subtitle": "Page still in development",
+    "description": "Page listing the components that were used on this website and in some other projects."
+  },
+  "curriculum": {
+    "title": "Curriculum",
+    "description": "Resume page containing all professional and academic information of Fábio Ghizoni"
+  },
+  "gradients": {
+    "title": "Gradients",
+    "description": "Page for generating custom gradients with various colors and even a noise effect."
+  },
+  "routes": {
+    "title": "Routes",
+    "description": "Page listing all routes available on the website for easy navigation."
+  },
+  "footer": {
+    "copyright": "© 2025 Fábio Ghizoni. All rights reserved."
+  },
+  "scrolltop": {
+    "title": "Scroll to top of page"
+  },
+  "modal": {
+    "title": "Welcome to my website",
+    "description": "This website is still under development, so there may be incomplete information. I thank you for your understanding!",
+    "animations": "Do you want animations on the site?",
+    "yes": "Yes",
+    "no": "No",
+    "continue": "Continue"
+  }
+}

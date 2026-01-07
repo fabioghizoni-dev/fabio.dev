@@ -3,17 +3,16 @@ import tailwindcss from "@tailwindcss/vite";
 import astroIcon from "astro-icon";
 import { defineConfig } from "astro/config";
 
-import node from "@astrojs/node";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
-  adapter: node({
-    mode: "standalone",
-  }),
+  adapter: vercel(),
   integrations: [astroIcon()],
   vite: {
     plugins: [tailwindcss()],
   },
+
   i18n: {
     defaultLocale: "en",
     locales: [
@@ -29,5 +28,6 @@ export default defineConfig({
       "de",
     ],
   },
+
   site: "https://portfolio-fabio-main.vercel.app/",
 });

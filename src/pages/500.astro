@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 interface Props {
   error: unknown;
 }
+
 const { error } = Astro.props as Props;
 
 const description = `Page 500 | Internal server error, please try again later or return to the home page by 
@@ -10,7 +11,9 @@ const description = `Page 500 | Internal server error, please try again later or
 ---
 
 <Layout header footer title="500 | Fábio Ghizoni" description={description}>
-  <h1 class="text-white text-3xl font-space-grotesk">
+  <h1
+    class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-3xl font-space-grotesk"
+  >
     Internal server error: <span
       class="bg-clip-text text-transparent font-bold bg-linear-to-r from-red-500 to-red-800"
       >{error instanceof Error ? error.message : error || "Unknown error"}</span

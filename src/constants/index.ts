@@ -1,10 +1,8 @@
-import LogoReactNative from "/public/react_native.svg";
-
 const technologiesData = [
   {
     name: "React Native",
     icon: "devicon:react",
-    customIcon: LogoReactNative,
+    customIcon: "/react_native.svg",
     class: "w-9.5 h-9.5 rounded-full",
   },
   { name: "Next.js", icon: "devicon:nextjs", class: "size-11 dark:size-14 -m-2 pb-0.5" },
@@ -43,3 +41,4 @@ export default technologiesData;
 
 export const duplicateTechnologies = [...technologiesData, ...technologiesData];
 
+export const ready = typeof document !== "undefined" && document.readyState === "loading";

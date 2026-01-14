@@ -6,7 +6,7 @@ import cn from "../utils/cn";
 
 let showModal = false;
 const actionResult = Astro.getActionResult(actions.send);
-if (actionResult) if (actionResult.data) showModal = true;
+if (actionResult?.data?.success) showModal = true;
 ---
 
 <section
@@ -57,7 +57,6 @@ if (actionResult) if (actionResult.data) showModal = true;
     method="post"
     id="contact-form"
     name="contact-form"
-    action={actions.send}
     class="flex flex-col gap-4 w-full max-w-2xl text-gray-default dark:text-white text-base md:text-2xl"
   >
     <div class="flex flex-col gap-2">
@@ -114,3 +113,5 @@ if (actionResult) if (actionResult.data) showModal = true;
     </button>
   </form>
 </section>
+
+<script src="../scripts/contact-me.ts"></script>

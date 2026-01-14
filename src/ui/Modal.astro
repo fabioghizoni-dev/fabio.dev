@@ -1,4 +1,5 @@
 ---
+export const prerender = false;
 import { Icon } from "astro-icon/components";
 import cn, { removeSpaces } from "../utils/cn";
 import SwitchLang from "./SwitchLang.astro";
@@ -17,6 +18,7 @@ const {
   id = "first-modal",
   btnLabel = "Okay, continue",
   title = "Welcome to my website",
+  "aria-label": ariaLabel = "Welcome modal",
   message = removeSpaces(`This website is still under development, therefore it may contain incomplete components and information. 
     I thank you for your understanding!`),
 } = Astro.props as Props;
@@ -28,7 +30,7 @@ const {
   aria-modal="true"
   aria-hidden={`${!open ? "true" : "false"}`}
   data-modal-backdrop
-  aria-label="Welcome modal"
+  aria-label={ariaLabel}
   class={`fixed inset-0 ${!open ? "hidden" : "flex"} items-center justify-center bg-black/50 z-50 p-4`}
 >
   <div
@@ -72,10 +74,4 @@ const {
   </div>
 </div>
 
-{
-  !open ? (
-    <script src="../scripts/modal.ts" />
-  ) : (
-    <script src="../scripts/contact-modal.ts" />
-  )
-}
+<script src="../scripts/modal.ts"></script>

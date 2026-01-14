@@ -1,0 +1,53 @@
+---
+export const prerender = false;
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="IA | Fábio Ghizoni">
+  <h1 class="text-2xl text-white dark:text-black font-bold mb-4">
+    Chat IA Astro
+  </h1>
+
+  <div
+    id="chat"
+    class="w-full max-w-md h-[60vh] overflow-y-auto border rounded p-2 mb-4 bg-gray-800"
+  >
+  </div>
+
+  <form id="form" class="w-full max-w-md flex">
+    <input
+      id="input"
+      class="flex-1 p-2 rounded-l bg-gray-700 text-white"
+      placeholder="Digite sua mensagem"
+    />
+    <button class="bg-blue-600 p-2 rounded-r">Enviar</button>
+  </form>
+
+  <script is:inline>
+    const chat = document.getElementById("chat");
+    const form = document.getElementById("form");
+    const input = document.getElementById("input");
+
+    function addMessage(role, message) {
+      const div = document.createElement("div");
+      div.className = role === "user" ? "text-right my-1" : "text-left my-1";
+      div.textContent = message;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const msg = input.value.trim();
+      if (!msg) return;
+
+      addMessage("user", msg);
+      input.value = "";
+
+      // Simulando IA grátis (resposta automática)
+      const response = await fetch(`/api/chat?msg=${encodeURIComponent(msg)}`);
+      const data = await response.json();
+      addMessage("bot", data.reply);
+    });
+  </script>
+</Layout>

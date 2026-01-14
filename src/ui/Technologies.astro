@@ -1,8 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
-import technologiesData, {
-  duplicateTechnologies,
-} from "../constants/technologies";
+import { Image } from "astro:assets";
+import technologiesData, { duplicateTechnologies } from "../constants";
 import cn from "../utils/cn";
 
 interface Props {
@@ -30,18 +29,28 @@ const finalClass = cn(baseClass, className);
         class="flex w-max justify-center items-center gap-10 will-change-transform animate-horz-loop group-hover:pause"
       >
         {duplicateTechnologies.map((tech) => {
-          const CustomIcon = tech.customIcon || Icon;
           return (
             <span
               class="flex justify-center items-center gap-2 text-gray-default dark:text-white text-center text-3xl text-nowrap 
                 font-cascadia-code font-bold"
             >
               {tech.name}
-              <CustomIcon
-                name={tech.icon}
-                aria-label={`Icon of ${tech.name}`}
-                class={`${tech.class || ""}`}
-              />
+              {tech.customIcon ? (
+                <Image
+                  width={50}
+                  height={50}
+                  src={tech.customIcon}
+                  aria-label={`Icon of ${tech.name}`}
+                  alt={`Icon of ${tech.name}`}
+                  class={`${tech.class || ""}`}
+                />
+              ) : (
+                <Icon
+                  name={tech.icon}
+                  aria-label={`Icon of ${tech.name}`}
+                  class={`${tech.class || ""}`}
+                />
+              )}
             </span>
           );
         })}

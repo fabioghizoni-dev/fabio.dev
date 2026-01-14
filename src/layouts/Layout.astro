@@ -36,8 +36,8 @@ const {
   generator = Astro.generator,
   title = "Portfólio | Fábio Ghizoni",
   siteUrl = "https://portfolio-fabio-main.vercel.app",
-  description = `Welcome to my portfolio website. Feel free to explore and learn more about the site and me. 
-    Here you'll find my projects and information about my skills and experiences.`,
+  description = removeSpaces(`Welcome to my portfolio website. Feel free to explore and learn more about the site and me. 
+    Here you'll find my projects and information about my skills and experiences.`),
   keywords = [
     "Astro",
     "React",
@@ -80,7 +80,7 @@ const baseBodyClass = `flex flex-col justify-between items-center w-full min-h-s
     <meta name="language" content={lang} />
     <meta name="author" content={author} />
     <meta name="generator" content={generator} />
-    <meta name="description" content={removeSpaces(description)} />
+    <meta name="description" content={description} />
     <link rel="canonical" href={siteUrl} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content={dataTheme === "dark" ? "#000" : "#fff"} />
@@ -95,7 +95,7 @@ const baseBodyClass = `flex flex-col justify-between items-center w-full min-h-s
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={removeSpaces(description)} />
+    <meta property="og:description" content={description} />
     <meta property="og:site_name" content="Portfólio | Fábio Ghizoni" />
     <meta property="og:url" content={siteUrl} />
     <meta property="og:image" content={`${siteUrl}/logo_neon.svg`} />
@@ -105,7 +105,7 @@ const baseBodyClass = `flex flex-col justify-between items-center w-full min-h-s
     <meta name="twitter:creator" content="@FGhizoni28539" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={`${siteUrl}/logo_neon.svg`} />
-    <meta name="twitter:description" content={removeSpaces(description)} />
+    <meta name="twitter:description" content={description} />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -124,6 +124,18 @@ const baseBodyClass = `flex flex-col justify-between items-center w-full min-h-s
     <slot />
     {footer && <CopyRight />}
 
-    <script src="../scripts/layout.ts"></script>
+    <script>
+      import c from "clogs.ts";
+
+      addEventListener("DOMContentLoaded", () => {
+        try {
+          const savedLang = localStorage.getItem("site:lang") || "en";
+          document.documentElement.lang = savedLang;
+          c.log(`🌐 Language initialized: ${savedLang}`);
+        } catch (err) {
+          c.warn("Error initializing language:", err);
+        }
+      });
+    </script>
   </body>
 </html>

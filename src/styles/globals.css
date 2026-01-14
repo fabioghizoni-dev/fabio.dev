@@ -62,7 +62,6 @@
   --color-purple-custom: oklch(0.3793 0.1283 324.71);
 
   /* background */
-  --background-image-background: url(/background.jpg);
   --background-image-light: radial-gradient(125% 125% at 50% 90%, transparent 40%, var(--color-purple-blue) 100%);
 
   /* animations */

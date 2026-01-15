@@ -62,6 +62,10 @@
   --color-purple-custom: oklch(0.3793 0.1283 324.71);
 
   /* background */
+  --size-grid: 2.845rem 2.845rem;
+
+  --background-image-grid: linear-gradient(90deg, var(--color-gray-default) 1px, transparent 1px),
+    linear-gradient(180deg, var(--color-gray-default) 1px, transparent 1px);
   --background-image-light: radial-gradient(125% 125% at 50% 90%, transparent 40%, var(--color-purple-blue) 100%);
 
   /* animations */

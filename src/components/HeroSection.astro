@@ -2,7 +2,7 @@
 import AsciiArt from "../ui/AsciiArts.astro";
 import CircularLogo from "../ui/CircularLogo.astro";
 import HeroBadge from "../ui/HeroBadge.astro";
-import cn from "../utils/cn";
+import cn from "../utils";
 
 const heroClass = cn(
   `flex relative flex-col lg:flex-row w-full h-fit min-h-screen justify-center 
@@ -15,6 +15,7 @@ const heroClass = cn(
     class="absolute inset-0 bg-linear-to-br from-indigo-500 via-purple-500 to-blue-500
   dark:from-indigo-900 dark:via-purple-900 dark:to-blue-900"
   >
+    <div class="w-full h-full bg-grid bg-size-(--size-grid) hidden"></div>
   </div>
   <div class="relative flex flex-col justify-center items-start gap-2">
     <AsciiArt />

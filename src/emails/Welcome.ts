@@ -1,4 +1,7 @@
+import { renderToString } from "astro/runtime/server/index.js";
+
 export default function getHtml(name: any, email: any, message: any) {
+  renderToString
   return `
   <section style="width: 100%; padding: 2rem; box-sizing: border-box;">
   <div

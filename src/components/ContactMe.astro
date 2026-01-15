@@ -2,7 +2,7 @@
 import { actions } from "astro:actions";
 import Modal from "../ui/Modal.astro";
 import SocialButton from "../ui/SocialButton.astro";
-import cn from "../utils/cn";
+import cn from "../utils";
 
 let showModal = false;
 const actionResult = Astro.getActionResult(actions.send);

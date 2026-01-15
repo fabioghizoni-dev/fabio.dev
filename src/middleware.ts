@@ -21,7 +21,6 @@ export const onRequest = defineMiddleware((context, next) => {
 
   const clientAddress = context.clientAddress;
   const forwarded = context.request.headers.get("x-forwarded-for");
-  c.debug(`clientAddress: ${clientAddress}, forwarded: ${forwarded}`);
   // 1️⃣ Validação de IP
   const ip = clientAddress || forwarded;
   c.debug(`Machine with IP address: ${ip}`);

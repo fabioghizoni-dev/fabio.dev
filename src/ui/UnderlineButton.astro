@@ -1,5 +1,5 @@
 ---
-import cn from "../utils/cn";
+import cn from "../utils";
 
 interface Props extends astroHTML.JSX.ButtonHTMLAttributes {
   id?: string;
@@ -37,7 +37,7 @@ const stateClasses = {
 const customClasses = {
   afterWidthFull: stateClasses.after.replace(
     "hover:after:w-1/2",
-    "hover:after:w-full"
+    "hover:after:w-full",
   ),
   afterSideRight: stateClasses.after.replace("after:left-0", "after:right-0"),
 };

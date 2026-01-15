@@ -1,25 +1,19 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import UnderlineButton from "../ui/UnderlineButton.astro";
-import { normalizeRoute } from "../utils";
+export const prerender = false;
+import Layout from "../../layouts/Layout.astro";
+import UnderlineButton from "../../ui/UnderlineButton.astro";
+import normalizeRoute from "../../utils";
 
-const files = import.meta.glob("/src/pages/**/*.{astro,md,mdx,jsx,tsx}", {
+const files = import.meta.glob("/src/pages/admin/**/*.{astro,md,mdx,jsx,tsx}", {
   eager: false,
 });
 
 const routes = Object.keys(files)
   .map(normalizeRoute)
-  .filter((routes) => !routes.includes("admin"))
   .sort((a, b) => a.length - b.length || b.localeCompare(a));
-
-const description = `Page Routes | Page listing all routes available on the website for easy navigation.`;
 ---
 
-<Layout
-  title="Routes | Fábio Ghizoni"
-  bodyClass="justify-center items-center"
-  description={description}
->
+<Layout title="Admin | Fábio Ghizoni" bodyClass="justify-center items-center">
   <ul translate="no" class="text-2xl text-white font-space-grotesk">
     {
       routes.map((path) => (

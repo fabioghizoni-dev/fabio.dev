@@ -12,6 +12,14 @@ interface Props extends astroHTML.JSX.HTMLAttributes {
   switchLang?: boolean;
 }
 
+let { message }: Props = Astro.props;
+
+message = removeSpaces(
+  message ??
+    `This website is still under development, therefore it may contain incomplete components and information. 
+    I thank you for your understanding!`,
+);
+
 const {
   open = false,
   switchLang = true,
@@ -19,9 +27,7 @@ const {
   btnLabel = "Okay, continue",
   title = "Welcome to my website",
   "aria-label": ariaLabel = "Welcome modal",
-  message = removeSpaces(`This website is still under development, therefore it may contain incomplete components and information. 
-    I thank you for your understanding!`),
-} = Astro.props as Props;
+}: Props = Astro.props;
 ---
 
 <div

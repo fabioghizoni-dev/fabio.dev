@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import type { ComponentProps } from "astro/types";
+import p from "../constants/personal";
 import WhatsIcon from "../ui/WhatsIcon.astro";
 import cn from "../utils";
 
@@ -20,9 +21,9 @@ interface Props extends ComponentsProps {
 const {
   target = "_blank",
   name = "whatsapp",
-  title = "Whatsapp",
+  title = p.socials.whatsapp,
   rel = "noopener noreferrer",
-  href = "https://wa.me/5543998280078",
+  href = p.socials.whatsapp,
   ...rest
 } = Astro.props as Props;
 

@@ -1,4 +1,5 @@
 ---
+import p from "../constants/personal";
 import Layout from "../layouts/Layout.astro";
 import UnderlineButton from "../ui/UnderlineButton.astro";
 import { normalizeRoute } from "../utils";
@@ -16,7 +17,7 @@ const description = `Page Routes | Page listing all routes available on the webs
 ---
 
 <Layout
-  title="Routes | Fábio Ghizoni"
+  title=`Routes | ${p.name}`
   bodyClass="justify-center items-center"
   description={description}
 >

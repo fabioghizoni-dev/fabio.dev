@@ -61,7 +61,13 @@ export const server = {
         c.log(msgLog);
         return result;
 
-      } catch (err) { c.error(`Error while trying to send email: ${err}`) };
+      } catch (err) {
+        c.error(`Error while trying to send email: ${err}`);
+        throw new ActionError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: `Failed to send email: ${err}`
+        })
+      };
     },
   }),
 };

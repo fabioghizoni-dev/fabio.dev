@@ -1,10 +1,11 @@
 ---
 export const prerender = false;
 import Layout from "../../layouts/Layout.astro";
+import p from "../../constants/personal";
 ---
 
-<Layout title="IA | Fábio Ghizoni">
-  <h1 class="text-2xl text-white dark:text-black font-bold mb-4">
+<Layout title=`IA | ${p.name}` bodyClass="justify-center p-8">
+  <h1 class="text-2xl text-black dark:text-white font-bold mb-4">
     Chat IA Astro
   </h1>
 

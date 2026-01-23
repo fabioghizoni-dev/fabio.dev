@@ -7,14 +7,7 @@
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-}
-
-@media (max-width: 768px) {
-
-  #bar,
-  #ascii-art {
-    font-family: "Cascadia Code", monospace !important;
-  }
+  --font-fallback: monospace, ui-monospace, arial, sans-serif;
 }
 
 @theme inline {
@@ -30,6 +23,7 @@
   --spacing-0.9: 0.2rem;
   --spacing-1.2: 0.3rem;
   --spacing-1.8: 0.313rem;
+  --spacing-5.5: 1.35rem;
   --spacing-8.5: 2.125rem;
   --spacing-9.5: 2.375rem;
   --spacing-9.8: 2.388rem;
@@ -62,10 +56,6 @@
   --color-purple-custom: oklch(0.3793 0.1283 324.71);
 
   /* background */
-  --size-grid: 2.845rem 2.845rem;
-
-  --background-image-grid: linear-gradient(90deg, var(--color-gray-default) 1px, transparent 1px),
-    linear-gradient(180deg, var(--color-gray-default) 1px, transparent 1px);
   --background-image-light: radial-gradient(125% 125% at 50% 90%, transparent 40%, var(--color-purple-blue) 100%);
 
   /* animations */
@@ -93,10 +83,7 @@
   --drop-shadow-text-green: 0 0 0.08rem oklch(0.8664 0.294827 142.4953);
 
   /* fonts */
-  --font-noto-sans-jp:
-    "Noto Sans JP", arial, sans-serif, ui-monospace, monospace;
-  --font-cascadia-code:
-    "Cascadia Code", monospace, ui-monospace, arial, sans-serif;
-  --font-space-grotesk:
-    "Space Grotesk", arial, sans-serif, ui-monospace, monospace;
+  --font-noto-sans-jp: "Noto Sans JP", var(--font-fallback);
+  --font-cascadia-code: "Cascadia Code", var(--font-fallback);
+  --font-space-grotesk: "Space Grotesk", var(--font-fallback);
 }

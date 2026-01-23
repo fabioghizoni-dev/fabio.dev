@@ -2,6 +2,8 @@
 export const prerender = false;
 import Layout from "../../layouts/Layout.astro";
 import NoiseBg from "../../ui/NoiseBg.astro";
+import p from "../../constants/personal";
+import { Icon } from "astro-icon/components";
 
 const description = `Page Gradients | Page for generating custom gradients with various colors and even a 
   noise effect.`;
@@ -10,8 +12,9 @@ const description = `Page Gradients | Page for generating custom gradients with 
 <Layout
   header
   footer
-  title="Gradients | Fábio Ghizoni"
+  title=`Gradients | ${p.name}`
   description={description}
+  bodyClass="min-h-fit gap-10"
 >
   <style>
     .noise-overlay {
@@ -55,8 +58,13 @@ const description = `Page Gradients | Page for generating custom gradients with 
   </style>
 
   <div class="max-w-4xl mx-auto p-6 text-white">
-    <h1 class="text-3xl font-bold mb-6 text-center">
-      Criador de Gradientes Avançado 🌈
+    <h1
+      class="inline-flex justify-center items-center gap-2 text-3xl font-bold mb-6 text-center"
+    >
+      Criador de Gradientes Avançado <Icon
+        name="material-symbols:gradient"
+        class="size-8"
+      />
     </h1>
 
     <form id="gradientForm" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -189,7 +197,6 @@ const description = `Page Gradients | Page for generating custom gradients with 
     </form>
 
     <!-- Preview -->
-    <NoiseBg />
     <div id="preview" class="gradient-box">
       <div id="gradient" class="custom-gradient"></div>
       <div class="noise-overlay hidden" id="noiseLayer">

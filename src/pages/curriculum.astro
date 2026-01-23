@@ -1,102 +1,21 @@
 ---
+import p from "../constants/personal";
 import Layout from "../layouts/Layout.astro";
+import Education from "../ui/curriculum/Education.astro";
+import Experience from "../ui/curriculum/Experience.astro";
+import Header from "../ui/curriculum/Header.astro";
+import Skills from "../ui/curriculum/Skills.astro";
 
-const description = `Page Curriculum | Resume page containing all professional and academic information 
-  of Fábio Ghizoni`;
+const description = `Page Curriculum | Resume page containing all professional and academic information of ${p.name}`;
 ---
 
-<Layout title="Curriculum | Fábio Ghizoni" description={description}>
-  <section class="max-w-4xl mx-auto px-6 py-12 text-gray-100">
-    <!-- Header -->
-    <header class="mb-10">
-      <h1 class="text-4xl font-bold text-white">Fábio Ghizoni</h1>
-      <p class="text-lg text-gray-400 mt-2">
-        Desenvolvedor Frontend / Full Stack
-      </p>
-
-      <div class="mt-4 flex flex-wrap gap-4 text-sm text-gray-300">
-        <span>📍 Brasil</span>
-        <span>📧 fabio@email.com</span>
-        <span>🔗 linkedin.com/in/fabio</span>
-        <span>💻 github.com/fabio</span>
-      </div>
-    </header>
-
-    <!-- About -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-semibold border-b border-gray-700 pb-2 mb-4">
-        Sobre
-      </h2>
-      <p class="text-gray-300 leading-relaxed">
-        Desenvolvedor com experiência em aplicações web modernas, focado em
-        performance, acessibilidade e boas práticas. Atuação com React, Astro,
-        Tailwind CSS e Node.js.
-      </p>
-    </section>
-
-    <!-- Experience -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-semibold border-b border-gray-700 pb-2 mb-4">
-        Experiência Profissional
-      </h2>
-
-      <div class="space-y-6">
-        <div>
-          <h3 class="text-lg font-semibold text-white">
-            Desenvolvedor Frontend
-          </h3>
-          <p class="text-sm text-gray-400">Empresa X • 2022 – Presente</p>
-          <ul class="list-disc list-inside mt-2 text-gray-300">
-            <li>Desenvolvimento de interfaces com React e Tailwind</li>
-            <li>Integração com APIs REST</li>
-            <li>Otimização de performance e SEO</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 class="text-lg font-semibold text-white">Desenvolvedor Web</h3>
-          <p class="text-sm text-gray-400">Empresa Y • 2020 – 2022</p>
-          <ul class="list-disc list-inside mt-2 text-gray-300">
-            <li>Criação de sites institucionais</li>
-            <li>Manutenção de sistemas legados</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Education -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-semibold border-b border-gray-700 pb-2 mb-4">
-        Formação Acadêmica
-      </h2>
-
-      <div>
-        <h3 class="text-lg font-semibold text-white">
-          Bacharelado em Ciência da Computação
-        </h3>
-        <p class="text-sm text-gray-400">Universidade XYZ • 2016 – 2020</p>
-      </div>
-    </section>
-
-    <!-- Skills -->
-    <section>
-      <h2 class="text-2xl font-semibold border-b border-gray-700 pb-2 mb-4">
-        Habilidades
-      </h2>
-
-      <div class="flex flex-wrap gap-3">
-        <span class="px-3 py-1 bg-gray-800 rounded-full text-sm">HTML</span>
-        <span class="px-3 py-1 bg-gray-800 rounded-full text-sm">CSS</span>
-        <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
-          >JavaScript</span
-        >
-        <span class="px-3 py-1 bg-gray-800 rounded-full text-sm">React</span>
-        <span class="px-3 py-1 bg-gray-800 rounded-full text-sm">Astro</span>
-        <span class="px-3 py-1 bg-gray-800 rounded-full text-sm"
-          >Tailwind CSS</span
-        >
-        <span class="px-3 py-1 bg-gray-800 rounded-full text-sm">Node.js</span>
-      </div>
-    </section>
-  </section>
+<Layout
+  title=`Curriculum | ${p.name}`
+  description={description}
+  bodyClass="*:w-6xl *:max-w-6xl justify-center gap-8 dark:text-white font-space-grotesk"
+>
+  <Header />
+  <Experience />
+  <Education />
+  <Skills />
 </Layout>

@@ -5,17 +5,19 @@ import { initModal } from "./modal";
 
 if (ready) document.addEventListener("DOMContentLoaded",
   () => {
-    const form = document.getElementById("contact-form")!;
+    const form = document.querySelector<HTMLFormElement>("#contact-form");
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    if (form) {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-      const formData = new FormData(form as HTMLFormElement);
+        const formData = new FormData(form);
 
-      const result = await actions.send(formData);
+        const result = await actions.send(formData);
 
-      c.log(result);
-    });
+        c.log(result);
+      });
+    }
     initModal("modal-success-email", false);
   }
 );

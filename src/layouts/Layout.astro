@@ -7,6 +7,7 @@ import Header from "../components/Header.astro";
 import "../styles/globals.css";
 import Modal from "../ui/Modal.astro";
 import cn, { removeSpaces } from "../utils";
+import p from "../constants/personal";
 
 interface Props {
   lang?: string;
@@ -24,6 +25,14 @@ interface Props {
   clientRouter?: boolean;
 }
 
+let { description }: Props = Astro.props;
+
+description = removeSpaces(
+  description ??
+    `Welcome to my portfolio website. Feel free to explore and learn more about the site and me. Here you'll find 
+      my projects and information about my skills and experiences.`,
+);
+
 const {
   header,
   footer,
@@ -32,12 +41,10 @@ const {
   dataTheme = "dark",
   clientRouter = true,
   iconHref = "/logo.svg",
-  author = "Fábio Ghizoni",
+  author = p.name,
   generator = Astro.generator,
-  title = "Portfólio | Fábio Ghizoni",
-  siteUrl = "https://portfolio-fabio-main.vercel.app",
-  description = removeSpaces(`Welcome to my portfolio website. Feel free to explore and learn more about the site and me. 
-    Here you'll find my projects and information about my skills and experiences.`),
+  title = `Portfólio | ${p.name}`,
+  siteUrl = p.siteUrl,
   keywords = [
     "Astro",
     "React",
@@ -64,7 +71,7 @@ const {
     "Programador Full-stack",
     "Web Application Development",
   ],
-} = Astro.props as Props;
+}: Props = Astro.props;
 
 const baseBodyClass = `flex flex-col justify-between items-center w-full min-h-screen bg-white/80 dark:bg-black 
   dark:selection:bg-white dark:selection:text-purple-blue selection:bg-purple-blue selection:text-white
@@ -96,13 +103,13 @@ const baseBodyClass = `flex flex-col justify-between items-center w-full min-h-s
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:site_name" content="Portfólio | Fábio Ghizoni" />
+    <meta property="og:site_name" content={title} />
     <meta property="og:url" content={siteUrl} />
     <meta property="og:image" content={`${siteUrl}/logo_neon.svg`} />
 
     <!-- Twitter Card -->
     <meta name="twitter:title" content={title} />
-    <meta name="twitter:creator" content="@FGhizoni28539" />
+    <meta name="twitter:creator" content={p.socials.x} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={`${siteUrl}/logo_neon.svg`} />
     <meta name="twitter:description" content={description} />

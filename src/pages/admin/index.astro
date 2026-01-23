@@ -1,19 +1,24 @@
 ---
 export const prerender = false;
+import p from "../../constants/personal";
 import Layout from "../../layouts/Layout.astro";
 import UnderlineButton from "../../ui/UnderlineButton.astro";
-import normalizeRoute from "../../utils";
+import { normalizeRoute } from "../../utils";
+
+const currentRoute = normalizeRoute(
+  import.meta.url.replace(/^.*\/src\/pages/, ""),
+);
 
 const files = import.meta.glob("/src/pages/admin/**/*.{astro,md,mdx,jsx,tsx}", {
   eager: false,
 });
 
-const routes = Object.keys(files)
-  .map(normalizeRoute)
-  .sort((a, b) => a.length - b.length || b.localeCompare(a));
+const routes = [currentRoute, ...Object.keys(files).map(normalizeRoute)].sort(
+  (a, b) => a.length - b.length || b.localeCompare(a),
+);
 ---
 
-<Layout title="Admin | Fábio Ghizoni" bodyClass="justify-center items-center">
+<Layout title=`Admin | ${p.name}` bodyClass="justify-center items-center">
   <ul translate="no" class="text-2xl text-white font-space-grotesk">
     {
       routes.map((path) => (

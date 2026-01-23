@@ -1,4 +1,5 @@
 ---
+import p from "../constants/personal";
 import Layout from "../layouts/Layout.astro";
 import UnderlineButton from "../ui/UnderlineButton.astro";
 
@@ -10,7 +11,7 @@ const description = `Page 404 | Route not found, return to the home page by clic
   header
   footer
   bodyClass="bg-light"
-  title="404 | Fábio Ghizoni"
+  title=`404 | ${p.name}`
   description={description}
 >
   <h1

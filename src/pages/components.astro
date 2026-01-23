@@ -1,9 +1,9 @@
 ---
+import p from "../constants/personal";
 import Layout from "../layouts/Layout.astro";
-import AsciiArts from "../ui/AsciiArts.astro";
-import CircularLogo from "../ui/CircularLogo.astro";
-import HeroBadge from "../ui/HeroBadge.astro";
-import ListItems from "../ui/ListItems.astro";
+import AsciiArts from "../ui/hero-section/AsciiArts.astro";
+import CircularLogo from "../ui/hero-section/CircularLogo.astro";
+import HeroBadge from "../ui/hero-section/HeroBadge.astro";
 import ScrollToTop from "../ui/ScrollToTop.astro";
 import SocialButton from "../ui/SocialButton.astro";
 import SwitchLang from "../ui/SwitchLang.astro";
@@ -14,7 +14,7 @@ const description = `Page Components | Page listing the components that were use
   other projects.`;
 ---
 
-<Layout title="Components | Fábio Ghizoni" description={description}>
+<Layout title={`Components | ${p.name}`} description={description}>
   <h1 class="text-white text-3xl font-bold mb-2">Componentes do Site</h1>
   <h2 class="text-white text-xl font-bold mb-2">Página ainda em dev</h2>
   <p class="mb-6 text-sm text-slate-600 dark:text-slate-300">
@@ -80,22 +80,6 @@ export default function Page()&#123;
       ---
 
       &lt;AsciiArts /&gt;</code></pre>
-        </div>
-      </details>
-    </section>
-
-    <section class="p-4 rounded-lg border bg-white dark:bg-[--background]">
-      <h2 class="text-lg font-semibold mb-3">ListItems</h2>
-      <div class="mb-4"><ListItems /></div>
-      <details class="text-sm">
-        <summary class="cursor-pointer font-medium">Uso / Snippets</summary>
-        <div class="mt-3">
-          <pre
-            class="bg-slate-900 text-slate-100 p-3 rounded"><code>---
-      import ListItems from '../ui/ListItems.astro';
-      ---
-
-      &lt;ListItems /&gt;</code></pre>
         </div>
       </details>
     </section>

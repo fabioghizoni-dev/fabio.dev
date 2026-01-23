@@ -1,4 +1,5 @@
 ---
+import p from "../../constants/personal";
 import Layout from "../../layouts/Layout.astro";
 
 const description = `QR Code Page | Page for generating custom QR Codes with parameters and attributes sent 
@@ -7,7 +8,7 @@ const description = `QR Code Page | Page for generating custom QR Codes with par
 
 <Layout
   clientRouter={false}
-  title="QR Code | Fábio Ghizoni"
+  title=`QR Code | ${p.name}`
   bodyClass="flex-row justify-center items-center gap-10 overflow-hidden"
   description={description}
 >

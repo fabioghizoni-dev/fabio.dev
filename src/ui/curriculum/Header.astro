@@ -1,0 +1,47 @@
+---
+import { Icon } from "astro-icon/components";
+import p from "../../constants/personal";
+import CircularLogo from "../hero-section/CircularLogo.astro";
+---
+
+<header
+  class="grid grid-cols-3 text-black dark:text-white place-items-center place-content-center"
+>
+  <CircularLogo
+    isAnimated
+    circularTextClass="-m-7"
+    class="min-w-44 min-h-44 size-44 row-span-3"
+  />
+  <h1 class="row-span-2">{p.name}</h1>
+  <h2 class="">{p.position}</h2>
+  <div class="flex flex-col gap-4">
+    <span class="inline-flex items-center gap-2">
+      <Icon name="mdi:location" class="size-6 text-purple-blue" />
+      {p.location}
+    </span>
+    <span class="inline-flex items-center gap-2">
+      <Icon name="ic:baseline-phone" class="size-5.5 text-purple-blue" />
+      {p.socials.number}
+    </span>
+    <span class="inline-flex items-center gap-2">
+      <Icon name="mdi:email-outline" class="size-5.5 text-purple-blue" />
+      {p.email.main}
+    </span>
+    <a
+      target="_blank"
+      href={p.socials.linkedin}
+      class="inline-flex items-center gap-2"
+    >
+      <Icon name="mdi:linkedin" class="size-6 text-purple-blue" />
+      {p.socials.linkedin}
+    </a>
+    <a
+      target="_blank"
+      href={p.socials.github}
+      class="inline-flex items-center gap-2"
+    >
+      <Icon name="mdi:github" class="size-5.5 text-purple-blue" />
+      {p.socials.github}
+    </a>
+  </div>
+</header>

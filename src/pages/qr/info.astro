@@ -1,18 +1,19 @@
 ---
 import { Icon } from "astro-icon/components";
+import p from "../../constants/personal";
 import Layout from "../../layouts/Layout.astro";
-import AboutQrCode from "../../ui/AboutQrCode.astro";
-import ExampleQrCode from "../../ui/ExampleQrCode.astro";
-import HowWorksQrCode from "../../ui/HowWorksQrCode.astro";
-import QrInfoTable from "../../ui/QrInfoTable.astro";
-import ResultQrCode from "../../ui/ResultQrCode.astro";
+import AboutQrCode from "../../ui/qr/AboutQrCode.astro";
+import ExampleQrCode from "../../ui/qr/ExampleQrCode.astro";
+import HowWorksQrCode from "../../ui/qr/HowWorksQrCode.astro";
+import QrInfoTable from "../../ui/qr/QrInfoTable.astro";
+import ResultQrCode from "../../ui/qr/ResultQrCode.astro";
 
 const description = `Page QR Info | Information page about the QR Code generator, including usage instructions and 
   available parameters.`;
 ---
 
 <Layout
-  title="QR Info | Fábio Ghizoni"
+  title=`QR Info | ${p.name}`
   bodyClass="flex-row max-w-8xl h-fit place-self-center justify-center items-center gap-x-4"
   description={description}
 >

@@ -1,0 +1,14 @@
+---
+import p from "../../constants/personal";
+---
+
+<section class="flex flex-col border-t-2 border-gray-default pt-6">
+  <h1 class="text-3xl">Soft Skills</h1>
+  <div class="flex flex-col">
+    {p.skills.soft.map((skill) => <span>{skill}</span>)}
+  </div>
+  <h2 class="text-3xl">Hard Skills</h2>
+  <div class="flex flex-col">
+    {p.skills.hard.map((skill) => <span>{skill}</span>)}
+  </div>
+</section>

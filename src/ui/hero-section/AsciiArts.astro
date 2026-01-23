@@ -1,6 +1,6 @@
 ---
-import { bar, fabio } from "../scripts/ascii-arts/letters.ts";
-import cn from "../utils.ts";
+import { bar, fabio } from "../../scripts/ascii-arts/letters";
+import cn, { removeSpaces } from "../../utils";
 
 interface Props {
   class?: string;
@@ -21,10 +21,14 @@ const nameArray = [
   "i",
   ",",
 ];
-const baseClass = `flex flex-col text-3xl lg:text-4xl text-left font-space-grotesk font-black justify-center items-start gap-2`;
-const divClass = `flex relative min-w-59ch bg-gradient-to-br bg-clip-text text-transparent from-blue-800 to-rose-600 contrast-125 
-  dark:contrast-100 dark:from-sky-400 dark:to-fuchsia-500 text-lg leading-none tracking-max 
-    justify-start items-center`;
+const baseClass = removeSpaces(
+  `flex flex-col text-3xl lg:text-4xl text-left font-space-grotesk font-black justify-center items-start gap-2`,
+);
+const divClass = removeSpaces(
+  `flex relative min-w-59ch bg-gradient-to-br bg-clip-text text-transparent from-blue-800 to-rose-600 contrast-125 
+    dark:contrast-100 dark:from-sky-400 dark:to-fuchsia-500 text-lg leading-none tracking-max justify-start 
+      items-center`,
+);
 
 const { class: className } = Astro.props as Props;
 ---
@@ -61,4 +65,4 @@ const { class: className } = Astro.props as Props;
   </div>
 </h1>
 
-<script src="../scripts/ascii-arts/ascii-arts.ts"></script>
+<script src="../../scripts/ascii-arts/ascii-arts.ts"></script>

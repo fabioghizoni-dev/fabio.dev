@@ -1,4 +1,6 @@
 ---
+import p from "../constants/personal";
+
 export interface Props {
   name?: string;
   email?: string;
@@ -6,7 +8,7 @@ export interface Props {
 }
 
 const {
-  name = "Fábio Ghizoni",
+  name = p.name,
   email = "teste@gmail.com",
   message = "Olá, eu sou Fábio, tudo bem com vc?",
 } = Astro.props as Props;

@@ -1,34 +1,42 @@
 ---
 import { Image } from "astro:assets";
-import cn from "../utils";
+import cn from "../../utils";
 
 interface Props extends astroHTML.JSX.HTMLAttributes {
   src?: string;
   /** The text must be 70 characters long. */
   text?: string;
+  /** Turns the animation on or off. */
   isAnimated?: boolean;
-  classTextPath?: string;
   class?: astroHTML.JSX.HTMLAttributes["class"];
+  svgViewBox?: astroHTML.JSX.SVGAttributes["viewBox"];
+  circularTextClass?: astroHTML.JSX.SVGAttributes["class"];
 }
 
 const {
   isAnimated,
+  class: className,
   id = "circular-logo",
+  circularTextClass = "",
   src = "/fabio_minor.jpg",
-  class: className = "relative size-64 group",
+  svgViewBox = "0 0 500 500",
   text = "• CYBERSECURITY • DEVOPS • UI • DATABASES • UX • DESIGNER • AI • CLOUD",
   ...props
-} = Astro.props as Props;
+}: Props = Astro.props;
+
+const finalClass = cn("relative min-w-64 min-h-64 size-64 group", className);
+const circularTextFinalClass = cn(
+  "absolute inset-0 -m-10 whitespace-pre text-4xl font-space-grotesk",
+  circularTextClass,
+);
 ---
 
-<span id={id} class={cn(className)} {...props}>
+<span id={id} class={finalClass} {...props}>
   <svg
     id="circular-text"
-    viewBox="0 0 500 500"
+    viewBox={svgViewBox}
     class={cn(
-      `absolute inset-0 -m-10 whitespace-pre text-4xl font-space-grotesk ${
-        isAnimated ? "animate-spin-slow group-hover:pause" : ""
-      }`,
+      `${circularTextFinalClass} ${isAnimated ? "animate-spin-slow group-hover:pause" : ""}`,
     )}
   >
     <path
@@ -50,7 +58,7 @@ const {
     height={100}
     loading="eager"
     src={src}
-    alt="Fábio Henrique Elegant and Social"
     class="size-full rounded-full"
+    alt="Fábio Henrique Elegant and Social"
   />
 </span>

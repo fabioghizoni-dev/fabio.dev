@@ -3,17 +3,19 @@ import GradientBg from "../ui/GradientBg.astro";
 import AsciiArts from "../ui/hero-section/AsciiArts.astro";
 import CircularLogo from "../ui/hero-section/CircularLogo.astro";
 import HeroBadge from "../ui/hero-section/HeroBadge.astro";
-import cn from "../utils";
+import { removeSpaces } from "../utils";
 
-const heroClass = cn(
-  `flex relative md:flex-row flex-col w-full h-fit min-h-screen justify-center items-center gap-10 
-    lg:gap-20 overflow-hidden p-4 md:p-0`,
+const heroClass = removeSpaces(
+  `relative flex h-fit min-h-screen w-full flex-col items-center justify-center gap-20 overflow-hidden p-4 md:flex-row 
+    md:gap-40 md:p-0`,
 );
 ---
 
 <section id="hero" class={heroClass}>
   <GradientBg />
-  <div class="relative flex flex-col justify-center items-start gap-2">
+  <div
+    class="relative mt-20 flex flex-col items-center justify-center gap-2 md:items-start"
+  >
     <AsciiArts />
     <HeroBadge />
   </div>

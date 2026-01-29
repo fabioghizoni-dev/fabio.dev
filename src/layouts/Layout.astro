@@ -13,6 +13,7 @@ interface Props {
   lang?: string;
   title?: string;
   author?: string;
+  modal?: boolean;
   header?: boolean;
   footer?: boolean;
   siteUrl?: string;
@@ -37,6 +38,7 @@ const {
   header,
   footer,
   lang = "en",
+  modal = true,
   bodyClass = "",
   dataTheme = "dark",
   clientRouter = true,
@@ -73,9 +75,13 @@ const {
   ],
 }: Props = Astro.props;
 
-const baseBodyClass = `flex flex-col justify-between items-center w-full min-h-screen bg-white/80 dark:bg-black 
-  dark:selection:bg-white dark:selection:text-purple-blue selection:bg-purple-blue selection:text-white
-  transition-colors ease-in-out duration-500`;
+const googleFontsUrl = (url: "googleapis" | "gstatic" = "googleapis") =>
+  `https://fonts.${url}.com`;
+
+const baseBodyClass = removeSpaces(
+  `dark:selection:text-purple-blue selection:bg-purple-blue flex min-h-screen w-full flex-col items-center justify-between 
+    bg-white/80 transition-colors duration-500 ease-in-out selection:text-white dark:bg-black dark:selection:bg-white`,
+);
 ---
 
 <!doctype html>
@@ -115,11 +121,15 @@ const baseBodyClass = `flex flex-col justify-between items-center w-full min-h-s
     <meta name="twitter:description" content={description} />
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link crossorigin rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href={googleFontsUrl("googleapis")} />
+    <link crossorigin rel="preconnect" href={googleFontsUrl("gstatic")} />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Noto+Sans+JP:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap"
+      href={`${googleFontsUrl("googleapis")}/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap`}
+    />
+    <link
+      rel="stylesheet"
+      href={`${googleFontsUrl("googleapis")}/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Noto+Sans+JP:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap`}
     />
   </head>
   <body class={cn(baseBodyClass, bodyClass)}>
@@ -127,7 +137,7 @@ const baseBodyClass = `flex flex-col justify-between items-center w-full min-h-s
     <SpeedInsights />
 
     {header && <Header />}
-    <Modal />
+    {modal && <Modal />}
     <slot />
     {footer && <CopyRight />}
 
@@ -136,9 +146,10 @@ const baseBodyClass = `flex flex-col justify-between items-center w-full min-h-s
 
       addEventListener("DOMContentLoaded", () => {
         try {
-          const savedLang = localStorage.getItem("site:lang") || "en";
-          document.documentElement.lang = savedLang;
-          c.log(`🌐 Language initialized: ${savedLang}`);
+          const lang =
+            localStorage.getItem("site:lang") || document.documentElement.lang;
+          document.documentElement.lang = lang;
+          c.log(`🌐 Language initialized: ${lang}`);
         } catch (err) {
           c.warn("Error initializing language:", err);
         }

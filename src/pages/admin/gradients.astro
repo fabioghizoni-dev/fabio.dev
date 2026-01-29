@@ -57,9 +57,9 @@ const description = `Page Gradients | Page for generating custom gradients with 
     }
   </style>
 
-  <div class="max-w-4xl mx-auto p-6 text-white">
+  <div class="mx-auto max-w-4xl p-6 text-white">
     <h1
-      class="inline-flex justify-center items-center gap-2 text-3xl font-bold mb-6 text-center"
+      class="mb-6 inline-flex items-center justify-center gap-2 text-center text-3xl font-bold"
     >
       Criador de Gradientes Avançado <Icon
         name="material-symbols:gradient"
@@ -67,10 +67,10 @@ const description = `Page Gradients | Page for generating custom gradients with 
       />
     </h1>
 
-    <form id="gradientForm" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+    <form id="gradientForm" class="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2">
       <!-- Direção -->
       <div class="md:col-span-2">
-        <label for="direction" class="block mb-1 text-sm font-medium"
+        <label for="direction" class="mb-1 block text-sm font-medium"
           >Direção</label
         >
         <select
@@ -91,7 +91,7 @@ const description = `Page Gradients | Page for generating custom gradients with 
 
       <!-- Cores do Gradiente -->
       <div class="md:col-span-2">
-        <label class="block mb-1 text-sm font-medium">Cores do Gradiente</label>
+        <label class="mb-1 block text-sm font-medium">Cores do Gradiente</label>
         <div id="colorsContainer" class="space-y-2">
           <div class="color-pair">
             <input
@@ -103,7 +103,7 @@ const description = `Page Gradients | Page for generating custom gradients with 
               type="text"
               name="color"
               value="oklch(62% 0.2 29)"
-              class="flex-1 p-2 rounded bg-black border border-white text-white"
+              class="flex-1 rounded border border-white bg-black p-2 text-white"
               placeholder="oklch(60% 0.3 29)"
             />
           </div>
@@ -117,7 +117,7 @@ const description = `Page Gradients | Page for generating custom gradients with 
               type="text"
               name="color"
               value="#6b21a8"
-              class="flex-1 p-2 rounded bg-black border border-white text-white"
+              class="flex-1 rounded border border-white bg-black p-2 text-white"
               placeholder="#6b21a8"
             />
           </div>
@@ -125,14 +125,14 @@ const description = `Page Gradients | Page for generating custom gradients with 
         <button
           type="button"
           id="addColor"
-          class="mt-2 px-4 py-2 bg-purple-600 rounded hover:bg-purple-700 focus:outline-2 focus:outline-white"
+          class="mt-2 rounded bg-purple-600 px-4 py-2 hover:bg-purple-700 focus:outline-2 focus:outline-white"
         >
           ➕ Adicionar Cor
         </button>
       </div>
 
       <!-- Noise Controls -->
-      <div class="md:col-span-2 grid grid-cols-3 gap-2">
+      <div class="grid grid-cols-3 gap-2 md:col-span-2">
         <div>
           <label for="baseFreq" class="block text-sm">baseFrequency</label>
           <input
@@ -142,7 +142,7 @@ const description = `Page Gradients | Page for generating custom gradients with 
             max="1"
             id="baseFreq"
             value="0.6"
-            class="w-full p-2 rounded text-white bg-black border border-white"
+            class="w-full rounded border border-white bg-black p-2 text-white"
           />
         </div>
         <div>
@@ -153,7 +153,7 @@ const description = `Page Gradients | Page for generating custom gradients with 
             max="10"
             id="octaves"
             value="3"
-            class="w-full p-2 rounded text-white bg-black border border-white"
+            class="w-full rounded border border-white bg-black p-2 text-white"
           />
         </div>
         <div>
@@ -164,32 +164,32 @@ const description = `Page Gradients | Page for generating custom gradients with 
             max="1000"
             id="seed"
             value="2"
-            class="w-full p-2 rounded text-white bg-black border border-white"
+            class="w-full rounded border border-white bg-black p-2 text-white"
           />
         </div>
       </div>
 
       <!-- Noise Checkbox -->
       <div class="md:col-span-2">
-        <label class="inline-flex items-center gap-2 mt-2">
+        <label class="mt-2 inline-flex items-center gap-2">
           <input type="checkbox" id="enableNoise" class="h-5 w-5" />
           Adicionar efeito de ruído
         </label>
       </div>
 
       <!-- Botões -->
-      <div class="md:col-span-2 flex gap-4 mt-4">
+      <div class="mt-4 flex gap-4 md:col-span-2">
         <button
           type="button"
           id="downloadGradient"
-          class="bg-green-600 px-4 py-2 rounded hover:bg-green-700 focus:outline-2 focus:outline-white"
+          class="rounded bg-green-600 px-4 py-2 hover:bg-green-700 focus:outline-2 focus:outline-white"
         >
           ⬇️ Baixar Gradiente
         </button>
         <button
           type="button"
           id="downloadSVG"
-          class="bg-blue-600 px-4 py-2 rounded hover:bg-blue-700 focus:outline-2 focus:outline-white"
+          class="rounded bg-blue-600 px-4 py-2 hover:bg-blue-700 focus:outline-2 focus:outline-white"
         >
           ⬇️ Baixar SVG Noise
         </button>

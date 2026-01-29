@@ -21,6 +21,7 @@ interface Props extends ComponentsProps {
 const {
   target = "_blank",
   name = "whatsapp",
+  class: className = "",
   title = p.socials.whatsapp,
   rel = "noopener noreferrer",
   href = p.socials.whatsapp,
@@ -30,12 +31,12 @@ const {
 const baseClass = `group flex items-center justify-center gap-3 px-4 py-3 bg-purple-blue rounded-lg text-white 
   transition-colors duration-300 ease-in-out hover:bg-purple-blue/70 hover:contrast-125`;
 
-const finalClass = cn(baseClass);
+const finalClass = cn(baseClass, className);
 ---
 
 <a href={href} title={title} target={target} rel={rel} class={finalClass}>
   <span
-    class="text-shadow-white group-hover:text-shadow-2xs transition-colors duration-300 ease-in-out"
+    class="group-hover:text-gray-default transition-colors duration-300 ease-in-out"
   >
     <slot />
   </span>
@@ -50,7 +51,7 @@ const finalClass = cn(baseClass);
     ) : (
       <Icon
         name={name}
-        class="w-8 h-8 group-hover:text-gray-default transition-colors duration-300 ease-in-out"
+        class="group-hover:text-gray-default h-8 w-8 transition-colors duration-300 ease-in-out"
         {...rest}
       />
     )

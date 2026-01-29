@@ -4,26 +4,27 @@ import ChristmasLights from "../ui/header/ChristmasLights.astro";
 import Menu from "../ui/header/Menu.astro";
 import SwitchLang from "../ui/SwitchLang.astro";
 import SwitchTheme from "../ui/SwitchTheme.astro";
-import cn from "../utils";
+import { removeSpaces } from "../utils";
 
 const alt = "Logo Fábio Ghizoni";
 const title = "Return to home page";
 
-const cnClasses = {
-  divHeader: cn(
-    "fixed hidden w-full mb-6 p-2 z-1 no-transition transition ease-in-out duration-500",
+const classes = {
+  divHeader: removeSpaces(
+    "no-transition fixed z-1 mb-6 hidden w-full p-2 transition duration-500 ease-in-out",
   ),
-  header:
-    cn(`flex relative max-w-7xl bg-gray-default border border-white/35 justify-between items-center gap-6 px-4 py-2 
-    mx-auto rounded-full`),
+  header: removeSpaces(
+    `bg-gray-default relative mx-auto flex max-w-7xl items-center justify-between gap-6 rounded-full border 
+      border-white/35 px-4 py-2`,
+  ),
 };
 
 const today = new Date();
 const showChristmasLights = today <= new Date("2026-01-31T23:59:59");
 ---
 
-<div id="div-header" class={cnClasses.divHeader}>
-  <header id="header" role="heading" aria-level="1" class={cnClasses.header}>
+<div id="div-header" class={classes.divHeader}>
+  <header id="header" role="heading" aria-level="1" class={classes.header}>
     {showChristmasLights && <ChristmasLights />}
     <Image
       id="logo"
@@ -33,7 +34,7 @@ const showChristmasLights = today <= new Date("2026-01-31T23:59:59");
       title={title}
       loading="eager"
       src="/logo.svg"
-      class="h-8 p-0.5 object-contain object-left cursor-pointer animate-show-logo"
+      class="animate-show-logo h-8 cursor-pointer object-contain object-left p-0.5"
     />
     <Menu />
     <SwitchTheme />

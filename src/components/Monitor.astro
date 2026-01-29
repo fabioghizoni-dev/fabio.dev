@@ -3,49 +3,48 @@ import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 ---
 
-<section class="flex w-full min-h-screen justify-center items-center">
+<section class="flex min-h-screen w-full items-center justify-center">
   <!-- IBM Monitor (Made by Fábio Ghizoni) -->
-  <div class="flex flex-col w-150 h-150 relative justify-center items-center">
+  <div class="relative flex h-150 w-150 flex-col items-center justify-center">
     <!-- Monitor main body -->
     <div
-      class="flex flex-col w-full h-full bg-beige justify-center items-center rounded-lg"
+      class="bg-beige flex h-full w-full flex-col items-center justify-center rounded-lg"
     >
       <!-- Monitor Screen -->
       <div
-        class="relative w-78% h-78% bg-black text-green-400 font-mono p-2 rounded overflow-hidden"
+        class="w-78% h-78% relative overflow-hidden rounded bg-black p-2 font-mono text-green-400"
       >
-        <p class="inline drop-shadow-text-green">[OK]</p><span
-          class="text-white/80 drop-shadow-text-white"
+        <p class="drop-shadow-text-green inline">[OK]</p><span
+          class="drop-shadow-text-white text-white/80"
         >
           Loading: <span id="time-loading"> ...</span></span
         >
         <br />
-        <p class="inline drop-shadow-text-green">[TIME]</p><span
-          class="text-white/80 drop-shadow-text-white"
+        <p class="drop-shadow-text-green inline">[TIME]</p><span
+          class="drop-shadow-text-white text-white/80"
         >
           Time: <span id="time"> ...</span></span
         >
         <br />
-        <p class="inline drop-shadow-text-green">[DATE]</p><span
-          class="text-white/80 drop-shadow-text-white"
+        <p class="drop-shadow-text-green inline">[DATE]</p><span
+          class="drop-shadow-text-white text-white/80"
           >Date: <span id="date"> ...</span></span
         >
         <br />
-        <p class="inline drop-shadow-text-green">[OK]</p><span
-          class="text-white/80 drop-shadow-text-white"
+        <p class="drop-shadow-text-green inline">[OK]</p><span
+          class="drop-shadow-text-white text-white/80"
           >Resolution: <span id="resolution"> ...</span></span
         >
         <br />
-        <p class="inline drop-shadow-text-green">[URL]</p><span
-          class="text-white/80 drop-shadow-text-white"
+        <p class="drop-shadow-text-green inline">[URL]</p><span
+          class="drop-shadow-text-white text-white/80"
           >Url: <span id="url"> ...</span></span
         >
       </div>
 
-      <div class="flex w-full absolute bottom-22 justify-between items-center">
+      <div class="absolute bottom-22 flex w-full items-center justify-between">
         <button
-          class="w-14 h-10 bg-beige-dark ml-11% px-1 rounded-3xl cursor-pointer transition-all ease-in-out duration-300 border-2
-          border-black/20"
+          class="bg-beige-dark ml-11% h-10 w-14 cursor-pointer rounded-3xl border-2 border-black/20 px-1 transition-all duration-300 ease-in-out"
         >
           <Image
             width={40}
@@ -53,23 +52,23 @@ import { Image } from "astro:assets";
             alt="Logo IBM"
             src="/ibm.svg"
             loading="lazy"
-            class="w-full h-full -rotate-20 opacity-60"
+            class="h-full w-full -rotate-20 opacity-60"
           />
         </button>
         <span
-          class="flex flex-col h-10 justify-center items-center gap-1.5 opacity-60"
+          class="flex h-10 flex-col items-center justify-center gap-1.5 opacity-60"
         >
-          <Icon name="mdi:power" class="w-6 h-6 stroke-14" />
-          <span class="w-4.5 h-1 bg-black rounded-xs"></span>
+          <Icon name="mdi:power" class="h-6 w-6 stroke-14" />
+          <span class="h-1 w-4.5 rounded-xs bg-black"></span>
         </span>
         <button
-          class="flex w-10 h-10 bg-white/80 justify-center items-center rounded-sm cursor-pointer border-2 border-black/50"
+          class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-sm border-2 border-black/50 bg-white/80"
         >
-          <span class="w-11/12 h-11/12 bg-black/10 rounded-full"></span>
+          <span class="h-11/12 w-11/12 rounded-full bg-black/10"></span>
         </button>
         <span
           translate="no"
-          class="inline-block text-2xl self-start opacity-60 font-serif mr-16"
+          class="mr-16 inline-block self-start font-serif text-2xl opacity-60"
         >
           G<span class="inline-block -translate-y-1">7</span><span
             class="font-sans">0</span
@@ -79,22 +78,22 @@ import { Image } from "astro:assets";
     </div>
     <!-- Buttons at the bottom of the monitor -->
     <div
-      class="flex w-10/12 h-1/12 bg-beige gap-1 justify-between p-1 rounded-b-md"
+      class="bg-beige flex h-1/12 w-10/12 justify-between gap-1 rounded-b-md p-1"
     >
-      <button class="w-full min-w-8 min-h-8 bg-white/80 rounded-xs">⚡</button>
-      <button class="w-full min-w-8 min-h-8 bg-white/80 rounded-xs">◐</button>
-      <button class="w-full min-w-8 min-h-8 bg-white/80 rounded-xs">↕</button>
-      <button class="w-full min-w-8 min-h-8 bg-white/80 rounded-xs">↔</button>
-      <button class="w-full min-w-8 min-h-8 bg-white/80 rounded-xs">⊕</button>
-      <button class="w-full min-w-8 min-h-8 bg-white/80 rounded-xs">⊖</button>
-      <button class="w-full min-w-8 min-h-8 bg-white/80 rounded-xs">◄</button>
-      <button class="w-full min-w-8 min-h-8 bg-white/80 rounded-xs">►</button>
-      <button class="w-full min-w-8 min-h-8 bg-white/80 rounded-xs">▲</button>
-      <button class="w-full min-w-8 min-h-8 bg-white/80 rounded-xs">▼</button>
-      <button class="w-full min-w-8 min-h-8 bg-white/80 rounded-xs">●</button>
+      <button class="min-h-8 w-full min-w-8 rounded-xs bg-white/80">⚡</button>
+      <button class="min-h-8 w-full min-w-8 rounded-xs bg-white/80">◐</button>
+      <button class="min-h-8 w-full min-w-8 rounded-xs bg-white/80">↕</button>
+      <button class="min-h-8 w-full min-w-8 rounded-xs bg-white/80">↔</button>
+      <button class="min-h-8 w-full min-w-8 rounded-xs bg-white/80">⊕</button>
+      <button class="min-h-8 w-full min-w-8 rounded-xs bg-white/80">⊖</button>
+      <button class="min-h-8 w-full min-w-8 rounded-xs bg-white/80">◄</button>
+      <button class="min-h-8 w-full min-w-8 rounded-xs bg-white/80">►</button>
+      <button class="min-h-8 w-full min-w-8 rounded-xs bg-white/80">▲</button>
+      <button class="min-h-8 w-full min-w-8 rounded-xs bg-white/80">▼</button>
+      <button class="min-h-8 w-full min-w-8 rounded-xs bg-white/80">●</button>
     </div>
-    <div class="w-5/12 h-4 bg-beige"></div>
-    <div class="w-9/12 h-6 bg-beige rounded-full"></div>
+    <div class="bg-beige h-4 w-5/12"></div>
+    <div class="bg-beige h-6 w-9/12 rounded-full"></div>
   </div>
 </section>
 

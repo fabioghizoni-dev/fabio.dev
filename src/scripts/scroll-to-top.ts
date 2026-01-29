@@ -11,24 +11,29 @@ const showArrowUp = (arrowUp: HTMLElement, animation: boolean = false) => {
     "animate-hide-y-bottom",
   );
   arrowUp.removeAttribute("aria-hidden");
-  if (animation) arrowUp.classList.add("animate-show-y-bottom", "opacity-100")
+  if (animation) arrowUp.classList.add("animate-show-y-bottom", "opacity-100");
   else arrowUp.classList.add("opacity-100");
-}
+};
 
 const hideArrowUp = (arrowUp: HTMLElement, animation: boolean = false) => {
   isVisible = false;
   arrowUp.setAttribute("aria-hidden", "true");
   arrowUp.classList.remove("hidden", "opacity-100", "animate-show-y-bottom");
-  if (animation) arrowUp.classList.add("opacity-0", "pointer-events-none", "animate-hide-y-bottom")
+  if (animation)
+    arrowUp.classList.add(
+      "opacity-0",
+      "pointer-events-none",
+      "animate-hide-y-bottom",
+    );
   else arrowUp.classList.add("opacity-0");
-}
+};
 
 const onLoadPage = () => {
   if (arrowUp) {
     if (window.scrollY > 300 && !isVisible) showArrowUp(arrowUp);
-    else if (window.scrollY <= 300 && isVisible) hideArrowUp(arrowUp)
+    else if (window.scrollY <= 300 && isVisible) hideArrowUp(arrowUp);
   }
-}
+};
 
 const onScrollWindow = () => {
   if (arrowUp) {

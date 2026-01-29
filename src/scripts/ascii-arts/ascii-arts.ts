@@ -5,7 +5,7 @@ let controller: AbortController | null = null;
 
 const barEl: HTMLElement | null = document.getElementById("bar");
 
-export const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
+export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 /** @param {HTMLElement} elKeywords - HTML element in which words will alternate. */
 export function keywordAlternate(
@@ -74,7 +74,7 @@ export async function animateAsciiText(
         keywordAlternate();
       }
     }
-  } catch (_) { }
+  } catch (_) {}
 }
 
 if (typeof window !== "undefined" && typeof document !== "undefined") {

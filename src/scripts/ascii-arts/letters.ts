@@ -1,4 +1,3 @@
-
 const a: string[] = [
   " █████╗ ",
   "██╔══██╗",
@@ -230,10 +229,17 @@ const parenthesis_right: string[] = [
 
 export const keywords: string[] = ["", "Let's", "Hello"];
 
-export const bar = { str: "|", ascii: ["█╗", "█║", "█║", "█║", "█║", "█║", "╚╝"].join("\n") };
+export const bar = {
+  str: "|",
+  ascii: ["█╗", "█║", "█║", "█║", "█║", "█║", "╚╝"].join("\n"),
+};
 
 export const fabio: string = f
-  .map((_, y) => `${c[y]} ${o[y]} ${n[y]} ${v[y]} ${e[y]} ${r[y]} ${s[y]} ${a[y]} ${r[y]}`).join("\n");
+  .map(
+    (_, y) =>
+      `${c[y]} ${o[y]} ${n[y]} ${v[y]} ${e[y]} ${r[y]} ${s[y]} ${a[y]} ${r[y]}`,
+  )
+  .join("\n");
 
 export const letters: Record<string, string[]> = {
   a,

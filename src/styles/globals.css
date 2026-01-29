@@ -56,7 +56,11 @@
   --color-purple-custom: oklch(0.3793 0.1283 324.71);
 
   /* background */
-  --background-image-light: radial-gradient(125% 125% at 50% 90%, transparent 40%, var(--color-purple-blue) 100%);
+  --background-image-light:
+    radial-gradient(125% 125% at 50% 90%, transparent 40%, var(--color-purple-blue) 100%);
+  --background-image-grid:
+    linear-gradient(var(--color-gray-default) 1px, transparent 1px),
+    linear-gradient(to right, var(--color-gray-default) 1px, transparent 1px);
 
   /* animations */
   --animate-blur: blur 1.4s linear forwards;
@@ -67,7 +71,7 @@
   --animate-show: show 0.2s ease-in-out forwards;
   --animate-hide: hide 0.2s ease-in-out forwards;
   --animate-blink: blink 1.6s ease-in-out infinite;
-  --animate-draw-fill: draw-fill 2s linear forwards;
+  --animate-draw-fill: draw-fill 1s linear forwards;
   --animate-show-y: show-y 0.5s ease-in-out forwards;
   --animate-show-x: show-x 0.5s ease-in-out forwards;
   --animate-horz-loop: horz-loop 20s linear infinite;
@@ -83,6 +87,8 @@
   --drop-shadow-text-green: 0 0 0.08rem oklch(0.8664 0.294827 142.4953);
 
   /* fonts */
+  --font-inter: "Inter", var(--font-fallback);
+  --font-trebuchet: "Trebuchet MS", var(--font-fallback);
   --font-noto-sans-jp: "Noto Sans JP", var(--font-fallback);
   --font-cascadia-code: "Cascadia Code", var(--font-fallback);
   --font-space-grotesk: "Space Grotesk", var(--font-fallback);

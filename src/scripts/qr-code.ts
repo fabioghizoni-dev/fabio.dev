@@ -7,7 +7,6 @@ import type {
 import QRCode from "qr-code-styling";
 
 const initQrCode = () => {
-
   const params = new URLSearchParams(window.location.search);
 
   const getParam = <T = string>(key: string, fallback?: T): T | null => {
@@ -81,6 +80,6 @@ const initQrCode = () => {
       extension: downloadExtension as FileExtension,
     });
   }
-}
+};
 
 addEventListener("DOMContentLoaded", initQrCode);

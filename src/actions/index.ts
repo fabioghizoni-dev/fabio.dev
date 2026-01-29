@@ -1,7 +1,6 @@
 import { z } from "astro/zod";
 import { ActionError, defineAction } from "astro:actions";
 import c from "clogs.ts";
-import { foreground, strColor } from "clogs.ts/src/ansi";
 import { Resend } from "resend";
 import getHtml from "../emails/Welcome";
 
@@ -39,7 +38,7 @@ export const server = {
       );
 
       if (!name || !email || !message) {
-        c.error(`${strColor("BAD_REQUEST", foreground.red)}: Missing fields`);
+        c.error(`${c.strColor("BAD_REQUEST", c.foreground.red)}: Missing fields`);
         throw new ActionError({
           code: "BAD_REQUEST",
           message: "Missing fields",
@@ -68,9 +67,9 @@ export const server = {
         const result = { success: true, data };
         const json = JSON.stringify(result, null, 2);
         const msgLog = json
-          .replace(`"id"`, strColor(`"id"`, foreground.cyan))
-          .replace(`"data"`, strColor(`"data"`, foreground.magenta))
-          .replace(`"success"`, strColor(`"success"`, foreground.green));
+          .replace(`"id"`, c.strColor(`"id"`, c.foreground.cyan))
+          .replace(`"data"`, c.strColor(`"data"`, c.foreground.magenta))
+          .replace(`"success"`, c.strColor(`"success"`, c.foreground.green));
         c.log(msgLog);
         return result;
       } catch (err) {

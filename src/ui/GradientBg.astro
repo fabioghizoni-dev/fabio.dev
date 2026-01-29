@@ -1,5 +1,5 @@
 ---
-import cn from "../utils";
+import cn, { removeSpaces } from "../utils";
 
 interface Props {
   class?: string;
@@ -7,9 +7,11 @@ interface Props {
 
 const { class: className }: Props = Astro.props;
 
-const baseClass = `absolute inset-0 bg-linear-to-br from-indigo-500 via-purple-500 to-blue-500 dark:from-indigo-900
-  dark:via-purple-900 dark:to-blue-900`;
+const baseClass = removeSpaces(
+  `absolute inset-0 bg-linear-to-br from-indigo-500 via-purple-500 to-blue-500 dark:from-indigo-900 dark:via-purple-900 
+    dark:to-blue-900`,
+);
 const finalClass = cn(baseClass, className);
 ---
 
-<div class={finalClass}></div>
+<div class={finalClass}><slot /></div>

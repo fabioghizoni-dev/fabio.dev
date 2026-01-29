@@ -11,7 +11,7 @@ interface Props extends astroHTML.JSX.HTMLAttributes {
 const { titleProject = "My portfolio" } = Astro.props as Props;
 ---
 
-<div class="flex flex-col bg-gray-default rounded-xl">
+<div class="bg-gray-default flex flex-col rounded-xl">
   <h1 class="font-space-grotesk">{titleProject}</h1>
   <Image src={img} alt="Image Logo" />
   <Icon name="mdi:github" class="text-4xl text-white" />

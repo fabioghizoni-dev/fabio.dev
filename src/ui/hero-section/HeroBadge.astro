@@ -1,25 +1,25 @@
 ---
 import { Icon } from "astro-icon/components";
+import cn from "../../utils";
 
 interface Props {
   class?: string;
 }
 
-const { class: className } = Astro.props as Props;
+const { class: className = "" } = Astro.props as Props;
+const baseClass =
+  "flex flex-col sm:flex-row text-nowrap justify-center items-stretch gap-4";
 ---
 
-<div
-  class={`${className} flex flex-col sm:flex-row text-nowrap justify-center items-stretch gap-4`}
->
+<div class={cn(baseClass, className)}>
   <div
-    class="flex bg-linear-to-r from-purple-default to-purple-blue justify-center items-center dark:border-none border-2
-      border-gray-default/20 gap-1 px-6 py-2 rounded-full"
+    class="from-purple-default to-purple-blue border-gray-default/20 flex items-center justify-center gap-1 rounded-full border-2 bg-linear-to-r px-6 py-2 dark:border-none"
   >
     <Icon
       name="material-symbols:star-rounded"
-      class="w-6 h-6 text-yellow-400 brightness-200 animate-pulse"
+      class="h-6 w-6 animate-pulse text-yellow-400 brightness-200"
     />
-    <span class="text-white font-cascadia-code mt-0.5"
+    <span class="font-cascadia-code mt-0.5 text-white"
       >Full-Stack Developer</span
     >
   </div>
@@ -28,11 +28,9 @@ const { class: className } = Astro.props as Props;
     href="/cv-fabio.pdf"
     download="cv-fabio.pdf"
     aria-label="Download CV"
-    class="flex justify-center items-center gap-2 bg-purple-blue text-white font-cascadia-code font-bold dark:border-none
-      border-gray-default/20 border-2 animate-pulse-border rounded-full px-6 py-2 cursor-pointer hover:opacity-80
-        transition-opacity ease-in-out duration-300"
+    class="bg-purple-blue font-cascadia-code border-gray-default/20 animate-pulse-border flex cursor-pointer items-center justify-center gap-2 rounded-full border-2 px-6 py-2 font-bold text-white transition-opacity duration-300 ease-in-out hover:opacity-80 dark:border-none"
   >
     Download CV
-    <Icon name="material-symbols:download" class="w-6 h-6" />
+    <Icon name="material-symbols:download" class="h-6 w-6" />
   </a>
 </div>

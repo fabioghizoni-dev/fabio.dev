@@ -19,7 +19,6 @@ if (actionResult?.data?.success) showModal = true;
   {
     showModal && (
       <Modal
-        open
         btnLabel="Ok"
         switchLang={false}
         id="modal-success-email"
@@ -28,15 +27,15 @@ if (actionResult?.data?.success) showModal = true;
       />
     )
   }
-  <h1 class="text-3xl dark:text-white md:text-4xl font-medium text-center">
+  <h1 class="text-center text-3xl font-medium md:text-4xl dark:text-white">
     Get in touch
   </h1>
-  <h2 class="max-w-5xl dark:text-white text-lg md:text-2xl text-center">
+  <h2 class="max-w-5xl text-center text-lg md:text-2xl dark:text-white">
     I'm always open to new opportunities and collaborations. Feel free to
     contact me through any of the channels below.
   </h2>
   <div
-    class="flex flex-wrap w-full gap-4 md:gap-8 justify-center items-center md:*:flex-none *:flex-1"
+    class="flex w-full flex-wrap items-center justify-center gap-4 *:flex-1 md:gap-8 md:*:flex-none"
   >
     <SocialButton>Whatsapp</SocialButton>
     <SocialButton
@@ -61,10 +60,10 @@ if (actionResult?.data?.success) showModal = true;
     method="post"
     id="contact-form"
     name="contact-form"
-    class="flex flex-col gap-4 w-full max-w-2xl text-gray-default dark:text-white text-base md:text-2xl"
+    class="text-gray-default flex w-full max-w-2xl flex-col gap-4 text-base md:text-2xl dark:text-white"
   >
     <div class="flex flex-col gap-2">
-      <label for="name" class="text-base md:text-2xl font-medium"
+      <label for="name" class="text-base font-medium md:text-2xl"
         >Your name</label
       >
       <input
@@ -76,11 +75,11 @@ if (actionResult?.data?.success) showModal = true;
         maxlength="100"
         autocomplete="name"
         placeholder="Your name here"
-        class="border-2 border-white/30 px-3 md:px-4 py-2 rounded-lg placeholder:text-white/50 bg-black text-white focus:outline-none focus:border-white/70 transition"
+        class="rounded-lg border-2 border-white/30 bg-black px-3 py-2 text-white transition placeholder:text-white/50 focus:border-white/70 focus:outline-none md:px-4"
       />
     </div>
     <div class="flex flex-col gap-2">
-      <label for="email" class="text-base md:text-2xl font-medium"
+      <label for="email" class="text-base font-medium md:text-2xl"
         >Your e-mail</label
       >
       <input
@@ -91,11 +90,11 @@ if (actionResult?.data?.success) showModal = true;
         maxlength="255"
         autocomplete="email"
         placeholder="your.email@example.com"
-        class="border-2 border-white/30 px-3 md:px-4 py-2 rounded-lg placeholder:text-white/50 bg-black text-white focus:outline-none focus:border-white/70 transition"
+        class="rounded-lg border-2 border-white/30 bg-black px-3 py-2 text-white transition placeholder:text-white/50 focus:border-white/70 focus:outline-none md:px-4"
       />
     </div>
     <div class="flex flex-col gap-2">
-      <label for="message" class="text-base md:text-2xl font-medium"
+      <label for="message" class="text-base font-medium md:text-2xl"
         >Your message</label
       >
       <textarea
@@ -106,7 +105,7 @@ if (actionResult?.data?.success) showModal = true;
         minlength="10"
         maxlength="2000"
         placeholder="Write your message here..."
-        class="border-2 border-white/30 bg-black px-3 md:px-4 py-2 rounded-lg text-white placeholder:text-white/50 focus:outline-none focus:border-white/70 transition resize-none"
+        class="resize-none rounded-lg border-2 border-white/30 bg-black px-3 py-2 text-white transition placeholder:text-white/50 focus:border-white/70 focus:outline-none md:px-4"
       ></textarea>
     </div>
     <button

@@ -1,4 +1,6 @@
-const animateHide = (el: HTMLElement | null = document.getElementById("sun")) => {
+const animateHide = (
+  el: HTMLElement | null = document.getElementById("sun"),
+) => {
   if (el) {
     try {
       el.classList.add("animate-hide");
@@ -11,13 +13,15 @@ const animateHide = (el: HTMLElement | null = document.getElementById("sun")) =>
         { once: true },
       );
     } catch (err) {
-      el.classList.add("hidden")
+      el.classList.add("hidden");
       console.error(`Failed to hide element: ${err}`);
     }
   }
-}
+};
 
-const animateShow = (el: HTMLElement | null = document.getElementById("sun")) => {
+const animateShow = (
+  el: HTMLElement | null = document.getElementById("sun"),
+) => {
   if (el) {
     try {
       el.classList.remove("hidden");
@@ -30,29 +34,26 @@ const animateShow = (el: HTMLElement | null = document.getElementById("sun")) =>
         { once: true },
       );
     } catch (err) {
-      el.classList.add("hidden")
+      el.classList.add("hidden");
       console.error(`Failed to show element: ${err}`);
     }
   }
-}
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   const btnSun = document.getElementById("sun");
   const btnMoon = document.getElementById("moon");
   const btnTheme = document.getElementById("btn-theme");
   if (btnSun && btnMoon && btnTheme) {
-
     let isDarkMode = true;
 
     const toggle = () => {
-
       isDarkMode = !isDarkMode;
 
       if (isDarkMode) {
         animateHide(btnSun);
         animateShow(btnMoon);
         document.documentElement.setAttribute("data-theme", "dark");
-
       } else {
         animateShow(btnSun);
         animateHide(btnMoon);

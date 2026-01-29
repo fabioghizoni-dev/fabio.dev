@@ -5,6 +5,18 @@ import Education from "../ui/curriculum/Education.astro";
 import Experience from "../ui/curriculum/Experience.astro";
 import Header from "../ui/curriculum/Header.astro";
 import Skills from "../ui/curriculum/Skills.astro";
+import { removeSpaces } from "../utils";
+
+interface Props {
+  online?: boolean;
+}
+
+const { online = false }: Props = Astro.props;
+
+export const titleClass = removeSpaces(
+  `from-purple-blue border-b-2 border-white/40 bg-linear-to-r to-white to-80% bg-clip-text text-3xl font-bold text-transparent 
+    uppercase`,
+);
 
 const description = `Page Curriculum | Resume page containing all professional and academic information of ${p.name}`;
 ---
@@ -12,9 +24,9 @@ const description = `Page Curriculum | Resume page containing all professional a
 <Layout
   title=`Curriculum | ${p.name}`
   description={description}
-  bodyClass="*:w-6xl *:max-w-6xl justify-center gap-8 dark:text-white font-space-grotesk"
+  bodyClass=`*:w-8xl *:max-w-8xl justify-start dark:bg-gray-default dark:text-white py-8 ${online ? "font-space-grotesk": "font-inter"}`
 >
-  <Header />
+  <Header online={online} />
   <Experience />
   <Education />
   <Skills />

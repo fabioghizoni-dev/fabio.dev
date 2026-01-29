@@ -1,9 +1,9 @@
 ---
 import { Icon } from "astro-icon/components";
-import { languages } from "../scripts/i18n/languages";
+import { languages } from "../i18n";
 import cn from "../utils";
 
-interface Props {
+interface Props extends astroHTML.JSX.ButtonHTMLAttributes {
   id?: string;
   class?: string;
   iconClass?: string;
@@ -23,6 +23,7 @@ const {
   class: className = "",
   title = "Change language",
   "aria-label": ariaLabel = title,
+  ...rest
 }: Props = Astro.props;
 
 const btnBaseClass =
@@ -43,6 +44,7 @@ const iconFinalClass = cn(
   title={title}
   aria-label={ariaLabel}
   class={btnFinalClass}
+  {...rest}
 >
   <Icon name="material-symbols:translate" class={iconFinalClass} />
   <ul
@@ -59,7 +61,7 @@ const iconFinalClass = cn(
           <li
             role="listitem"
             title={lang}
-            class="text-white text-nowrap hover:text-purple-blue px-2 py-1"
+            class="hover:text-purple-blue px-2 py-1 text-nowrap text-white"
           >
             {lang}
           </li>

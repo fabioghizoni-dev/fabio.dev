@@ -12,13 +12,15 @@ export const goSection = (id: string): void => {
 
 let isVisible: boolean = window.scrollY <= 300;
 
-export const showHeader = (el: HTMLElement, animation: boolean = true
+export const showHeader = (
+  el: HTMLElement,
+  animation: boolean = true,
 ): void => {
   const cls: DOMTokenList = el.classList;
 
   if (animation) {
     cls.remove("hidden", "reverse", "no-transition", "animate-height");
-    void (el.offsetWidth);
+    void el.offsetWidth;
     cls.add("animate-height");
   } else {
     cls.remove("hidden");
@@ -26,12 +28,15 @@ export const showHeader = (el: HTMLElement, animation: boolean = true
   isVisible = true;
 };
 
-export const hideHeader = (el: HTMLElement, animation: boolean = true): void => {
+export const hideHeader = (
+  el: HTMLElement,
+  animation: boolean = true,
+): void => {
   const cls: DOMTokenList = el.classList;
 
   if (animation) {
     cls.remove("hidden", "no-transition", "animate-height");
-    void (el.offsetWidth);
+    void el.offsetWidth;
     cls.add("reverse", "animate-height");
   } else {
     cls.add("hidden");
@@ -39,8 +44,9 @@ export const hideHeader = (el: HTMLElement, animation: boolean = true): void => 
   isVisible = false;
 };
 
-export const setupHeader = (divHeader: HTMLElement | null = document.getElementById("div-header")): void => {
-
+export const setupHeader = (
+  divHeader: HTMLElement | null = document.getElementById("div-header"),
+): void => {
   if (!divHeader) return;
 
   const headerHiddenOnLoad = () => {
@@ -58,19 +64,20 @@ export const setupHeader = (divHeader: HTMLElement | null = document.getElementB
       showHeader(divHeader);
     } else if (isVisible && window.scrollY > 300) {
       hideHeader(divHeader);
-    };
+    }
   };
   headerHiddenOnLoad();
   window.addEventListener("scroll", updateHeaderVisibility);
 };
 
-document.addEventListener("DOMContentLoaded", () => {
+addEventListener("DOMContentLoaded", () => {
   const logo: HTMLElement | null = document.getElementById("logo");
   logo?.addEventListener("click", goHome);
 
   const li_home: HTMLElement | null = document.getElementById("li-home");
 
-  const li_about_me: HTMLElement | null = document.getElementById("li-about-me");
+  const li_about_me: HTMLElement | null =
+    document.getElementById("li-about-me");
 
   const li_contact_me: HTMLElement | null =
     document.getElementById("li-contact-me");
@@ -87,4 +94,4 @@ document.addEventListener("DOMContentLoaded", () => {
   setupHeader();
 });
 
-document.addEventListener("astro:page-load", () => setupHeader());
+addEventListener("astro:page-load", () => setupHeader());

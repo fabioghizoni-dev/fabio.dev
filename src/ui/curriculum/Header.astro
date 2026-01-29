@@ -1,47 +1,79 @@
 ---
 import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
 import p from "../../constants/personal";
-import CircularLogo from "../hero-section/CircularLogo.astro";
+
+interface Props {
+  online?: boolean;
+}
+
+const { online = false }: Props = Astro.props;
 ---
 
 <header
-  class="grid grid-cols-3 text-black dark:text-white place-items-center place-content-center"
+  class=`text-gray-default flex items-center justify-between ${online ? "tracking-tight" : ""} dark:text-white`
 >
-  <CircularLogo
-    isAnimated
-    circularTextClass="-m-7"
-    class="min-w-44 min-h-44 size-44 row-span-3"
+  <Image
+    width={140}
+    height={140}
+    src="/fabio_minor.jpg"
+    alt="Imagem de Fábio"
+    class=`${online ? "size-44 min-h-44 min-w-44" : "size-52 min-h-52 min-w-52"} border-purple-blue rounded-l-xs border-4`
   />
-  <h1 class="row-span-2">{p.name}</h1>
-  <h2 class="">{p.position}</h2>
-  <div class="flex flex-col gap-4">
-    <span class="inline-flex items-center gap-2">
-      <Icon name="mdi:location" class="size-6 text-purple-blue" />
-      {p.location}
+  <div
+    class="mr-auto flex flex-col items-start justify-between gap-4 self-stretch text-2xl"
+  >
+    <h1
+      class=`bg-purple-blue border-purple-blue rounded-r-full border-4 pr-3 pl-4 ${online ? "font-semibold" : "font-medium"} uppercase`
+    >
+      {p.completeName}
+    </h1>
+    <h2
+      class="bg-purple-blue border-purple-blue rounded-r-full border-4 pr-3 pl-4"
+    >
+      {p.position}
+    </h2>
+    <span
+      class="bg-purple-blue border-purple-blue inline-flex items-center gap-2 rounded-r-full border-4 pr-3 pl-4"
+    >
+      <Icon name="mdi:location" class="size-8 text-red-500" />
+      {p.country}
     </span>
+  </div>
+  <div class="flex flex-col items-end justify-between gap-3 self-stretch">
+    <a
+      target="_blank"
+      href={`${p.siteUrl}/curriculum`}
+      class=`${online ? "hidden": ""} bg-purple-blue rounded-full px-4`
+      >Currículo Online</a
+    >
     <span class="inline-flex items-center gap-2">
-      <Icon name="ic:baseline-phone" class="size-5.5 text-purple-blue" />
+      <Icon name="ic:baseline-phone" class="text-purple-blue size-5.5" />
       {p.socials.number}
     </span>
     <span class="inline-flex items-center gap-2">
-      <Icon name="mdi:email-outline" class="size-5.5 text-purple-blue" />
+      <Icon name="mdi:email-outline" class="text-purple-blue size-5.5" />
       {p.email.main}
     </span>
-    <a
-      target="_blank"
-      href={p.socials.linkedin}
-      class="inline-flex items-center gap-2"
-    >
-      <Icon name="mdi:linkedin" class="size-6 text-purple-blue" />
-      {p.socials.linkedin}
-    </a>
     <a
       target="_blank"
       href={p.socials.github}
       class="inline-flex items-center gap-2"
     >
-      <Icon name="mdi:github" class="size-5.5 text-purple-blue" />
+      <Icon name="mdi:github" class="text-purple-blue size-5.5" />
       {p.socials.github}
+    </a>
+    <a
+      target="_blank"
+      href={p.socials.linkedin}
+      class="inline-flex items-center gap-2"
+    >
+      <Icon name="mdi:linkedin" class="text-purple-blue size-6" />
+      {p.socials.linkedin}
+    </a>
+    <a target="_blank" href={p.siteUrl} class="inline-flex items-center gap-2">
+      <Icon name="mdi:web" class="text-purple-blue size-6" />
+      {p.siteUrl}
     </a>
   </div>
 </header>

@@ -15,18 +15,7 @@ export default defineConfig({
 
   i18n: {
     defaultLocale: "en",
-    locales: [
-      "en",
-      "pt",
-      "es",
-      "fr",
-      "zh",
-      "hi",
-      "ja",
-      "ru",
-      "ko",
-      "de",
-    ],
+    locales: ["en", "pt", "es", "fr", "zh", "hi", "ja", "ru", "ko", "de"],
   },
 
   site: "https://portfolio-fabio-main.vercel.app/",

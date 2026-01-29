@@ -19,7 +19,7 @@ const routes = [currentRoute, ...Object.keys(files).map(normalizeRoute)].sort(
 ---
 
 <Layout title=`Admin | ${p.name}` bodyClass="justify-center items-center">
-  <ul translate="no" class="text-2xl text-white font-space-grotesk">
+  <ul translate="no" class="font-space-grotesk text-2xl text-white">
     {
       routes.map((path) => (
         <li title={path}>

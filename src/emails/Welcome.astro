@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import p from "../constants/personal";
 
 export interface Props {
@@ -14,13 +15,24 @@ const {
 } = Astro.props as Props;
 ---
 
-<section style="width: 100%; padding: 2rem; box-sizing: border-box;">
+<section
+  style="width: 100%; padding: 2rem; box-sizing: border-box; font-family: 'Inter'; letter-spacing: -0.03em;"
+>
   <div
     style="margin: 0 auto; max-width: 36rem; padding: 2rem; border-radius: 0.5rem; background-color: oklch(99% 0 0); 
     box-shadow: 0 0.25rem 0.5rem oklch(0% 0 0 / 0.1);"
   >
-    <h1 style="font-size: 1.25rem; margin-bottom: 1rem; color: oklch(25% 0 0);">
-      📩 Novo contato pelo site
+    <h1
+      style="display: flex; align-items: center; gap: 1rem; font-size: 1.25rem; margin-bottom: 1rem; color: oklch(25% 0 0);
+        font-weight: bolder;"
+    >
+      <Image
+        width={80}
+        height={80}
+        alt="Logo Website Fábio"
+        style="width: 5rem;"
+        src="https://portfolio-fabio-main.vercel.app/logo_neon.svg"
+      /> Novo contato pelo site
     </h1>
     <p
       style="font-size: 1rem; line-height: 1.5; color: oklch(30% 0 0); margin: 0.5rem 0;"

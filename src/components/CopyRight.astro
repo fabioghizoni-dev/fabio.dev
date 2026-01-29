@@ -1,24 +1,26 @@
 ---
-import cn from "../utils";
+import p from "../constants/personal";
+import { removeSpaces } from "../utils";
 
 const date = new Date();
-const anchorClass =
-  cn(`font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-default to-purple-blue
-    hover:from-purple-blue hover:to-purple-default transition-colors ease-in-out duration-300`);
+const anchorClass = removeSpaces(
+  `from-purple-default to-purple-blue hover:from-purple-blue hover:to-purple-default bg-linear-to-r bg-clip-text font-semibold 
+    text-transparent transition-colors duration-300 ease-in-out`,
+);
 ---
 
 <footer
   role="contentinfo"
-  class="flex w-full min-h-10 text-center text-gray-default dark:text-white justify-center items-center mt-6 px-8 py-4"
+  class="text-gray-default mt-6 flex min-h-10 w-full items-center justify-center px-8 py-4 text-center dark:text-white"
 >
-  <p class="text-base md:text-lg font-space-grotesk">
+  <p class="font-space-grotesk text-base md:text-lg">
     &copy; {date.getFullYear()}
     <span class="sr-only">- Author:</span>
     <a
       role="link"
       target="_blank"
       rel="noopener noreferrer"
-      href="https://www.instagram.com/fabio.ghizoni_"
+      href={p.socials.insta}
       class={anchorClass}
     >
       Fábio Ghizoni.

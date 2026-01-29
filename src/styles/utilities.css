@@ -21,3 +21,11 @@
 
 /* dark theme in "data-theme" */
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@utility mask-diagonal-fade {
+  z-index: -1;
+  mask-repeat: no-repeat;
+  mask-position: bottom center;
+  mask-size: 100% 70%;
+  mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 100%);
+}

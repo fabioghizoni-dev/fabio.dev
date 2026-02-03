@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-import { languages } from "../i18n";
+import { dict, languages } from "../i18n";
 import cn from "../utils";
 
 interface Props extends astroHTML.JSX.ButtonHTMLAttributes {
@@ -60,7 +60,7 @@ const iconFinalClass = cn(
         return (
           <li
             role="listitem"
-            title={lang}
+            title={dict[lang].name}
             class="hover:text-purple-blue px-2 py-1 text-nowrap text-white"
           >
             {lang}

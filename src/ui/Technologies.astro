@@ -1,6 +1,5 @@
 ---
 import { Icon } from "astro-icon/components";
-import { Image } from "astro:assets";
 import technologiesData, { duplicateTechnologies } from "../constants";
 import cn from "../utils";
 
@@ -13,14 +12,18 @@ interface Props {
 const { list, class: className = "" } = Astro.props as Props;
 
 const baseClass =
-  "relative w-full group bg-white dark:bg-black border-y-2 dark:border-y border-gray-default/20 dark:border-white/20 py-2 overflow-hidden";
+  "group border-gray-default/20 relative w-full overflow-hidden border-y-2 bg-white/60 dark:bg-gray-default py-2 dark:border-y dark:border-white/20";
 const finalClass = cn(baseClass, className);
 ---
 
 {
   list ? (
-    <div class="">
-      <Icon name="akar-icons:node-fill" />
+    <div class="flex gap-4">
+      {technologiesData
+        .filter((tech) => list.includes(tech.name))
+        .map((tech) => (
+          <Icon name={tech.icon} />
+        ))}
     </div>
   ) : (
     <div class={finalClass}>
@@ -32,22 +35,12 @@ const finalClass = cn(baseClass, className);
           return (
             <span class="text-gray-default font-cascadia-code flex items-center justify-center gap-2 text-center text-3xl font-bold text-nowrap dark:text-white">
               {tech.name}
-              {tech.customIcon ? (
-                <Image
-                  width={50}
-                  height={50}
-                  src={tech.customIcon}
-                  aria-label={`Icon of ${tech.name}`}
-                  alt={`Icon of ${tech.name}`}
-                  class={`${tech.class || ""}`}
-                />
-              ) : (
-                <Icon
-                  name={tech.icon}
-                  aria-label={`Icon of ${tech.name}`}
-                  class={`${tech.class || ""}`}
-                />
-              )}
+              <Icon
+                name={tech.icon}
+                fill={tech.fill}
+                aria-label={`Icon of ${tech.name}`}
+                class={`${tech.class || ""}`}
+              />
             </span>
           );
         })}

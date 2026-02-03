@@ -1,0 +1,224 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProductCard from "../components/ProductCard.astro";
+import p from "../constants/personal";
+
+const PRODUCTS = [
+  {
+    id: 1,
+    title: "Echo Dot (5th Gen) | Digital Audio with Alexa",
+    price: "R$ 399,00",
+    image: "https://m.media-amazon.com/images/I/719c12WqaqL._AC_SX679_.jpg",
+    link: "https://www.amazon.com.br/echo-dot-5-geracao/dp/B09B8V1LZ3",
+    source: "Amazon",
+    description:
+      "Our best sounding Echo Dot yet, with clearer vocals and deeper bass.",
+    badge: "Bestseller",
+  },
+  {
+    id: 2,
+    title: 'Kindle Paperwhite (16 GB) - 6.8" display',
+    price: "R$ 799,00",
+    image: "https://m.media-amazon.com/images/I/61jM5V3tI4L._AC_SX679_.jpg",
+    link: "https://www.amazon.com.br/Kindle-Paperwhite-16-GB-ilumina%C3%A7%C3%A3o/dp/B09TMF6742",
+    source: "Amazon",
+    description: "Now with a 6.8” display and adjustable warm light.",
+  },
+  {
+    id: 3,
+    title: "iPhone 15 (128 GB) - Black",
+    price: "R$ 4.899,00",
+    image: "https://m.media-amazon.com/images/I/416MG50r2FL._AC_SX679_.jpg",
+    link: "https://www.amazon.com.br/Apple-iPhone-15-128-GB/dp/B0CHH5JGYZ",
+    source: "Amazon",
+    description: "Dynamic Island, 48MP Main camera, and USB-C.",
+    badge: "New",
+  },
+  {
+    id: 4,
+    title: "Xiaomi Redmi Note 13 8GB + 256GB",
+    price: "R$ 1.150,00",
+    image: "https://cf.shopee.com.br/file/br-11134207-7r98o-lty6p8s9d76c12",
+    link: "https://shopee.com.br/Xiaomi-Redmi-Note-13-8GB-256GB-Global-Version-i.123456789",
+    source: "Shopee",
+    description:
+      "Powerful performance with Snapdragon processor and AMOLED display.",
+  },
+  {
+    id: 5,
+    title: "PlayStation 5 Console (Slim)",
+    price: "R$ 3.499,00",
+    image:
+      "https://http2.mlstatic.com/D_NQ_NP_2X_824925-MLA73083818617_112023-F.webp",
+    link: "https://www.mercadolivre.com.br/playstation-5-console-slim/p/MLB28506213",
+    source: "Mercado Livre",
+    description:
+      "Experience lightning fast loading with an ultra-high speed SSD.",
+  },
+  {
+    id: 6,
+    title: "Digital Marketing Masterclass",
+    price: "R$ 97,00",
+    image:
+      "https://static-media.hotmart.com/oK8z9J5J5J5J5J5J5J5J5J5J5J5/12345.jpg", // Placeholder pattern as hotmart images vary widely
+    link: "https://hotmart.com/pt-br",
+    source: "Hotmart",
+    description: "Complete course on digital marketing strategies.",
+    badge: "Course",
+  },
+  {
+    id: 7,
+    title: "Wireless Noise Cancelling Headphones",
+    price: "R$ 250,00",
+    image: "https://cf.shopee.com.br/file/sg-11134201-22100-8p8p8p8p8p8p", // Generic placeholder logic for demo
+    link: "https://shopee.com.br/headphones",
+    source: "Shopee",
+    description: "Immersive sound with active noise cancellation.",
+  },
+  {
+    id: 8,
+    title: "Mechanical Keyboard RGB",
+    price: "R$ 180,00",
+    image: "https://ae01.alicdn.com/kf/S1234567890.jpg", // AliExpress generic
+    link: "https://pt.aliexpress.com/item/1234567890.html",
+    source: "AliExpress",
+    description: "Tactile switches and customizable RGB lighting.",
+    badge: "Sale",
+  },
+];
+---
+
+<Layout
+  title={`Store | ${p.name}`}
+  description="Curated list of products I recommend from various stores."
+>
+  <main class="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mb-12 text-center">
+      <h1
+        class="mb-4 bg-linear-to-r from-purple-600 to-blue-500 bg-clip-text text-4xl font-extrabold text-transparent sm:text-5xl dark:from-purple-400 dark:to-blue-400"
+      >
+        My Store
+      </h1>
+      <p class="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300">
+        Handpicked products, gadgets, and courses that I use and recommend.
+      </p>
+    </div>
+
+    <!-- Search/Filter Section -->
+    <div class="mx-auto mb-16 max-w-md">
+      <div class="relative">
+        <input
+          type="text"
+          id="product-search"
+          placeholder="Search for products..."
+          class="w-full rounded-full border border-gray-300 bg-white px-5 py-3 pl-12 shadow-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 dark:focus:border-purple-400 dark:focus:ring-purple-400"
+        />
+        <div
+          class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4"
+        >
+          <svg
+            class="h-5 w-5 text-gray-400"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div
+      id="products-grid"
+      class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+    >
+      {
+        PRODUCTS.map((product) => (
+          <div
+            class="product-item"
+            data-title={product.title.toLowerCase()}
+            data-source={product.source.toLowerCase()}
+          >
+            <ProductCard
+              title={product.title}
+              price={product.price}
+              image={product.image}
+              link={product.link}
+              source={product.source}
+              description={product.description}
+              badge={product.badge}
+            />
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Empty State -->
+    <div id="no-results" class="hidden py-20 text-center">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="mx-auto h-16 w-16 text-gray-400"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        ></path>
+      </svg>
+      <p class="mt-4 text-xl font-medium text-gray-500 dark:text-gray-400">
+        No products found matching your search.
+      </p>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Simple client-side search logic
+  document.addEventListener("astro:page-load", () => {
+    setupSearch();
+  });
+
+  // Fallback for initial load if view transitions aren't used or behave differently
+  document.addEventListener("DOMContentLoaded", () => {
+    setupSearch();
+  });
+
+  function setupSearch() {
+    const searchInput = document.getElementById("product-search");
+    const grid = document.getElementById("products-grid");
+    const items = document.querySelectorAll(".product-item");
+    const noResults = document.getElementById("no-results");
+
+    if (!searchInput || !grid) return;
+
+    searchInput.addEventListener("input", (e) => {
+      const term = (e.target as HTMLInputElement).value.toLowerCase();
+      let visibleCount = 0;
+
+      items.forEach((item) => {
+        const title = (item as HTMLElement).dataset.title || "";
+        const source = (item as HTMLElement).dataset.source || "";
+
+        if (title.includes(term) || source.includes(term)) {
+          (item as HTMLElement).style.display = "block";
+          visibleCount++;
+        } else {
+          (item as HTMLElement).style.display = "none";
+        }
+      });
+
+      if (visibleCount === 0) {
+        noResults?.classList.remove("hidden");
+      } else {
+        noResults?.classList.add("hidden");
+      }
+    });
+  }
+</script>

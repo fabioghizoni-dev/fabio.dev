@@ -1,5 +1,5 @@
 ---
-import cn from "../utils";
+import cn, { removeSpaces } from "../utils";
 
 interface Props extends astroHTML.JSX.HTMLAttributes {
   id?: string;
@@ -42,8 +42,9 @@ if (random) {
   numOctaves = Math.floor(Math.random() * 4 + 1).toString();
 }
 
-const baseClass = `absolute inset-0 opacity-100 bg-gradient-to-br from-red-400 to-purple-blue 
-  dark:from-gray-500 dark:to-gray-default -z-1`;
+const baseClass =
+  removeSpaces(`absolute inset-0 -z-1 bg-linear-to-br from-green-400 to-cyan-300 opacity-100 dark:from-fuchsia-600 
+    dark:to-red-500`);
 const finalClass = cn(baseClass, className);
 ---
 

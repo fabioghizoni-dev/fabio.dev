@@ -11,32 +11,32 @@ const { online = false }: Props = Astro.props;
 ---
 
 <header
-  class=`text-gray-default flex items-center justify-between ${online ? "tracking-tight" : ""} dark:text-white`
+  class={`text-gray-default flex bg-amber-200 items-center justify-between ${online ? "tracking-tight" : ""} dark:text-white`}
 >
   <Image
     width={140}
     height={140}
     src="/fabio_minor.jpg"
     alt="Imagem de Fábio"
-    class=`${online ? "size-44 min-h-44 min-w-44" : "size-52 min-h-52 min-w-52"} border-purple-blue rounded-l-xs border-4`
+    class=`${online ? "size-44 min-h-44 min-w-44" : "size-52 min-h-52 min-w-52"} border-blue-500 rounded-l-xs border-4`
   />
   <div
     class="mr-auto flex flex-col items-start justify-between gap-4 self-stretch text-2xl"
   >
     <h1
-      class=`bg-purple-blue border-purple-blue rounded-r-full border-4 pr-3 pl-4 ${online ? "font-semibold" : "font-medium"} uppercase`
+      class=`bg-blue-500 text-white border-blue-500 rounded-r-full border-4 pr-3 pl-4 ${online ? "font-semibold" : "font-medium"} uppercase`
     >
       {p.completeName}
     </h1>
     <h2
-      class="bg-purple-blue border-purple-blue rounded-r-full border-4 pr-3 pl-4"
+      class="rounded-r-full border-4 border-blue-500 bg-blue-500 pr-3 pl-4 text-white"
     >
       {p.position}
     </h2>
     <span
-      class="bg-purple-blue border-purple-blue inline-flex items-center gap-2 rounded-r-full border-4 pr-3 pl-4"
+      class="inline-flex items-center gap-3 rounded-r-full border-4 border-blue-500 bg-blue-500 pr-3 pl-4 text-white"
     >
-      <Icon name="mdi:location" class="size-8 text-red-500" />
+      <Icon name="brazil" class="size-8 text-red-500" />
       {p.country}
     </span>
   </div>
@@ -44,35 +44,43 @@ const { online = false }: Props = Astro.props;
     <a
       target="_blank"
       href={`${p.siteUrl}/curriculum`}
-      class=`${online ? "hidden": ""} bg-purple-blue rounded-full px-4`
+      class=`${online ? "hidden": ""} bg-blue-500 rounded-full px-4`
       >Currículo Online</a
     >
-    <span class="inline-flex items-center gap-2">
-      <Icon name="ic:baseline-phone" class="text-purple-blue size-5.5" />
+    <span
+      class="inline-flex items-center gap-2 transition-colors duration-100 ease-in-out hover:text-current/50"
+    >
+      <Icon name="ic:baseline-phone" class="size-5.5 text-blue-500" />
       {p.socials.number}
     </span>
-    <span class="inline-flex items-center gap-2">
-      <Icon name="mdi:email-outline" class="text-purple-blue size-5.5" />
+    <span
+      class="inline-flex items-center justify-center gap-2 transition-colors duration-100 ease-in-out hover:text-current/50"
+    >
+      <Icon name="mdi:email-outline" class="size-5.5 text-blue-500" />
       {p.email.main}
     </span>
     <a
       target="_blank"
       href={p.socials.github}
-      class="inline-flex items-center gap-2"
+      class="inline-flex items-center gap-2 transition-colors duration-100 ease-in-out hover:text-current/50"
     >
-      <Icon name="mdi:github" class="text-purple-blue size-5.5" />
+      <Icon name="mdi:github" class="size-5.5 text-blue-500" />
       {p.socials.github}
     </a>
     <a
       target="_blank"
       href={p.socials.linkedin}
-      class="inline-flex items-center gap-2"
+      class="inline-flex items-center gap-2 transition-colors duration-100 ease-in-out hover:text-current/50"
     >
-      <Icon name="mdi:linkedin" class="text-purple-blue size-6" />
+      <Icon name="mdi:linkedin" class="size-6 text-blue-500" />
       {p.socials.linkedin}
     </a>
-    <a target="_blank" href={p.siteUrl} class="inline-flex items-center gap-2">
-      <Icon name="mdi:web" class="text-purple-blue size-6" />
+    <a
+      target="_blank"
+      href={p.siteUrl}
+      class="inline-flex items-center gap-2 transition-colors duration-100 ease-in-out hover:text-current/50"
+    >
+      <Icon name="mdi:web" class="size-6 text-blue-500" />
       {p.siteUrl}
     </a>
   </div>

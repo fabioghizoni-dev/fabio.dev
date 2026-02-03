@@ -7,5 +7,5 @@ export const calculateAge = (birthDate: string) => {
   if (month < 0 || (month === 4 && today.getDate() < 30)) {
     age--;
   }
-  return age;
+  return String(age);
 };

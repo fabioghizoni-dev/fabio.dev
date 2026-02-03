@@ -36,9 +36,10 @@
   "name": "my-portfolio-astro",
   "scripts": {
     "astro": "astro",
+    "dev": "astro dev",
     "build": "astro build",
-    "dev": "astro dev --host",
     "preview": "astro preview",
+    "dev:host": "astro dev --host",
     "format": "prettier . --write"
   },
   "type": "module",

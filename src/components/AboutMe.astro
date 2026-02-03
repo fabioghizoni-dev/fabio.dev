@@ -1,10 +1,17 @@
 ---
-import { calculateAge } from "../scripts/about-me";
+import { dict } from "../i18n";
 import GradientBg from "../ui/GradientBg.astro";
-import cn from "../utils";
+import { removeSpaces } from "../utils";
 
-const aboutMeClass = cn(
+const text = dict["en"].components.aboutMe.text;
+
+const aboutMeClass = removeSpaces(
   `font-cascadia-code relative flex h-fit min-h-screen w-full flex-col items-center justify-center gap-4 p-8 text-white`,
+);
+
+const spanClass = removeSpaces(
+  `text-gray-default hover:text-gray-default -ml-3 rounded bg-white/80 p-0.5 transition-colors duration-300 ease-in-out 
+    hover:bg-transparent dark:hover:text-white/80`,
 );
 ---
 
@@ -21,22 +28,10 @@ const aboutMeClass = cn(
       class="text-gray-default text-4xl font-bold dark:text-white/80"
     >
       About
-      <span
-        id="me"
-        class="text-gray-default hover:text-gray-default -ml-3 rounded bg-white/80 p-0.5 transition-colors duration-300 ease-in-out hover:bg-transparent dark:hover:text-white/80"
-        >me</span
-      >
+      <span id="me" class={spanClass}>me</span>
     </h2>
     <p class="bg-gray-default max-w-7xl rounded-md p-4 text-justify text-xl">
-      Hello!! My name is Fábio, I'm {calculateAge("2005-05-30")} years old, and I
-      live in Manoel Ribas, Paraná - Brazil. I'm a very curious guy who enjoys learning
-      how everything works. That's why I'm passionate about technology, which is a
-      very broad and interesting field. I'm a full-stack developer, creating intuitive
-      and dynamic interfaces with interactivity and accessibility. My main experience
-      is in the web, but I've also developed desktop and mobile applications. I graduated
-      with a degree in Systems Analysis and Development and am now seeking to learn
-      more about various technologies, such as Python, Kotlin, Swift, React Native,
-      and more.
+      {text}
     </p>
   </div>
 </section>

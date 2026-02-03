@@ -2,6 +2,7 @@ import { z } from "astro/zod";
 import { ActionError, defineAction } from "astro:actions";
 import c from "clogs.ts";
 import { Resend } from "resend";
+import p from "../constants/personal";
 import getHtml from "../emails/Welcome";
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
@@ -51,7 +52,7 @@ export const server = {
         const { data, error } = await resend.emails.send({
           html: html,
           replyTo: email,
-          to: "dev6solucoes@gmail.com",
+          to: p.email.main,
           subject: `Message from ${name}`,
           from: `Dev <delivered@resend.dev>`,
         });

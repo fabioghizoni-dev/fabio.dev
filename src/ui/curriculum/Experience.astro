@@ -1,9 +1,9 @@
 ---
 import p from "../../constants/personal";
-import { titleClass } from "../../pages/curriculum.astro";
+import { titleClass } from "../../layouts/Curriculum.astro";
 ---
 
-<section class="flex flex-col gap-4">
+<section class="flex flex-col gap-4 bg-emerald-200">
   <h1 class={titleClass}>Resumo Profissional</h1>
   <div class="text-xl">
     {p.professionalSummary}
@@ -13,9 +13,9 @@ import { titleClass } from "../../pages/curriculum.astro";
     {
       p.professionalHistory.map((history) => {
         return (
-          <div class="my-8 flex justify-between">
+          <div class="flex justify-between gap-8 space-y-10">
             <h2 class="text-nowrap">{history.date}</h2>
-            <div class="max-w-3xl">{history.summary}</div>
+            <div class="w-full max-w-3xl">{history.summary}</div>
           </div>
         );
       })

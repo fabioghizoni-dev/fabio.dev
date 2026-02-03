@@ -1,14 +1,14 @@
 const technologiesData = [
   {
     name: "React Native",
-    icon: "devicon:react",
-    customIcon: "/react_native.svg",
+    icon: "reactnative",
     class: "w-9.5 h-9.5 rounded-full",
   },
   {
     name: "Next.js",
     icon: "devicon:nextjs",
-    class: "size-11 dark:size-14 -m-2 pb-0.5",
+    fill: "var(--color-gray-default)",
+    class: "size-11 dark:size-14 -m-2 pb-1 dark:pb-0.5",
   },
   {
     name: "Astro",

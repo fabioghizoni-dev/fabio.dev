@@ -1,0 +1,121 @@
+---
+interface Props {
+  title: string;
+  price: string;
+  image: string;
+  link: string;
+  source: string;
+  description?: string;
+  badge?: string;
+}
+
+const { title, price, image, link, source, description, badge } = Astro.props;
+
+// Helper to determine badge color based on source
+const getSourceColor = (source: string) => {
+  const s = source.toLowerCase();
+  if (s.includes("shopee")) return "bg-orange-500";
+  if (s.includes("amazon")) return "bg-yellow-500 text-black";
+  if (s.includes("mercado")) return "bg-yellow-400 text-black"; // Mercado Livre
+  if (s.includes("ali")) return "bg-red-500"; // AliExpress
+  if (s.includes("hotmart")) return "bg-blue-600";
+  return "bg-purple-blue";
+};
+
+const badgeColor = getSourceColor(source);
+---
+
+<article
+  class="group relative flex flex-col overflow-hidden rounded-xl border border-black/10 bg-white/50 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:border-white/10 dark:bg-black/50"
+>
+  <!-- Image Container -->
+  <a
+    href={link}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="relative block aspect-square overflow-hidden bg-gray-100 dark:bg-gray-900"
+  >
+    <img
+      src={image}
+      alt={title}
+      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+      loading="lazy"
+    />
+
+    <!-- Source Badge -->
+    <div
+      class={`absolute top-2 right-2 rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white shadow-sm ${badgeColor}`}
+    >
+      {source}
+    </div>
+
+    {
+      badge && (
+        <div class="absolute top-2 left-2 rounded-full bg-red-600 px-2 py-1 text-[10px] font-bold tracking-wider text-white uppercase shadow-sm">
+          {badge}
+        </div>
+      )
+    }
+  </a>
+
+  <!-- Content -->
+  <div class="flex flex-1 flex-col p-4">
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="group-hover:text-purple-blue transition-colors"
+    >
+      <h3
+        class="line-clamp-2 text-sm font-semibold text-gray-900 dark:text-gray-100"
+        title={title}
+      >
+        {title}
+      </h3>
+    </a>
+
+    {
+      description && (
+        <p class="mt-2 line-clamp-2 text-xs text-gray-500 dark:text-gray-400">
+          {description}
+        </p>
+      )
+    }
+
+    <div class="mt-auto flex items-end justify-between pt-4">
+      <div class="flex flex-col">
+        <span class="text-xs text-gray-500 dark:text-gray-400">Price</span>
+        <span class="text-lg font-bold text-gray-900 dark:text-white">
+          {price}
+        </span>
+      </div>
+
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center rounded-lg bg-black px-3 py-2 text-xs font-medium text-white transition-colors hover:bg-gray-800 focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none dark:bg-white dark:text-black dark:hover:bg-gray-200 dark:focus:ring-white dark:focus:ring-offset-black"
+      >
+        View Item
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="ml-1 h-3 w-3"
+          ><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+          ></path><polyline points="15 3 21 3 21 9"></polyline><line
+            x1="10"
+            y1="14"
+            x2="21"
+            y2="3"></line></svg
+        >
+      </a>
+    </div>
+  </div>
+</article>

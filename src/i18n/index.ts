@@ -1,12 +1,28 @@
-const modules = import.meta.glob<{ default: any }>("./*.json", { eager: true });
+import { de } from "./de";
+import { en } from "./en";
+import { es } from "./es";
+import { fr } from "./fr";
+import { hi } from "./hi";
+import { ja } from "./ja";
+import { ko } from "./ko";
+import { pt } from "./pt";
+import { ru } from "./ru";
+import { zh } from "./zh";
 
-export const languages: string[] = Object.keys(modules).map((filePath) =>
-  filePath.split("/").pop()!.replace(".json", ""),
-);
+// Helper type to get the structure from English
+export type Dictionary = typeof en;
 
-export const dict = Object.fromEntries(
-  Object.entries(modules).map(([path, module]) => {
-    const lang = path.split("/").pop()!.replace(".json", "");
-    return [lang, module?.default];
-  }),
-);
+export const languages = ["en", "pt", "de", "es", "fr", "hi", "ja", "ko", "ru", "zh"];
+
+export const dict: Record<string, Dictionary> = {
+  en,
+  pt,
+  de,
+  es,
+  fr,
+  hi,
+  ja,
+  ko,
+  ru,
+  zh,
+} as const;

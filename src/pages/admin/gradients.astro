@@ -16,48 +16,8 @@ const description = `Page Gradients | Page for generating custom gradients with 
   description={description}
   bodyClass="min-h-fit gap-10"
 >
-  <style>
-    .noise-overlay {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      mix-blend-mode: soft-light;
-      opacity: 0.3;
-      z-index: 1;
-    }
-
-    .noise-overlay svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    .gradient-box {
-      position: relative;
-      width: 100%;
-      height: 300px;
-      border-radius: 1rem;
-      overflow: hidden;
-      margin-top: 1rem;
-    }
-
-    .custom-gradient {
-      width: 100%;
-      height: 100%;
-    }
-
-    option {
-      color: black;
-    }
-
-    .color-pair {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-    }
-  </style>
-
   <div class="mx-auto max-w-4xl p-6 text-white">
+    <NoiseBg class="h-full" />
     <h1
       class="mb-6 inline-flex items-center justify-center gap-2 text-center text-3xl font-bold"
     >
@@ -93,7 +53,7 @@ const description = `Page Gradients | Page for generating custom gradients with 
       <div class="md:col-span-2">
         <label class="mb-1 block text-sm font-medium">Cores do Gradiente</label>
         <div id="colorsContainer" class="space-y-2">
-          <div class="color-pair">
+          <div class="color-pair flex items-center gap-2">
             <input
               type="color"
               class="color-picker h-10 w-10"
@@ -107,7 +67,7 @@ const description = `Page Gradients | Page for generating custom gradients with 
               placeholder="oklch(60% 0.3 29)"
             />
           </div>
-          <div class="color-pair">
+          <div class="color-pair flex items-center gap-2">
             <input
               type="color"
               class="color-picker h-10 w-10"
@@ -197,10 +157,16 @@ const description = `Page Gradients | Page for generating custom gradients with 
     </form>
 
     <!-- Preview -->
-    <div id="preview" class="gradient-box">
-      <div id="gradient" class="custom-gradient"></div>
-      <div class="noise-overlay hidden" id="noiseLayer">
-        <svg id="noiseSVG">
+    <div
+      id="preview"
+      class="gradient-box relative mt-4 h-80 w-full overflow-hidden rounded-2xl"
+    >
+      <div id="gradient" class="custom-gradient h-full w-full"></div>
+      <div
+        class="noise-overlay pointer-events-none absolute inset-0 z-10 hidden opacity-30 mix-blend-soft-light"
+        id="noiseLayer"
+      >
+        <svg id="noiseSVG" class="block h-full w-full">
           <filter id="noise">
             <feTurbulence
               type="fractalNoise"
@@ -263,7 +229,7 @@ const description = `Page Gradients | Page for generating custom gradients with 
     // Adicionar novo par de cor
     addColorBtn.addEventListener("click", () => {
       const wrapper = document.createElement("div");
-      wrapper.className = "color-pair";
+      wrapper.className = "color-pair flex items-center gap-2";
 
       const colorInput = document.createElement("input");
       colorInput.type = "color";

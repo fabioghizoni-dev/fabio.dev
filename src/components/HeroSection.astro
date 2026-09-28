@@ -1,9 +1,9 @@
 ---
-import GradientBg from "../ui/GradientBg.astro";
-import AsciiArts from "../ui/hero-section/AsciiArts.astro";
-import CircularLogo from "../ui/hero-section/CircularLogo.astro";
-import HeroBadge from "../ui/hero-section/HeroBadge.astro";
-import { removeSpaces } from "../utils";
+import GradientBg from "@/ui/GradientBg.astro";
+import AsciiArts from "@/ui/hero-section/AsciiArts.astro";
+import CircularImg from "@/ui/hero-section/CircularImg.astro";
+import HeroBadge from "@/ui/hero-section/HeroBadge.astro";
+import { removeSpaces } from "@/utils";
 
 const heroClass = removeSpaces(
   `relative flex h-fit min-h-screen w-full flex-col items-center justify-center gap-20 overflow-hidden p-4 md:flex-row 
@@ -19,5 +19,5 @@ const heroClass = removeSpaces(
     <AsciiArts />
     <HeroBadge />
   </div>
-  <CircularLogo isAnimated />
+  <CircularImg isAnimated />
 </section>

@@ -1,13 +1,31 @@
 ---
-import Project from "../ui/projects/Project.astro";
+import { dict } from "@/i18n";
+import Project from "@/ui/projects/Project.astro";
+import cn from "@/utils";
+import projects from "@constants/projects";
+import { Icon } from "astro-icon/components";
 
-const { class: className } = Astro.props;
+interface Props {
+  class?: string;
+}
+
+const t = dict["en"].components.projects;
+const { class: className = "" } = Astro.props as Props;
 ---
 
 <section
   id="projects"
-  class={`flex flex-col justify-center items-center h-fit min-h-screen w-full text-white ${className}`}
+  class={cn(
+    "flex flex-col justify-center items-center gap-8 p-8 w-full min-h-screen text-white",
+    className,
+  )}
 >
-  <h1 class="font-cascadia-code text-4xl font-bold">Projects</h1>
-  <Project />
+  <h2 class="inline-flex gap-2 font-cascadia-code font-bold text-4xl">{t.title}
+    <Icon name="projects" class="size-10"/>
+  </h2>
+  <div class="items-stretch gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
+    {projects.map((project) => (
+      <Project project={project} />
+    ))}
+  </div>
 </section>

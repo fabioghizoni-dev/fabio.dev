@@ -1,6 +1,6 @@
 ---
-import { bar, fabio } from "../../scripts/ascii-arts/letters";
-import cn, { removeSpaces } from "../../utils";
+import { bar, fabio } from "@/scripts/ascii-arts/letters";
+import cn, { removeSpaces } from "@/utils";
 
 interface Props {
   class?: string;
@@ -21,6 +21,7 @@ const nameArray = [
   "i",
   ",",
 ];
+
 const baseClass = removeSpaces(
   `font-space-grotesk flex flex-col items-center justify-center gap-2 text-left text-3xl font-black md:items-start lg:text-4xl`,
 );

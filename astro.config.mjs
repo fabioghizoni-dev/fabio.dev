@@ -3,16 +3,18 @@ import tailwindcss from "@tailwindcss/vite";
 import astroIcon from "astro-icon";
 import { defineConfig } from "astro/config";
 
+import react from "@astrojs/react";
 import vercel from "@astrojs/vercel";
 import p from "./src/constants/personal";
 
 // https://astro.build/config
 export default defineConfig({
+  output: "server",
   adapter: vercel(),
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [astroIcon({ iconDir: "src/icons" })],
+  integrations: [react(), astroIcon({ iconDir: "src/icons" })],
 
   i18n: {
     defaultLocale: "en",

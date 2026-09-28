@@ -1,0 +1,47 @@
+---
+import cn from "@/utils";
+import { Image } from "astro:assets";
+
+interface LogoProps {
+  alt?: any;
+  src?: string;
+  class?: string;
+  title?: string;
+  width?: number | `${number}`;
+  height?: number | `${number}`;
+}
+
+const { 
+  width = 80, 
+  height = 80, 
+  src = "/logo.svg",
+  class: className = "",
+  alt = "Logo Fábio Ghizoni", 
+  title = "Return to home page", 
+}: LogoProps = Astro.props;
+
+const baseClass = "animate-show-logo h-8 cursor-pointer object-contain object-left p-0.5";
+const finalClass = cn(baseClass, className);
+---
+
+<Image
+  id="logo"
+  alt={alt}
+  width={width}
+  height={height}
+  title={title}
+  loading="eager"
+  src={src}
+  class={finalClass}
+/>
+
+<script>
+  import { goHome } from "@/scripts/header";
+
+  const logo = document.getElementById("logo");
+  if (logo) {
+    logo.addEventListener("click", () => {
+      goHome();
+    });
+  }
+</script>

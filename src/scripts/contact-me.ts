@@ -1,5 +1,5 @@
 import { actions } from "astro:actions";
-import c from "clogs.ts";
+import { defaultLogger as logger } from "clogs.ts";
 import { initModal } from "./modal";
 
 addEventListener("DOMContentLoaded", () => {
@@ -13,7 +13,7 @@ addEventListener("DOMContentLoaded", () => {
 
       const result = await actions.send(formData);
 
-      c.log(result);
+      logger.Log(result);
     });
   }
   initModal("modal-success-email", false);

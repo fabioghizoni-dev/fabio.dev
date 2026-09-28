@@ -1,20 +1,56 @@
 ---
+import { dict } from "@/i18n";
+import Technologies from "@/ui/Technologies.astro";
+import cn from "@/utils";
+import type { Project } from "@constants/projects";
 import { Icon } from "astro-icon/components";
-import { Image } from "astro:assets";
-import img from "../../../public/Logo.png";
-import Technologies from "../Technologies.astro";
 
-interface Props extends astroHTML.JSX.HTMLAttributes {
-  titleProject?: string;
+interface Props {
+  project: Project;
+  class?: string;
 }
 
-const { titleProject = "My portfolio" } = Astro.props as Props;
+const t = dict["en"].components.projects;
+const { project, class: className = "" } = Astro.props as Props;
+const { title, description, techs, links } = project;
 ---
 
-<div class="bg-gray-default flex flex-col rounded-xl">
-  <h1 class="font-space-grotesk">{titleProject}</h1>
-  <Image src={img} alt="Image Logo" />
-  <Icon name="mdi:github" class="text-4xl text-white" />
-  <a href="/">See project</a>
-  <Technologies list={["Node"]} />
+<div
+  class={cn(
+    "group relative bg-gray-default rounded-xl h-full overflow-hidden",
+    className,
+  )}
+>
+  <div
+    class="absolute inset-0 bg-progress-gradient opacity-0 group-hover:opacity-100 transition-opacity animate-spin-gradient duration-300"
+  ></div>
+  <div class="relative flex flex-col gap-4 bg-gray-default m-[1.5px] p-5 rounded-[0.65rem]">
+    <h3 class="font-space-grotesk font-bold text-white text-xl">{title}</h3>
+    <p class="text-white/70 text-sm">{description}</p>
+    <Technologies list={techs} />
+    <div class="flex gap-3 mt-auto">
+      {links.web && (
+        <a
+          href={links.web}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-1 text-purple-blue hover:text-purple-default text-sm transition-colors"
+        >
+          <Icon name="mdi:eye" class="size-4" />
+          {t.seeProject}
+        </a>
+      )}
+      {links.github && (
+        <a
+          href={links.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-1 text-white/70 hover:text-white text-sm transition-colors"
+        >
+          <Icon name="mdi:github" class="size-4" />
+          {t.viewCode}
+        </a>
+      )}
+    </div>
+  </div>
 </div>

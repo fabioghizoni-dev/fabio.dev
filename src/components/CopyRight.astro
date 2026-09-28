@@ -1,6 +1,7 @@
 ---
-import p from "../constants/personal";
-import { removeSpaces } from "../utils";
+import { removeSpaces } from "@/utils";
+import p from "@constants/personal";
+import { Icon } from "astro-icon/components";
 
 const date = new Date();
 const anchorClass = removeSpaces(
@@ -25,6 +26,21 @@ const anchorClass = removeSpaces(
     >
       Fábio Ghizoni.
     </a>
-    All rights reserved.
+    All rights reserved. Made with <a
+      role="link"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://astro.build/"
+      class={removeSpaces(
+        `bg-linear-to-r from-black/80 to-white/40 bg-clip-text text-transparent hover:opacity-60 dark:from-white/80 
+          dark:to-black/40 transition-opacity duration-200 ease-in-out`,
+      )}
+      >astro
+      <Icon name="astro" class="-mt-0.5 -ml-0.5 hidden h-7 w-6 dark:inline" />
+      <Icon
+        name="devicon:astro"
+        class="-mt-0.5 -ml-0.5 inline h-7 w-6 dark:hidden"
+      />
+    </a>
   </p>
 </footer>

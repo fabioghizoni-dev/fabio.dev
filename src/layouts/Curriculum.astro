@@ -1,17 +1,17 @@
 ---
-import p from "../constants/personal";
-import Layout from "../layouts/Layout.astro";
-import Education from "../ui/curriculum/Education.astro";
-import Experience from "../ui/curriculum/Experience.astro";
-import Header from "../ui/curriculum/Header.astro";
-import Skills from "../ui/curriculum/Skills.astro";
-import { removeSpaces } from "../utils";
+import Layout from "@/layouts/Layout.astro";
+import Education from "@/ui/curriculum/Education.astro";
+import Experience from "@/ui/curriculum/Experience.astro";
+import Header from "@/ui/curriculum/Header.astro";
+import Skills from "@/ui/curriculum/Skills.astro";
+import { removeSpaces } from "@/utils";
+import p from "@constants/personal";
 
 interface Props {
   online?: boolean;
 }
 
-const { online = true }: Props = Astro.props;
+const { online = false }: Props = Astro.props;
 const theme = Astro.url.searchParams.get("theme") || "dark";
 
 export const titleClass = removeSpaces(

@@ -37,6 +37,7 @@ export const en = {
     projects: {
       title: "Projects",
       seeProject: "See project",
+      viewCode: "View code",
     },
     contactMe: {
       title: "Get in touch",

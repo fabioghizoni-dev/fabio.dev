@@ -1,3 +1,5 @@
+import { calculateAge } from "../scripts/about-me";
+
 export const pt = {
   name: "Português",
   actions: {
@@ -18,7 +20,7 @@ export const pt = {
     aboutMe: {
       me: "mim",
       about: "Sobre",
-      text: "Olá!! Meu nome é Fábio, tenho {AGE} anos e moro em Manoel Ribas, Paraná – Brasil. Sou uma pessoa muito curiosa e adoro aprender como as coisas funcionam. Por isso sou apaixonado por tecnologia, uma área muito ampla e fascinante. Sou um desenvolvedor full-stack, criando interfaces intuitivas e dinâmicas com interatividade e acessibilidade. Minha principal experiência é no desenvolvimento web, mas também já construí aplicações desktop e mobile. Sou graduado em Análise e Desenvolvimento de Sistemas e agora estou buscando aprender mais sobre diversas tecnologias como Python, Kotlin, Swift, React Native e outras.",
+      text: `Olá!! Meu nome é Fábio, tenho ${calculateAge("2005-05-30")} anos e moro em Manoel Ribas, Paraná – Brasil. Sou uma pessoa muito curiosa e adoro aprender como as coisas funcionam. Por isso sou apaixonado por tecnologia, uma área muito ampla e fascinante. Sou um desenvolvedor full-stack, criando interfaces intuitivas e dinâmicas com interatividade e acessibilidade. Minha principal experiência é no desenvolvimento web, mas também já construí aplicações desktop e mobile. Sou graduado em Análise e Desenvolvimento de Sistemas e agora estou buscando aprender mais sobre diversas tecnologias como Python, Kotlin, Swift, React Native e outras.`,
     },
     header: {
       home: "Início",
@@ -35,6 +37,7 @@ export const pt = {
     projects: {
       title: "Projetos",
       seeProject: "Ver projeto",
+      viewCode: "Ver código",
     },
     contactMe: {
       title: "Entre em contato",

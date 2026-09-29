@@ -6,18 +6,19 @@ import HeroBadge from "@/ui/hero-section/HeroBadge.astro";
 import { removeSpaces } from "@/utils";
 
 const heroClass = removeSpaces(
-  `relative flex h-fit min-h-screen w-full flex-col items-center justify-center gap-20 overflow-hidden p-4 md:flex-row 
-    md:gap-40 md:p-0`,
+  `relative flex h-fit min-h-screen w-full flex-col items-center justify-center p-4`,
 );
 ---
 
 <section id="hero" class={heroClass}>
   <GradientBg />
   <div
-    class="relative mt-20 flex flex-col items-center justify-center gap-2 md:items-start"
+    class="z-10 relative grid w-full max-w-7xl grid-cols-1 items-center justify-items-center gap-14 px-4 md:grid-cols-[minmax(0,1fr)_auto] md:justify-items-stretch md:gap-16 md:px-10"
   >
-    <AsciiArts />
-    <HeroBadge />
+    <div class="flex flex-col items-center md:items-start gap-8">
+      <AsciiArts />
+      <HeroBadge />
+    </div>
+    <CircularImg isAnimated class="justify-self-center md:justify-self-end" />
   </div>
-  <CircularImg isAnimated />
 </section>

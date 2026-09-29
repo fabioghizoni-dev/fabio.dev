@@ -2,18 +2,25 @@ import { calculateAge } from "../scripts/about-me";
 
 export const de = {
   name: "Deutsch",
+  ascii: {
+    sequences: [
+      { keyword: "los geht's", word: "REDEN?" },
+      { keyword: "komm", word: "BAUEN!" },
+      { keyword: "mach es dir bequem", word: "RELAX!" },
+    ],
+  },
   actions: {
     email: {
-      max: "Email is too long",
-      email: "Invalid email address",
+      max: "Die E-Mail ist zu lang",
+      email: "Ungültige E-Mail-Adresse",
     },
     name: {
-      max: "Name is too long",
-      min: "Name must have at least 2 characters",
+      max: "Der Name ist zu lang",
+      min: "Der Name muss mindestens 2 Zeichen enthalten",
     },
     message: {
-      max: "Message is too long",
-      min: "Message must have at least 10 characters",
+      max: "Die Nachricht ist zu lang",
+      min: "Die Nachricht muss mindestens 10 Zeichen enthalten",
     },
   },
   components: {
@@ -23,21 +30,30 @@ export const de = {
       text: `Hello!! My name is Fábio, I'm ${calculateAge("2005-05-30")} years old, and I live in Manoel Ribas, Paraná - Brazil. I'm a very curious guy who enjoys learning how everything works. That's why I'm passionate about technology, which is a very broad and interesting field. I'm a full-stack developer, creating intuitive and dynamic interfaces with interactivity and accessibility. My main experience is in the web, but I've also developed desktop and mobile applications. I graduated with a degree in Systems Analysis and Development and am now seeking to learn more about various technologies, such as Python, Kotlin, Swift, React Native, and more.`,
     },
     header: {
-      home: "Home",
-      about: "About",
-      contact: "Contact",
-      returnHome: "Return to home page",
-      changeLanguage: "Change language",
-      changeTheme: "Change theme",
+      home: "Startseite",
+      about: "Über mich",
+      contact: "Kontakt",
+      returnHome: "Zur Startseite",
+      changeLanguage: "Sprache ändern",
+      changeTheme: "Design ändern",
     },
     hero: {
-      badge: "Full-Stack Developer",
-      cvDownload: "Download CV",
+      greeting: "Ich bin",
+      badge: "Full-Stack-Entwickler",
+      cvDownload: "Lebenslauf herunterladen",
     },
     projects: {
-      title: "Projects",
-      seeProject: "See project",
-      viewCode: "View code",
+      title: "Projekte",
+      seeProject: "Projekt ansehen",
+      viewCode: "Code ansehen",
+      items: {
+        renext: { title: "Renext", description: "Renext – Digitalagentur für moderne Websites, überzeugende Inhalte und Strategien, die konvertieren." },
+        jvmPortfolio: { title: "JVM Portfolio", description: "Modernes responsives Entwicklerportfolio mit React, Animationen, dunklem Design und klarer Oberfläche." },
+        qrGenerator: { title: "QR-Code-Generator", description: "Anpassbares QR-Code-Tool mit Farben, Formen, Größen und SVG- oder Canvas-Downloads." },
+        gradientGenerator: { title: "Gradient-Generator", description: "Interaktives Tool mit Rauschen, mehreren Farbstopps, Live-Vorschau und Export." },
+        fabioDev: { title: "Fabio Dev", description: "Persönliches Astro- und React-Portfolio mit i18n für zehn Sprachen, Dark Theme und SSR." },
+        restApi: { title: "REST API", description: "REST API mit Node.js und Express, JWT, CRUD, PostgreSQL und Fehlerbehandlung." },
+      },
     },
     contactMe: {
       title: "Get in touch",
@@ -59,8 +75,15 @@ export const de = {
         linkedin: "LinkedIn",
       },
     },
+    contactMeActive: {
+      title: "Kontakt aufnehmen", subtitle: "Ich bin immer offen für neue Möglichkeiten und Kooperationen. Kontaktiere mich gerne über einen der folgenden Kanäle.",
+      form: { name: "Dein Name", namePlaceholder: "Dein Name hier", email: "Deine E-Mail", emailPlaceholder: "deine.email@beispiel.com", message: "Deine Nachricht", messagePlaceholder: "Schreibe deine Nachricht hier...", submit: "Nachricht senden" },
+      social: { whatsapp: "Whatsapp", instagram: "Instagram", github: "Github", linkedin: "LinkedIn" },
+      successTitle: "E-Mail erfolgreich gesendet!", successMessage: "Danke für deine Nachricht. Ich antworte bald.", ok: "OK",
+    },
     footer: {
       copyright: "© 2025 Fábio Ghizoni. All rights reserved.",
+      rights: "Alle Rechte vorbehalten. Erstellt mit",
     },
   },
   pages: {

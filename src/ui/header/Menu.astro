@@ -38,15 +38,15 @@ const ulClass = cn(
       class={cn(`hover:text-purple-blue size-6 cursor-pointer text-gray-500 transition-colors duration-200 ease-in-out 
         md:hidden dark:hover:text-gray-300`)}
     />
-    <li><UnderlineButton data-menu-link>Home</UnderlineButton></li>
+    <li><UnderlineButton data-menu-link data-i18n="components.header.home">Início</UnderlineButton></li>
     <li>
-      <UnderlineButton id="li-about-me" title="Go to about section" data-menu-link>
-        About me
+      <UnderlineButton id="li-about-me" title="Ir para a seção Sobre" data-i18n-attr="title:components.header.about" data-menu-link>
+        <span data-i18n="components.header.about">Sobre</span>
       </UnderlineButton>
     </li>
     <li>
-      <UnderlineButton id="li-contact-me" title="Go to contact section" data-menu-link>
-        Contact me
+      <UnderlineButton id="li-contact-me" title="Ir para a seção Contato" data-i18n-attr="title:components.header.contact" data-menu-link>
+        <span data-i18n="components.header.contact">Contato</span>
       </UnderlineButton>
     </li>
   </ul>

@@ -3,14 +3,14 @@ import { dict } from "@/i18n";
 import GradientBg from "@/ui/GradientBg.astro";
 import { removeSpaces } from "@/utils";
 
-const text = dict["en"].components.aboutMe.text;
+const text = dict["pt-BR"].components.aboutMe.text;
 
 const aboutMeClass = removeSpaces(
   `font-cascadia-code relative flex h-fit min-h-screen w-full flex-col items-center justify-center gap-4 p-8 text-white`,
 );
 
 const spanClass = removeSpaces(
-  `text-gray-default hover:text-gray-default -ml-3 rounded bg-white/80 p-0.5 transition-colors duration-300 ease-in-out 
+  `text-gray-default hover:text-gray-default rounded bg-white/80 p-0.5 transition-colors duration-300 ease-in-out 
     hover:bg-transparent dark:hover:text-white/80`,
 );
 ---
@@ -27,11 +27,11 @@ const spanClass = removeSpaces(
       id="about"
       class="font-bold text-gray-default dark:text-white/80 text-4xl"
     >
-      About
-      <span id="me" class={spanClass}>me</span>
+      <span data-i18n="components.aboutMe.about">Sobre</span>
+      <span id="me" class={spanClass} data-i18n="components.aboutMe.me">mim</span>
     </h2>
     <p class="bg-gray-default p-4 rounded-md max-w-6xl text-xl text-justify">
-      {text}
+      <span data-i18n="components.aboutMe.text">{text}</span>
     </p>
   </div>
 </section>

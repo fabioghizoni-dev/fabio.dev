@@ -9,12 +9,11 @@ import { pt } from "./pt";
 import { ru } from "./ru";
 import { zh } from "./zh";
 
-// Helper type to get the structure from English
-export type EnDict = typeof en;
+export type PtDict = typeof pt;
 
 export const languages = [
+  "pt-BR",
   "en",
-  "pt",
   "de",
   "es",
   "fr",
@@ -25,9 +24,10 @@ export const languages = [
   "zh",
 ];
 
-export const dict: Record<string, EnDict> = {
+export const dict: Record<string, PtDict> = {
   en,
   pt,
+  "pt-BR": pt,
   de,
   es,
   fr,

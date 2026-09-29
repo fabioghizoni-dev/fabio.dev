@@ -4,7 +4,7 @@ import cn from "../utils";
 
 const finalClass =
   cn(`fixed opacity-0 pointer-events-none w-12 h-12 bg-gray-default text-white right-4 bottom-4 border 
-    border-white/35 rounded-full p-1 cursor-pointer hover:bg-gradient-to-br hover:from-purple-default 
+    border-white/35 rounded-full p-1 cursor-pointer hover:bg-linear-to-br hover:from-purple-default
       hover:to-purple-blue hover:text-gray-default hover:contrast-125 transition-colors ease-in-out 
         duration-500`);
 ---
@@ -15,6 +15,7 @@ const finalClass =
   type="button"
   name="ep:arrow-up-bold"
   title="Scroll to top of page"
+  data-i18n-attr="title:ui.scrollTop.title"
   class={finalClass}
 />
 

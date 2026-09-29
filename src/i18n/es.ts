@@ -2,18 +2,25 @@ import { calculateAge } from "../scripts/about-me";
 
 export const es = {
   name: "Español",
+  ascii: {
+    sequences: [
+      { keyword: "vamos", word: "CONVERSAR?" },
+      { keyword: "dale", word: "CREAR!" },
+      { keyword: "ponte comodo", word: "RELAX!" },
+    ],
+  },
   actions: {
     email: {
-      max: "Email is too long",
-      email: "Invalid email address",
+      max: "El correo electrónico es demasiado largo",
+      email: "Dirección de correo electrónico no válida",
     },
     name: {
-      max: "Name is too long",
-      min: "Name must have at least 2 characters",
+      max: "El nombre es demasiado largo",
+      min: "El nombre debe tener al menos 2 caracteres",
     },
     message: {
-      max: "Message is too long",
-      min: "Message must have at least 10 characters",
+      max: "El mensaje es demasiado largo",
+      min: "El mensaje debe tener al menos 10 caracteres",
     },
   },
   components: {
@@ -23,21 +30,30 @@ export const es = {
       text: `Hello!! My name is Fábio, I'm ${calculateAge("2005-05-30")} years old, and I live in Manoel Ribas, Paraná - Brazil. I'm a very curious guy who enjoys learning how everything works. That's why I'm passionate about technology, which is a very broad and interesting field. I'm a full-stack developer, creating intuitive and dynamic interfaces with interactivity and accessibility. My main experience is in the web, but I've also developed desktop and mobile applications. I graduated with a degree in Systems Analysis and Development and am now seeking to learn more about various technologies, such as Python, Kotlin, Swift, React Native, and more.`,
     },
     header: {
-      home: "Home",
-      about: "About",
-      contact: "Contact",
-      returnHome: "Return to home page",
-      changeLanguage: "Change language",
-      changeTheme: "Change theme",
+      home: "Inicio",
+      about: "Sobre mí",
+      contact: "Contacto",
+      returnHome: "Volver al inicio",
+      changeLanguage: "Cambiar idioma",
+      changeTheme: "Cambiar tema",
     },
     hero: {
-      badge: "Full-Stack Developer",
-      cvDownload: "Download CV",
+      greeting: "Soy",
+      badge: "Desarrollador Full-Stack",
+      cvDownload: "Descargar CV",
     },
     projects: {
-      title: "Projects",
-      seeProject: "See project",
-      viewCode: "View code",
+      title: "Proyectos",
+      seeProject: "Ver proyecto",
+      viewCode: "Ver código",
+      items: {
+        renext: { title: "Renext", description: "Renext - Agencia digital para crear sitios web modernos, contenido que conecta y estrategias que convierten." },
+        jvmPortfolio: { title: "Portafolio JVM", description: "Portafolio moderno y responsivo para desarrolladores, creado con React, animaciones, tema oscuro y una UI limpia." },
+        qrGenerator: { title: "Generador de QR Code", description: "Herramienta personalizable para códigos QR con colores, formas, tamaños y descargas SVG o canvas." },
+        gradientGenerator: { title: "Generador de Gradientes", description: "Herramienta interactiva con ruido, paradas de color, vista previa en tiempo real y exportación." },
+        fabioDev: { title: "Fabio Dev", description: "Portafolio personal en Astro y React con i18n para 10 idiomas, tema oscuro y renderizado del servidor." },
+        restApi: { title: "API REST", description: "API REST con Node.js y Express, autenticación JWT, CRUD, PostgreSQL y manejo de errores." },
+      },
     },
     contactMe: {
       title: "Get in touch",
@@ -59,8 +75,15 @@ export const es = {
         linkedin: "LinkedIn",
       },
     },
+    contactMeActive: {
+      title: "Contacta conmigo", subtitle: "Siempre estoy abierto a nuevas oportunidades y colaboraciones. No dudes en contactarme por cualquiera de los canales siguientes.",
+      form: { name: "Tu nombre", namePlaceholder: "Escribe tu nombre", email: "Tu correo", emailPlaceholder: "tu.correo@ejemplo.com", message: "Tu mensaje", messagePlaceholder: "Escribe tu mensaje aquí...", submit: "Enviar mensaje" },
+      social: { whatsapp: "Whatsapp", instagram: "Instagram", github: "Github", linkedin: "LinkedIn" },
+      successTitle: "¡Correo enviado!", successMessage: "Gracias por contactarme. Responderé pronto.", ok: "Aceptar",
+    },
     footer: {
       copyright: "© 2025 Fábio Ghizoni. All rights reserved.",
+      rights: "Todos los derechos reservados. Hecho con",
     },
   },
   pages: {

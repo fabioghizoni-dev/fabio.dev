@@ -9,21 +9,22 @@ interface Props {
   class?: string;
 }
 
-const t = dict["en"].components.projects;
+const t = dict["pt-BR"].components.projects;
 const { class: className = "" } = Astro.props as Props;
 ---
 
 <section
   id="projects"
   class={cn(
-    "flex flex-col justify-center items-center gap-8 p-8 w-full min-h-screen text-white",
+    "isolate relative flex flex-col justify-center items-center gap-8 bg-light dark:bg-black bg-bottom p-8 w-full min-h-screen overflow-hidden text-gray-default dark:text-white [--light-position:10%]",
     className,
   )}
->
-  <h2 class="inline-flex gap-2 font-cascadia-code font-bold text-4xl">{t.title}
+> 
+  <h2 class="inline-flex relative gap-2 font-cascadia-code font-bold text-4xl">
+    <span data-i18n="components.projects.title">{t.title}</span>
     <Icon name="projects" class="size-10"/>
   </h2>
-  <div class="items-stretch gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
+  <div class="relative items-stretch gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
     {projects.map((project) => (
       <Project project={project} />
     ))}

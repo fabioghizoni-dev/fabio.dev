@@ -2,12 +2,14 @@
 import Modal from "@/ui/Modal.astro";
 import SocialButton from "@/ui/SocialButton.astro";
 import cn from "@/utils";
+import { dict } from "@/i18n";
 import p from "@constants/personal";
 import { actions } from "astro:actions";
 
 let showModal = false;
 const actionResult = Astro.getActionResult(actions.send);
 if (actionResult?.data?.success) showModal = true;
+const contactText = dict["pt-BR"].components.contactMeActive;
 ---
 
 <section
@@ -22,38 +24,40 @@ if (actionResult?.data?.success) showModal = true;
         btnLabel="Ok"
         switchLang={false}
         id="modal-success-email"
-        title="Email sent successfully!"
-        message="Thank you for contacting me. Keep an eye on your email, I'll reply shortly."
+        title={contactText.successTitle}
+        message={contactText.successMessage}
+        titleKey="components.contactMeActive.successTitle"
+        messageKey="components.contactMeActive.successMessage"
+        btnLabelKey="components.contactMeActive.ok"
       />
     )
   }
   <h1 class="font-medium dark:text-white text-3xl md:text-4xl text-center">
-    Get in touch
+    <span data-i18n="components.contactMeActive.title">{contactText.title}</span>
   </h1>
   <h2 class="max-w-5xl dark:text-white text-lg md:text-2xl text-center">
-    I'm always open to new opportunities and collaborations. Feel free to
-    contact me through any of the channels below.
+    <span data-i18n="components.contactMeActive.subtitle">{contactText.subtitle}</span>
   </h2>
   <div
     class="flex flex-wrap md:*:flex-none *:flex-1 justify-center items-center gap-4 md:gap-8 w-full"
   >
-    <SocialButton>Whatsapp</SocialButton>
+    <SocialButton><span data-i18n="components.contactMeActive.social.whatsapp">{contactText.social.whatsapp}</span></SocialButton>
     <SocialButton
       name="line-md:instagram"
       title={p.socials.insta}
       href={p.socials.insta}
     >
-      Instagram
+      <span data-i18n="components.contactMeActive.social.instagram">{contactText.social.instagram}</span>
     </SocialButton>
     <SocialButton
       name="line-md:github"
       title={p.socials.github}
-      href={p.socials.github}>Github</SocialButton
+      href={p.socials.github}><span data-i18n="components.contactMeActive.social.github">{contactText.social.github}</span></SocialButton
     >
     <SocialButton
       name="line-md:linkedin"
       title={p.socials.linkedin}
-      href={p.socials.linkedin}>LinkedIn</SocialButton
+      href={p.socials.linkedin}><span data-i18n="components.contactMeActive.social.linkedin">{contactText.social.linkedin}</span></SocialButton
     >
   </div>
   <form
@@ -62,9 +66,10 @@ if (actionResult?.data?.success) showModal = true;
     name="contact-form"
     class="flex flex-col gap-4 w-full max-w-2xl text-gray-default dark:text-white text-base md:text-2xl"
   >
+    <input type="hidden" name="language" value="pt-BR" data-language-input />
     <div class="flex flex-col gap-2">
       <label for="name" class="font-medium text-base md:text-2xl"
-        >Your name</label
+        ><span data-i18n="components.contactMeActive.form.name">{contactText.form.name}</span></label
       >
       <input
         required
@@ -74,13 +79,14 @@ if (actionResult?.data?.success) showModal = true;
         minlength="2"
         maxlength="100"
         autocomplete="name"
-        placeholder="Your name here"
+        placeholder="Seu nome aqui"
+        data-i18n-attr="placeholder:components.contactMeActive.form.namePlaceholder"
         class="bg-black px-3 md:px-4 py-2 border-2 border-white/30 focus:border-white/70 rounded-lg focus:outline-none text-white placeholder:text-white/50 transition"
       />
     </div>
     <div class="flex flex-col gap-2">
       <label for="email" class="font-medium text-base md:text-2xl"
-        >Your e-mail</label
+        ><span data-i18n="components.contactMeActive.form.email">{contactText.form.email}</span></label
       >
       <input
         required
@@ -89,13 +95,14 @@ if (actionResult?.data?.success) showModal = true;
         name="email"
         maxlength="255"
         autocomplete="email"
-        placeholder="your.email@example.com"
+        placeholder="seu.email@exemplo.com"
+        data-i18n-attr="placeholder:components.contactMeActive.form.emailPlaceholder"
         class="bg-black px-3 md:px-4 py-2 border-2 border-white/30 focus:border-white/70 rounded-lg focus:outline-none text-white placeholder:text-white/50 transition"
       />
     </div>
     <div class="flex flex-col gap-2">
       <label for="message" class="font-medium text-base md:text-2xl"
-        >Your message</label
+        ><span data-i18n="components.contactMeActive.form.message">{contactText.form.message}</span></label
       >
       <textarea
         required
@@ -104,7 +111,8 @@ if (actionResult?.data?.success) showModal = true;
         name="message"
         minlength="10"
         maxlength="2000"
-        placeholder="Write your message here..."
+        placeholder="Escreva sua mensagem aqui..."
+        data-i18n-attr="placeholder:components.contactMeActive.form.messagePlaceholder"
         class="bg-black px-3 md:px-4 py-2 border-2 border-white/30 focus:border-white/70 rounded-lg focus:outline-none text-white placeholder:text-white/50 transition resize-none"
       ></textarea>
     </div>
@@ -115,7 +123,7 @@ if (actionResult?.data?.success) showModal = true;
         `flex justify-center items-center gap-4 bg-linear-to-r from-purple-default to-purple-blue disabled:opacity-50 mt-4 px-6 py-3 rounded-lg text-white hover:text-white/70 text-base md:text-xl transition cursor-pointer disabled:cursor-not-allowed`,
       )}
     >
-      Send message
+      <span data-i18n="components.contactMeActive.form.submit">{contactText.form.submit}</span>
     </button>
   </form>
 </section>

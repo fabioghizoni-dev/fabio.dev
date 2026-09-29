@@ -14,11 +14,11 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [react(), astroIcon({ iconDir: "src/icons" })],
+  integrations: [react(), astroIcon()],
 
   i18n: {
-    defaultLocale: "en",
-    locales: ["en", "pt", "es", "fr", "zh", "hi", "ja", "ru", "ko", "de"],
+    defaultLocale: "pt-BR",
+    locales: ["pt-BR", "en", "es", "fr", "zh", "hi", "ja", "ru", "ko", "de"],
   },
 
   site: p.siteUrl,

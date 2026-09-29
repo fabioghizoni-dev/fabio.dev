@@ -37,7 +37,7 @@ description = removeSpaces(
 const {
   header,
   footer,
-  lang = "en",
+  lang = "pt-BR",
   modal = true,
   bodyClass = "",
   dataTheme = "dark",
@@ -144,7 +144,7 @@ const baseBodyClass = removeSpaces(
       addEventListener("DOMContentLoaded", () => {
         try {
           const lang =
-            localStorage.getItem("site:lang") || document.documentElement.lang;
+            localStorage.getItem("site:lang") || document.documentElement.lang || "pt-BR";
           document.documentElement.lang = lang;
           logger.Log(`🌐 Language initialized: ${lang}`);
         } catch (err) {
@@ -152,5 +152,6 @@ const baseBodyClass = removeSpaces(
         }
       });
     </script>
+    <script src="../scripts/i18n.ts"></script>
   </body>
 </html>

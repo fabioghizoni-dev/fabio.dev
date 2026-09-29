@@ -231,7 +231,7 @@ export const keywords: string[] = ["", "Let's", "Hello"];
 
 export const bar = {
   str: "|",
-  ascii: ["█╗", "█║", "█║", "█║", "█║", "█║", "╚╝"].join("\n"),
+  ascii: ["█╗", "█║", "█║", "█║", "█║", "╚╝"].join("\n"),
 };
 
 export const fabio: string = f

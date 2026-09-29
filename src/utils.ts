@@ -1,4 +1,4 @@
-import c from "clogs.ts";
+import { fg, defaultLogger as logger } from "clogs.ts";
 import clsx, { type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -22,8 +22,8 @@ export const normalizeRoute = (file: string): string => {
         .replace(/\.(astro|md|mdx|jsx|tsx)$/, "")
         .replace(/\/index\.(astro|md|mdx|jsx|tsx)$/, "") || "/"
     ).replace(/\/$/, "") || "/";
-  c.log(
-    `normalizeRoute(): "${file}" ${c.strColor("===>", c.foreground.yellow)} "${formattedFile}"`,
+  logger.Log(
+    `normalizeRoute(): "${file}" ${fg("yellow", "===>")} "${formattedFile}"`,
   );
 
   return formattedFile;

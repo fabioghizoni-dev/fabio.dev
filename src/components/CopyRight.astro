@@ -1,9 +1,11 @@
 ---
 import { removeSpaces } from "@/utils";
+import { dict } from "@/i18n";
 import p from "@constants/personal";
 import { Icon } from "astro-icon/components";
 
 const date = new Date();
+const footerText = dict["pt-BR"].components.footer;
 const anchorClass = removeSpaces(
   `from-purple-default to-purple-blue hover:from-purple-blue hover:to-purple-default bg-linear-to-r bg-clip-text font-semibold 
     text-transparent transition-colors duration-300 ease-in-out`,
@@ -14,8 +16,8 @@ const anchorClass = removeSpaces(
   role="contentinfo"
   class="text-gray-default mt-6 flex min-h-10 w-full items-center justify-center px-8 py-4 text-center dark:text-white"
 >
-  <p class="font-space-grotesk text-base md:text-lg">
-    &copy; {date.getFullYear()}
+  <p class="flex flex-wrap items-center justify-center gap-x-1 font-space-grotesk text-base md:text-lg">
+    <span>&copy; {date.getFullYear()}</span>
     <span class="sr-only">- Author:</span>
     <a
       role="link"
@@ -26,7 +28,8 @@ const anchorClass = removeSpaces(
     >
       Fábio Ghizoni.
     </a>
-    All rights reserved. Made with <a
+    <span data-i18n="components.footer.rights">{footerText.rights}</span>
+    <a
       role="link"
       target="_blank"
       rel="noopener noreferrer"

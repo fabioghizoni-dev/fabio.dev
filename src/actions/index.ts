@@ -1,4 +1,5 @@
 import getHtml from "@/emails/Welcome";
+import { dict } from "@/i18n";
 import p from "@constants/personal";
 import { z } from "astro/zod";
 import { ActionError, defineAction } from "astro:actions";
@@ -8,19 +9,10 @@ import { Resend } from "resend";
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 const InputSchema = z.object({
-  email: z.email("Invalid email address").trim().max(255, "Email is too long"),
-
-  name: z
-    .string()
-    .trim()
-    .max(100, "Name is too long")
-    .min(2, "Name must have at least 2 characters"),
-
-  message: z
-    .string()
-    .trim()
-    .max(2000, "Message is too long")
-    .min(10, "Message must have at least 10 characters"),
+  email: z.string().trim(),
+  name: z.string().trim(),
+  message: z.string().trim(),
+  language: z.string().optional(),
 });
 
 export const server = {
@@ -28,19 +20,31 @@ export const server = {
     accept: "form",
     input: InputSchema,
     handler: async (input) => {
-      const { name, email, message } = input;
+      const { name, email, message, language = "pt-BR" } = input;
+      const messages = dict[language]?.actions ?? dict["pt-BR"].actions;
 
       logger.Log(
         `Name from: ${name}\nEmail from: ${email}\nMessage from: ${message}`,
       );
 
-      if (!name || !email || !message) {
+      if (!name || name.length < 2 || name.length > 100) {
         logger.Error(
           `${fg("red", "BAD_REQUEST")}: Missing fields`,
         );
         throw new ActionError({
           code: "BAD_REQUEST",
-          message: "Missing fields",
+          message: name.length > 100 ? messages.name.max : messages.name.min,
+        });
+      }
+
+      if (email.length > 255 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        throw new ActionError({ code: "BAD_REQUEST", message: messages.email.email });
+      }
+
+      if (message.length < 10 || message.length > 2000) {
+        throw new ActionError({
+          code: "BAD_REQUEST",
+          message: message.length > 2000 ? messages.message.max : messages.message.min,
         });
       }
 

@@ -1,40 +1,59 @@
+import { calculateAge } from "../scripts/about-me";
+
 export const zh = {
   name: "中文",
+  ascii: {
+    sequences: [
+      { keyword: "我们", word: "CHAT?" },
+      { keyword: "来吧", word: "BUILD!" },
+      { keyword: "请随意", word: "RELAX!" },
+    ],
+  },
   actions: {
     email: {
-      max: "Email is too long",
-      email: "Invalid email address",
+      max: "电子邮件过长",
+      email: "电子邮件地址无效",
     },
     name: {
-      max: "Name is too long",
-      min: "Name must have at least 2 characters",
+      max: "姓名过长",
+      min: "姓名至少需要2个字符",
     },
     message: {
-      max: "Message is too long",
-      min: "Message must have at least 10 characters",
+      max: "消息过长",
+      min: "消息至少需要10个字符",
     },
   },
   components: {
     aboutMe: {
       me: "me",
       about: "About",
-      text: "Hello!! My name is Fábio, I'm {AGE} years old, and I live in Manoel Ribas, Paraná - Brazil. I'm a very curious guy who enjoys learning how everything works. That's why I'm passionate about technology, which is a very broad and interesting field. I'm a full-stack developer, creating intuitive and dynamic interfaces with interactivity and accessibility. My main experience is in the web, but I've also developed desktop and mobile applications. I graduated with a degree in Systems Analysis and Development and am now seeking to learn more about various technologies, such as Python, Kotlin, Swift, React Native, and more.",
+      text: `Hello!! My name is Fábio, I'm ${calculateAge("2005-05-30")} years old, and I live in Manoel Ribas, Paraná - Brazil. I'm a very curious guy who enjoys learning how everything works. That's why I'm passionate about technology, which is a very broad and interesting field. I'm a full-stack developer, creating intuitive and dynamic interfaces with interactivity and accessibility. My main experience is in the web, but I've also developed desktop and mobile applications. I graduated with a degree in Systems Analysis and Development and am now seeking to learn more about various technologies, such as Python, Kotlin, Swift, React Native, and more.`,
     },
     header: {
-      home: "Home",
-      about: "About",
-      contact: "Contact",
-      returnHome: "Return to home page",
-      changeLanguage: "Change language",
-      changeTheme: "Change theme",
+      home: "首页",
+      about: "关于我",
+      contact: "联系",
+      returnHome: "返回首页",
+      changeLanguage: "切换语言",
+      changeTheme: "切换主题",
     },
     hero: {
-      badge: "Full-Stack Developer",
-      cvDownload: "Download CV",
+      greeting: "我是",
+      badge: "全栈开发者",
+      cvDownload: "下载简历",
     },
     projects: {
-      title: "Projects",
-      seeProject: "See project",
+      title: "项目",
+      seeProject: "查看项目",
+      viewCode: "查看代码",
+      items: {
+        renext: { title: "Renext", description: "Renext - 打造现代网站、吸引人的内容以及促进转化策略的数字代理机构。" },
+        jvmPortfolio: { title: "JVM Portfolio", description: "使用 React 构建的现代响应式开发者作品集，包含动画和深色主题。" },
+        qrGenerator: { title: "二维码生成器", description: "支持颜色、形状、尺寸以及 SVG 或 canvas 下载的可定制二维码工具。" },
+        gradientGenerator: { title: "渐变生成器", description: "支持噪点、多色标、实时预览和导出的交互式工具。" },
+        fabioDev: { title: "Fabio Dev", description: "使用 Astro 和 React 构建，支持十种语言、深色主题和 SSR 的个人作品集。" },
+        restApi: { title: "REST API", description: "基于 Node.js 和 Express，支持 JWT、CRUD、PostgreSQL 和错误处理的 API。" },
+      },
     },
     contactMe: {
       title: "Get in touch",
@@ -56,8 +75,15 @@ export const zh = {
         linkedin: "LinkedIn",
       },
     },
+    contactMeActive: {
+      title: "联系我", subtitle: "我一直欢迎新的机会与合作。欢迎通过以下任一渠道联系我。",
+      form: { name: "你的姓名", namePlaceholder: "请输入姓名", email: "你的邮箱", emailPlaceholder: "your.email@example.com", message: "你的消息", messagePlaceholder: "请在这里写下消息...", submit: "发送消息" },
+      social: { whatsapp: "Whatsapp", instagram: "Instagram", github: "Github", linkedin: "LinkedIn" },
+      successTitle: "邮件发送成功！", successMessage: "感谢你的联系，我会尽快回复。", ok: "好的",
+    },
     footer: {
       copyright: "© 2025 Fábio Ghizoni. All rights reserved.",
+      rights: "版权所有。使用以下技术制作：",
     },
   },
   pages: {

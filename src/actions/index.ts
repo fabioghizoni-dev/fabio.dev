@@ -1,30 +1,18 @@
+import getHtml from "@/emails/Welcome";
+import { dict } from "@/i18n";
+import p from "@constants/personal";
 import { z } from "astro/zod";
 import { ActionError, defineAction } from "astro:actions";
-import c from "clogs.ts";
+import { fg, defaultLogger as logger } from "clogs.ts";
 import { Resend } from "resend";
-import p from "../constants/personal";
-import getHtml from "../emails/Welcome";
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 const InputSchema = z.object({
-  email: z
-    .string()
-    .trim()
-    .max(255, "Email is too long")
-    .email("Invalid email address"),
-
-  name: z
-    .string()
-    .trim()
-    .max(100, "Name is too long")
-    .min(2, "Name must have at least 2 characters"),
-
-  message: z
-    .string()
-    .trim()
-    .max(2000, "Message is too long")
-    .min(10, "Message must have at least 10 characters"),
+  email: z.string().trim(),
+  name: z.string().trim(),
+  message: z.string().trim(),
+  language: z.string().optional(),
 });
 
 export const server = {
@@ -32,17 +20,31 @@ export const server = {
     accept: "form",
     input: InputSchema,
     handler: async (input) => {
-      const { name, email, message } = input;
+      const { name, email, message, language = "pt-BR" } = input;
+      const messages = dict[language]?.actions ?? dict["pt-BR"].actions;
 
-      c.log(
+      logger.Log(
         `Name from: ${name}\nEmail from: ${email}\nMessage from: ${message}`,
       );
 
-      if (!name || !email || !message) {
-        c.error(`${c.strColor("BAD_REQUEST", c.foreground.red)}: Missing fields`);
+      if (!name || name.length < 2 || name.length > 100) {
+        logger.Error(
+          `${fg("red", "BAD_REQUEST")}: Missing fields`,
+        );
         throw new ActionError({
           code: "BAD_REQUEST",
-          message: "Missing fields",
+          message: name.length > 100 ? messages.name.max : messages.name.min,
+        });
+      }
+
+      if (email.length > 255 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        throw new ActionError({ code: "BAD_REQUEST", message: messages.email.email });
+      }
+
+      if (message.length < 10 || message.length > 2000) {
+        throw new ActionError({
+          code: "BAD_REQUEST",
+          message: message.length > 2000 ? messages.message.max : messages.message.min,
         });
       }
 
@@ -58,23 +60,20 @@ export const server = {
         });
 
         if (error) {
-          c.error(`{\n${error.name}\n${error.message}\n}`);
-          throw new ActionError({
-            code: "BAD_REQUEST",
-            message: `{\n${error.name}\n${error.message}\n}`,
-          });
+          logger.Error(`{\n${error.name}\n${error.message}\n}`);
+          throw new Error(`{\n${error.name}\n${error.message}\n}`);
         }
 
         const result = { success: true, data };
         const json = JSON.stringify(result, null, 2);
         const msgLog = json
-          .replace(`"id"`, c.strColor(`"id"`, c.foreground.cyan))
-          .replace(`"data"`, c.strColor(`"data"`, c.foreground.magenta))
-          .replace(`"success"`, c.strColor(`"success"`, c.foreground.green));
-        c.log(msgLog);
+          .replace(`"id"`, fg("cyan", "id"))
+          .replace(`"data"`, fg("magenta", "data"))
+          .replace(`"success"`, fg("green", "success"));
+        logger.Log(msgLog);
         return result;
       } catch (err) {
-        c.error(`Error while trying to send email: ${err}`);
+        logger.Error(`Error while trying to send email: ${err}`);
         throw new ActionError({
           code: "INTERNAL_SERVER_ERROR",
           message: `Failed to send email: ${err}`,

@@ -1,9 +1,9 @@
 ---
-import p from "../../constants/personal";
-import { titleClass } from "../../layouts/Curriculum.astro";
+import { titleClass } from "@/layouts/Curriculum.astro";
+import p from "@constants/personal";
 ---
 
-<div class="bg-blue-200">
+<div>
   <h1 class={titleClass}>Formação Acadêmica</h1>
   <div class="flex flex-col">
     {
@@ -14,9 +14,8 @@ import { titleClass } from "../../layouts/Curriculum.astro";
             <strong>{education.name}</strong>
             <br />
             <span class="text-black/50 dark:text-white/50">
-              {education.institution}
+              {education.institution} - {education.status}
             </span>
-            <p>Status: {education.status}</p>
           </div>
         </div>
       ))

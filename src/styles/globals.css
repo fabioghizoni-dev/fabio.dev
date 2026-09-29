@@ -54,13 +54,33 @@
   --color-purple-blue: oklch(51.98% 0.288 289.11);
   --color-purple-default: oklch(60.83% 0.297 312.11);
   --color-purple-custom: oklch(0.3793 0.1283 324.71);
-
+  
   /* background */
-  --background-image-light:
-    radial-gradient(125% 125% at 50% 90%, transparent 40%, var(--color-purple-blue) 100%);
+  --background-image-light: radial-gradient(
+    125% 125% at 50% var(--light-position, 90%),
+    transparent 40%,
+    var(--color-purple-blue) 100%
+  );
   --background-image-grid:
     linear-gradient(var(--color-gray-default) 1px, transparent 1px),
     linear-gradient(to right, var(--color-gray-default) 1px, transparent 1px);
+  --background-image-links:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 50%,
+      var(--color-purple-blue) 100%
+    ),
+    url(/fabio_minor.jpg);
+  --background-image-progress-gradient: conic-gradient(
+    from var(--angle, 0deg),
+    transparent 0deg,
+    transparent 300deg,
+    var(--color-purple-blue) 320deg,
+    var(--color-purple-default) 335deg,
+    var(--color-purple-blue) 350deg,
+    transparent 360deg
+  );
 
   /* animations */
   --animate-blur: blur 1.4s linear forwards;
@@ -79,6 +99,7 @@
   --animate-show-logo: show-logo 0.5s ease-in-out forwards;
   --animate-opacity: opacity 0.4s ease-in-out infinite alternate;
   --animate-show-y-bottom: show-y-bottom 0.4s ease-in-out forwards;
+  --animate-spin-gradient: spin-gradient 6s linear infinite;
   --animate-hide-y-bottom: hide-y-bottom 0.4s ease-in-out forwards;
 
   /* shadow and drop-shadow */

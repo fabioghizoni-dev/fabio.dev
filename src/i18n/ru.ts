@@ -1,40 +1,59 @@
+import { calculateAge } from "../scripts/about-me";
+
 export const ru = {
   name: "Русский",
+  ascii: {
+    sequences: [
+      { keyword: "давайте", word: "TALK?" },
+      { keyword: "вперёд", word: "BUILD!" },
+      { keyword: "располагайтесь", word: "RELAX!" },
+    ],
+  },
   actions: {
     email: {
-      max: "Email is too long",
-      email: "Invalid email address",
+      max: "Электронная почта слишком длинная",
+      email: "Неверный адрес электронной почты",
     },
     name: {
-      max: "Name is too long",
-      min: "Name must have at least 2 characters",
+      max: "Имя слишком длинное",
+      min: "Имя должно содержать минимум 2 символа",
     },
     message: {
-      max: "Message is too long",
-      min: "Message must have at least 10 characters",
+      max: "Сообщение слишком длинное",
+      min: "Сообщение должно содержать минимум 10 символов",
     },
   },
   components: {
     aboutMe: {
       me: "me",
       about: "About",
-      text: "Hello!! My name is Fábio, I'm {AGE} years old, and I live in Manoel Ribas, Paraná - Brazil. I'm a very curious guy who enjoys learning how everything works. That's why I'm passionate about technology, which is a very broad and interesting field. I'm a full-stack developer, creating intuitive and dynamic interfaces with interactivity and accessibility. My main experience is in the web, but I've also developed desktop and mobile applications. I graduated with a degree in Systems Analysis and Development and am now seeking to learn more about various technologies, such as Python, Kotlin, Swift, React Native, and more.",
+      text: `Hello!! My name is Fábio, I'm ${calculateAge("2005-05-30")} years old, and I live in Manoel Ribas, Paraná - Brazil. I'm a very curious guy who enjoys learning how everything works. That's why I'm passionate about technology, which is a very broad and interesting field. I'm a full-stack developer, creating intuitive and dynamic interfaces with interactivity and accessibility. My main experience is in the web, but I've also developed desktop and mobile applications. I graduated with a degree in Systems Analysis and Development and am now seeking to learn more about various technologies, such as Python, Kotlin, Swift, React Native, and more.`,
     },
     header: {
-      home: "Home",
-      about: "About",
-      contact: "Contact",
-      returnHome: "Return to home page",
-      changeLanguage: "Change language",
-      changeTheme: "Change theme",
+      home: "Главная",
+      about: "Обо мне",
+      contact: "Контакты",
+      returnHome: "Вернуться на главную",
+      changeLanguage: "Изменить язык",
+      changeTheme: "Изменить тему",
     },
     hero: {
-      badge: "Full-Stack Developer",
-      cvDownload: "Download CV",
+      greeting: "Я",
+      badge: "Full-Stack разработчик",
+      cvDownload: "Скачать резюме",
     },
     projects: {
-      title: "Projects",
-      seeProject: "See project",
+      title: "Проекты",
+      seeProject: "Открыть проект",
+      viewCode: "Посмотреть код",
+      items: {
+        renext: { title: "Renext", description: "Renext — цифровое агентство, создающее современные сайты, вовлекающий контент и стратегии, которые конвертируют." },
+        jvmPortfolio: { title: "JVM Portfolio", description: "Современное адаптивное портфолио разработчика на React с анимациями и тёмной темой." },
+        qrGenerator: { title: "Генератор QR-кодов", description: "Настраиваемый инструмент QR-кодов с цветами, формами, размерами и экспортом SVG или canvas." },
+        gradientGenerator: { title: "Генератор градиентов", description: "Интерактивный инструмент с шумом, цветовыми точками, предпросмотром и экспортом." },
+        fabioDev: { title: "Fabio Dev", description: "Портфолио на Astro и React с i18n на 10 языков, тёмной темой и SSR." },
+        restApi: { title: "REST API", description: "REST API на Node.js и Express с JWT, CRUD, PostgreSQL и обработкой ошибок." },
+      },
     },
     contactMe: {
       title: "Get in touch",
@@ -56,8 +75,15 @@ export const ru = {
         linkedin: "LinkedIn",
       },
     },
+    contactMeActive: {
+      title: "Связаться со мной", subtitle: "Я всегда открыт новым возможностям и сотрудничеству. Напишите мне одним из удобных способов ниже.",
+      form: { name: "Ваше имя", namePlaceholder: "Введите ваше имя", email: "Ваш e-mail", emailPlaceholder: "your.email@example.com", message: "Ваше сообщение", messagePlaceholder: "Напишите сообщение здесь...", submit: "Отправить сообщение" },
+      social: { whatsapp: "Whatsapp", instagram: "Instagram", github: "Github", linkedin: "LinkedIn" },
+      successTitle: "Письмо успешно отправлено!", successMessage: "Спасибо за сообщение. Я скоро отвечу.", ok: "Хорошо",
+    },
     footer: {
       copyright: "© 2025 Fábio Ghizoni. All rights reserved.",
+      rights: "Все права защищены. Сделано с",
     },
   },
   pages: {

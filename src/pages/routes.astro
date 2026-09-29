@@ -1,8 +1,8 @@
 ---
-import p from "../constants/personal";
-import Layout from "../layouts/Layout.astro";
-import UnderlineButton from "../ui/UnderlineButton.astro";
-import { normalizeRoute } from "../utils";
+import Layout from "@/layouts/Layout.astro";
+import UnderlineButton from "@/ui/UnderlineButton.astro";
+import { normalizeRoute } from "@/utils";
+import p from "@constants/personal";
 
 const files = import.meta.glob("/src/pages/**/*.{astro,md,mdx,jsx,tsx}", {
   eager: false,

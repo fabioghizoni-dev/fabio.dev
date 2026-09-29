@@ -1,7 +1,7 @@
 ---
+import cn from "@/utils";
+import technologiesData, { duplicateTechnologies } from "@constants";
 import { Icon } from "astro-icon/components";
-import technologiesData, { duplicateTechnologies } from "../constants";
-import cn from "../utils";
 
 interface Props {
   class?: string;
@@ -22,18 +22,18 @@ const finalClass = cn(baseClass, className);
       {technologiesData
         .filter((tech) => list.includes(tech.name))
         .map((tech) => (
-          <Icon name={tech.icon} />
+          <Icon name={tech.icon} class={tech.customClass} />
         ))}
     </div>
   ) : (
     <div class={finalClass}>
       <div
         translate="no"
-        class="animate-horz-loop group-hover:pause flex w-max items-center justify-center gap-10 will-change-transform"
+        class="flex justify-center items-center gap-10 w-max animate-horz-loop will-change-transform group-hover:pause"
       >
         {duplicateTechnologies.map((tech) => {
           return (
-            <span class="text-gray-default font-cascadia-code flex items-center justify-center gap-2 text-center text-3xl font-bold text-nowrap dark:text-white">
+            <span class="flex justify-center items-center gap-2 font-cascadia-code font-bold text-gray-default dark:text-white text-3xl text-center text-nowrap">
               {tech.name}
               <Icon
                 name={tech.icon}

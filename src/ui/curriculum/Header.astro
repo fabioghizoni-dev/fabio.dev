@@ -1,7 +1,7 @@
 ---
+import p from "@constants/personal";
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
-import p from "../../constants/personal";
 
 interface Props {
   online?: boolean;
@@ -11,17 +11,18 @@ const { online = false }: Props = Astro.props;
 ---
 
 <header
-  class={`text-gray-default flex bg-amber-200 items-center justify-between ${online ? "tracking-tight" : ""} dark:text-white`}
+  class={`text-gray-default flex items-center justify-between ${online ? "tracking-tight" : ""} dark:text-white`}
 >
   <Image
     width={140}
     height={140}
+    loading="eager"
     src="/fabio_minor.jpg"
-    alt="Imagem de Fábio"
-    class=`${online ? "size-44 min-h-44 min-w-44" : "size-52 min-h-52 min-w-52"} border-blue-500 rounded-l-xs border-4`
+    alt="Imagem de Fábio Social"
+    class=`${online ? "size-44 min-h-44 min-w-44" : "size-52 min-h-52 min-w-52"} self-start border-blue-500 rounded-l-xs border-4`
   />
   <div
-    class="mr-auto flex flex-col items-start justify-between gap-4 self-stretch text-2xl"
+    class={`mr-auto flex flex-col items-start justify-between gap-4 self-stretch text-2xl ${online ? "h-44 max-h-44" : "h-52 max-h-52"}`}
   >
     <h1
       class=`bg-blue-500 text-white border-blue-500 rounded-r-full border-4 pr-3 pl-4 ${online ? "font-semibold" : "font-medium"} uppercase`
@@ -40,11 +41,13 @@ const { online = false }: Props = Astro.props;
       {p.country}
     </span>
   </div>
-  <div class="flex flex-col items-end justify-between gap-3 self-stretch">
+  <div
+    class="flex flex-col items-end justify-between gap-3 self-stretch text-xl text-nowrap"
+  >
     <a
       target="_blank"
       href={`${p.siteUrl}/curriculum`}
-      class=`${online ? "hidden": ""} bg-blue-500 rounded-full px-4`
+      class=`${online ? "hidden": ""} text-white bg-blue-500 rounded-full px-4`
       >Currículo Online</a
     >
     <span

@@ -2,12 +2,12 @@
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import { ClientRouter } from "astro:transitions";
-import CopyRight from "../components/CopyRight.astro";
-import Header from "../components/Header.astro";
-import "../styles/globals.css";
-import Modal from "../ui/Modal.astro";
-import cn, { removeSpaces } from "../utils";
-import p from "../constants/personal";
+import CopyRight from "@/components/CopyRight.astro";
+import Header from "@/components/Header.astro";
+import "@/styles/globals.css";
+import Modal from "@/ui/Modal.astro";
+import cn, { googleFontsUrl, removeSpaces } from "@/utils";
+import p from "@constants/personal";
 
 interface Props {
   lang?: string;
@@ -37,7 +37,7 @@ description = removeSpaces(
 const {
   header,
   footer,
-  lang = "en",
+  lang = "pt-BR",
   modal = true,
   bodyClass = "",
   dataTheme = "dark",
@@ -74,9 +74,6 @@ const {
     "Web Application Development",
   ],
 }: Props = Astro.props;
-
-const googleFontsUrl = (url: "googleapis" | "gstatic" = "googleapis") =>
-  `https://fonts.${url}.com`;
 
 const baseBodyClass = removeSpaces(
   `dark:selection:text-purple-blue selection:bg-purple-blue flex min-h-screen w-full flex-col items-center justify-between 
@@ -142,18 +139,19 @@ const baseBodyClass = removeSpaces(
     {footer && <CopyRight />}
 
     <script>
-      import c from "clogs.ts";
+      import { defaultLogger as logger } from "clogs.ts";
 
       addEventListener("DOMContentLoaded", () => {
         try {
           const lang =
-            localStorage.getItem("site:lang") || document.documentElement.lang;
+            localStorage.getItem("site:lang") || document.documentElement.lang || "pt-BR";
           document.documentElement.lang = lang;
-          c.log(`🌐 Language initialized: ${lang}`);
+          logger.Log(`🌐 Language initialized: ${lang}`);
         } catch (err) {
-          c.warn("Error initializing language:", err);
+          logger.Warn("Error initializing language:", err);
         }
       });
     </script>
+    <script src="../scripts/i18n.ts"></script>
   </body>
 </html>

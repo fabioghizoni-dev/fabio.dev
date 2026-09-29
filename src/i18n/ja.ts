@@ -1,40 +1,59 @@
+import { calculateAge } from "../scripts/about-me";
+
 export const ja = {
   name: "日本語",
+  ascii: {
+    sequences: [
+      { keyword: "話そう", word: "TALK?" },
+      { keyword: "さあ", word: "BUILD!" },
+      { keyword: "ごゆっくり", word: "RELAX!" },
+    ],
+  },
   actions: {
     email: {
-      max: "Email is too long",
-      email: "Invalid email address",
+      max: "メールアドレスが長すぎます",
+      email: "無効なメールアドレスです",
     },
     name: {
-      max: "Name is too long",
-      min: "Name must have at least 2 characters",
+      max: "名前が長すぎます",
+      min: "名前は2文字以上で入力してください",
     },
     message: {
-      max: "Message is too long",
-      min: "Message must have at least 10 characters",
+      max: "メッセージが長すぎます",
+      min: "メッセージは10文字以上で入力してください",
     },
   },
   components: {
     aboutMe: {
       me: "me",
       about: "About",
-      text: "Hello!! My name is Fábio, I'm {AGE} years old, and I live in Manoel Ribas, Paraná - Brazil. I'm a very curious guy who enjoys learning how everything works. That's why I'm passionate about technology, which is a very broad and interesting field. I'm a full-stack developer, creating intuitive and dynamic interfaces with interactivity and accessibility. My main experience is in the web, but I've also developed desktop and mobile applications. I graduated with a degree in Systems Analysis and Development and am now seeking to learn more about various technologies, such as Python, Kotlin, Swift, React Native, and more.",
+      text: `Hello!! My name is Fábio, I'm ${calculateAge("2005-05-30")} years old, and I live in Manoel Ribas, Paraná - Brazil. I'm a very curious guy who enjoys learning how everything works. That's why I'm passionate about technology, which is a very broad and interesting field. I'm a full-stack developer, creating intuitive and dynamic interfaces with interactivity and accessibility. My main experience is in the web, but I've also developed desktop and mobile applications. I graduated with a degree in Systems Analysis and Development and am now seeking to learn more about various technologies, such as Python, Kotlin, Swift, React Native, and more.`,
     },
     header: {
-      home: "Home",
-      about: "About",
-      contact: "Contact",
-      returnHome: "Return to home page",
-      changeLanguage: "Change language",
-      changeTheme: "Change theme",
+      home: "ホーム",
+      about: "私について",
+      contact: "お問い合わせ",
+      returnHome: "ホームへ戻る",
+      changeLanguage: "言語を変更",
+      changeTheme: "テーマを変更",
     },
     hero: {
-      badge: "Full-Stack Developer",
-      cvDownload: "Download CV",
+      greeting: "私は",
+      badge: "フルスタック開発者",
+      cvDownload: "履歴書をダウンロード",
     },
     projects: {
-      title: "Projects",
-      seeProject: "See project",
+      title: "プロジェクト",
+      seeProject: "プロジェクトを見る",
+      viewCode: "コードを見る",
+      items: {
+        renext: { title: "Renext", description: "Renext - モダンなWebサイト、魅力的なコンテンツ、成果につながる戦略を提供するデジタルエージェンシー。" },
+        jvmPortfolio: { title: "JVM Portfolio", description: "React、アニメーション、ダークテーマを備えたモダンな開発者ポートフォリオ。" },
+        qrGenerator: { title: "QRコードジェネレーター", description: "色、形、サイズをカスタマイズし、SVGまたはcanvasで保存できるQRツール。" },
+        gradientGenerator: { title: "グラデーションジェネレーター", description: "ノイズ、複数のカラーストップ、プレビューと書き出しに対応したツール。" },
+        fabioDev: { title: "Fabio Dev", description: "10言語のi18n、ダークテーマ、SSRを備えたAstroとReactのポートフォリオ。" },
+        restApi: { title: "REST API", description: "JWT、CRUD、PostgreSQL、エラー処理を備えたNode.jsとExpressのAPI。" },
+      },
     },
     contactMe: {
       title: "Get in touch",
@@ -56,8 +75,15 @@ export const ja = {
         linkedin: "LinkedIn",
       },
     },
+    contactMeActive: {
+      title: "お問い合わせ", subtitle: "新しい機会やコラボレーションをいつでも歓迎しています。以下の方法でお気軽にご連絡ください。",
+      form: { name: "お名前", namePlaceholder: "お名前を入力", email: "メールアドレス", emailPlaceholder: "your.email@example.com", message: "メッセージ", messagePlaceholder: "メッセージを入力してください...", submit: "メッセージを送信" },
+      social: { whatsapp: "Whatsapp", instagram: "Instagram", github: "Github", linkedin: "LinkedIn" },
+      successTitle: "メールを送信しました！", successMessage: "ご連絡ありがとうございます。近日中に返信します。", ok: "確認",
+    },
     footer: {
       copyright: "© 2025 Fábio Ghizoni. All rights reserved.",
+      rights: "All rights reserved. Made with",
     },
   },
   pages: {

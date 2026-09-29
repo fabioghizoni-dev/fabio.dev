@@ -1,5 +1,5 @@
 import { defineMiddleware } from "astro:middleware";
-import c from "clogs.ts";
+import { defaultLogger as logger } from "clogs.ts";
 
 const unauthorized = () => {
   return new Response("Unauthorized", {
@@ -18,7 +18,7 @@ export const onRequest = defineMiddleware((context, next) => {
   const proto = context.request.headers.get("x-forwarded-proto") ?? protocol;
 
   if (proto !== "https" && !import.meta.env.DEV) {
-    c.log("HTTPS is required, status: 426.");
+    logger.Log("HTTPS is required, status: 426.");
     return new Response("HTTPS required", { status: 426 });
   }
 
@@ -31,7 +31,7 @@ export const onRequest = defineMiddleware((context, next) => {
     forwardedFor ??
     context.request.headers.get("cf-connecting-ip") ??
     context.clientAddress;
-  c.log(`Machine with IP address: ${ip}`);
+  logger.Log(`Machine with IP address: ${ip}`);
 
   if (!ip || !import.meta.env.ALLOWED_IPS.includes(ip)) {
     return new Response("Access denied (IP)", { status: 403 });

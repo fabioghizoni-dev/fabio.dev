@@ -1,6 +1,6 @@
 ---
-import { bar, fabio } from "../../scripts/ascii-arts/letters";
-import cn, { removeSpaces } from "../../utils";
+import { bar, fabio } from "@/scripts/ascii-arts/letters";
+import cn, { removeSpaces } from "@/utils";
 
 interface Props {
   class?: string;
@@ -21,12 +21,13 @@ const nameArray = [
   "i",
   ",",
 ];
+
 const baseClass = removeSpaces(
   `font-space-grotesk flex flex-col items-center justify-center gap-2 text-left text-3xl font-black md:items-start lg:text-4xl`,
 );
 const divClass = removeSpaces(
-  `min-w-59ch tracking-max relative flex items-center justify-start bg-linear-to-br from-sky-700 via-fuchsia-700 
-    to-violet-800 bg-clip-text text-lg leading-none text-transparent contrast-125 dark:via-none dark:from-fuchsia-500 
+  `relative flex w-full max-w-[min(96vw,42rem)] items-center justify-start bg-linear-to-br from-sky-700 via-fuchsia-700
+    to-violet-800 bg-clip-text text-lg leading-none text-transparent contrast-125 dark:from-fuchsia-500
       dark:to-cyan-500 dark:contrast-100`,
 );
 
@@ -36,16 +37,20 @@ const { class: className } = Astro.props as Props;
 <h1 class={cn(baseClass, className)}>
   <p
     id="hello-world"
-    class="inline text-nowrap text-gray-800 dark:text-white/80"
+    class="inline text-gray-800 dark:text-white/80 text-nowrap"
   >
-    <span class="animate-char inline-block opacity-0"> I'm </span>
+    <span
+      data-i18n="components.hero.greeting"
+      class="inline-block opacity-0 mr-2 animate-char"
+      >Olá, eu sou</span
+    >
     <br class="md:hidden" />
     {
       nameArray.map((letter, i) => (
         <span
           translate="no"
           style={`animation-delay: ${i * 0.08}s;`}
-          class="animate-char inline-block opacity-0"
+          class="inline-block opacity-0 animate-char"
         >
           {letter}
         </span>
@@ -54,14 +59,17 @@ const { class: className } = Astro.props as Props;
     <span
       lang="en"
       id="keywords"
-      class="animate-blur inline-block transition-all duration-500 ease-in-out"
+      class="inline-block ml-2 transition-all animate-blur duration-500 ease-in-out"
     ></span>
   </p>
   <div translate="no" class={divClass}>
-    <pre id="ascii-art">{fabio}</pre>
-    <pre
-      id="bar"
-      class="animate-opacity hidden transition-opacity duration-500 ease-in-out md:block">{bar.ascii}</pre>
+    <div class="flex items-start gap-2 md:gap-3">
+      <pre id="ascii-art" class="w-full min-w-0 overflow-visible text-[clamp(0.34rem,1.8vw,1.1rem)] leading-[0.9] tracking-[-0.12em]">{fabio}</pre>
+      <pre
+        id="bar"
+        aria-hidden="true"
+        class="animate-pulse shrink-0 text-[clamp(0.34rem,1.8vw,1.1rem)] leading-[0.9] tracking-[-0.12em] transition-opacity duration-500 [mask-image:linear-gradient(to_bottom,transparent,black_18%,black_82%,transparent)]">{bar.ascii}</pre>
+    </div>
   </div>
 </h1>
 

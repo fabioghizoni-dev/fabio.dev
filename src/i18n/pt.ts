@@ -1,5 +1,14 @@
+import { calculateAge } from "../scripts/about-me";
+
 export const pt = {
   name: "Português",
+  ascii: {
+    sequences: [
+      { keyword: "vamos", word: "CONVERSAR?" },
+      { keyword: "bora", word: "CRIAR!?" },
+      { keyword: "fique a", word: "VONTADE" },
+    ],
+  },
   actions: {
     email: {
       max: "E-mail muito longo",
@@ -18,7 +27,7 @@ export const pt = {
     aboutMe: {
       me: "mim",
       about: "Sobre",
-      text: "Olá!! Meu nome é Fábio, tenho {AGE} anos e moro em Manoel Ribas, Paraná – Brasil. Sou uma pessoa muito curiosa e adoro aprender como as coisas funcionam. Por isso sou apaixonado por tecnologia, uma área muito ampla e fascinante. Sou um desenvolvedor full-stack, criando interfaces intuitivas e dinâmicas com interatividade e acessibilidade. Minha principal experiência é no desenvolvimento web, mas também já construí aplicações desktop e mobile. Sou graduado em Análise e Desenvolvimento de Sistemas e agora estou buscando aprender mais sobre diversas tecnologias como Python, Kotlin, Swift, React Native e outras.",
+      text: `Olá!! Meu nome é Fábio, tenho ${calculateAge("2005-05-30")} anos e moro em Manoel Ribas, Paraná – Brasil. Sou uma pessoa muito curiosa e adoro aprender como as coisas funcionam. Por isso sou apaixonado por tecnologia, uma área muito ampla e fascinante. Sou um desenvolvedor full-stack, criando interfaces intuitivas e dinâmicas com interatividade e acessibilidade. Minha principal experiência é no desenvolvimento web, mas também já construí aplicações desktop e mobile. Sou graduado em Análise e Desenvolvimento de Sistemas e agora estou buscando aprender mais sobre diversas tecnologias como Python, Kotlin, Swift, React Native e outras.`,
     },
     header: {
       home: "Início",
@@ -29,12 +38,22 @@ export const pt = {
       changeTheme: "Mudar tema",
     },
     hero: {
+      greeting: "Olá, eu sou",
       badge: "Desenvolvedor Full-Stack",
       cvDownload: "Baixar CV",
     },
     projects: {
       title: "Projetos",
       seeProject: "Ver projeto",
+      viewCode: "Ver código",
+      items: {
+        renext: { title: "Renext", description: "Renext - Agência digital para criação de sites modernos, conteúdo que engaja e estratégias que convertem." },
+        jvmPortfolio: { title: "Portfólio JVM", description: "Portfólio moderno e responsivo para desenvolvedor, criado com React, animações, tema escuro e UI limpa." },
+        qrGenerator: { title: "Gerador de QR Code", description: "Ferramenta personalizável para gerar QR Codes com cores, formas, tamanhos e downloads em SVG ou canvas." },
+        gradientGenerator: { title: "Gerador de Gradientes", description: "Ferramenta interativa com ruído, múltiplas paradas de cor, visualização em tempo real e exportação." },
+        fabioDev: { title: "Fabio Dev", description: "Portfólio pessoal em Astro e React com i18n para 10 idiomas, tema escuro e renderização no servidor." },
+        restApi: { title: "API REST", description: "API REST em Node.js e Express com autenticação JWT, CRUD, PostgreSQL e tratamento de erros." },
+      },
     },
     contactMe: {
       title: "Entre em contato",
@@ -56,8 +75,15 @@ export const pt = {
         linkedin: "LinkedIn",
       },
     },
+    contactMeActive: {
+      title: "Entre em contato", subtitle: "Estou sempre aberto a novas oportunidades e colaborações. Sinta-se à vontade para entrar em contato comigo através de qualquer um dos canais abaixo.",
+      form: { name: "Seu nome", namePlaceholder: "Seu nome aqui", email: "Seu e-mail", emailPlaceholder: "seu.email@exemplo.com", message: "Sua mensagem", messagePlaceholder: "Escreva sua mensagem aqui...", submit: "Enviar mensagem" },
+      social: { whatsapp: "Whatsapp", instagram: "Instagram", github: "Github", linkedin: "LinkedIn" },
+      successTitle: "E-mail enviado com sucesso!", successMessage: "Obrigado pelo contato. Responderei em breve.", ok: "Ok",
+    },
     footer: {
       copyright: "© 2025 Fábio Ghizoni. Todos os direitos reservados.",
+      rights: "Todos os direitos reservados. Feito com",
     },
   },
   pages: {

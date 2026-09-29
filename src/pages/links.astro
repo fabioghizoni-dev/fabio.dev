@@ -1,0 +1,60 @@
+---
+export const prerender = false;
+import Layout from "@/layouts/Layout.astro";
+import Logo from "@/ui/Logo.astro";
+import UnderlineButton from "@/ui/UnderlineButton.astro";
+import cn from "@/utils";
+import p from "@constants/personal";
+
+const links = [
+  { href: "/", label: "Home", icon: "mdi:home" },
+  { href: p.socials.insta, label: "Instagram", icon: "mdi:instagram" },
+  { href: p.socials.linkedin, label: "LinkedIn", icon: "mdi:linkedin" },
+  { href: p.socials.github, label: "GitHub", icon: "mdi:github" },
+  { href: p.socials.whatsapp, label: "WhatsApp", icon: "mdi:whatsapp" },
+  {
+    href: p.socials.projects.renext,
+    label: "Renext",
+    icon: "mdi:web",
+  },
+  {
+    href: p.socials.projects.jvmPortfolio,
+    label: "JVM Portfolio",
+    icon: "mdi:web",
+  },
+];
+
+const containerClass = cn(
+  `relative flex flex-col items-center gap-8 bg-white my-12 px-4 py-12 rounded-3xl min-w-2xl max-w-2xl h-fit overflow-hidden`,
+);
+---
+
+<Layout title={`Links | ${p.name}`} bodyClass="justify-center">
+  <div class={containerClass}>
+    <div class="absolute inset-0 bg-cover bg-no-repeat bg-center" />
+    <Logo width={128} height={128} class="w-32 h-auto"/>
+
+    <h1 class="font-cascadia-code font-bold text-white dark:text-black text-3xl">
+      Links úteis
+    </h1>
+
+    <ul class="flex flex-col gap-4 w-full max-w-md">
+      {
+        links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              target="_blank"
+              class="block w-full"
+              rel="noopener noreferrer"
+            >
+              <UnderlineButton variant="primary" class="justify-center w-full">
+                {link.label}
+              </UnderlineButton>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Layout>

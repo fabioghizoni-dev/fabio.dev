@@ -157,6 +157,18 @@
   }
 }
 
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spin-gradient {
+  to {
+    --angle: 360deg;
+  }
+}
+
 @keyframes blink {
   0%,
   100% {

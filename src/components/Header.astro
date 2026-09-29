@@ -1,17 +1,14 @@
 ---
-import { Image } from "astro:assets";
-import ChristmasLights from "../ui/header/ChristmasLights.astro";
-import Menu from "../ui/header/Menu.astro";
-import SwitchLang from "../ui/SwitchLang.astro";
-import SwitchTheme from "../ui/SwitchTheme.astro";
-import { removeSpaces } from "../utils";
-
-const alt = "Logo Fábio Ghizoni";
-const title = "Return to home page";
+import ChristmasLights from "@/ui/header/ChristmasLights.astro";
+import Menu from "@/ui/header/Menu.astro";
+import Logo from "@/ui/Logo.astro";
+import SwitchLang from "@/ui/SwitchLang.astro";
+import SwitchTheme from "@/ui/SwitchTheme.astro";
+import { removeSpaces } from "@/utils";
 
 const classes = {
   divHeader: removeSpaces(
-    "no-transition fixed z-1 mb-6 hidden w-full p-2 transition duration-500 ease-in-out",
+    "no-transition fixed z-50 mb-6 hidden w-full p-2 transition duration-500 ease-in-out",
   ),
   header: removeSpaces(
     `bg-gray-default relative mx-auto flex max-w-7xl items-center justify-between gap-6 rounded-full border 
@@ -26,16 +23,7 @@ const showChristmasLights = today <= new Date("2026-01-31T23:59:59");
 <div id="div-header" class={classes.divHeader}>
   <header id="header" role="heading" aria-level="1" class={classes.header}>
     {showChristmasLights && <ChristmasLights />}
-    <Image
-      id="logo"
-      alt={alt}
-      width={80}
-      height={80}
-      title={title}
-      loading="eager"
-      src="/logo.svg"
-      class="animate-show-logo h-8 cursor-pointer object-contain object-left p-0.5"
-    />
+    <Logo />
     <Menu />
     <SwitchTheme />
     <SwitchLang />

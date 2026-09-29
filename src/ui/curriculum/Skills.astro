@@ -1,25 +1,25 @@
 ---
-import p from "../../constants/personal";
-import { titleClass } from "../../layouts/Curriculum.astro";
+import { titleClass } from "@/layouts/Curriculum.astro";
+import p from "@constants/personal";
 ---
 
-<section class="grid grid-cols-2">
-  <h1 class={titleClass}>Soft Skills</h1>
+<section class="grid grid-cols-2 space-x-10">
+  <h2 class={titleClass}>Hard Skills</h2>
   <div class="order-1 flex flex-col gap-1 pt-1 pl-1 text-xl">
     {
-      p.skills.soft.map((skill) => (
+      p.skills.hard.map((skill) => (
         <span id={skill} class="font-medium">
-          {skill}
+          • {skill}
         </span>
       ))
     }
   </div>
-  <h2 class={titleClass}>Hard Skills</h2>
+  <h1 class={`${titleClass} w-full`}>Soft Skills</h1>
   <div class="order-2 flex flex-col gap-1 pt-1 pl-1 text-xl">
     {
-      p.skills.hard.map((skill) => (
-        <span id={skill} class="font-medium">
-          {skill}
+      p.skills.soft.map((skill) => (
+        <span id={skill} class="flex justify-between font-medium">
+          • {skill}
         </span>
       ))
     }

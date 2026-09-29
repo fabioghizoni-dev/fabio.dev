@@ -1,14 +1,13 @@
 ---
-import p from "../constants/personal";
-import Layout from "../layouts/Layout.astro";
-import AsciiArts from "../ui/hero-section/AsciiArts.astro";
-import CircularLogo from "../ui/hero-section/CircularLogo.astro";
-import HeroBadge from "../ui/hero-section/HeroBadge.astro";
-import ScrollToTop from "../ui/ScrollToTop.astro";
-import SocialButton from "../ui/SocialButton.astro";
-import SwitchLang from "../ui/SwitchLang.astro";
-import SwitchTheme from "../ui/SwitchTheme.astro";
-import Technologies from "../ui/Technologies.astro";
+import Layout from "@/layouts/Layout.astro";
+import CircularImg from "@/ui/hero-section/CircularImg.astro";
+import HeroBadge from "@/ui/hero-section/HeroBadge.astro";
+import ScrollToTop from "@/ui/ScrollToTop.astro";
+import SocialButton from "@/ui/SocialButton.astro";
+import SwitchLang from "@/ui/SwitchLang.astro";
+import SwitchTheme from "@/ui/SwitchTheme.astro";
+import Technologies from "@/ui/Technologies.astro";
+import p from "@constants/personal";
 
 const description = `Page Components | Page listing the components that were used on this website and in some 
   other projects.`;
@@ -54,7 +53,7 @@ export default function Page()&#123;
 
     <section class="rounded-lg border bg-white p-4 dark:bg-[var(--background)]">
       <h2 class="mb-3 text-lg font-semibold">CircularLogo</h2>
-      <div class="mb-4"><CircularLogo /></div>
+      <div class="mb-4"><CircularImg /></div>
       <details class="text-sm">
         <summary class="cursor-pointer font-medium">Uso / Snippets</summary>
         <div class="mt-3 space-y-3">
@@ -69,17 +68,17 @@ export default function Page()&#123;
     </section>
 
     <section class="rounded-lg border bg-white p-4 dark:bg-[--background]">
-      <h2 class="mb-3 text-lg font-semibold">AsciiArts</h2>
-      <div class="mb-4"><AsciiArts /></div>
+      <h2 class="mb-3 text-lg font-semibold">CircularImg</h2>
+      <div class="mb-4"><CircularImg /></div>
       <details class="text-sm">
         <summary class="cursor-pointer font-medium">Uso / Snippets</summary>
-        <div class="mt-3">
+        <div class="mt-3 space-y-3">
           <pre
             class="rounded bg-slate-900 p-3 text-slate-100"><code>---
-      import AsciiArts from '../ui/AsciiArts.astro';
+      import CircularImg from '../ui/hero-section/CircularImg.astro';
       ---
 
-      &lt;AsciiArts /&gt;</code></pre>
+      &lt;CircularImg /&gt;</code></pre>
         </div>
       </details>
     </section>

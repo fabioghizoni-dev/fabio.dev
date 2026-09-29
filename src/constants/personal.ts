@@ -1,6 +1,7 @@
 import { removeSpaces } from "../utils";
 
 const name = "Fábio Henrique";
+const newHttps = (domain: string) => `https://${domain}`;
 
 export default {
   country: "Brasil",
@@ -11,16 +12,20 @@ export default {
   socials: {
     x: "@FGhizoni28539",
     number: "+55 (43) 999828-0078",
-    whatsapp: "https://wa.me/5543998280078",
-    github: "https://github.com/fabioghizoni-dev",
-    insta: "https://www.instagram.com/fabio.ghizoni_",
-    linkedin: "https://br.linkedin.com/in/fábioghizoni",
+    whatsapp: newHttps("wa.me/5543998280078"),
+    github: newHttps("github.com/fabioghizoni-dev"),
+    insta: newHttps("www.instagram.com/fabio.ghizoni_"),
+    linkedin: newHttps("br.linkedin.com/in/fábioghizoni"),
+    projects: {
+      renext: newHttps("renext-digital.vercel.app"),
+      jvmPortfolio: newHttps("jvm-portfolio.vercel.app"),
+    },
   },
   email: {
     main: "dev6solucoes@gmail.com",
     alternative: "fabiohenriqueghizoni10@gmail.com",
   },
-  siteUrl: "https://portfolio-fabio-main.vercel.app",
+  siteUrl: newHttps("portfolio-fabio-main.vercel.app"),
   skills: {
     soft: [
       "Comunicação",
@@ -43,11 +48,11 @@ export default {
       "Frameworks(NextJS, Astro, Laravel, ExpressJS, Spring Boot)",
     ],
   },
-  professionalSummary: removeSpaces(
-    `Sou um Desenvolvedor Full Stack proativo e comunicativo. Concluí a faculdade de Análise e Desenvolvimento de Sistemas 
+  professionalSummary: `Sou um Desenvolvedor Full Stack proativo e comunicativo. Concluí a faculdade de Análise e Desenvolvimento de Sistemas 
     em julho de 2025, mas desde sempre venho adquirindo mais conhecimento e aprimorando ainda mais minhas habilidades. Sempre 
-    que possível, desenvolvo projetos pessoais e pequenas soluções que crio para melhorar meu dia a dia.`,
-  ),
+    que possível, desenvolvo projetos pessoais e pequenas soluções que crio para melhorar meu dia a dia.
+
+    Atualmente estou buscando novas oportunidades na área de desenvolvimento de software onde posso agregar com meus conhecimentos.`,
   professionalHistory: [
     {
       date: "Março de 2020 - Setembro de 2022",
@@ -86,13 +91,19 @@ export default {
       date: "Julho de 2022 - Agosto de 2022",
       name: "Curso Técnico de Elétrica Automotiva",
       institution: "Senac/PR",
-      status: "Concluído"
+      status: "Concluído",
     },
     {
       date: "Fevereiro de 2023 - Julho de 2025",
       name: "Tecnólogo em Análise e Desenvolvimento de Sistemas",
       institution: "Univale (Faculdades Integradas do Vale do Ivaí)",
-      status: "Concluído"
-    }
-  ]
+      status: "Concluído",
+    },
+    {
+      date: "Abril de 2026",
+      name: "Bacharelado em Engenharia da Computação",
+      institution: "Uningá - Centro Universitário",
+      status: "Em andamento",
+    },
+  ],
 };

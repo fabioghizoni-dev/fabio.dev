@@ -1,19 +1,21 @@
 ---
+import Modal from "@/ui/Modal.astro";
+import SocialButton from "@/ui/SocialButton.astro";
+import cn from "@/utils";
+import { dict } from "@/i18n";
+import p from "@constants/personal";
 import { actions } from "astro:actions";
-import p from "../constants/personal";
-import Modal from "../ui/Modal.astro";
-import SocialButton from "../ui/SocialButton.astro";
-import cn from "../utils";
 
 let showModal = false;
 const actionResult = Astro.getActionResult(actions.send);
 if (actionResult?.data?.success) showModal = true;
+const contactText = dict["pt-BR"].components.contactMeActive;
 ---
 
 <section
   id="contact-me"
   class={cn(
-    "flex bg-light flex-col w-full min-h-screen justify-center items-center font-cascadia-code gap-8 px-8 py-12",
+    "flex flex-col justify-center items-center gap-8 bg-light px-8 py-12 w-full min-h-screen font-cascadia-code",
   )}
 >
   {
@@ -22,49 +24,52 @@ if (actionResult?.data?.success) showModal = true;
         btnLabel="Ok"
         switchLang={false}
         id="modal-success-email"
-        title="Email sent successfully!"
-        message="Thank you for contacting me. Keep an eye on your email, I'll reply shortly."
+        title={contactText.successTitle}
+        message={contactText.successMessage}
+        titleKey="components.contactMeActive.successTitle"
+        messageKey="components.contactMeActive.successMessage"
+        btnLabelKey="components.contactMeActive.ok"
       />
     )
   }
-  <h1 class="text-center text-3xl font-medium md:text-4xl dark:text-white">
-    Get in touch
+  <h1 class="font-medium dark:text-white text-3xl md:text-4xl text-center">
+    <span data-i18n="components.contactMeActive.title">{contactText.title}</span>
   </h1>
-  <h2 class="max-w-5xl text-center text-lg md:text-2xl dark:text-white">
-    I'm always open to new opportunities and collaborations. Feel free to
-    contact me through any of the channels below.
+  <h2 class="max-w-5xl dark:text-white text-lg md:text-2xl text-center">
+    <span data-i18n="components.contactMeActive.subtitle">{contactText.subtitle}</span>
   </h2>
   <div
-    class="flex w-full flex-wrap items-center justify-center gap-4 *:flex-1 md:gap-8 md:*:flex-none"
+    class="flex flex-wrap md:*:flex-none *:flex-1 justify-center items-center gap-4 md:gap-8 w-full"
   >
-    <SocialButton>Whatsapp</SocialButton>
+    <SocialButton><span data-i18n="components.contactMeActive.social.whatsapp">{contactText.social.whatsapp}</span></SocialButton>
     <SocialButton
       name="line-md:instagram"
       title={p.socials.insta}
       href={p.socials.insta}
     >
-      Instagram
+      <span data-i18n="components.contactMeActive.social.instagram">{contactText.social.instagram}</span>
     </SocialButton>
     <SocialButton
       name="line-md:github"
       title={p.socials.github}
-      href={p.socials.github}>Github</SocialButton
+      href={p.socials.github}><span data-i18n="components.contactMeActive.social.github">{contactText.social.github}</span></SocialButton
     >
     <SocialButton
       name="line-md:linkedin"
       title={p.socials.linkedin}
-      href={p.socials.linkedin}>LinkedIn</SocialButton
+      href={p.socials.linkedin}><span data-i18n="components.contactMeActive.social.linkedin">{contactText.social.linkedin}</span></SocialButton
     >
   </div>
   <form
     method="post"
     id="contact-form"
     name="contact-form"
-    class="text-gray-default flex w-full max-w-2xl flex-col gap-4 text-base md:text-2xl dark:text-white"
+    class="flex flex-col gap-4 w-full max-w-2xl text-gray-default dark:text-white text-base md:text-2xl"
   >
+    <input type="hidden" name="language" value="pt-BR" data-language-input />
     <div class="flex flex-col gap-2">
-      <label for="name" class="text-base font-medium md:text-2xl"
-        >Your name</label
+      <label for="name" class="font-medium text-base md:text-2xl"
+        ><span data-i18n="components.contactMeActive.form.name">{contactText.form.name}</span></label
       >
       <input
         required
@@ -74,13 +79,14 @@ if (actionResult?.data?.success) showModal = true;
         minlength="2"
         maxlength="100"
         autocomplete="name"
-        placeholder="Your name here"
-        class="rounded-lg border-2 border-white/30 bg-black px-3 py-2 text-white transition placeholder:text-white/50 focus:border-white/70 focus:outline-none md:px-4"
+        placeholder="Seu nome aqui"
+        data-i18n-attr="placeholder:components.contactMeActive.form.namePlaceholder"
+        class="bg-black px-3 md:px-4 py-2 border-2 border-white/30 focus:border-white/70 rounded-lg focus:outline-none text-white placeholder:text-white/50 transition"
       />
     </div>
     <div class="flex flex-col gap-2">
-      <label for="email" class="text-base font-medium md:text-2xl"
-        >Your e-mail</label
+      <label for="email" class="font-medium text-base md:text-2xl"
+        ><span data-i18n="components.contactMeActive.form.email">{contactText.form.email}</span></label
       >
       <input
         required
@@ -89,13 +95,14 @@ if (actionResult?.data?.success) showModal = true;
         name="email"
         maxlength="255"
         autocomplete="email"
-        placeholder="your.email@example.com"
-        class="rounded-lg border-2 border-white/30 bg-black px-3 py-2 text-white transition placeholder:text-white/50 focus:border-white/70 focus:outline-none md:px-4"
+        placeholder="seu.email@exemplo.com"
+        data-i18n-attr="placeholder:components.contactMeActive.form.emailPlaceholder"
+        class="bg-black px-3 md:px-4 py-2 border-2 border-white/30 focus:border-white/70 rounded-lg focus:outline-none text-white placeholder:text-white/50 transition"
       />
     </div>
     <div class="flex flex-col gap-2">
-      <label for="message" class="text-base font-medium md:text-2xl"
-        >Your message</label
+      <label for="message" class="font-medium text-base md:text-2xl"
+        ><span data-i18n="components.contactMeActive.form.message">{contactText.form.message}</span></label
       >
       <textarea
         required
@@ -104,20 +111,19 @@ if (actionResult?.data?.success) showModal = true;
         name="message"
         minlength="10"
         maxlength="2000"
-        placeholder="Write your message here..."
-        class="resize-none rounded-lg border-2 border-white/30 bg-black px-3 py-2 text-white transition placeholder:text-white/50 focus:border-white/70 focus:outline-none md:px-4"
+        placeholder="Escreva sua mensagem aqui..."
+        data-i18n-attr="placeholder:components.contactMeActive.form.messagePlaceholder"
+        class="bg-black px-3 md:px-4 py-2 border-2 border-white/30 focus:border-white/70 rounded-lg focus:outline-none text-white placeholder:text-white/50 transition resize-none"
       ></textarea>
     </div>
     <button
       id="submit"
       type="submit"
       class={cn(
-        `flex justify-center items-center gap-4 bg-linear-to-r from-purple-default to-purple-blue text-white px-6 py-3 mt-4 
-          cursor-pointer rounded-lg text-base md:text-xl transition hover:text-white/70 disabled:opacity-50 
-            disabled:cursor-not-allowed`,
+        `flex justify-center items-center gap-4 bg-linear-to-r from-purple-default to-purple-blue disabled:opacity-50 mt-4 px-6 py-3 rounded-lg text-white hover:text-white/70 text-base md:text-xl transition cursor-pointer disabled:cursor-not-allowed`,
       )}
     >
-      Send message
+      <span data-i18n="components.contactMeActive.form.submit">{contactText.form.submit}</span>
     </button>
   </form>
 </section>

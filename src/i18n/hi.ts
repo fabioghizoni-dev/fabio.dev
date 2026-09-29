@@ -1,40 +1,59 @@
+import { calculateAge } from "../scripts/about-me";
+
 export const hi = {
   name: "हिन्दी",
+  ascii: {
+    sequences: [
+      { keyword: "चलो बात करें", word: "TALK?" },
+      { keyword: "आओ", word: "BUILD!" },
+      { keyword: "आराम से", word: "RELAX!" },
+    ],
+  },
   actions: {
     email: {
-      max: "Email is too long",
-      email: "Invalid email address",
+      max: "ईमेल बहुत लंबा है",
+      email: "अमान्य ईमेल पता",
     },
     name: {
-      max: "Name is too long",
-      min: "Name must have at least 2 characters",
+      max: "नाम बहुत लंबा है",
+      min: "नाम में कम से कम 2 अक्षर होने चाहिए",
     },
     message: {
-      max: "Message is too long",
-      min: "Message must have at least 10 characters",
+      max: "संदेश बहुत लंबा है",
+      min: "संदेश में कम से कम 10 अक्षर होने चाहिए",
     },
   },
   components: {
     aboutMe: {
       me: "me",
       about: "About",
-      text: "Hello!! My name is Fábio, I'm {AGE} years old, and I live in Manoel Ribas, Paraná - Brazil. I'm a very curious guy who enjoys learning how everything works. That's why I'm passionate about technology, which is a very broad and interesting field. I'm a full-stack developer, creating intuitive and dynamic interfaces with interactivity and accessibility. My main experience is in the web, but I've also developed desktop and mobile applications. I graduated with a degree in Systems Analysis and Development and am now seeking to learn more about various technologies, such as Python, Kotlin, Swift, React Native, and more.",
+      text: `Hello!! My name is Fábio, I'm ${calculateAge("2005-05-30")} years old, and I live in Manoel Ribas, Paraná - Brazil. I'm a very curious guy who enjoys learning how everything works. That's why I'm passionate about technology, which is a very broad and interesting field. I'm a full-stack developer, creating intuitive and dynamic interfaces with interactivity and accessibility. My main experience is in the web, but I've also developed desktop and mobile applications. I graduated with a degree in Systems Analysis and Development and am now seeking to learn more about various technologies, such as Python, Kotlin, Swift, React Native, and more.`,
     },
     header: {
-      home: "Home",
-      about: "About",
-      contact: "Contact",
-      returnHome: "Return to home page",
-      changeLanguage: "Change language",
-      changeTheme: "Change theme",
+      home: "होम",
+      about: "मेरे बारे में",
+      contact: "संपर्क",
+      returnHome: "होम पेज पर वापस जाएँ",
+      changeLanguage: "भाषा बदलें",
+      changeTheme: "थीम बदलें",
     },
     hero: {
-      badge: "Full-Stack Developer",
-      cvDownload: "Download CV",
+      greeting: "मैं हूँ",
+      badge: "फुल-स्टैक डेवलपर",
+      cvDownload: "सीवी डाउनलोड करें",
     },
     projects: {
-      title: "Projects",
-      seeProject: "See project",
+      title: "प्रोजेक्ट्स",
+      seeProject: "प्रोजेक्ट देखें",
+      viewCode: "कोड देखें",
+      items: {
+        renext: { title: "Renext", description: "Renext - आधुनिक वेबसाइट, आकर्षक सामग्री और परिणाम देने वाली रणनीतियाँ बनाने वाली डिजिटल एजेंसी।" },
+        jvmPortfolio: { title: "JVM Portfolio", description: "React, एनिमेशन, डार्क थीम और साफ UI वाला आधुनिक डेवलपर पोर्टफोलियो।" },
+        qrGenerator: { title: "QR Code Generator", description: "रंग, आकार, आकृतियों और SVG या canvas डाउनलोड वाला अनुकूलन योग्य QR टूल।" },
+        gradientGenerator: { title: "Gradient Generator", description: "नॉइज़, कई रंग स्टॉप, लाइव प्रीव्यू और एक्सपोर्ट वाला इंटरैक्टिव टूल।" },
+        fabioDev: { title: "Fabio Dev", description: "10 भाषाओं के i18n, डार्क थीम और SSR वाला Astro और React पोर्टफोलियो।" },
+        restApi: { title: "REST API", description: "JWT, CRUD, PostgreSQL और त्रुटि प्रबंधन वाली Node.js और Express REST API।" },
+      },
     },
     contactMe: {
       title: "Get in touch",
@@ -56,8 +75,15 @@ export const hi = {
         linkedin: "LinkedIn",
       },
     },
+    contactMeActive: {
+      title: "संपर्क करें", subtitle: "मैं हमेशा नए अवसरों और सहयोग के लिए तैयार हूँ। नीचे दिए गए किसी भी माध्यम से संपर्क करें।",
+      form: { name: "आपका नाम", namePlaceholder: "यहाँ अपना नाम लिखें", email: "आपका ई-मेल", emailPlaceholder: "your.email@example.com", message: "आपका संदेश", messagePlaceholder: "अपना संदेश यहाँ लिखें...", submit: "संदेश भेजें" },
+      social: { whatsapp: "Whatsapp", instagram: "Instagram", github: "Github", linkedin: "LinkedIn" },
+      successTitle: "ई-मेल सफलतापूर्वक भेजा गया!", successMessage: "संपर्क करने के लिए धन्यवाद। मैं जल्द जवाब दूँगा।", ok: "ठीक है",
+    },
     footer: {
       copyright: "© 2025 Fábio Ghizoni. All rights reserved.",
+      rights: "सभी अधिकार सुरक्षित। बनाया गया",
     },
   },
   pages: {

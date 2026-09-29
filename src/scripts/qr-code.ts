@@ -6,7 +6,7 @@ import type {
 } from "qr-code-styling";
 import QRCode from "qr-code-styling";
 
-const initQrCode = () => {
+export const initQrCode = () => {
   const params = new URLSearchParams(window.location.search);
 
   const getParam = <T = string>(key: string, fallback?: T): T | null => {

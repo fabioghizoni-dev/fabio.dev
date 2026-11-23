@@ -32,6 +32,7 @@ const btnBaseClass = cn(
   inline ? "flex" : "hidden md:flex",
 );
 const btnFinalClass = cn(btnBaseClass, className);
+const listId = `${id}-list`;
 
 const iconFinalClass = cn(
   "size-full text-white hover:text-purple-blue transition-colors duration-200 ease-in-out",
@@ -39,7 +40,10 @@ const iconFinalClass = cn(
 );
 ---
 
-<div class={inline ? "relative" : "hidden md:block relative"}>
+<div
+  data-language-switcher
+  class={inline ? "relative" : "hidden md:block relative"}
+>
   <button
     type={type}
     translate={translate}
@@ -47,8 +51,9 @@ const iconFinalClass = cn(
     title={title}
     aria-label={ariaLabel}
     data-i18n-attr="title:components.header.changeLanguage|aria-label:components.header.changeLanguage"
+    data-lang-button
     aria-expanded="false"
-    aria-controls="list-langs"
+    aria-controls={listId}
     class={btnFinalClass}
     {...rest}
   >
@@ -59,7 +64,8 @@ const iconFinalClass = cn(
     />
   </button>
   <ul
-    id="list-langs"
+    id={listId}
+    data-lang-list
     class={cn(
       `invisible top-full left-1/2 z-50 absolute flex flex-col gap-1 bg-gray-default opacity-0 shadow-black/20 shadow-xl mt-3 p-1 border border-white/35 rounded-lg max-h-0 overflow-y-auto font-inter font-normal text-base transition-all -translate-x-1/2 duration-200 ease-in-out`,
     )}

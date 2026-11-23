@@ -1,10 +1,10 @@
+import { invalidateProjectsCache, seedProjects } from "@/lib/projects";
 import { z } from "astro/zod";
 import { ActionError, defineAction } from "astro:actions";
-import { invalidateProjectsCache, seedProjects } from "@/lib/projects";
 import { requireActionUser } from "./_helpers";
 
 const ProjectSchema = z.object({
-  id: z.string().uuid().optional(),
+  id: z.uuid().optional(),
   title: z.string().trim().min(2, "Título muito curto.").max(120),
   description: z.string().trim().min(10, "Descrição muito curta.").max(2000),
   techs: z.string().trim().max(500).optional(),
@@ -14,7 +14,7 @@ const ProjectSchema = z.object({
 });
 
 const IdSchema = z.object({
-  id: z.string().uuid("Projeto inválido."),
+  id: z.uuid("Projeto inválido."),
 });
 
 const parseTechs = (value?: string): string[] => {
@@ -90,7 +90,7 @@ export const projectActions = {
 
     update: defineAction({
       accept: "form",
-      input: ProjectSchema.extend({ id: z.string().uuid("Projeto inválido.") }),
+      input: ProjectSchema.extend({ id: z.uuid("Projeto inválido.") }),
       handler: async (input, context) => {
         const supabase = await requireActionUser(
           context.cookies,

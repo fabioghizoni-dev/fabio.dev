@@ -91,7 +91,7 @@ const missing = Astro.url.searchParams.has("missing");
     )}
 
     {projects.length === 0 ? (
-      <div class="rounded-2xl border border-dashed border-white/15 bg-white/[0.03] p-8 text-center">
+      <div class="rounded-2xl border border-dashed border-white/20 bg-[#160a2e]/30 p-8 text-center backdrop-blur-xl">
         <Icon
           name="material-symbols:folder-off-rounded"
           aria-hidden="true"
@@ -121,7 +121,7 @@ const missing = Astro.url.searchParams.has("missing");
     ) : (
       <ul class="grid gap-3">
         {projects.map((project) => (
-          <li class="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+          <li class="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-white/15 bg-[#160a2e]/35 p-4 backdrop-blur-xl">
             <div class="min-w-0 flex-1">
               <div class="flex flex-wrap items-center gap-2">
                 <h2 class="truncate font-space-grotesk text-base font-bold text-white">

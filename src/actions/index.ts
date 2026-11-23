@@ -1,5 +1,5 @@
 import getHtml from "@/emails/Welcome";
-import { dict, DEFAULT_LANGUAGE, resolveLanguage } from "@/i18n";
+import { DEFAULT_LANGUAGE, dict, resolveLanguage } from "@/i18n";
 import p from "@constants/personal";
 import { z } from "astro/zod";
 import { ActionError, defineAction } from "astro:actions";
@@ -12,7 +12,7 @@ import { projectActions } from "./projects";
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 const InputSchema = z.object({
-  email: z.string().trim(),
+  email: z.email().trim(),
   name: z.string().trim(),
   message: z.string().trim(),
   language: z.string().optional(),

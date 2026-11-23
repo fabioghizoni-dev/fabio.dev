@@ -1,9 +1,9 @@
 ---
 import { DEFAULT_LANGUAGE, dict } from "@/i18n";
+import PatternBg from "@/ui/PatternBg.astro";
 import { removeSpaces } from "@/utils";
 import p from "@constants/personal";
 import { Icon } from "astro-icon/components";
-import PatternBg from "@/ui/PatternBg.astro";
 
 const about = dict[DEFAULT_LANGUAGE].components?.aboutMe;
 const text = about?.text ?? "";
@@ -32,7 +32,7 @@ const chipClass = removeSpaces(
     class="absolute inset-0 overflow-hidden pointer-events-none mask-[linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]"
   >
     <PatternBg />
-    <span class="hidden md:block top-10/12 -right-8 absolute font-black text-[22rem] text-white/10 leading-none -translate-y-1/2 select-none">
+    <span class="hidden md:block top-10/12 -right-8 absolute font-black text-[22rem] text-white/30 dark:text-white/10 leading-none -translate-y-1/2 select-none">
       &lt;/&gt;
     </span>
   </div>

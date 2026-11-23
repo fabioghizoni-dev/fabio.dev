@@ -102,7 +102,6 @@ const PRODUCTS = [
       </p>
     </div>
 
-    <!-- Search/Filter Section -->
     <div class="mx-auto mb-16 max-w-md">
       <div class="relative">
         <input
@@ -127,7 +126,6 @@ const PRODUCTS = [
       </div>
     </div>
 
-    <!-- Products Grid -->
     <div
       id="products-grid"
       class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
@@ -151,7 +149,6 @@ const PRODUCTS = [
       ))}
     </div>
 
-    <!-- Empty State -->
     <div id="no-results" class="hidden py-20 text-center">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -175,12 +172,10 @@ const PRODUCTS = [
 </Layout>
 
 <script>
-  // Simple client-side search logic
   document.addEventListener("astro:page-load", () => {
     setupSearch();
   });
 
-  // Fallback for initial load if view transitions aren't used or behave differently
   document.addEventListener("DOMContentLoaded", () => {
     setupSearch();
   });

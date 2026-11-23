@@ -28,7 +28,10 @@ const {
   ...props
 }: Props = Astro.props;
 
-const finalClass = cn("relative min-w-64 min-h-64 size-64 group", className);
+const finalClass = cn(
+  "relative min-w-64 min-h-64 size-64 group max-[360px]:scale-[0.85]",
+  className,
+);
 const circularTextFinalClass = cn(
   "absolute inset-0 -m-10 whitespace-pre text-4xl font-space-grotesk",
   circularTextClass,
@@ -46,7 +49,7 @@ const circularTextFinalClass = cn(
     aria-hidden="true"
     focusable="false"
     class={cn(
-      `${circularTextFinalClass} ${isAnimated ? "animate-spin-slow group-hover:pause motion-reduce:animate-none" : ""} max-md:hidden`,
+      `${circularTextFinalClass} ${isAnimated ? "animate-spin-slow group-hover:pause motion-reduce:animate-none" : ""}`,
     )}
   >
     <path

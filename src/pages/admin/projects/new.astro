@@ -29,7 +29,7 @@ if (result?.data?.success) return Astro.redirect("/admin/projects?saved=1");
       </p>
     </div>
 
-    <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-5 sm:p-6">
+    <div class="rounded-2xl border border-white/15 bg-[#160a2e]/35 p-5 shadow-xl backdrop-blur-xl sm:p-6">
       <ProjectForm mode="create" error={result?.error?.message} />
     </div>
   </div>

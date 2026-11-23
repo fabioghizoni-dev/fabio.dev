@@ -2,6 +2,8 @@
 export const prerender = false;
 
 import Layout from "@/layouts/Layout.astro";
+import GradientBg from "@/ui/GradientBg.astro";
+import PatternBg from "@/ui/PatternBg.astro";
 import { actions } from "astro:actions";
 import { Icon } from "astro-icon/components";
 import p from "@constants/personal";
@@ -30,116 +32,121 @@ const inputClass =
   modal={false}
   clientRouter={false}
   dataTheme="dark"
-  bodyClass="justify-center bg-[#0b0714]"
+  bodyClass="justify-center"
 >
-  <div class="relative flex w-full max-w-md flex-col gap-6 px-4 py-16">
-    <div
-      aria-hidden="true"
-      class="absolute -top-20 left-1/2 -z-10 size-72 -translate-x-1/2 rounded-full bg-fuchsia-600/25 blur-3xl"
-    ></div>
+  <div class="relative flex min-h-screen w-full items-center justify-center overflow-hidden px-4 py-16">
+    <GradientBg />
+    <PatternBg />
 
-    <div class="text-center">
-      <a
-        href="/"
-        class="inline-flex items-center gap-2 font-cascadia-code text-xs text-white/40 transition-colors hover:text-white/80"
-      >
-        <Icon name="material-symbols:arrow-back-rounded" aria-hidden="true" />
-        voltar ao site
-      </a>
-      <h1 class="mt-4 font-space-grotesk text-3xl font-black text-white">
-        Área restrita
-      </h1>
-      <p class="mt-2 text-sm text-white/50">
-        Entre para gerenciar o currículo e os projetos do portfólio.
-      </p>
-    </div>
+    <div class="relative z-10 flex w-full max-w-md flex-col gap-6">
+      <div
+        aria-hidden="true"
+        class="absolute -top-20 left-1/2 -z-10 size-72 -translate-x-1/2 rounded-full bg-fuchsia-600/25 blur-3xl"
+      ></div>
 
-    <div class="rounded-3xl border border-white/10 bg-white/[0.04] p-6 shadow-2xl backdrop-blur">
-      {isSupabaseConfigured ? (
-        <form
-          method="post"
-          action={actions.auth.login}
-          class="flex flex-col gap-4"
+      <div class="text-center">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 font-cascadia-code text-xs text-white/40 transition-colors hover:text-white/80"
         >
-          <div class="flex flex-col gap-2">
-            <label for="email" class="text-sm font-medium text-white/70">
-              E-mail
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              autocomplete="email"
-              placeholder="voce@exemplo.com"
-              class={inputClass}
-            />
-          </div>
+          <Icon name="material-symbols:arrow-back-rounded" aria-hidden="true" />
+          voltar ao site
+        </a>
+        <h1 class="mt-4 font-space-grotesk text-3xl font-black text-white">
+          Área restrita
+        </h1>
+        <p class="mt-2 text-sm text-white/50">
+          Entre para gerenciar o currículo e os projetos do portfólio.
+        </p>
+      </div>
 
-          <div class="flex flex-col gap-2">
-            <label for="password" class="text-sm font-medium text-white/70">
-              Senha
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              autocomplete="current-password"
-              placeholder="••••••••"
-              class={inputClass}
-            />
-          </div>
-
-          {errorMessage && (
-            <p
-              role="alert"
-              class="rounded-xl border border-red-400/20 bg-red-400/10 px-3 py-2 text-sm text-red-200"
-            >
-              {errorMessage}
-            </p>
-          )}
-
-          <button
-            type="submit"
-            class="mt-2 flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-fuchsia-500 to-purple-600 px-4 py-3 font-semibold text-white transition-opacity hover:opacity-90"
+      <div class="rounded-3xl border border-white/15 bg-[#160a2e]/35 p-6 shadow-2xl backdrop-blur-xl">
+        {isSupabaseConfigured ? (
+          <form
+            method="post"
+            action={actions.auth.login}
+            class="flex flex-col gap-4"
           >
-            Entrar
-            <Icon
-              name="material-symbols:login-rounded"
-              aria-hidden="true"
-              class="size-5"
-            />
-          </button>
-        </form>
-      ) : (
-        <div class="flex flex-col gap-4 text-sm text-white/70">
-          <div class="flex items-start gap-3">
-            <Icon
-              name="material-symbols:warning-rounded"
-              aria-hidden="true"
-              class="mt-0.5 size-5 shrink-0 text-amber-300"
-            />
-            <p>
-              O Supabase ainda não está configurado. Defina as variáveis abaixo
-              no <code class="text-white">.env</code>:
-            </p>
-          </div>
-          <pre class="overflow-x-auto rounded-xl bg-black/50 p-3 font-cascadia-code text-xs text-emerald-200"><code>SUPABASE_URL=...
+            <div class="flex flex-col gap-2">
+              <label for="email" class="text-sm font-medium text-white/70">
+                E-mail
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                autocomplete="email"
+                placeholder="voce@exemplo.com"
+                class={inputClass}
+              />
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <label for="password" class="text-sm font-medium text-white/70">
+                Senha
+              </label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                autocomplete="current-password"
+                placeholder="••••••••"
+                class={inputClass}
+              />
+            </div>
+
+            {errorMessage && (
+              <p
+                role="alert"
+                class="rounded-xl border border-red-400/20 bg-red-400/10 px-3 py-2 text-sm text-red-200"
+              >
+                {errorMessage}
+              </p>
+            )}
+
+            <button
+              type="submit"
+              class="mt-2 flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-fuchsia-500 to-purple-600 px-4 py-3 font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              Entrar
+              <Icon
+                name="material-symbols:login-rounded"
+                aria-hidden="true"
+                class="size-5"
+              />
+            </button>
+          </form>
+        ) : (
+          <div class="flex flex-col gap-4 text-sm text-white/70">
+            <div class="flex items-start gap-3">
+              <Icon
+                name="material-symbols:warning-rounded"
+                aria-hidden="true"
+                class="mt-0.5 size-5 shrink-0 text-amber-300"
+              />
+              <p>
+                O Supabase ainda não está configurado. Defina as variáveis
+                abaixo no <code class="text-white">.env</code>:
+              </p>
+            </div>
+            <pre class="overflow-x-auto rounded-xl bg-black/50 p-3 font-cascadia-code text-xs text-emerald-200"><code>SUPABASE_URL=...
 SUPABASE_ANON_KEY=...</code></pre>
-          <p class="text-white/50">
-            Depois rode o SQL de{" "}
-            <code class="text-white">supabase/schema.sql</code>
-            no Supabase e crie seu usuário em Authentication → Users.
-          </p>
-          {setupRequested && (
-            <p class="text-xs text-amber-200/80">
-              Você foi redirecionado para cá porque tentou abrir uma rota
-              administrativa.
+            <p class="text-white/50">
+              Depois rode o SQL de{" "}
+              <code class="text-white">supabase/schema.sql</code>
+              no Supabase e crie seu usuário em Authentication → Users.
             </p>
-          )}
-        </div>
-      )}
+            {setupRequested && (
+              <p class="text-xs text-amber-200/80">
+                Você foi redirecionado para cá porque tentou abrir uma rota
+                administrativa.
+              </p>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   </div>
 </Layout>

@@ -14,18 +14,16 @@ const role = components?.hero?.badge ?? "Full-Stack Developer";
 ---
 
 <div class:list={["relative h-full w-full", className]}>
-  <div
-    class="relative flex flex-col justify-center items-center lg:items-start gap-4 lg:gap-8 h-full lg:text-left text-center"
-  >
+  <div class="relative flex flex-col justify-center items-center lg:items-start gap-4 lg:gap-8 h-full lg:text-left text-center">
     <div class="relative">
       <h1 class="flex flex-col items-center lg:items-start gap-2">
         <span
           data-i18n="components.hero.greeting"
-          class="font-cascadia-code font-semibold text-[10px] text-gray-default dark:text-white/65 uppercase tracking-[0.35em]"
+          class="font-cascadia-code font-bold text-gray-default lg:text-[10px] dark:text-white/65 text-xs uppercase tracking-[0.35em]"
         >
           Olá, eu sou
         </span>{" "}
-        <span class="inline-flex flex-col bg-clip-text bg-linear-to-br from-white to-white/35 font-black text-transparent text-5xl sm:text-6xl leading-[0.92] tracking-tight">
+        <span class="inline-flex flex-col bg-clip-text bg-linear-to-br from-white to-white/35 font-black text-transparent text-6xl leading-[0.92] tracking-tight">
           <span>Fábio</span> <span>Ghizoni</span>
         </span>
       </h1>
@@ -41,15 +39,15 @@ const role = components?.hero?.badge ?? "Full-Stack Developer";
       </span>
       <div class="min-w-0">
         <p
-          class="font-space-grotesk font-bold text-gray-default dark:text-white/80 text-base"
+          class="font-space-grotesk font-bold text-gray-default dark:text-white/80 lg:text-base text-lg"
           data-i18n="components.hero.badge"
         >
           {role}
         </p>
         <p
-          class="mt-0.5 font-cascadia-code text-[11px] text-gray-default dark:text-white/80"
+          class="mt-0.5 font-cascadia-code font-semibold text-[0.75rem] text-gray-default dark:text-white/80"
         >
-          Astro · React · TypeScript · Node.js
+          Astro ᝰ React ᝰ TypeScript ᝰ Node.js
         </p>
       </div>
     </div>

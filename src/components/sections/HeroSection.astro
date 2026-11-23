@@ -48,11 +48,11 @@ const iconCurve = [
         class="justify-self-center lg:justify-self-end"
       />
 
-      <div class="relative flex justify-between items-center gap-2 mt-3 w-64">
+      <div class="relative flex justify-between items-center gap-2 mt-3 lg:w-64">
         {techs.map((tech, index) => (
           <span
             class:list={[
-              "place-items-center grid bg-gray-default border border-white/35 hover:border-purple-blue rounded-full size-10 transition-all duration-300",
+              "place-items-center grid bg-gray-default border border-white/35 hover:border-purple-blue rounded-full size-12 lg:size-10 transition-all duration-300",
               iconCurve[index],
             ]}
             title={tech.name}
@@ -60,7 +60,7 @@ const iconCurve = [
             <Icon
               name={tech.icon}
               aria-hidden="true"
-              class:list={["size-4.5", techColor[tech.name]]}
+              class:list={["size-5 lg:size-4.5", techColor[tech.name]]}
             />
             <span class="sr-only">{tech.name}</span>
           </span>

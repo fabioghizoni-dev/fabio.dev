@@ -8,9 +8,10 @@ const getStoredLanguage = (): string | null => {
   }
 };
 
-export const setupLanguageSwitcher = (): void => {
-  const button = document.getElementById("btn-lang");
-  const list = document.getElementById("list-langs");
+const setupSwitcher = (switcher: HTMLElement): void => {
+  const button =
+    switcher.querySelector<HTMLButtonElement>("[data-lang-button]");
+  const list = switcher.querySelector<HTMLUListElement>("[data-lang-list]");
 
   if (!button || !list || button.dataset.initialized) return;
   button.dataset.initialized = "true";
@@ -137,14 +138,16 @@ export const setupLanguageSwitcher = (): void => {
 
   document.addEventListener("click", (event) => {
     const target = event.target;
-    if (
-      isOpen &&
-      target instanceof Element &&
-      !target.closest("#btn-lang, #list-langs")
-    ) {
+    if (isOpen && target instanceof Element && !switcher.contains(target)) {
       hide();
     }
   });
+};
+
+export const setupLanguageSwitcher = (): void => {
+  document
+    .querySelectorAll<HTMLElement>("[data-language-switcher]")
+    .forEach(setupSwitcher);
 };
 
 addEventListener("DOMContentLoaded", setupLanguageSwitcher);

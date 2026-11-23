@@ -18,6 +18,7 @@ logs/
 .env
 .env.local
 .env.production
+.env.test
 
 # macOS-specific files
 .DS_Store

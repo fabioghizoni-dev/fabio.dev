@@ -167,9 +167,7 @@ export const en = {
       description:
         "Page listing all routes available on the website for easy navigation.",
     },
-    home: {
-      // Index specific if any separate from components
-    },
+    home: {},
   },
   ui: {
     skipToContent: "Skip to content",
@@ -185,11 +183,7 @@ export const en = {
     scrollTop: {
       title: "Scroll to top of page",
     },
-    switchLang: {
-      // ...
-    },
-    switchTheme: {
-      // ...
-    },
+    switchLang: {},
+    switchTheme: {},
   },
 };

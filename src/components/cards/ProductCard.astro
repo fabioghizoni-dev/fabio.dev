@@ -11,7 +11,6 @@ interface Props {
 
 const { title, price, image, link, source, description, badge } = Astro.props;
 
-// Helper to determine badge color based on source
 const getSourceColor = (source: string) => {
   const s = source.toLowerCase();
   if (s.includes("shopee")) return "bg-orange-500";
@@ -26,7 +25,6 @@ const badgeColor = getSourceColor(source);
 ---
 
 <article class="group relative flex flex-col overflow-hidden rounded-xl border border-black/10 bg-white/50 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:border-white/10 dark:bg-black/50">
-  <!-- Image Container -->
   <a
     href={link}
     target="_blank"
@@ -40,7 +38,6 @@ const badgeColor = getSourceColor(source);
       loading="lazy"
     />
 
-    <!-- Source Badge -->
     <div
       class={`absolute top-2 right-2 rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white shadow-sm ${badgeColor}`}
     >
@@ -54,7 +51,6 @@ const badgeColor = getSourceColor(source);
     )}
   </a>
 
-  <!-- Content -->
   <div class="flex flex-1 flex-col p-4">
     <a
       href={link}

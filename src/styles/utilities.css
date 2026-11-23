@@ -27,8 +27,8 @@
   z-index: -1;
   width: 20rem;
   height: 20rem;
-  border-radius: 999px;
-  filter: blur(0.2px);
+  border-radius: 999rem;
+  filter: blur(0.0125rem);
   transform: rotate(28deg) scaleY(0.35);
 }
 

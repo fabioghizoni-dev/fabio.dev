@@ -21,8 +21,8 @@
     summary,
     [tabindex]
   ):focus-visible {
-    outline: 2px solid var(--color-purple-default);
-    outline-offset: 3px;
+    outline: 0.125rem solid var(--color-purple-default);
+    outline-offset: 0.1875rem;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -101,12 +101,12 @@
     var(--color-purple-blue) 100%
   );
   --background-image-grid:
-    linear-gradient(var(--color-gray-default) 1px, transparent 1px),
-    linear-gradient(to right, var(--color-gray-default) 1px, transparent 1px);
+    linear-gradient(var(--color-gray-default) 0.0625rem, transparent 0.0625rem),
+    linear-gradient(to right, var(--color-gray-default) 0.0625rem, transparent 0.0625rem);
   --background-image-dots: radial-gradient(
     circle,
-    oklch(1 0 0 / 0.22) 1px,
-    transparent 1px
+    oklch(1 0 0 / 0.22) 0.0625rem,
+    transparent 0.0625rem
   );
   --background-image-links:
     linear-gradient(
@@ -145,7 +145,7 @@
   --animate-hide-y-bottom: hide-y-bottom 0.4s ease-in-out forwards;
 
   /* shadow and drop-shadow */
-  --shadow-light: 0 0 6px var(--tw-shadow-color);
+  --shadow-light: 0 0 0.375rem var(--tw-shadow-color);
   --drop-shadow-text-white: 0 0 0.08rem white;
   --drop-shadow-text-green: 0 0 0.08rem oklch(0.8664 0.294827 142.4953);
 

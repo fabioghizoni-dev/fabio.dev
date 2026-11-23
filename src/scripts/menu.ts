@@ -103,7 +103,7 @@ const setupMenu = (): void => {
   });
 
   window.addEventListener("resize", () => {
-    if (isMenuVisible && window.matchMedia("(min-width: 768px)").matches) {
+    if (isMenuVisible && window.matchMedia("(min-width: 48rem)").matches) {
       hide();
     }
   });

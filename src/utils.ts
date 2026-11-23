@@ -1,4 +1,3 @@
-import { fg, defaultLogger as logger } from "clogs.ts";
 import clsx, { type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -12,19 +11,12 @@ export default function cn(...inputs: ClassValue[]): string {
 export const removeSpaces = (str: string): string =>
   str.replace(/\s+/g, " ").trim();
 
+/** `/src/pages/qr/index.astro` -> `/qr`; `/src/pages/index.astro` -> `/`. */
 export const normalizeRoute = (file: string): string => {
-  const formattedFile =
-    (
-      file
-        .replace(/^\.+/, "")
-        .replace("index", "")
-        .replace("/src/pages", "")
-        .replace(/\.(astro|md|mdx|jsx|tsx)$/, "")
-        .replace(/\/index\.(astro|md|mdx|jsx|tsx)$/, "") || "/"
-    ).replace(/\/$/, "") || "/";
-  logger.Log(
-    `normalizeRoute(): "${file}" ${fg("yellow", "===>")} "${formattedFile}"`,
-  );
+  const route = file
+    .replace(/^.*\/src\/pages/, "")
+    .replace(/\.(astro|md|mdx|jsx|tsx)$/, "")
+    .replace(/\/index$/, "");
 
-  return formattedFile;
+  return route || "/";
 };

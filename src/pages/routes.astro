@@ -21,20 +21,19 @@ const description = `Page Routes | Page listing all routes available on the webs
   bodyClass="justify-center items-center"
   description={description}
 >
+  <h1 class="sr-only">Rotas do site</h1>
   <ul translate="no" class="font-space-grotesk text-2xl text-white">
-    {
-      routes.map((path) => (
-        <li title={path}>
-          <UnderlineButton
-            href={path}
-            title={path}
-            variant="primary"
-            class="after:h-0.5 after:bg-white"
-          >
-            {path}
-          </UnderlineButton>
-        </li>
-      ))
-    }
+    {routes.map((path) => (
+      <li title={path}>
+        <UnderlineButton
+          href={path}
+          title={path}
+          variant="primary"
+          class="after:h-0.5 after:bg-white"
+        >
+          {path}
+        </UnderlineButton>
+      </li>
+    ))}
   </ul>
 </Layout>

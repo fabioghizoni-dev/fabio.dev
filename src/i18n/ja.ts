@@ -2,13 +2,6 @@ import { calculateAge } from "../scripts/about-me";
 
 export const ja = {
   name: "日本語",
-  ascii: {
-    sequences: [
-      { keyword: "話そう", word: "TALK?" },
-      { keyword: "さあ", word: "BUILD!" },
-      { keyword: "ごゆっくり", word: "RELAX!" },
-    ],
-  },
   actions: {
     email: {
       max: "メールアドレスが長すぎます",
@@ -30,6 +23,9 @@ export const ja = {
       text: `Hello!! My name is Fábio, I'm ${calculateAge("2005-05-30")} years old, and I live in Manoel Ribas, Paraná - Brazil. I'm a very curious guy who enjoys learning how everything works. That's why I'm passionate about technology, which is a very broad and interesting field. I'm a full-stack developer, creating intuitive and dynamic interfaces with interactivity and accessibility. My main experience is in the web, but I've also developed desktop and mobile applications. I graduated with a degree in Systems Analysis and Development and am now seeking to learn more about various technologies, such as Python, Kotlin, Swift, React Native, and more.`,
     },
     header: {
+      openMenu: "メニューを開く",
+      navigation: "メインナビゲーション",
+      closeMenu: "メニューを閉じる",
       home: "ホーム",
       about: "私について",
       contact: "お問い合わせ",
@@ -40,6 +36,7 @@ export const ja = {
     hero: {
       greeting: "私は",
       badge: "フルスタック開発者",
+      available: "募集中",
       cvDownload: "履歴書をダウンロード",
     },
     projects: {
@@ -47,26 +44,65 @@ export const ja = {
       seeProject: "プロジェクトを見る",
       viewCode: "コードを見る",
       items: {
-        renext: { title: "Renext", description: "Renext - モダンなWebサイト、魅力的なコンテンツ、成果につながる戦略を提供するデジタルエージェンシー。" },
-        jvmPortfolio: { title: "JVM Portfolio", description: "React、アニメーション、ダークテーマを備えたモダンな開発者ポートフォリオ。" },
-        qrGenerator: { title: "QRコードジェネレーター", description: "色、形、サイズをカスタマイズし、SVGまたはcanvasで保存できるQRツール。" },
-        gradientGenerator: { title: "グラデーションジェネレーター", description: "ノイズ、複数のカラーストップ、プレビューと書き出しに対応したツール。" },
-        fabioDev: { title: "Fabio Dev", description: "10言語のi18n、ダークテーマ、SSRを備えたAstroとReactのポートフォリオ。" },
-        restApi: { title: "REST API", description: "JWT、CRUD、PostgreSQL、エラー処理を備えたNode.jsとExpressのAPI。" },
+        renext: {
+          title: "Renext",
+          description:
+            "Renext - モダンなWebサイト、魅力的なコンテンツ、成果につながる戦略を提供するデジタルエージェンシー。",
+        },
+        jvmPortfolio: {
+          title: "JVM Portfolio",
+          description:
+            "React、アニメーション、ダークテーマを備えたモダンな開発者ポートフォリオ。",
+        },
+        qrGenerator: {
+          title: "QRコードジェネレーター",
+          description:
+            "色、形、サイズをカスタマイズし、SVGまたはcanvasで保存できるQRツール。",
+        },
+        gradientGenerator: {
+          title: "グラデーションジェネレーター",
+          description:
+            "ノイズ、複数のカラーストップ、プレビューと書き出しに対応したツール。",
+        },
+        fabioDev: {
+          title: "Fabio Dev",
+          description:
+            "10言語のi18n、ダークテーマ、SSRを備えたAstroとReactのポートフォリオ。",
+        },
+        restApi: {
+          title: "Tião Carreiro API",
+          description:
+            "RESTful Laravel API for a music ranking platform, with Sanctum auth, YouTube integration, moderation and Docker.",
+        },
+        dailyRoutines: {
+          title: "Daily Routines",
+          description:
+            "Personal routines, tasks and study app for desktop, web/PWA and Android, with offline support and account sync.",
+        },
+        brava: {
+          title: "BRAVA",
+          description:
+            "Digital store for sports culture with catalog, cart, checkout and an admin dashboard for products, orders and stock.",
+        },
+        astroSauce: {
+          title: "astro-sauce",
+          description:
+            "Open-source CSS-in-JS runtime for Astro: write CSS inside JavaScript, without an SSR dependency.",
+        },
       },
     },
-    contactMe: {
-      title: "Get in touch",
+    contactMeActive: {
+      title: "お問い合わせ",
       subtitle:
-        "I'm always open to new opportunities and collaborations. Feel free to contact me through any of the channels below.",
+        "新しい機会やコラボレーションをいつでも歓迎しています。以下の方法でお気軽にご連絡ください。",
       form: {
-        name: "Your name",
-        namePlaceholder: "Your name here",
-        email: "Your e-mail",
+        name: "お名前",
+        namePlaceholder: "お名前を入力",
+        email: "メールアドレス",
         emailPlaceholder: "your.email@example.com",
-        message: "Your message",
-        messagePlaceholder: "Write your message here...",
-        submit: "Send message",
+        message: "メッセージ",
+        messagePlaceholder: "メッセージを入力してください...",
+        submit: "メッセージを送信",
       },
       social: {
         whatsapp: "Whatsapp",
@@ -74,12 +110,9 @@ export const ja = {
         github: "Github",
         linkedin: "LinkedIn",
       },
-    },
-    contactMeActive: {
-      title: "お問い合わせ", subtitle: "新しい機会やコラボレーションをいつでも歓迎しています。以下の方法でお気軽にご連絡ください。",
-      form: { name: "お名前", namePlaceholder: "お名前を入力", email: "メールアドレス", emailPlaceholder: "your.email@example.com", message: "メッセージ", messagePlaceholder: "メッセージを入力してください...", submit: "メッセージを送信" },
-      social: { whatsapp: "Whatsapp", instagram: "Instagram", github: "Github", linkedin: "LinkedIn" },
-      successTitle: "メールを送信しました！", successMessage: "ご連絡ありがとうございます。近日中に返信します。", ok: "確認",
+      successTitle: "メールを送信しました！",
+      successMessage: "ご連絡ありがとうございます。近日中に返信します。",
+      ok: "確認",
     },
     footer: {
       copyright: "© 2025 Fábio Ghizoni. All rights reserved.",
@@ -137,6 +170,7 @@ export const ja = {
     home: {},
   },
   ui: {
+    skipToContent: "コンテンツへスキップ",
     modal: {
       title: "Welcome to my website",
       description:

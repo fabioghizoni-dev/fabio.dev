@@ -22,11 +22,13 @@ const {
   target = "_blank",
   name = "whatsapp",
   class: className = "",
-  title = p.socials.whatsapp,
+  title = "WhatsApp",
   rel = "noopener noreferrer",
   href = p.socials.whatsapp,
   ...rest
 } = Astro.props as Props;
+
+const hasVisibleLabel = Astro.slots.has("default");
 
 const baseClass = `group flex items-center justify-center gap-3 px-4 py-3 bg-purple-blue rounded-lg text-white 
   transition-colors duration-300 ease-in-out hover:bg-purple-blue/70 hover:contrast-125`;
@@ -34,26 +36,30 @@ const baseClass = `group flex items-center justify-center gap-3 px-4 py-3 bg-pur
 const finalClass = cn(baseClass, className);
 ---
 
-<a href={href} title={title} target={target} rel={rel} class={finalClass}>
-  <span
-    class="group-hover:text-gray-default transition-colors duration-300 ease-in-out"
-  >
+<a
+  href={href}
+  title={title}
+  target={target}
+  rel={rel}
+  aria-label={hasVisibleLabel ? undefined : title}
+  class={finalClass}
+>
+  <span class="group-hover:text-gray-default transition-colors duration-300 ease-in-out">
     <slot />
   </span>
-  {
-    name === "whatsapp" ? (
-      <WhatsIcon
-        name={name}
-        phoneClass="fill-white group-hover:fill-gray-default transition-colors duration-300 ease-in-out"
-        borderClass="stroke-white group-hover:stroke-gray-default transition-colors duration-300 ease-in-out"
-        {...rest}
-      />
-    ) : (
-      <Icon
-        name={name}
-        class="group-hover:text-gray-default h-8 w-8 transition-colors duration-300 ease-in-out"
-        {...rest}
-      />
-    )
-  }
+  {name === "whatsapp" ? (
+    <WhatsIcon
+      name={name}
+      phoneClass="fill-white group-hover:fill-gray-default transition-colors duration-300 ease-in-out"
+      borderClass="stroke-white group-hover:stroke-gray-default transition-colors duration-300 ease-in-out"
+      {...rest}
+    />
+  ) : (
+    <Icon
+      name={name}
+      aria-hidden="true"
+      class="group-hover:text-gray-default h-8 w-8 transition-colors duration-300 ease-in-out"
+      {...rest}
+    />
+  )}
 </a>

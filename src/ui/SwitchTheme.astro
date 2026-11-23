@@ -1,6 +1,10 @@
 ---
 import { Icon } from "astro-icon/components";
+import { dict, DEFAULT_LANGUAGE } from "@/i18n";
 import cn from "../utils";
+
+const label =
+  dict[DEFAULT_LANGUAGE].components?.header?.changeTheme ?? "Mudar tema";
 
 const finalClass =
   cn(`relative hidden md:flex min-w-8 min-h-8 w-8 h-8 p-0.5 ml-auto justify-center items-center 
@@ -10,25 +14,22 @@ const finalClass =
 
 <button
   type="button"
-  role="button"
   id="btn-theme"
-  aria-label="Button to change theme"
-  data-i18n-attr="aria-label:components.header.changeTheme"
+  aria-label={label}
+  aria-pressed="true"
+  data-i18n-attr="aria-label:components.header.changeTheme|title:components.header.changeTheme"
+  title={label}
   class={finalClass}
 >
-  <!-- Mode Dark -->
   <Icon
     id="moon"
-    title="Dark mode"
-    aria-label="Dark mode"
+    aria-hidden="true"
     class="absolute h-11/12 w-11/12"
     name="line-md:sunny-filled-loop-to-moon-filled-loop-transition"
   />
-  <!-- Mode Light -->
   <Icon
     id="sun"
-    title="Light mode"
-    aria-label="Light mode"
+    aria-hidden="true"
     class="absolute hidden h-11/12 w-11/12"
     name="line-md:moon-filled-to-sunny-filled-loop-transition"
   />

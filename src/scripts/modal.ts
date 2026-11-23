@@ -1,31 +1,88 @@
 import { defaultLogger as logger } from "clogs.ts";
 
-const logAria = (modal: HTMLElement) =>
-  logger.Log(
-    `initModal(): Aria-hidden in element(${modal.id}): ${modal.getAttribute("aria-hidden")}`,
+let activeModal: HTMLElement | null = null;
+let activeModalSave = true;
+let previouslyFocused: HTMLElement | null = null;
+
+const focusableSelector =
+  'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
+
+const onKeydown = (event: KeyboardEvent): void => {
+  if (!activeModal) return;
+
+  if (event.key === "Escape") {
+    event.preventDefault();
+    hideModal(activeModal.id, activeModalSave);
+    return;
+  }
+
+  if (event.key !== "Tab") return;
+
+  const focusable = Array.from(
+    activeModal.querySelectorAll<HTMLElement>(focusableSelector),
   );
+  if (!focusable.length) return;
+
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last?.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first?.focus();
+  }
+};
 
 export const hideModal = (
   id: string = "first-modal",
   save: boolean = true,
 ): void => {
-  if (save) localStorage.setItem(id, "1");
-  logger.Log(`Element saved in localStorage with id(${id}) and item: 1.`);
   const modal = document.getElementById(id);
+  if (!modal) return;
 
-  if (modal) {
-    modal.classList.replace("flex", "hidden");
-    modal.setAttribute("aria-hidden", "true");
-    modal.setAttribute("aria-modal", "false");
-    logAria(modal);
+  if (save) {
+    try {
+      localStorage.setItem(id, "1");
+    } catch {
+      /* Storage can be unavailable in private mode. */
+    }
   }
+
+  modal.classList.replace("flex", "hidden");
+  modal.setAttribute("aria-hidden", "true");
+  modal.setAttribute("aria-modal", "false");
+  document.body.style.overflow = "";
+
+  document.removeEventListener("keydown", onKeydown);
+  activeModal = null;
+  previouslyFocused?.focus();
+  previouslyFocused = null;
 };
 
-export const showModal = (modal: HTMLElement): void => {
+export const showModal = (modal: HTMLElement, save: boolean = true): void => {
+  if (activeModal && activeModal !== modal) {
+    hideModal(activeModal.id, false);
+  }
+
+  previouslyFocused = document.activeElement as HTMLElement | null;
+  activeModal = modal;
+  activeModalSave = save;
+
   modal.classList.replace("hidden", "flex");
   modal.setAttribute("aria-hidden", "false");
   modal.setAttribute("aria-modal", "true");
-  logAria(modal);
+  document.body.style.overflow = "hidden";
+
+  document.addEventListener("keydown", onKeydown);
+
+  const focusable = modal.querySelector<HTMLElement>(focusableSelector);
+  (
+    focusable ?? modal.querySelector<HTMLElement>("[data-modal-panel]")
+  )?.focus();
+
+  logger.Log(`showModal(): modal "${modal.id}" opened.`);
 };
 
 export function initModal(
@@ -33,25 +90,30 @@ export function initModal(
   save: boolean = true,
 ): void {
   const modal = document.getElementById(id);
+  if (!modal || modal.dataset.initialized) return;
+  modal.dataset.initialized = "true";
 
-  if (modal) {
-    logger.Log(`Element with id(${id}) found.\n Save to localStorage? ${save}.`);
+  const okButton = modal.querySelector<HTMLElement>("[data-modal-ok]");
+  const closeButton = modal.querySelector<HTMLElement>("[data-modal-close]");
 
-    const okBtn = modal.querySelector("[data-modal-ok]");
-    const closeBtn = modal.querySelector("[data-modal-close]");
+  okButton?.addEventListener("click", () => hideModal(id, save));
+  closeButton?.addEventListener("click", () => hideModal(id, save));
 
-    if (okBtn && closeBtn) {
-      modal.addEventListener("click", () => hideModal(id, save));
-      okBtn.addEventListener("click", () => hideModal(id, save));
-      closeBtn.addEventListener("click", () => hideModal(id, save));
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) hideModal(id, save);
+  });
+
+  if (save) {
+    let shown = false;
+    try {
+      shown = Boolean(localStorage.getItem(id));
+    } catch {
+      shown = false;
     }
 
-    if (save) {
-      const shown = localStorage.getItem(id);
-      if (!shown) showModal(modal);
-      logger.Log(`Shown variable in initModal(): ${shown}`);
-    }
+    if (!shown) showModal(modal, save);
   }
 }
 
 addEventListener("DOMContentLoaded", () => initModal());
+addEventListener("astro:page-load", () => initModal());

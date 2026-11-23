@@ -1,0 +1,194 @@
+---
+import Modal from "@/ui/Modal.astro";
+import SocialButton from "@/ui/SocialButton.astro";
+import cn from "@/utils";
+import { dict, DEFAULT_LANGUAGE } from "@/i18n";
+import p from "@constants/personal";
+import { actions } from "astro:actions";
+
+const contact = dict[DEFAULT_LANGUAGE].components?.contactMeActive;
+const form = contact?.form;
+const social = contact?.social;
+
+const actionResult = Astro.getActionResult(actions.send);
+const submitted = Boolean(actionResult?.data?.success);
+
+const inputClass = cn(
+  `bg-black px-3 md:px-4 py-2 border-2 border-white/30 rounded-lg text-white placeholder:text-white/50 
+    transition focus:border-white/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-default/60 
+    focus-visible:ring-offset-2 focus-visible:ring-offset-black`,
+);
+---
+
+<section
+  id="contact-me"
+  aria-labelledby="contact-title"
+  class={cn(
+    "flex flex-col justify-center items-center gap-8 bg-light px-8 py-24 w-full min-h-screen font-cascadia-code",
+  )}
+>
+  <Modal
+    btnLabel={contact?.ok ?? "Ok"}
+    switchLang={false}
+    id="modal-success-email"
+    title={contact?.successTitle ?? "E-mail enviado com sucesso!"}
+    message={
+      contact?.successMessage ?? "Obrigado pelo contato. Responderei em breve."
+    }
+    titleKey="components.contactMeActive.successTitle"
+    messageKey="components.contactMeActive.successMessage"
+    btnLabelKey="components.contactMeActive.ok"
+  />
+
+  <h2
+    id="contact-title"
+    class="font-medium dark:text-white text-3xl md:text-4xl text-center"
+  >
+    <span data-i18n="components.contactMeActive.title">
+      {contact?.title ?? "Entre em contato"}
+    </span>
+  </h2>
+  <p class="max-w-5xl dark:text-white text-lg md:text-2xl text-center">
+    <span data-i18n="components.contactMeActive.subtitle">
+      {contact?.subtitle ?? ""}
+    </span>
+  </p>
+
+  <div class="flex flex-wrap md:*:flex-none *:flex-1 justify-center items-center gap-4 md:gap-8 w-full">
+    <SocialButton>
+      <span data-i18n="components.contactMeActive.social.whatsapp">
+        {social?.whatsapp ?? "Whatsapp"}
+      </span>
+    </SocialButton>
+    <SocialButton
+      name="line-md:instagram"
+      title={p.socials.insta}
+      href={p.socials.insta}
+    >
+      <span data-i18n="components.contactMeActive.social.instagram">
+        {social?.instagram ?? "Instagram"}
+      </span>
+    </SocialButton>
+    <SocialButton
+      name="line-md:github"
+      title={p.socials.github}
+      href={p.socials.github}
+    >
+      <span data-i18n="components.contactMeActive.social.github">
+        {social?.github ?? "Github"}
+      </span>
+    </SocialButton>
+    <SocialButton
+      name="line-md:linkedin"
+      title={p.socials.linkedin}
+      href={p.socials.linkedin}
+    >
+      <span data-i18n="components.contactMeActive.social.linkedin">
+        {social?.linkedin ?? "LinkedIn"}
+      </span>
+    </SocialButton>
+  </div>
+
+  <form
+    method="post"
+    action={actions.send}
+    id="contact-form"
+    name="contact-form"
+    data-contact-form
+    data-submitted={String(submitted)}
+    class="flex flex-col gap-4 w-full max-w-2xl text-gray-default dark:text-white text-base md:text-2xl"
+  >
+    <input type="hidden" name="language" value="pt-BR" data-language-input />
+
+    <div class="hidden" aria-hidden="true">
+      <label for="website">Website</label>
+      <input
+        id="website"
+        name="website"
+        type="text"
+        tabindex="-1"
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <label for="name" class="font-medium text-base md:text-2xl">
+        <span data-i18n="components.contactMeActive.form.name">
+          {form?.name ?? "Seu nome"}
+        </span>
+      </label>
+      <input
+        required
+        id="name"
+        name="name"
+        type="text"
+        minlength="2"
+        maxlength="100"
+        autocomplete="name"
+        placeholder="Seu nome aqui"
+        data-i18n-attr="placeholder:components.contactMeActive.form.namePlaceholder"
+        class={inputClass}
+      />
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <label for="email" class="font-medium text-base md:text-2xl">
+        <span data-i18n="components.contactMeActive.form.email">
+          {form?.email ?? "Seu e-mail"}
+        </span>
+      </label>
+      <input
+        required
+        id="email"
+        type="email"
+        name="email"
+        maxlength="255"
+        autocomplete="email"
+        placeholder="seu.email@exemplo.com"
+        data-i18n-attr="placeholder:components.contactMeActive.form.emailPlaceholder"
+        class={inputClass}
+      />
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <label for="message" class="font-medium text-base md:text-2xl">
+        <span data-i18n="components.contactMeActive.form.message">
+          {form?.message ?? "Sua mensagem"}
+        </span>
+      </label>
+      <textarea
+        required
+        rows="6"
+        id="message"
+        name="message"
+        minlength="10"
+        maxlength="2000"
+        placeholder="Escreva sua mensagem aqui..."
+        data-i18n-attr="placeholder:components.contactMeActive.form.messagePlaceholder"
+        class={cn(inputClass, "resize-none")}
+      ></textarea>
+    </div>
+
+    <p
+      id="contact-status"
+      role="status"
+      aria-live="polite"
+      class="min-h-6 text-sm text-white/80 md:text-base"
+    ></p>
+
+    <button
+      id="submit"
+      type="submit"
+      data-contact-submit
+      class={cn(
+        `flex justify-center items-center gap-4 bg-linear-to-r from-purple-default to-purple-blue disabled:opacity-50 mt-2 px-6 py-3 rounded-lg text-white hover:text-white/70 text-base md:text-xl transition cursor-pointer disabled:cursor-not-allowed`,
+      )}
+    >
+      <span data-i18n="components.contactMeActive.form.submit">
+        {form?.submit ?? "Enviar mensagem"}
+      </span>
+    </button>
+  </form>
+</section>
+
+<script src="../../scripts/contact-me.ts"></script>

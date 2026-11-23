@@ -1,56 +1,35 @@
 import { defineMiddleware } from "astro:middleware";
-import { defaultLogger as logger } from "clogs.ts";
+import { getSupabaseUser, isSupabaseConfigured } from "@/lib/supabase/server";
 
-const unauthorized = () => {
-  return new Response("Unauthorized", {
-    status: 401,
-    headers: {
-      "WWW-Authenticate": 'Basic realm="Admin Area"',
-    },
-  });
-};
+const LOGIN_PATH = "/admin/login";
 
-export const onRequest = defineMiddleware((context, next) => {
-  const { pathname, protocol } = context.url;
+export const onRequest = defineMiddleware(async (context, next) => {
+  const { pathname, search } = context.url;
 
   if (!pathname.startsWith("/admin")) return next();
 
-  const proto = context.request.headers.get("x-forwarded-proto") ?? protocol;
-
-  if (proto !== "https" && !import.meta.env.DEV) {
-    logger.Log("HTTPS is required, status: 426.");
-    return new Response("HTTPS required", { status: 426 });
+  if (!isSupabaseConfigured) {
+    return pathname === LOGIN_PATH
+      ? next()
+      : context.redirect(`${LOGIN_PATH}?setup=1`);
   }
 
-  // 1️⃣ IP validation
-  const forwardedFor = context.request.headers
-    .get("x-forwarded-for")
-    ?.split(",")[0]
-    .trim();
-  const ip =
-    forwardedFor ??
-    context.request.headers.get("cf-connecting-ip") ??
-    context.clientAddress;
-  logger.Log(`Machine with IP address: ${ip}`);
+  if (pathname === LOGIN_PATH) return next();
 
-  if (!ip || !import.meta.env.ALLOWED_IPS.includes(ip)) {
-    return new Response("Access denied (IP)", { status: 403 });
+  const { supabase, user } = await getSupabaseUser(
+    context.cookies,
+    context.request,
+  );
+
+  context.locals.supabase = supabase;
+  context.locals.user = user;
+
+  if (!user) {
+    const nextPath = encodeURIComponent(`${pathname}${search}`);
+    return context.redirect(`${LOGIN_PATH}?next=${nextPath}`);
   }
 
-  // 2️⃣ Basic auth validation
-  const auth = context.request.headers.get("authorization");
-  if (!auth || !auth.startsWith("Basic ")) {
-    return unauthorized();
-  }
-
-  const [user, pass] = atob(auth.replace("Basic ", "")).split(":");
-
-  if (
-    user !== import.meta.env.ADMIN_USER ||
-    pass !== import.meta.env.ADMIN_PASS
-  ) {
-    return unauthorized();
-  }
-
-  return next();
+  const response = await next();
+  response.headers.set("Cache-Control", "private, no-store");
+  return response;
 });

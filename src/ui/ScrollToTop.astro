@@ -1,22 +1,29 @@
 ---
 import { Icon } from "astro-icon/components";
+import { dict, DEFAULT_LANGUAGE } from "@/i18n";
 import cn from "../utils";
 
+const label =
+  dict[DEFAULT_LANGUAGE].ui?.scrollTop?.title ?? "Rolar para o topo";
+
 const finalClass =
-  cn(`fixed opacity-0 pointer-events-none w-12 h-12 bg-gray-default text-white right-4 bottom-4 border 
-    border-white/35 rounded-full p-1 cursor-pointer hover:bg-linear-to-br hover:from-purple-default
-      hover:to-purple-blue hover:text-gray-default hover:contrast-125 transition-colors ease-in-out 
-        duration-500`);
+  cn(`fixed opacity-0 pointer-events-none flex items-center justify-center w-12 h-12 
+  bg-gray-default text-white right-4 bottom-4 border border-white/35 rounded-full p-2 cursor-pointer 
+  hover:bg-linear-to-br hover:from-purple-default hover:to-purple-blue hover:text-gray-default 
+  hover:contrast-125 transition-colors ease-in-out duration-500`);
 ---
 
-<Icon
-  aria-hidden
-  id="arrow-up"
+<button
   type="button"
-  name="ep:arrow-up-bold"
-  title="Scroll to top of page"
-  data-i18n-attr="title:ui.scrollTop.title"
+  id="arrow-up"
+  tabindex="-1"
+  aria-hidden="true"
+  aria-label={label}
+  title={label}
+  data-i18n-attr="title:ui.scrollTop.title|aria-label:ui.scrollTop.title"
   class={finalClass}
-/>
+>
+  <Icon name="ep:arrow-up-bold" aria-hidden="true" class="size-full" />
+</button>
 
 <script src="../scripts/scroll-to-top.ts"></script>

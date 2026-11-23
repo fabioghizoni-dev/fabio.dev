@@ -1,5 +1,5 @@
 ---
-import { dict } from "@/i18n";
+import { dict, DEFAULT_LANGUAGE } from "@/i18n";
 import Technologies from "@/ui/Technologies.astro";
 import cn from "@/utils";
 import type { Project } from "@constants/projects";
@@ -10,10 +10,29 @@ interface Props {
   class?: string;
 }
 
-const t = dict["pt-BR"].components.projects;
 const { project, class: className = "" } = Astro.props as Props;
 const { techs, links } = project;
-const projectText = t.items[project.id];
+
+const t = dict[DEFAULT_LANGUAGE].components?.projects;
+const localized = project.localized
+  ? (
+      t?.items as
+        Record<string, { title?: string; description?: string }> | undefined
+    )?.[project.id]
+  : undefined;
+const title = localized?.title ?? project.title;
+const description = localized?.description ?? project.description;
+const titleKey = project.localized
+  ? `components.projects.items.${project.id}.title`
+  : undefined;
+const descriptionKey = project.localized
+  ? `components.projects.items.${project.id}.description`
+  : undefined;
+const seeProject = t?.seeProject ?? "Ver projeto";
+const viewCode = t?.viewCode ?? "Ver código";
+
+const isInternal = links.web?.startsWith("/") ?? false;
+const externalLink = { target: "_blank", rel: "noopener noreferrer" } as const;
 ---
 
 <div
@@ -23,36 +42,42 @@ const projectText = t.items[project.id];
   )}
 >
   <div
-    class="absolute inset-0 bg-progress-gradient opacity-0 group-hover:opacity-100 rounded-xl transition-opacity animate-spin-gradient duration-300"
+    class="absolute inset-0 bg-progress-gradient opacity-0 group-hover:opacity-100 rounded-xl transition-opacity animate-spin-gradient duration-300 motion-reduce:animate-none"
+    aria-hidden="true"
   ></div>
 
-  <div
-    class="z-10 relative flex flex-col gap-4 bg-gray-default m-0.5 p-5 rounded-[0.65rem] w-full"
-  >
-    <h3 class="font-space-grotesk font-bold text-white text-xl" data-i18n={`components.projects.items.${project.id}.title`}>{projectText.title}</h3>
-    <p class="font-noto-sans-jp text-white/70 text-sm" data-i18n={`components.projects.items.${project.id}.description`}>{projectText.description}</p>
+  <div class="z-10 relative flex flex-col gap-4 bg-gray-default m-0.5 p-5 rounded-[0.65rem] w-full">
+    <h3
+      class="font-space-grotesk font-bold text-white text-xl"
+      data-i18n={titleKey}
+    >
+      {title}
+    </h3>
+    <p class="font-inter text-white/70 text-sm" data-i18n={descriptionKey}>
+      {description}
+    </p>
     <Technologies list={techs} />
     <div class="flex gap-3 mt-auto">
       {links.web && (
         <a
           href={links.web}
-          target="_blank"
-          rel="noopener noreferrer"
+          {...(isInternal ? {} : externalLink)}
+          aria-label={`${seeProject}: ${title}`}
           class="flex items-center gap-1 font-cascadia-code text-purple-blue hover:text-purple-default text-sm transition-colors"
         >
-          <Icon name="mdi:eye" class="size-4" />
-          <span data-i18n="components.projects.seeProject">{t.seeProject}</span>
+          <Icon name="mdi:eye" class="size-4" aria-hidden="true" />
+          <span data-i18n="components.projects.seeProject">{seeProject}</span>
         </a>
       )}
       {links.github && (
         <a
           href={links.github}
-          target="_blank"
-          rel="noopener noreferrer"
+          {...externalLink}
+          aria-label={`${viewCode}: ${title}`}
           class="flex items-center gap-1 font-cascadia-code text-white/70 hover:text-white text-sm transition-colors"
         >
-          <Icon name="mdi:github" class="size-4" />
-          <span data-i18n="components.projects.viewCode">{t.viewCode}</span>
+          <Icon name="mdi:github" class="size-4" aria-hidden="true" />
+          <span data-i18n="components.projects.viewCode">{viewCode}</span>
         </a>
       )}
     </div>

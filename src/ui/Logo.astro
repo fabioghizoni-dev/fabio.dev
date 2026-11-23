@@ -3,7 +3,6 @@ import cn from "@/utils";
 import { Image } from "astro:assets";
 
 interface LogoProps {
-  alt?: any;
   src?: string;
   class?: string;
   title?: string;
@@ -11,38 +10,35 @@ interface LogoProps {
   height?: number | `${number}`;
 }
 
-const { 
-  width = 80, 
-  height = 80, 
+const {
+  width = 80,
+  height = 80,
   src = "/logo.svg",
   class: className = "",
-  alt = "Logo Fábio Ghizoni", 
-  title = "Return to home page", 
+  title = "Voltar para página inicial",
 }: LogoProps = Astro.props;
 
-const baseClass = "animate-show-logo h-8 cursor-pointer object-contain object-left p-0.5";
+const baseClass =
+  "animate-show-logo block h-8 cursor-pointer motion-reduce:animate-none";
 const finalClass = cn(baseClass, className);
+const imageClass = "h-full w-auto object-contain object-left p-0.5";
 ---
 
-<Image
+<a
   id="logo"
-  alt={alt}
-  width={width}
-  height={height}
+  href="/"
   title={title}
-  data-i18n-attr="title:components.header.returnHome"
-  loading="eager"
-  src={src}
+  aria-label={title}
+  data-i18n-attr="title:components.header.returnHome|aria-label:components.header.returnHome"
   class={finalClass}
-/>
-
-<script>
-  import { goHome } from "@/scripts/header";
-
-  const logo = document.getElementById("logo");
-  if (logo) {
-    logo.addEventListener("click", () => {
-      goHome();
-    });
-  }
-</script>
+>
+  <Image
+    alt=""
+    width={width}
+    height={height}
+    loading="eager"
+    decoding="async"
+    src={src}
+    class={imageClass}
+  />
+</a>

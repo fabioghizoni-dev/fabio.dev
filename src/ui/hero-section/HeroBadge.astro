@@ -1,5 +1,6 @@
 ---
 import cn from "@/utils";
+import { getCvUrl } from "@/lib/cv";
 import { Icon } from "astro-icon/components";
 
 interface Props {
@@ -7,31 +8,30 @@ interface Props {
 }
 
 const { class: className = "" } = Astro.props as Props;
+const cvUrl = await getCvUrl();
 const baseClass =
   "flex flex-col sm:flex-row text-nowrap justify-center items-stretch gap-4";
 ---
 
 <div class={cn(baseClass, className)}>
-  <div
-    class="from-purple-default to-purple-blue border-gray-default/20 flex items-center justify-center gap-1 rounded-full border-2 bg-linear-to-r px-6 py-2 dark:border-none"
-  >
+  <div class="from-purple-default to-purple-blue border-gray-default/20 flex items-center justify-center gap-1 rounded-full border-2 bg-linear-to-r px-6 py-2 dark:border-none">
     <Icon
       name="material-symbols:star-rounded"
-      class="h-6 w-6 animate-pulse text-yellow-400 brightness-200"
+      aria-hidden="true"
+      class="h-6 w-6 animate-pulse text-yellow-400 brightness-200 motion-reduce:animate-none"
     />
-    <span class="font-cascadia-code mt-0.5 text-white"
-      ><span data-i18n="components.hero.badge">Desenvolvedor Full-Stack</span></span
-    >
+    <span class="font-cascadia-code mt-0.5 text-white">
+      <span data-i18n="components.hero.badge">Desenvolvedor Full-Stack</span>
+    </span>
   </div>
   <a
-    role="link"
-    href="/cv-fábio.pdf"
+    href={cvUrl}
     download="cv-fabio.pdf"
     aria-label="Baixar CV"
     data-i18n-attr="aria-label:components.hero.cvDownload"
-    class="bg-purple-blue font-cascadia-code border-gray-default/20 animate-pulse-border flex cursor-pointer items-center justify-center gap-2 rounded-full border-2 px-6 py-2 font-bold text-white transition-opacity duration-300 ease-in-out hover:opacity-80 dark:border-none"
+    class="bg-purple-blue font-cascadia-code border-gray-default/20 animate-pulse-border flex cursor-pointer items-center justify-center gap-2 rounded-full border-2 px-6 py-2 font-bold text-white transition-opacity duration-300 ease-in-out hover:opacity-80 motion-reduce:animate-none dark:border-none"
   >
     <span data-i18n="components.hero.cvDownload">Baixar CV</span>
-    <Icon name="material-symbols:download" class="h-6 w-6" />
+    <Icon name="material-symbols:download" aria-hidden="true" class="h-6 w-6" />
   </a>
 </div>

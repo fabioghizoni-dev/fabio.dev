@@ -2,6 +2,45 @@
 @import "./utilities.css";
 @import "./keyframes.css";
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    overflow-x: clip;
+  }
+
+  :where(
+    a,
+    button,
+    input,
+    textarea,
+    select,
+    summary,
+    [tabindex]
+  ):focus-visible {
+    outline: 2px solid var(--color-purple-default);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
 * {
   /* remove serration */
   text-rendering: optimizeLegibility;
@@ -54,7 +93,7 @@
   --color-purple-blue: oklch(51.98% 0.288 289.11);
   --color-purple-default: oklch(60.83% 0.297 312.11);
   --color-purple-custom: oklch(0.3793 0.1283 324.71);
-  
+
   /* background */
   --background-image-light: radial-gradient(
     125% 125% at 50% var(--light-position, 90%),
@@ -64,6 +103,11 @@
   --background-image-grid:
     linear-gradient(var(--color-gray-default) 1px, transparent 1px),
     linear-gradient(to right, var(--color-gray-default) 1px, transparent 1px);
+  --background-image-dots: radial-gradient(
+    circle,
+    oklch(1 0 0 / 0.22) 1px,
+    transparent 1px
+  );
   --background-image-links:
     linear-gradient(
       to bottom,
@@ -83,9 +127,7 @@
   );
 
   /* animations */
-  --animate-blur: blur 1.4s linear forwards;
   --animate-draw: draw 4s ease-in-out forwards;
-  --animate-char: char 1s ease-in-out forwards;
   --animate-spin-slow: spin 16s linear infinite;
   --animate-height: height 0.4s linear forwards;
   --animate-show: show 0.2s ease-in-out forwards;

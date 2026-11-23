@@ -68,7 +68,7 @@ const classes = {
 
 1. External packages (`astro:*`, `react`, `resend`, `clogs.ts`, etc.)
 2. `@/` path aliases (aliases to `src/*`)
-3. `@constants/*` path alias (for `personal.ts` / `index.ts`)
+3. `@constants/*` path alias (for `personal.ts`, `projects.ts`, `technologies.ts`)
 4. Relative imports (`../utils`) — only when the file is deep in the tree
 
 Note: Prefer `@/` over relative paths. Some older files still use relative `../utils` — migrate to `@/utils` when touched.
@@ -143,7 +143,7 @@ c.strColor("text", c.foreground.cyan);
 ### Error Handling
 
 - Use Astro's `ActionError` with proper HTTP codes for form/API errors
-- Middleware in `src/middleware.ts` handles admin route protection (IP check + Basic Auth)
+- Middleware in `src/middleware.ts` protects `/admin` with Supabase Auth (the login page is public)
 - Log errors with context from `clogs.ts` server-side
 - Never expose internal error details to production clients
 
@@ -164,8 +164,8 @@ Icons from `@iconify-json/*` packages, configured via `astroIcon({ iconDir: "src
 ```
 src/
 ├── actions/           # Astro server actions
-├── components/        # Astro components (layout-level)
-├── constants/         # Site config (personal.ts, index.ts)
+├── components/        # sections/, layout/, cards/ and admin/
+├── constants/         # personal.ts, projects.ts, technologies.ts, index.ts barrel
 ├── emails/            # Email template functions (plain string-returning)
 ├── i18n/              # Translation files (10 locales)
 ├── icons/             # Local SVG icon assets
@@ -174,12 +174,15 @@ src/
 ├── scripts/           # Client-side TypeScript modules
 ├── styles/            # globals.css (@theme inline), keyframes.css, utilities.css
 ├── ui/                # Reusable UI components (header, hero-section, etc.)
-├── middleware.ts      # Admin route protection (IP + Basic Auth)
+├── middleware.ts      # Admin route protection (Supabase Auth)
 └── utils.ts           # cn(), removeSpaces(), normalizeRoute(), googleFontsUrl()
 ```
 
 ## Environment Variables
 
-- `RESEND_API_KEY` — Email API key (Resend)
-- `ALLOWED_IPS` — Comma-separated IPs allowed to access `/admin`
-- `ADMIN_USER` / `ADMIN_PASS` — Basic auth credentials for `/admin`
+- `SUPABASE_URL` - Supabase project URL (auth + projects + storage)
+- `SUPABASE_ANON_KEY` - Supabase anon key (server-side; RLS enforces access)
+- `RESEND_API_KEY` - Email API key (Resend)
+
+Admin setup: run `supabase/schema.sql`, create a user in Supabase Auth and
+open `/admin/login`. See `supabase/README.md`.

@@ -2,13 +2,6 @@ import { calculateAge } from "../scripts/about-me";
 
 export const zh = {
   name: "中文",
-  ascii: {
-    sequences: [
-      { keyword: "我们", word: "CHAT?" },
-      { keyword: "来吧", word: "BUILD!" },
-      { keyword: "请随意", word: "RELAX!" },
-    ],
-  },
   actions: {
     email: {
       max: "电子邮件过长",
@@ -30,6 +23,9 @@ export const zh = {
       text: `Hello!! My name is Fábio, I'm ${calculateAge("2005-05-30")} years old, and I live in Manoel Ribas, Paraná - Brazil. I'm a very curious guy who enjoys learning how everything works. That's why I'm passionate about technology, which is a very broad and interesting field. I'm a full-stack developer, creating intuitive and dynamic interfaces with interactivity and accessibility. My main experience is in the web, but I've also developed desktop and mobile applications. I graduated with a degree in Systems Analysis and Development and am now seeking to learn more about various technologies, such as Python, Kotlin, Swift, React Native, and more.`,
     },
     header: {
+      openMenu: "打开菜单",
+      navigation: "主导航",
+      closeMenu: "关闭菜单",
       home: "首页",
       about: "关于我",
       contact: "联系",
@@ -40,6 +36,7 @@ export const zh = {
     hero: {
       greeting: "我是",
       badge: "全栈开发者",
+      available: "可合作",
       cvDownload: "下载简历",
     },
     projects: {
@@ -47,26 +44,63 @@ export const zh = {
       seeProject: "查看项目",
       viewCode: "查看代码",
       items: {
-        renext: { title: "Renext", description: "Renext - 打造现代网站、吸引人的内容以及促进转化策略的数字代理机构。" },
-        jvmPortfolio: { title: "JVM Portfolio", description: "使用 React 构建的现代响应式开发者作品集，包含动画和深色主题。" },
-        qrGenerator: { title: "二维码生成器", description: "支持颜色、形状、尺寸以及 SVG 或 canvas 下载的可定制二维码工具。" },
-        gradientGenerator: { title: "渐变生成器", description: "支持噪点、多色标、实时预览和导出的交互式工具。" },
-        fabioDev: { title: "Fabio Dev", description: "使用 Astro 和 React 构建，支持十种语言、深色主题和 SSR 的个人作品集。" },
-        restApi: { title: "REST API", description: "基于 Node.js 和 Express，支持 JWT、CRUD、PostgreSQL 和错误处理的 API。" },
+        renext: {
+          title: "Renext",
+          description:
+            "Renext - 打造现代网站、吸引人的内容以及促进转化策略的数字代理机构。",
+        },
+        jvmPortfolio: {
+          title: "JVM Portfolio",
+          description:
+            "使用 React 构建的现代响应式开发者作品集，包含动画和深色主题。",
+        },
+        qrGenerator: {
+          title: "二维码生成器",
+          description:
+            "支持颜色、形状、尺寸以及 SVG 或 canvas 下载的可定制二维码工具。",
+        },
+        gradientGenerator: {
+          title: "渐变生成器",
+          description: "支持噪点、多色标、实时预览和导出的交互式工具。",
+        },
+        fabioDev: {
+          title: "Fabio Dev",
+          description:
+            "使用 Astro 和 React 构建，支持十种语言、深色主题和 SSR 的个人作品集。",
+        },
+        restApi: {
+          title: "Tião Carreiro API",
+          description:
+            "RESTful Laravel API for a music ranking platform, with Sanctum auth, YouTube integration, moderation and Docker.",
+        },
+        dailyRoutines: {
+          title: "Daily Routines",
+          description:
+            "Personal routines, tasks and study app for desktop, web/PWA and Android, with offline support and account sync.",
+        },
+        brava: {
+          title: "BRAVA",
+          description:
+            "Digital store for sports culture with catalog, cart, checkout and an admin dashboard for products, orders and stock.",
+        },
+        astroSauce: {
+          title: "astro-sauce",
+          description:
+            "Open-source CSS-in-JS runtime for Astro: write CSS inside JavaScript, without an SSR dependency.",
+        },
       },
     },
-    contactMe: {
-      title: "Get in touch",
-      subtitle:
-        "I'm always open to new opportunities and collaborations. Feel free to contact me through any of the channels below.",
+    contactMeActive: {
+      title: "联系我",
+      subtitle: "我一直欢迎新的机会与合作。欢迎通过以下任一渠道联系我。",
       form: {
-        name: "Your name",
-        namePlaceholder: "Your name here",
-        email: "Your e-mail",
+        name: "你的姓名",
+        namePlaceholder: "请输入姓名",
+        email: "你的邮箱",
         emailPlaceholder: "your.email@example.com",
-        message: "Your message",
-        messagePlaceholder: "Write your message here...",
-        submit: "Send message",
+        message: "你的消息",
+        messagePlaceholder: "请在这里写下消息...",
+        submit: "发送消息",
       },
       social: {
         whatsapp: "Whatsapp",
@@ -74,12 +108,9 @@ export const zh = {
         github: "Github",
         linkedin: "LinkedIn",
       },
-    },
-    contactMeActive: {
-      title: "联系我", subtitle: "我一直欢迎新的机会与合作。欢迎通过以下任一渠道联系我。",
-      form: { name: "你的姓名", namePlaceholder: "请输入姓名", email: "你的邮箱", emailPlaceholder: "your.email@example.com", message: "你的消息", messagePlaceholder: "请在这里写下消息...", submit: "发送消息" },
-      social: { whatsapp: "Whatsapp", instagram: "Instagram", github: "Github", linkedin: "LinkedIn" },
-      successTitle: "邮件发送成功！", successMessage: "感谢你的联系，我会尽快回复。", ok: "好的",
+      successTitle: "邮件发送成功！",
+      successMessage: "感谢你的联系，我会尽快回复。",
+      ok: "好的",
     },
     footer: {
       copyright: "© 2025 Fábio Ghizoni. All rights reserved.",
@@ -137,6 +168,7 @@ export const zh = {
     home: {},
   },
   ui: {
+    skipToContent: "跳转到内容",
     modal: {
       title: "Welcome to my website",
       description:

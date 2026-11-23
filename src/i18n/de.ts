@@ -2,13 +2,6 @@ import { calculateAge } from "../scripts/about-me";
 
 export const de = {
   name: "Deutsch",
-  ascii: {
-    sequences: [
-      { keyword: "los geht's", word: "REDEN?" },
-      { keyword: "komm", word: "BAUEN!" },
-      { keyword: "mach es dir bequem", word: "RELAX!" },
-    ],
-  },
   actions: {
     email: {
       max: "Die E-Mail ist zu lang",
@@ -30,6 +23,9 @@ export const de = {
       text: `Hello!! My name is Fábio, I'm ${calculateAge("2005-05-30")} years old, and I live in Manoel Ribas, Paraná - Brazil. I'm a very curious guy who enjoys learning how everything works. That's why I'm passionate about technology, which is a very broad and interesting field. I'm a full-stack developer, creating intuitive and dynamic interfaces with interactivity and accessibility. My main experience is in the web, but I've also developed desktop and mobile applications. I graduated with a degree in Systems Analysis and Development and am now seeking to learn more about various technologies, such as Python, Kotlin, Swift, React Native, and more.`,
     },
     header: {
+      openMenu: "Menü öffnen",
+      navigation: "Hauptnavigation",
+      closeMenu: "Menü schließen",
       home: "Startseite",
       about: "Über mich",
       contact: "Kontakt",
@@ -40,6 +36,7 @@ export const de = {
     hero: {
       greeting: "Ich bin",
       badge: "Full-Stack-Entwickler",
+      available: "Verfügbar",
       cvDownload: "Lebenslauf herunterladen",
     },
     projects: {
@@ -47,26 +44,65 @@ export const de = {
       seeProject: "Projekt ansehen",
       viewCode: "Code ansehen",
       items: {
-        renext: { title: "Renext", description: "Renext – Digitalagentur für moderne Websites, überzeugende Inhalte und Strategien, die konvertieren." },
-        jvmPortfolio: { title: "JVM Portfolio", description: "Modernes responsives Entwicklerportfolio mit React, Animationen, dunklem Design und klarer Oberfläche." },
-        qrGenerator: { title: "QR-Code-Generator", description: "Anpassbares QR-Code-Tool mit Farben, Formen, Größen und SVG- oder Canvas-Downloads." },
-        gradientGenerator: { title: "Gradient-Generator", description: "Interaktives Tool mit Rauschen, mehreren Farbstopps, Live-Vorschau und Export." },
-        fabioDev: { title: "Fabio Dev", description: "Persönliches Astro- und React-Portfolio mit i18n für zehn Sprachen, Dark Theme und SSR." },
-        restApi: { title: "REST API", description: "REST API mit Node.js und Express, JWT, CRUD, PostgreSQL und Fehlerbehandlung." },
+        renext: {
+          title: "Renext",
+          description:
+            "Renext – Digitalagentur für moderne Websites, überzeugende Inhalte und Strategien, die konvertieren.",
+        },
+        jvmPortfolio: {
+          title: "JVM Portfolio",
+          description:
+            "Modernes responsives Entwicklerportfolio mit React, Animationen, dunklem Design und klarer Oberfläche.",
+        },
+        qrGenerator: {
+          title: "QR-Code-Generator",
+          description:
+            "Anpassbares QR-Code-Tool mit Farben, Formen, Größen und SVG- oder Canvas-Downloads.",
+        },
+        gradientGenerator: {
+          title: "Gradient-Generator",
+          description:
+            "Interaktives Tool mit Rauschen, mehreren Farbstopps, Live-Vorschau und Export.",
+        },
+        fabioDev: {
+          title: "Fabio Dev",
+          description:
+            "Persönliches Astro- und React-Portfolio mit i18n für zehn Sprachen, Dark Theme und SSR.",
+        },
+        restApi: {
+          title: "Tião Carreiro API",
+          description:
+            "RESTful Laravel API for a music ranking platform, with Sanctum auth, YouTube integration, moderation and Docker.",
+        },
+        dailyRoutines: {
+          title: "Daily Routines",
+          description:
+            "Personal routines, tasks and study app for desktop, web/PWA and Android, with offline support and account sync.",
+        },
+        brava: {
+          title: "BRAVA",
+          description:
+            "Digital store for sports culture with catalog, cart, checkout and an admin dashboard for products, orders and stock.",
+        },
+        astroSauce: {
+          title: "astro-sauce",
+          description:
+            "Open-source CSS-in-JS runtime for Astro: write CSS inside JavaScript, without an SSR dependency.",
+        },
       },
     },
-    contactMe: {
-      title: "Get in touch",
+    contactMeActive: {
+      title: "Kontakt aufnehmen",
       subtitle:
-        "I'm always open to new opportunities and collaborations. Feel free to contact me through any of the channels below.",
+        "Ich bin immer offen für neue Möglichkeiten und Kooperationen. Kontaktiere mich gerne über einen der folgenden Kanäle.",
       form: {
-        name: "Your name",
-        namePlaceholder: "Your name here",
-        email: "Your e-mail",
-        emailPlaceholder: "your.email@example.com",
-        message: "Your message",
-        messagePlaceholder: "Write your message here...",
-        submit: "Send message",
+        name: "Dein Name",
+        namePlaceholder: "Dein Name hier",
+        email: "Deine E-Mail",
+        emailPlaceholder: "deine.email@beispiel.com",
+        message: "Deine Nachricht",
+        messagePlaceholder: "Schreibe deine Nachricht hier...",
+        submit: "Nachricht senden",
       },
       social: {
         whatsapp: "Whatsapp",
@@ -74,12 +110,9 @@ export const de = {
         github: "Github",
         linkedin: "LinkedIn",
       },
-    },
-    contactMeActive: {
-      title: "Kontakt aufnehmen", subtitle: "Ich bin immer offen für neue Möglichkeiten und Kooperationen. Kontaktiere mich gerne über einen der folgenden Kanäle.",
-      form: { name: "Dein Name", namePlaceholder: "Dein Name hier", email: "Deine E-Mail", emailPlaceholder: "deine.email@beispiel.com", message: "Deine Nachricht", messagePlaceholder: "Schreibe deine Nachricht hier...", submit: "Nachricht senden" },
-      social: { whatsapp: "Whatsapp", instagram: "Instagram", github: "Github", linkedin: "LinkedIn" },
-      successTitle: "E-Mail erfolgreich gesendet!", successMessage: "Danke für deine Nachricht. Ich antworte bald.", ok: "OK",
+      successTitle: "E-Mail erfolgreich gesendet!",
+      successMessage: "Danke für deine Nachricht. Ich antworte bald.",
+      ok: "OK",
     },
     footer: {
       copyright: "© 2025 Fábio Ghizoni. All rights reserved.",
@@ -137,6 +170,7 @@ export const de = {
     home: {},
   },
   ui: {
+    skipToContent: "Zum Inhalt springen",
     modal: {
       title: "Welcome to my website",
       description:

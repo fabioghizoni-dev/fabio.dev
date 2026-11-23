@@ -2,13 +2,6 @@ import { calculateAge } from "../scripts/about-me";
 
 export const en = {
   name: "English",
-  ascii: {
-    sequences: [
-      { keyword: "let's", word: "TALK?" },
-      { keyword: "come on", word: "CREATE!" },
-      { keyword: "make yourself", word: "RELAX!" },
-    ],
-  },
   actions: {
     email: {
       max: "Email is too long",
@@ -30,6 +23,9 @@ export const en = {
       text: `Hello!! My name is Fábio, I'm ${calculateAge("2005-05-30")} years old, and I live in Manoel Ribas, Paraná - Brazil. I'm a very curious guy who enjoys learning how everything works. That's why I'm passionate about technology, which is a very broad and interesting field. I'm a full-stack developer, creating intuitive and dynamic interfaces with interactivity and accessibility. My main experience is in the web, but I've also developed desktop and mobile applications. I graduated with a degree in Systems Analysis and Development and am now seeking to learn more about various technologies, such as Python, Kotlin, Swift, React Native, and more.`,
     },
     header: {
+      openMenu: "Open menu",
+      navigation: "Main navigation",
+      closeMenu: "Close menu",
       home: "Home",
       about: "About",
       contact: "Contact",
@@ -40,6 +36,7 @@ export const en = {
     hero: {
       greeting: "I'm",
       badge: "Full-Stack Developer",
+      available: "Open to work",
       cvDownload: "Download CV",
     },
     projects: {
@@ -47,15 +44,54 @@ export const en = {
       seeProject: "See project",
       viewCode: "View code",
       items: {
-        renext: { title: "Renext", description: "Renext - Digital agency creating modern websites, engaging content, and strategies that convert." },
-        jvmPortfolio: { title: "JVM Portfolio", description: "Modern responsive developer portfolio built with React, animations, dark theme and clean UI." },
-        qrGenerator: { title: "QR Code Generator", description: "Customizable QR code tool with colors, shapes, sizes and automatic SVG or canvas downloads." },
-        gradientGenerator: { title: "Gradient Generator", description: "Interactive gradient tool with noise, multiple color stops, live preview and export." },
-        fabioDev: { title: "Fabio Dev", description: "Personal Astro and React portfolio with 10-language i18n, dark theme and server-side rendering." },
-        restApi: { title: "REST API", description: "Node.js and Express REST API with JWT authentication, CRUD, PostgreSQL and error handling." },
+        renext: {
+          title: "Renext",
+          description:
+            "Renext - Digital agency creating modern websites, engaging content, and strategies that convert.",
+        },
+        jvmPortfolio: {
+          title: "JVM Portfolio",
+          description:
+            "Modern responsive developer portfolio built with React, animations, dark theme and clean UI.",
+        },
+        qrGenerator: {
+          title: "QR Code Generator",
+          description:
+            "Customizable QR code tool with colors, shapes, sizes and automatic SVG or canvas downloads.",
+        },
+        gradientGenerator: {
+          title: "Gradient Generator",
+          description:
+            "Interactive gradient tool with noise, multiple color stops, live preview and export.",
+        },
+        fabioDev: {
+          title: "Fabio Dev",
+          description:
+            "Personal Astro and React portfolio with 10-language i18n, dark theme and server-side rendering.",
+        },
+        restApi: {
+          title: "Tião Carreiro API",
+          description:
+            "RESTful Laravel API for a music ranking platform, with Sanctum auth, YouTube integration, moderation and Docker.",
+        },
+        dailyRoutines: {
+          title: "Daily Routines",
+          description:
+            "Personal routines, tasks and study app for desktop, web/PWA and Android, with offline support and account sync.",
+        },
+        brava: {
+          title: "BRAVA",
+          description:
+            "Digital store for sports culture with catalog, cart, checkout and an admin dashboard for products, orders and stock.",
+        },
+        astroSauce: {
+          title: "astro-sauce",
+          description:
+            "Open-source CSS-in-JS runtime for Astro: write CSS inside JavaScript, without an SSR dependency.",
+        },
       },
     },
-    contactMe: {
+    contactMeActive: {
       title: "Get in touch",
       subtitle:
         "I'm always open to new opportunities and collaborations. Feel free to contact me through any of the channels below.",
@@ -74,12 +110,9 @@ export const en = {
         github: "Github",
         linkedin: "LinkedIn",
       },
-    },
-    contactMeActive: {
-      title: "Get in touch", subtitle: "I'm always open to new opportunities and collaborations. Feel free to contact me through any of the channels below.",
-      form: { name: "Your name", namePlaceholder: "Your name here", email: "Your e-mail", emailPlaceholder: "your.email@example.com", message: "Your message", messagePlaceholder: "Write your message here...", submit: "Send message" },
-      social: { whatsapp: "Whatsapp", instagram: "Instagram", github: "Github", linkedin: "LinkedIn" },
-      successTitle: "Email sent successfully!", successMessage: "Thank you for contacting me. I will reply shortly.", ok: "Okay",
+      successTitle: "Email sent successfully!",
+      successMessage: "Thank you for contacting me. I will reply shortly.",
+      ok: "Okay",
     },
     footer: {
       copyright: "© 2025 Fábio Ghizoni. All rights reserved.",
@@ -139,6 +172,7 @@ export const en = {
     },
   },
   ui: {
+    skipToContent: "Skip to content",
     modal: {
       title: "Welcome to my website",
       description:

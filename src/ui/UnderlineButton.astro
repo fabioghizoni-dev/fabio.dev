@@ -15,11 +15,11 @@ interface Props extends astroHTML.JSX.ButtonHTMLAttributes {
 const {
   href,
   active = false,
-  id = "li-home",
-  role = "button",
+  id,
+  role,
   type = "button",
   variant = "default",
-  title = "Go to home",
+  title,
   class: className = "",
   ...props
 } = Astro.props as Props;
@@ -45,7 +45,6 @@ const customClasses = {
 const defaultClass = isDefault
   ? `${stateClasses.before} ${customClasses.afterSideRight}`
   : "";
-
 const classes = isPrimary ? customClasses.afterWidthFull : defaultClass;
 
 const baseClass = "relative text-nowrap cursor-pointer text-xl";
@@ -55,12 +54,13 @@ const Tag = href ? "a" : "button";
 ---
 
 <Tag
-  role={role}
-  type={type}
   id={id}
   href={href}
-  data-variant={variant}
+  type={Tag === "button" ? type : undefined}
+  role={role}
   title={title}
+  aria-current={active ? "page" : undefined}
+  data-variant={variant}
   class={finalClass}
   {...props}
 >

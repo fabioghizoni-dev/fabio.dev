@@ -25,9 +25,7 @@ const getSourceColor = (source: string) => {
 const badgeColor = getSourceColor(source);
 ---
 
-<article
-  class="group relative flex flex-col overflow-hidden rounded-xl border border-black/10 bg-white/50 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:border-white/10 dark:bg-black/50"
->
+<article class="group relative flex flex-col overflow-hidden rounded-xl border border-black/10 bg-white/50 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:border-white/10 dark:bg-black/50">
   <!-- Image Container -->
   <a
     href={link}
@@ -49,13 +47,11 @@ const badgeColor = getSourceColor(source);
       {source}
     </div>
 
-    {
-      badge && (
-        <div class="absolute top-2 left-2 rounded-full bg-red-600 px-2 py-1 text-[10px] font-bold tracking-wider text-white uppercase shadow-sm">
-          {badge}
-        </div>
-      )
-    }
+    {badge && (
+      <div class="absolute top-2 left-2 rounded-full bg-red-600 px-2 py-1 text-[10px] font-bold tracking-wider text-white uppercase shadow-sm">
+        {badge}
+      </div>
+    )}
   </a>
 
   <!-- Content -->
@@ -74,13 +70,11 @@ const badgeColor = getSourceColor(source);
       </h3>
     </a>
 
-    {
-      description && (
-        <p class="mt-2 line-clamp-2 text-xs text-gray-500 dark:text-gray-400">
-          {description}
-        </p>
-      )
-    }
+    {description && (
+      <p class="mt-2 line-clamp-2 text-xs text-gray-500 dark:text-gray-400">
+        {description}
+      </p>
+    )}
 
     <div class="mt-auto flex items-end justify-between pt-4">
       <div class="flex flex-col">
@@ -108,13 +102,11 @@ const badgeColor = getSourceColor(source);
           stroke-linecap="round"
           stroke-linejoin="round"
           class="ml-1 h-3 w-3"
-          ><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-          ></path><polyline points="15 3 21 3 21 9"></polyline><line
-            x1="10"
-            y1="14"
-            x2="21"
-            y2="3"></line></svg
         >
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
       </a>
     </div>
   </div>

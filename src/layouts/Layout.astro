@@ -2,8 +2,8 @@
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import { ClientRouter } from "astro:transitions";
-import CopyRight from "@/components/CopyRight.astro";
-import Header from "@/components/Header.astro";
+import CopyRight from "@/components/layout/CopyRight.astro";
+import Header from "@/components/layout/Header.astro";
 import "@/styles/globals.css";
 import Modal from "@/ui/Modal.astro";
 import cn, { googleFontsUrl, removeSpaces } from "@/utils";
@@ -24,17 +24,12 @@ interface Props {
   keywords?: string[];
   description?: string;
   clientRouter?: boolean;
+  /** Skips the stored/system theme override (e.g. print or query-driven themes). */
+  lockTheme?: boolean;
 }
 
-let { description }: Props = Astro.props;
-
-description = removeSpaces(
-  description ??
-    `Welcome to my portfolio website. Feel free to explore and learn more about the site and me. Here you'll find 
-      my projects and information about my skills and experiences.`,
-);
-
 const {
+  description: rawDescription,
   header,
   footer,
   lang = "pt-BR",
@@ -42,6 +37,7 @@ const {
   bodyClass = "",
   dataTheme = "dark",
   clientRouter = true,
+  lockTheme = false,
   iconHref = "/logo.svg",
   author = p.name,
   generator = Astro.generator,
@@ -75,6 +71,16 @@ const {
   ],
 }: Props = Astro.props;
 
+const description = removeSpaces(
+  rawDescription ??
+    `Welcome to my portfolio website. Feel free to explore and learn more about the site and me. Here you'll find 
+      my projects and information about my skills and experiences.`,
+);
+
+const canonical = new URL(Astro.url.pathname, siteUrl).href;
+const socialImage = `${siteUrl}/logo_neon.png`;
+const locale = lang.replace("-", "_");
+
 const baseBodyClass = removeSpaces(
   `dark:selection:text-purple-blue selection:bg-purple-blue flex min-h-screen w-full flex-col items-center justify-between 
     bg-white/80 transition-colors duration-500 ease-in-out selection:text-white dark:bg-black dark:selection:bg-white`,
@@ -84,6 +90,19 @@ const baseBodyClass = removeSpaces(
 <!doctype html>
 <html lang={lang} data-theme={dataTheme}>
   <head>
+    {!lockTheme && <script is:inline>
+      try {
+        const stored = localStorage.getItem("site:theme");
+        const theme =
+          stored === "light" || stored === "dark"
+            ? stored
+            : window.matchMedia("(prefers-color-scheme: light)").matches
+              ? "light"
+              : "dark";
+        document.documentElement.dataset.theme = theme;
+      } catch {}
+    </script>}
+
     {clientRouter && <ClientRouter />}
 
     <meta charset="UTF-8" />
@@ -91,7 +110,8 @@ const baseBodyClass = removeSpaces(
     <meta name="author" content={author} />
     <meta name="generator" content={generator} />
     <meta name="description" content={description} />
-    <link rel="canonical" href={siteUrl} />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="canonical" href={canonical} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content={dataTheme === "dark" ? "#000" : "#fff"} />
     <meta name="keywords" content={keywords.join(", ")} />
@@ -104,17 +124,20 @@ const baseBodyClass = removeSpaces(
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content={locale} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content={title} />
-    <meta property="og:url" content={siteUrl} />
-    <meta property="og:image" content={`${siteUrl}/logo_neon.svg`} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content={`Logo de ${p.name}`} />
 
     <!-- Twitter Card -->
     <meta name="twitter:title" content={title} />
     <meta name="twitter:creator" content={p.socials.x} />
+    <meta name="twitter:site" content={p.socials.x} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content={`${siteUrl}/logo_neon.svg`} />
+    <meta name="twitter:image" content={socialImage} />
     <meta name="twitter:description" content={description} />
 
     <!-- Google Fonts -->
@@ -126,16 +149,25 @@ const baseBodyClass = removeSpaces(
     />
     <link
       rel="stylesheet"
-      href={`${googleFontsUrl("googleapis")}/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Noto+Sans+JP:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap`}
+      href={`${googleFontsUrl("googleapis")}/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Space+Grotesk:wght@300..700&display=swap`}
     />
   </head>
   <body class={cn(baseBodyClass, bodyClass)}>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-purple-blue focus:px-4 focus:py-2 focus:text-white focus:shadow-lg"
+    >
+      <span data-i18n="ui.skipToContent">Pular para o conteúdo</span>
+    </a>
+
     <Analytics />
     <SpeedInsights />
 
     {header && <Header />}
     {modal && <Modal />}
-    <slot />
+    <main id="main" class="contents">
+      <slot />
+    </main>
     {footer && <CopyRight />}
 
     <script>
@@ -144,7 +176,9 @@ const baseBodyClass = removeSpaces(
       addEventListener("DOMContentLoaded", () => {
         try {
           const lang =
-            localStorage.getItem("site:lang") || document.documentElement.lang || "pt-BR";
+            localStorage.getItem("site:lang") ||
+            document.documentElement.lang ||
+            "pt-BR";
           document.documentElement.lang = lang;
           logger.Log(`🌐 Language initialized: ${lang}`);
         } catch (err) {

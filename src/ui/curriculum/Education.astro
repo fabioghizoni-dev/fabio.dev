@@ -4,21 +4,19 @@ import p from "@constants/personal";
 ---
 
 <div>
-  <h1 class={titleClass}>Formação Acadêmica</h1>
+  <h2 class={titleClass}>Formação Acadêmica</h2>
   <div class="flex flex-col">
-    {
-      p.education.map((education) => (
-        <div class="mt-4 flex items-start gap-4">
-          <h2 class="w-1/4 text-xl font-medium">{education.date}</h2>
-          <div class="flex-1 text-end text-2xl">
-            <strong>{education.name}</strong>
-            <br />
-            <span class="text-black/50 dark:text-white/50">
-              {education.institution} - {education.status}
-            </span>
-          </div>
+    {p.education.map((education) => (
+      <div class="mt-4 flex items-start gap-4">
+        <h3 class="w-1/4 text-xl font-medium">{education.date}</h3>
+        <div class="flex-1 text-end text-2xl">
+          <strong>{education.name}</strong>
+          <br />
+          <span class="text-black/50 dark:text-white/50">
+            {education.institution} - {education.status}
+          </span>
         </div>
-      ))
-    }
+      </div>
+    ))}
   </div>
 </div>

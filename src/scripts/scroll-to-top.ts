@@ -1,55 +1,60 @@
-let isVisible: boolean = false;
+let isVisible = false;
 
-let arrowUp: HTMLElement | null = document.getElementById("arrow-up");
+const getArrow = (): HTMLElement | null => document.getElementById("arrow-up");
 
-const showArrowUp = (arrowUp: HTMLElement, animation: boolean = false) => {
+const showArrow = (element: HTMLElement, animate: boolean): void => {
   isVisible = true;
-  arrowUp.classList.remove(
+  element.classList.remove(
     "hidden",
     "opacity-0",
     "pointer-events-none",
     "animate-hide-y-bottom",
   );
-  arrowUp.removeAttribute("aria-hidden");
-  if (animation) arrowUp.classList.add("animate-show-y-bottom", "opacity-100");
-  else arrowUp.classList.add("opacity-100");
+  element.classList.add("opacity-100");
+  element.setAttribute("aria-hidden", "false");
+  element.setAttribute("tabindex", "0");
+
+  if (animate) {
+    element.classList.remove("animate-show-y-bottom");
+    void element.offsetWidth;
+    element.classList.add("animate-show-y-bottom");
+  }
 };
 
-const hideArrowUp = (arrowUp: HTMLElement, animation: boolean = false) => {
+const hideArrow = (element: HTMLElement, animate: boolean): void => {
   isVisible = false;
-  arrowUp.setAttribute("aria-hidden", "true");
-  arrowUp.classList.remove("hidden", "opacity-100", "animate-show-y-bottom");
-  if (animation)
-    arrowUp.classList.add(
-      "opacity-0",
-      "pointer-events-none",
-      "animate-hide-y-bottom",
-    );
-  else arrowUp.classList.add("opacity-0");
-};
+  element.setAttribute("aria-hidden", "true");
+  element.setAttribute("tabindex", "-1");
+  element.classList.remove("opacity-100", "animate-show-y-bottom");
+  element.classList.add("opacity-0");
 
-const onLoadPage = () => {
-  if (arrowUp) {
-    if (window.scrollY > 300 && !isVisible) showArrowUp(arrowUp);
-    else if (window.scrollY <= 300 && isVisible) hideArrowUp(arrowUp);
+  if (animate) {
+    element.classList.add("pointer-events-none", "animate-hide-y-bottom");
+  } else {
+    element.classList.add("pointer-events-none");
   }
 };
 
-const onScrollWindow = () => {
-  if (arrowUp) {
-    if (window.scrollY > 300 && !isVisible) showArrowUp(arrowUp, true);
-    else if (window.scrollY <= 300 && isVisible) hideArrowUp(arrowUp, true);
-  }
+const syncArrow = (animate: boolean): void => {
+  const element = getArrow();
+  if (!element) return;
+
+  if (window.scrollY > 300 && !isVisible) showArrow(element, animate);
+  else if (window.scrollY <= 300 && isVisible) hideArrow(element, animate);
 };
 
-addEventListener("scroll", onScrollWindow);
-addEventListener("astro:page-load", onLoadPage);
-addEventListener("DOMContentLoaded", onLoadPage);
+addEventListener("scroll", () => syncArrow(true), { passive: true });
+addEventListener("astro:page-load", () => {
+  isVisible = false;
+  syncArrow(false);
+});
+addEventListener("DOMContentLoaded", () => syncArrow(false));
 
-const onClickArrowUp = () => {
+document.addEventListener("click", (event) => {
+  const target = event.target;
+  if (!(target instanceof Element) || !target.closest("#arrow-up")) return;
+
   if (window.scrollY > 0) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
-};
-
-arrowUp?.addEventListener("click", onClickArrowUp);
+});

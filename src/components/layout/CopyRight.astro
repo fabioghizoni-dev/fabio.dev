@@ -1,26 +1,23 @@
 ---
 import { removeSpaces } from "@/utils";
-import { dict } from "@/i18n";
+import { dict, DEFAULT_LANGUAGE } from "@/i18n";
 import p from "@constants/personal";
 import { Icon } from "astro-icon/components";
 
 const date = new Date();
-const footerText = dict["pt-BR"].components.footer;
+const footer = dict[DEFAULT_LANGUAGE].components?.footer;
+const rights = footer?.rights ?? "Todos os direitos reservados. Feito com";
 const anchorClass = removeSpaces(
   `from-purple-default to-purple-blue hover:from-purple-blue hover:to-purple-default bg-linear-to-r bg-clip-text font-semibold 
     text-transparent transition-colors duration-300 ease-in-out`,
 );
 ---
 
-<footer
-  role="contentinfo"
-  class="text-gray-default mt-6 flex min-h-10 w-full items-center justify-center px-8 py-4 text-center dark:text-white"
->
+<footer class="text-gray-default mt-6 flex min-h-10 w-full items-center justify-center px-8 py-4 text-center dark:text-white">
   <p class="flex flex-wrap items-center justify-center gap-x-1 font-space-grotesk text-base md:text-lg">
     <span>&copy; {date.getFullYear()}</span>
     <span class="sr-only">- Author:</span>
     <a
-      role="link"
       target="_blank"
       rel="noopener noreferrer"
       href={p.socials.insta}
@@ -28,9 +25,8 @@ const anchorClass = removeSpaces(
     >
       Fábio Ghizoni.
     </a>
-    <span data-i18n="components.footer.rights">{footerText.rights}</span>
+    <span data-i18n="components.footer.rights">{rights}</span>
     <a
-      role="link"
       target="_blank"
       rel="noopener noreferrer"
       href="https://astro.build/"
@@ -38,10 +34,16 @@ const anchorClass = removeSpaces(
         `bg-linear-to-r from-black/80 to-white/40 bg-clip-text text-transparent hover:opacity-60 dark:from-white/80 
           dark:to-black/40 transition-opacity duration-200 ease-in-out`,
       )}
-      >astro
-      <Icon name="astro" class="-mt-0.5 -ml-0.5 hidden h-7 w-6 dark:inline" />
+    >
+      astro
+      <Icon
+        name="astro"
+        aria-hidden="true"
+        class="-mt-0.5 -ml-0.5 hidden h-7 w-6 dark:inline"
+      />
       <Icon
         name="devicon:astro"
+        aria-hidden="true"
         class="-mt-0.5 -ml-0.5 inline h-7 w-6 dark:hidden"
       />
     </a>

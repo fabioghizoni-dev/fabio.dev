@@ -8,26 +8,29 @@ interface Props extends astroHTML.JSX.ButtonHTMLAttributes {
   class?: string;
   iconClass?: string;
   type?: astroHTML.JSX.ButtonHTMLAttributes["type"];
-  role?: astroHTML.JSX.ButtonHTMLAttributes["role"];
-  title?: astroHTML.JSX.ButtonHTMLAttributes["title"];
+  title?: string;
   translate?: astroHTML.JSX.ButtonHTMLAttributes["translate"];
   "aria-label"?: astroHTML.JSX.ButtonHTMLAttributes["aria-label"];
+  /** Keeps the switcher visible outside the desktop header (e.g. modals). */
+  inline?: boolean;
 }
 
 const {
   iconClass = "",
   id = "btn-lang",
-  role = "button",
   type = "button",
   translate = "no",
   class: className = "",
-  title = "Change language",
+  title = "Mudar idioma",
   "aria-label": ariaLabel = title,
+  inline = false,
   ...rest
 }: Props = Astro.props;
 
-const btnBaseClass =
-  "relative hidden md:flex min-w-8 min-h-8 size-8 p-0.5 text-1xl font-cascadia-code font-bold cursor-pointer items-center justify-center";
+const btnBaseClass = cn(
+  "relative min-w-8 min-h-8 size-8 p-0.5 text-1xl font-cascadia-code font-bold cursor-pointer items-center justify-center",
+  inline ? "flex" : "hidden md:flex",
+);
 const btnFinalClass = cn(btnBaseClass, className);
 
 const iconFinalClass = cn(
@@ -36,10 +39,9 @@ const iconFinalClass = cn(
 );
 ---
 
-<div class="hidden md:block relative">
+<div class={inline ? "relative" : "hidden md:block relative"}>
   <button
     type={type}
-    role={role}
     translate={translate}
     id={id}
     title={title}
@@ -50,28 +52,35 @@ const iconFinalClass = cn(
     class={btnFinalClass}
     {...rest}
   >
-    <Icon name="material-symbols:translate" class={iconFinalClass} />
+    <Icon
+      name="material-symbols:translate"
+      class={iconFinalClass}
+      aria-hidden="true"
+    />
   </button>
   <ul
-    role="list"
     id="list-langs"
     class={cn(
-      `invisible top-full left-1/2 z-50 absolute flex flex-col gap-1 bg-gray-default opacity-0 shadow-black/20 shadow-xl mt-3 p-1 border border-white/35 rounded-lg max-h-0 overflow-hidden font-noto-sans-jp font-normal text-base transition-all -translate-x-1/2 duration-200 ease-in-out`,
+      `invisible top-full left-1/2 z-50 absolute flex flex-col gap-1 bg-gray-default opacity-0 shadow-black/20 shadow-xl mt-3 p-1 border border-white/35 rounded-lg max-h-0 overflow-y-auto font-inter font-normal text-base transition-all -translate-x-1/2 duration-200 ease-in-out`,
     )}
   >
-    {
-      languages.map((lang) => {
-        return (
-          <li role="listitem" title={dict[lang].name} class="text-white">
-            <button
-              type="button"
-              data-language={lang}
-              class="hover:bg-purple-blue/30 px-3 py-1.5 rounded-md w-full text-left text-nowrap transition-colors cursor-pointer"
-            >{lang}</button>
-          </li>
-        );
-      })
-    }
+    {languages.map((lang) => {
+      const languageName = dict[lang]?.name ?? lang;
+      return (
+        <li class="text-white">
+          <button
+            type="button"
+            lang={lang}
+            data-language={lang}
+            title={languageName}
+            aria-label={languageName}
+            class="hover:bg-purple-blue/30 px-3 py-1.5 rounded-md w-full text-left text-nowrap transition-colors cursor-pointer"
+          >
+            {lang}
+          </button>
+        </li>
+      );
+    })}
   </ul>
 </div>
 

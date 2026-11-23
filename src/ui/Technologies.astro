@@ -1,12 +1,16 @@
 ---
 import cn from "@/utils";
-import technologiesData, { duplicateTechnologies } from "@constants";
+import {
+  technologiesData,
+  duplicateTechnologies,
+  projectTechnologiesData,
+} from "@constants";
 import { Icon } from "astro-icon/components";
 
 interface Props {
   class?: string;
   /** It only returns a visual list of the technologies. */
-  list?: (typeof technologiesData)[number]["name"][];
+  list?: string[];
 }
 
 const { list, class: className = "" } = Astro.props as Props;
@@ -14,37 +18,54 @@ const { list, class: className = "" } = Astro.props as Props;
 const baseClass =
   "group border-gray-default/20 relative w-full overflow-hidden border-y-2 bg-white/60 dark:bg-gray-default py-2 dark:border-y dark:border-white/20";
 const finalClass = cn(baseClass, className);
+
+const allTechnologies = [...technologiesData, ...projectTechnologiesData];
+
+const selectedTechnologies = list
+  ? allTechnologies.filter((tech) =>
+      list.some((name) => name.toLowerCase() === tech.name.toLowerCase()),
+    )
+  : [];
 ---
 
-{
-  list ? (
-    <div class="flex gap-4">
-      {technologiesData
-        .filter((tech) => list.includes(tech.name))
-        .map((tech) => (
-          <Icon name={tech.icon} class={tech.customClass} />
-        ))}
-    </div>
-  ) : (
-    <div class={finalClass}>
-      <div
-        translate="no"
-        class="flex justify-center items-center gap-10 w-max animate-horz-loop will-change-transform group-hover:pause"
-      >
-        {duplicateTechnologies.map((tech) => {
-          return (
-            <span class="flex justify-center items-center gap-2 font-cascadia-code font-bold text-gray-default dark:text-white text-3xl text-center text-nowrap">
-              {tech.name}
-              <Icon
-                name={tech.icon}
-                fill={tech.fill}
-                aria-label={`Icon of ${tech.name}`}
-                class={`${tech.class || ""}`}
-              />
-            </span>
-          );
-        })}
-      </div>
-    </div>
+{list ? (
+  selectedTechnologies.length > 0 && (
+    <ul
+      class="flex flex-wrap items-center gap-4 text-white"
+      aria-label="Tecnologias"
+    >
+      {selectedTechnologies.map((tech) => (
+        <li class="flex items-center">
+          <Icon
+            name={tech.icon}
+            aria-hidden="true"
+            class={"customClass" in tech ? tech.customClass : tech.class}
+          />
+          <span class="sr-only">{tech.name}</span>
+        </li>
+      ))}
+    </ul>
   )
-}
+) : (
+  <div class={finalClass}>
+    <p class="sr-only">
+      {technologiesData.map((tech) => tech.name).join(", ")}
+    </p>
+    <div
+      translate="no"
+      aria-hidden="true"
+      class="flex justify-center items-center gap-10 w-max animate-horz-loop will-change-transform group-hover:pause motion-reduce:animate-none"
+    >
+      {duplicateTechnologies.map((tech) => (
+        <span class="flex justify-center items-center gap-2 font-cascadia-code font-bold text-gray-default dark:text-white text-3xl text-center text-nowrap">
+          {tech.name}
+          <Icon
+            name={tech.icon}
+            fill={tech.fill}
+            class={`${tech.class || ""}`}
+          />
+        </span>
+      ))}
+    </div>
+  </div>
+)}

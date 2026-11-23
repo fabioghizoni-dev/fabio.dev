@@ -102,29 +102,6 @@
   }
 }
 
-@keyframes blur {
-  from {
-    opacity: 0;
-    filter: blur(0.2rem);
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes char {
-  from {
-    opacity: 0;
-    transform: translateY(-3rem);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @keyframes horz-loop {
   to {
     transform: translateX(-50%);

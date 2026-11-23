@@ -1,65 +1,68 @@
-const animateHide = (
-  el: HTMLElement | null = document.getElementById("sun"),
-) => {
-  if (el) {
-    try {
-      el.classList.add("animate-hide");
-      el.addEventListener(
-        "animationend",
-        () => {
-          el.classList.add("hidden");
-          el.classList.remove("animate-hide");
-        },
-        { once: true },
-      );
-    } catch (err) {
-      el.classList.add("hidden");
-      console.error(`Failed to hide element: ${err}`);
-    }
+type Theme = "dark" | "light";
+
+const STORAGE_KEY = "site:theme";
+const root = document.documentElement;
+const prefersLight = window.matchMedia("(prefers-color-scheme: light)");
+
+const getStoredTheme = (): Theme | null => {
+  try {
+    const value = localStorage.getItem(STORAGE_KEY);
+    return value === "light" || value === "dark" ? value : null;
+  } catch {
+    return null;
   }
 };
 
-const animateShow = (
-  el: HTMLElement | null = document.getElementById("sun"),
-) => {
-  if (el) {
-    try {
-      el.classList.remove("hidden");
-      el.classList.add("animate-show");
-      el.addEventListener(
-        "animationend",
-        () => {
-          el.classList.remove("animate-show");
-        },
-        { once: true },
-      );
-    } catch (err) {
-      el.classList.add("hidden");
-      console.error(`Failed to show element: ${err}`);
+const setupTheme = (): void => {
+  const button = document.getElementById("btn-theme");
+  const sun = document.getElementById("sun");
+  const moon = document.getElementById("moon");
+
+  if (!button || !sun || !moon || button.dataset.initialized) return;
+  button.dataset.initialized = "true";
+
+  const applyTheme = (theme: Theme, animate: boolean = false): void => {
+    root.dataset.theme = theme;
+    button.setAttribute("aria-pressed", String(theme === "dark"));
+
+    const active = theme === "dark" ? moon : sun;
+    const inactive = theme === "dark" ? sun : moon;
+
+    inactive.classList.add("hidden");
+    inactive.classList.remove("animate-show");
+
+    active.classList.remove("hidden");
+    active.classList.remove("animate-show");
+
+    if (animate) {
+      void active.offsetWidth;
+      active.classList.add("animate-show");
     }
-  }
+  };
+
+  const initial =
+    getStoredTheme() ?? (root.dataset.theme === "light" ? "light" : "dark");
+
+  applyTheme(initial);
+
+  button.addEventListener("click", () => {
+    const next: Theme = root.dataset.theme === "dark" ? "light" : "dark";
+    applyTheme(next, true);
+
+    try {
+      localStorage.setItem(STORAGE_KEY, next);
+    } catch {
+      /* Storage can be unavailable in private mode. */
+    }
+  });
+
+  prefersLight.addEventListener("change", (event) => {
+    if (getStoredTheme()) return;
+    applyTheme(event.matches ? "light" : "dark");
+  });
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  const btnSun = document.getElementById("sun");
-  const btnMoon = document.getElementById("moon");
-  const btnTheme = document.getElementById("btn-theme");
-  if (btnSun && btnMoon && btnTheme) {
-    let isDarkMode = true;
+addEventListener("DOMContentLoaded", setupTheme);
+addEventListener("astro:page-load", setupTheme);
 
-    const toggle = () => {
-      isDarkMode = !isDarkMode;
-
-      if (isDarkMode) {
-        animateHide(btnSun);
-        animateShow(btnMoon);
-        document.documentElement.setAttribute("data-theme", "dark");
-      } else {
-        animateShow(btnSun);
-        animateHide(btnMoon);
-        document.documentElement.setAttribute("data-theme", "light");
-      }
-    };
-    btnTheme.addEventListener("click", toggle);
-  }
-});
+if (document.readyState !== "loading") setupTheme();

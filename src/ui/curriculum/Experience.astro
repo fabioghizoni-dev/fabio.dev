@@ -4,21 +4,17 @@ import p from "@constants/personal";
 ---
 
 <section class="flex flex-col gap-4">
-  <h1 class={titleClass}>Resumo Profissional</h1>
-  <div class="text-justify text-xl">
-    {p.professionalSummary}
-  </div>
-  <h1 class={titleClass}>Histórico Profissional</h1>
+  <h2 class={titleClass}>Resumo Profissional</h2>
+  <div class="text-pretty text-xl">{p.professionalSummary}</div>
+  <h2 class={titleClass}>Histórico Profissional</h2>
   <div class="text-xl">
-    {
-      p.professionalHistory.map((history) => {
-        return (
-          <div class="flex justify-between gap-8 space-y-10">
-            <h2 class="text-nowrap print:text-wrap">{history.date}</h2>
-            <div class="w-full max-w-3xl min-w-3xl">{history.summary}</div>
-          </div>
-        );
-      })
-    }
+    {p.professionalHistory.map((history) => {
+      return (
+        <div class="flex justify-between gap-8 space-y-10">
+          <h3 class="text-nowrap print:text-wrap">{history.date}</h3>
+          <div class="w-full max-w-3xl min-w-3xl">{history.summary}</div>
+        </div>
+      );
+    })}
   </div>
 </section>

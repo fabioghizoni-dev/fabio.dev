@@ -29,41 +29,48 @@ const {
   titleKey = "ui.modal.title",
   messageKey = "ui.modal.description",
   btnLabelKey = "ui.modal.continue",
-  "aria-label": ariaLabel = "Welcome modal",
 }: Props = Astro.props;
 ---
 
 <div
   id={id}
   role="dialog"
-  aria-modal={false}
-  aria-hidden={true}
+  aria-modal="false"
+  aria-hidden="true"
+  aria-labelledby={`${id}-title`}
   data-modal-backdrop
-  aria-label={ariaLabel}
   class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4"
 >
   <div
-    class="dark:bg-gray-default relative w-full max-w-2xl rounded-lg bg-white p-5 shadow-xl"
+    data-modal-panel
+    tabindex="-1"
+    class="dark:bg-gray-default relative w-full max-w-2xl rounded-lg bg-white p-5 shadow-xl outline-none"
   >
     <div class="absolute top-2 right-2 flex items-center justify-center gap-2">
-      {
-        switchLang && (
-          <SwitchLang
-            class="size-6 min-h-6 min-w-6"
-            iconClass="text-gray-500 hover:text-purple-blue dark:hover:text-gray-300"
-          />
-        )
-      }
-      <Icon
+      {switchLang && (
+        <SwitchLang
+          inline
+          class="size-6 min-h-6 min-w-6"
+          iconClass="text-gray-500 hover:text-purple-blue dark:hover:text-gray-300"
+        />
+      )}
+      <button
+        type="button"
         data-modal-close
-        title="Close modal"
-        aria-label="Close modal"
-        name="line-md:menu-to-close-transition"
-        class={removeSpaces(`size-6 text-gray-500 hover:text-purple-blue dark:hover:text-gray-300 cursor-pointer 
-          transition-colors ease-in-out duration-200`)}
-      />
+        aria-label="Fechar modal"
+        class="flex size-8 items-center justify-center rounded-md text-gray-500 transition-colors duration-200 ease-in-out hover:text-purple-blue dark:hover:text-gray-300"
+      >
+        <Icon
+          name="line-md:menu-to-close-transition"
+          aria-hidden="true"
+          class="size-6"
+        />
+      </button>
     </div>
-    <h2 class="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
+    <h2
+      id={`${id}-title`}
+      class="mb-2 pr-16 text-xl font-semibold text-gray-900 dark:text-white"
+    >
       <span data-i18n={titleKey}>{title}</span>
     </h2>
 
@@ -73,6 +80,7 @@ const {
 
     <div class="flex justify-end gap-3">
       <button
+        type="button"
         data-modal-ok
         class="cursor-pointer rounded-md bg-purple-600 px-4 py-2 font-medium text-white transition-colors duration-200 ease-in-out hover:bg-purple-700 dark:bg-purple-700 dark:hover:bg-purple-600"
       >

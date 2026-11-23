@@ -18,7 +18,7 @@ const { online = false }: Props = Astro.props;
     height={140}
     loading="eager"
     src="/fabio_minor.jpg"
-    alt="Imagem de Fábio Social"
+    alt="Retrato de Fábio Ghizoni"
     class=`${online ? "size-44 min-h-44 min-w-44" : "size-52 min-h-52 min-w-52"} self-start border-blue-500 rounded-l-xs border-4`
   />
   <div
@@ -29,37 +29,36 @@ const { online = false }: Props = Astro.props;
     >
       {p.completeName}
     </h1>
-    <h2
-      class="rounded-r-full border-4 border-blue-500 bg-blue-500 pr-3 pl-4 text-white"
-    >
+    <h2 class="rounded-r-full border-4 border-blue-500 bg-blue-500 pr-3 pl-4 text-white">
       {p.position}
     </h2>
-    <span
-      class="inline-flex items-center gap-3 rounded-r-full border-4 border-blue-500 bg-blue-500 pr-3 pl-4 text-white"
-    >
-      <Icon name="brazil" class="size-8 text-red-500" />
+    <span class="inline-flex items-center gap-3 rounded-r-full border-4 border-blue-500 bg-blue-500 pr-3 pl-4 text-white">
+      <Icon name="brazil" aria-hidden="true" class="size-8 text-red-500" />
       {p.country}
     </span>
   </div>
-  <div
-    class="flex flex-col items-end justify-between gap-3 self-stretch text-xl text-nowrap"
-  >
+  <div class="flex flex-col items-end justify-between gap-3 self-stretch text-xl text-nowrap">
     <a
       target="_blank"
       href={`${p.siteUrl}/curriculum`}
-      class=`${online ? "hidden": ""} text-white bg-blue-500 rounded-full px-4`
-      >Currículo Online</a
+      class=`${online ? "hidden" : ""} text-white bg-blue-500 rounded-full px-4`
     >
-    <span
-      class="inline-flex items-center gap-2 transition-colors duration-100 ease-in-out hover:text-current/50"
-    >
-      <Icon name="ic:baseline-phone" class="size-5.5 text-blue-500" />
+      Currículo Online
+    </a>
+    <span class="inline-flex items-center gap-2 transition-colors duration-100 ease-in-out hover:text-current/50">
+      <Icon
+        name="ic:baseline-phone"
+        aria-hidden="true"
+        class="size-5.5 text-blue-500"
+      />
       {p.socials.number}
     </span>
-    <span
-      class="inline-flex items-center justify-center gap-2 transition-colors duration-100 ease-in-out hover:text-current/50"
-    >
-      <Icon name="mdi:email-outline" class="size-5.5 text-blue-500" />
+    <span class="inline-flex items-center justify-center gap-2 transition-colors duration-100 ease-in-out hover:text-current/50">
+      <Icon
+        name="mdi:email-outline"
+        aria-hidden="true"
+        class="size-5.5 text-blue-500"
+      />
       {p.email.main}
     </span>
     <a
@@ -67,7 +66,11 @@ const { online = false }: Props = Astro.props;
       href={p.socials.github}
       class="inline-flex items-center gap-2 transition-colors duration-100 ease-in-out hover:text-current/50"
     >
-      <Icon name="mdi:github" class="size-5.5 text-blue-500" />
+      <Icon
+        name="mdi:github"
+        aria-hidden="true"
+        class="size-5.5 text-blue-500"
+      />
       {p.socials.github}
     </a>
     <a
@@ -75,7 +78,11 @@ const { online = false }: Props = Astro.props;
       href={p.socials.linkedin}
       class="inline-flex items-center gap-2 transition-colors duration-100 ease-in-out hover:text-current/50"
     >
-      <Icon name="mdi:linkedin" class="size-6 text-blue-500" />
+      <Icon
+        name="mdi:linkedin"
+        aria-hidden="true"
+        class="size-6 text-blue-500"
+      />
       {p.socials.linkedin}
     </a>
     <a
@@ -83,7 +90,7 @@ const { online = false }: Props = Astro.props;
       href={p.siteUrl}
       class="inline-flex items-center gap-2 transition-colors duration-100 ease-in-out hover:text-current/50"
     >
-      <Icon name="mdi:web" class="size-6 text-blue-500" />
+      <Icon name="mdi:web" aria-hidden="true" class="size-6 text-blue-500" />
       {p.siteUrl}
     </a>
   </div>

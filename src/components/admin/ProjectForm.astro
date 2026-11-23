@@ -1,0 +1,144 @@
+---
+import { actions } from "astro:actions";
+import type { Project } from "@constants/projects";
+
+interface Props {
+  mode: "create" | "edit";
+  project?: Project;
+  error?: string;
+}
+
+const { mode, project, error } = Astro.props as Props;
+const isEdit = mode === "edit";
+
+const inputClass =
+  "w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-white placeholder:text-white/25 outline-none transition focus:border-fuchsia-400/60 focus:ring-2 focus:ring-fuchsia-400/20";
+const labelClass = "text-sm font-medium text-white/70";
+---
+
+<form
+  method="post"
+  action={isEdit ? actions.projects.update : actions.projects.create}
+  class="flex flex-col gap-5"
+>
+  {isEdit && project && <input type="hidden" name="id" value={project.id} />}
+
+  {error && (
+    <p
+      role="alert"
+      class="rounded-xl border border-red-400/20 bg-red-400/10 px-4 py-3 text-sm text-red-200"
+    >
+      {error}
+    </p>
+  )}
+
+  <div class="flex flex-col gap-2">
+    <label for="title" class={labelClass}>
+      Título
+    </label>
+    <input
+      id="title"
+      name="title"
+      type="text"
+      required
+      minlength="2"
+      maxlength="120"
+      value={project?.title ?? ""}
+      placeholder="Ex.: Daily Routines"
+      class={inputClass}
+    />
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label for="description" class={labelClass}>
+      Descrição
+    </label>
+    <textarea
+      id="description"
+      name="description"
+      required
+      minlength="10"
+      maxlength="2000"
+      rows="4"
+      placeholder="O que o projeto faz, quais problemas resolve..."
+      class={`${inputClass} resize-y`}
+    >{project?.description ?? ""}</textarea>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label for="techs" class={labelClass}>
+      Tecnologias
+      <span class="font-normal text-white/35">(separadas por vírgula)</span>
+    </label>
+    <input
+      id="techs"
+      name="techs"
+      type="text"
+      maxlength="500"
+      value={project?.techs.join(", ") ?? ""}
+      placeholder="React, TypeScript, Supabase"
+      class={inputClass}
+    />
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    <div class="flex flex-col gap-2">
+      <label for="web_url" class={labelClass}>
+        Link do projeto
+      </label>
+      <input
+        id="web_url"
+        name="web_url"
+        type="text"
+        maxlength="500"
+        value={project?.links.web ?? ""}
+        placeholder="https://... ou /qr"
+        class={inputClass}
+      />
+    </div>
+    <div class="flex flex-col gap-2">
+      <label for="github_url" class={labelClass}>
+        Link do código
+      </label>
+      <input
+        id="github_url"
+        name="github_url"
+        type="text"
+        maxlength="500"
+        value={project?.links.github ?? ""}
+        placeholder="https://github.com/..."
+        class={inputClass}
+      />
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-2 sm:max-w-40">
+    <label for="sort_order" class={labelClass}>
+      Ordem
+    </label>
+    <input
+      id="sort_order"
+      name="sort_order"
+      type="number"
+      min="0"
+      max="9999"
+      value={project?.sortOrder ?? 0}
+      class={inputClass}
+    />
+  </div>
+
+  <div class="flex flex-wrap items-center gap-3 border-t border-white/5 pt-5">
+    <button
+      type="submit"
+      class="inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-fuchsia-500 to-purple-600 px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+    >
+      {isEdit ? "Salvar alterações" : "Criar projeto"}
+    </button>
+    <a
+      href="/admin/projects"
+      class="rounded-xl border border-white/10 px-4 py-2.5 text-sm font-medium text-white/60 transition-colors hover:bg-white/10 hover:text-white"
+    >
+      Cancelar
+    </a>
+  </div>
+</form>

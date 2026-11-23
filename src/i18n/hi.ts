@@ -2,13 +2,6 @@ import { calculateAge } from "../scripts/about-me";
 
 export const hi = {
   name: "हिन्दी",
-  ascii: {
-    sequences: [
-      { keyword: "चलो बात करें", word: "TALK?" },
-      { keyword: "आओ", word: "BUILD!" },
-      { keyword: "आराम से", word: "RELAX!" },
-    ],
-  },
   actions: {
     email: {
       max: "ईमेल बहुत लंबा है",
@@ -30,6 +23,9 @@ export const hi = {
       text: `Hello!! My name is Fábio, I'm ${calculateAge("2005-05-30")} years old, and I live in Manoel Ribas, Paraná - Brazil. I'm a very curious guy who enjoys learning how everything works. That's why I'm passionate about technology, which is a very broad and interesting field. I'm a full-stack developer, creating intuitive and dynamic interfaces with interactivity and accessibility. My main experience is in the web, but I've also developed desktop and mobile applications. I graduated with a degree in Systems Analysis and Development and am now seeking to learn more about various technologies, such as Python, Kotlin, Swift, React Native, and more.`,
     },
     header: {
+      openMenu: "मेनू खोलें",
+      navigation: "मुख्य नेविगेशन",
+      closeMenu: "मेनू बंद करें",
       home: "होम",
       about: "मेरे बारे में",
       contact: "संपर्क",
@@ -40,6 +36,7 @@ export const hi = {
     hero: {
       greeting: "मैं हूँ",
       badge: "फुल-स्टैक डेवलपर",
+      available: "उपलब्ध",
       cvDownload: "सीवी डाउनलोड करें",
     },
     projects: {
@@ -47,26 +44,65 @@ export const hi = {
       seeProject: "प्रोजेक्ट देखें",
       viewCode: "कोड देखें",
       items: {
-        renext: { title: "Renext", description: "Renext - आधुनिक वेबसाइट, आकर्षक सामग्री और परिणाम देने वाली रणनीतियाँ बनाने वाली डिजिटल एजेंसी।" },
-        jvmPortfolio: { title: "JVM Portfolio", description: "React, एनिमेशन, डार्क थीम और साफ UI वाला आधुनिक डेवलपर पोर्टफोलियो।" },
-        qrGenerator: { title: "QR Code Generator", description: "रंग, आकार, आकृतियों और SVG या canvas डाउनलोड वाला अनुकूलन योग्य QR टूल।" },
-        gradientGenerator: { title: "Gradient Generator", description: "नॉइज़, कई रंग स्टॉप, लाइव प्रीव्यू और एक्सपोर्ट वाला इंटरैक्टिव टूल।" },
-        fabioDev: { title: "Fabio Dev", description: "10 भाषाओं के i18n, डार्क थीम और SSR वाला Astro और React पोर्टफोलियो।" },
-        restApi: { title: "REST API", description: "JWT, CRUD, PostgreSQL और त्रुटि प्रबंधन वाली Node.js और Express REST API।" },
+        renext: {
+          title: "Renext",
+          description:
+            "Renext - आधुनिक वेबसाइट, आकर्षक सामग्री और परिणाम देने वाली रणनीतियाँ बनाने वाली डिजिटल एजेंसी।",
+        },
+        jvmPortfolio: {
+          title: "JVM Portfolio",
+          description:
+            "React, एनिमेशन, डार्क थीम और साफ UI वाला आधुनिक डेवलपर पोर्टफोलियो।",
+        },
+        qrGenerator: {
+          title: "QR Code Generator",
+          description:
+            "रंग, आकार, आकृतियों और SVG या canvas डाउनलोड वाला अनुकूलन योग्य QR टूल।",
+        },
+        gradientGenerator: {
+          title: "Gradient Generator",
+          description:
+            "नॉइज़, कई रंग स्टॉप, लाइव प्रीव्यू और एक्सपोर्ट वाला इंटरैक्टिव टूल।",
+        },
+        fabioDev: {
+          title: "Fabio Dev",
+          description:
+            "10 भाषाओं के i18n, डार्क थीम और SSR वाला Astro और React पोर्टफोलियो।",
+        },
+        restApi: {
+          title: "Tião Carreiro API",
+          description:
+            "RESTful Laravel API for a music ranking platform, with Sanctum auth, YouTube integration, moderation and Docker.",
+        },
+        dailyRoutines: {
+          title: "Daily Routines",
+          description:
+            "Personal routines, tasks and study app for desktop, web/PWA and Android, with offline support and account sync.",
+        },
+        brava: {
+          title: "BRAVA",
+          description:
+            "Digital store for sports culture with catalog, cart, checkout and an admin dashboard for products, orders and stock.",
+        },
+        astroSauce: {
+          title: "astro-sauce",
+          description:
+            "Open-source CSS-in-JS runtime for Astro: write CSS inside JavaScript, without an SSR dependency.",
+        },
       },
     },
-    contactMe: {
-      title: "Get in touch",
+    contactMeActive: {
+      title: "संपर्क करें",
       subtitle:
-        "I'm always open to new opportunities and collaborations. Feel free to contact me through any of the channels below.",
+        "मैं हमेशा नए अवसरों और सहयोग के लिए तैयार हूँ। नीचे दिए गए किसी भी माध्यम से संपर्क करें।",
       form: {
-        name: "Your name",
-        namePlaceholder: "Your name here",
-        email: "Your e-mail",
+        name: "आपका नाम",
+        namePlaceholder: "यहाँ अपना नाम लिखें",
+        email: "आपका ई-मेल",
         emailPlaceholder: "your.email@example.com",
-        message: "Your message",
-        messagePlaceholder: "Write your message here...",
-        submit: "Send message",
+        message: "आपका संदेश",
+        messagePlaceholder: "अपना संदेश यहाँ लिखें...",
+        submit: "संदेश भेजें",
       },
       social: {
         whatsapp: "Whatsapp",
@@ -74,12 +110,9 @@ export const hi = {
         github: "Github",
         linkedin: "LinkedIn",
       },
-    },
-    contactMeActive: {
-      title: "संपर्क करें", subtitle: "मैं हमेशा नए अवसरों और सहयोग के लिए तैयार हूँ। नीचे दिए गए किसी भी माध्यम से संपर्क करें।",
-      form: { name: "आपका नाम", namePlaceholder: "यहाँ अपना नाम लिखें", email: "आपका ई-मेल", emailPlaceholder: "your.email@example.com", message: "आपका संदेश", messagePlaceholder: "अपना संदेश यहाँ लिखें...", submit: "संदेश भेजें" },
-      social: { whatsapp: "Whatsapp", instagram: "Instagram", github: "Github", linkedin: "LinkedIn" },
-      successTitle: "ई-मेल सफलतापूर्वक भेजा गया!", successMessage: "संपर्क करने के लिए धन्यवाद। मैं जल्द जवाब दूँगा।", ok: "ठीक है",
+      successTitle: "ई-मेल सफलतापूर्वक भेजा गया!",
+      successMessage: "संपर्क करने के लिए धन्यवाद। मैं जल्द जवाब दूँगा।",
+      ok: "ठीक है",
     },
     footer: {
       copyright: "© 2025 Fábio Ghizoni. All rights reserved.",
@@ -137,6 +170,7 @@ export const hi = {
     home: {},
   },
   ui: {
+    skipToContent: "सामग्री पर जाएँ",
     modal: {
       title: "Welcome to my website",
       description:

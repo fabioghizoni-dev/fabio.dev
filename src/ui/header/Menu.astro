@@ -1,7 +1,13 @@
 ---
+import { dict, DEFAULT_LANGUAGE } from "@/i18n";
 import cn from "@/utils";
 import { Icon } from "astro-icon/components";
 import UnderlineButton from "../UnderlineButton.astro";
+
+const t = dict[DEFAULT_LANGUAGE].components?.header;
+const openMenu = t?.openMenu ?? "Abrir menu";
+const closeMenu = t?.closeMenu ?? "Fechar menu";
+const navigation = t?.navigation ?? "Navegação principal";
 
 const ulClass = cn(
   `hidden fixed overflow-hidden md:sticky md:flex flex-col md:flex-row p-6 md:p-0 justify-center items-center text-xl ml-auto font-bold 
@@ -9,47 +15,81 @@ const ulClass = cn(
 );
 ---
 
-<>
+<nav
+  aria-label={navigation}
+  data-i18n-attr="aria-label:components.header.navigation"
+  class="contents"
+>
   <button
     id="menu"
-    role="button"
+    type="button"
+    aria-label={openMenu}
+    aria-expanded="false"
+    aria-controls="list-menu"
+    data-i18n-attr="aria-label:components.header.openMenu"
     class="group relative flex h-6 w-8 cursor-pointer flex-col items-center justify-between p-0.5 md:hidden"
   >
-    <div
+    <span
+      aria-hidden="true"
       class="from-purple-default to-purple-blue h-0.9 min-h-0.9 w-9/12 self-end rounded-full bg-linear-to-r transition-[width] duration-300 ease-in-out group-hover:w-full"
-    >
-    </div>
-    <div
+    ></span>
+    <span
+      aria-hidden="true"
       class="from-purple-default to-purple-blue h-0.9 min-h-0.9 w-full self-end rounded-full bg-linear-to-r transition-[width] duration-300 ease-in-out group-hover:w-9/12"
-    >
-    </div>
-    <div
+    ></span>
+    <span
+      aria-hidden="true"
       class="from-purple-default to-purple-blue h-0.9 min-h-0.9 w-full rounded-full bg-linear-to-r"
-    >
-    </div>
+    ></span>
   </button>
 
   <ul id="list-menu" class={ulClass}>
-    <Icon
-      data-menu-close
-      title="Close modal"
-      aria-label="Close modal"
-      name="line-md:menu-to-close-transition"
-      class={cn(`hover:text-purple-blue size-6 cursor-pointer text-gray-500 transition-colors duration-200 ease-in-out 
-        md:hidden dark:hover:text-gray-300`)}
-    />
-    <li><UnderlineButton data-menu-link data-i18n="components.header.home">Início</UnderlineButton></li>
+    <li class="md:hidden">
+      <button
+        type="button"
+        data-menu-close
+        aria-label={closeMenu}
+        data-i18n-attr="aria-label:components.header.closeMenu"
+        class="flex size-9 items-center justify-center rounded-md"
+      >
+        <Icon
+          name="line-md:menu-to-close-transition"
+          aria-hidden="true"
+          class="size-6 text-gray-300 transition-colors duration-200 ease-in-out hover:text-purple-blue"
+        />
+      </button>
+    </li>
     <li>
-      <UnderlineButton id="li-about-me" title="Ir para a seção Sobre" data-i18n-attr="title:components.header.about" data-menu-link>
-        <span data-i18n="components.header.about">Sobre</span>
+      <UnderlineButton
+        id="li-home"
+        href="/#hero"
+        data-menu-link
+        data-i18n="components.header.home"
+      >
+        Início
       </UnderlineButton>
     </li>
     <li>
-      <UnderlineButton id="li-contact-me" title="Ir para a seção Contato" data-i18n-attr="title:components.header.contact" data-menu-link>
-        <span data-i18n="components.header.contact">Contato</span>
+      <UnderlineButton
+        id="li-about-me"
+        href="/#about-me"
+        data-menu-link
+        data-i18n="components.header.about"
+      >
+        Sobre
+      </UnderlineButton>
+    </li>
+    <li>
+      <UnderlineButton
+        id="li-contact-me"
+        href="/#contact-me"
+        data-menu-link
+        data-i18n="components.header.contact"
+      >
+        Contato
       </UnderlineButton>
     </li>
   </ul>
-</>
+</nav>
 
 <script src="../../scripts/menu.ts"></script>

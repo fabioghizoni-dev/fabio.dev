@@ -1,7 +1,21 @@
 import personal from "./personal";
 
+export const PROJECT_IDS = [
+  "renext",
+  "dailyRoutines",
+  "brava",
+  "fabioDev",
+  "jvmPortfolio",
+  "qrGenerator",
+  "restApi",
+  "astroSauce",
+  "laboratorioVisual",
+] as const;
+
+export type ProjectId = (typeof PROJECT_IDS)[number];
+
 export interface Project {
-  id: "renext" | "jvmPortfolio" | "qrGenerator" | "gradientGenerator" | "fabioDev" | "restApi";
+  id: string;
   title: string;
   description: string;
   techs: string[];
@@ -10,25 +24,63 @@ export interface Project {
     web?: string;
     github?: string;
   };
+  /** Static projects use the i18n copy; database projects do not. */
+  localized?: boolean;
+  sortOrder?: number;
 }
 
+/**
+ * Canonical project data. Titles and descriptions are the English fallback;
+ * localized copy lives in `src/i18n` under `components.projects.items`.
+ */
 const projects: Project[] = [
   {
     id: "renext",
     title: "Renext",
     description:
-      "Institutional website for a renewable energy company. Modern design with information about solar energy services, benefits, and company presentation.",
-    techs: ["Astro", "Typescript", "Vanilla Extract"],
+      "Institutional website and commercial platform with editorial home, authentication, Stripe checkout and an admin dashboard.",
+    techs: ["Astro", "React", "TypeScript", "PostgreSQL", "Stripe", "Drizzle"],
     links: {
       web: personal.socials.projects.renext,
+    },
+  },
+  {
+    id: "dailyRoutines",
+    title: "Daily Routines",
+    description:
+      "Personal routines, tasks and study app for desktop, web/PWA and Android, with offline support and account sync.",
+    techs: ["React", "TypeScript", "Tauri", "Firebase", "PWA"],
+    links: {
+      web: personal.socials.projects.dailyRoutines,
+    },
+  },
+  {
+    id: "brava",
+    title: "BRAVA",
+    description:
+      "Digital store for sports culture with catalog, cart, checkout and an admin dashboard for products, orders and stock.",
+    techs: ["React", "TypeScript", "Tailwind CSS", "Supabase", "Mercado Pago"],
+    links: {
+      web: personal.socials.projects.brava,
+    },
+  },
+  {
+    id: "fabioDev",
+    title: "Fabio Dev",
+    description:
+      "Personal portfolio built with Astro and React: i18n for 10 languages, dark theme, server-side rendering and a modern stack.",
+    techs: ["Astro", "React", "TypeScript", "Tailwind CSS"],
+    links: {
+      web: personal.siteUrl,
+      github: `${personal.socials.github}/fabio.dev`,
     },
   },
   {
     id: "jvmPortfolio",
     title: "JVM Portfolio",
     description:
-      "Modern and responsive portfolio for a developer, built with React and featuring smooth animations, dark theme, and a clean UI to showcase projects and skills.",
-    techs: ["React", "Typescript"],
+      "Modern and responsive developer portfolio built with React, featuring smooth animations, dark theme and a clean UI.",
+    techs: ["React", "TypeScript", "Vite"],
     links: {
       web: personal.socials.projects.jvmPortfolio,
     },
@@ -37,42 +89,40 @@ const projects: Project[] = [
     id: "qrGenerator",
     title: "QR Code Generator",
     description:
-      "Customizable QR Code generation tool with styling options for colors, shapes, and sizes. Supports SVG and canvas output formats with auto-download.",
-    techs: ["React", "Typescript", "CSS"],
+      "Customizable QR Code tool with colors, shapes and sizes, plus SVG or canvas export and automatic download.",
+    techs: ["React", "TypeScript", "qr-code-styling"],
     links: {
-      github: personal.socials.github,
-    },
-  },
-  {
-    id: "gradientGenerator",
-    title: "Gradient Generator",
-    description:
-      "Interactive gradient generation tool with noise effect support. Create, preview, and export custom gradients with multiple color stops and real-time preview.",
-    techs: ["React", "Typescript", "CSS"],
-    links: {
-      github: personal.socials.github,
-    },
-  },
-  {
-    id: "fabioDev",
-    title: "Fabio Dev",
-    description:
-      "Personal portfolio website built with Astro and React. Features i18n support for 10 languages, dark theme, server-side rendering, and a modern tech stack.",
-    techs: ["Astro", "React", "Typescript", "Tailwind CSS"],
-    links: {
-      web: personal.siteUrl,
-      github: `${personal.socials.github}/fabio.dev`,
+      web: "/qr",
     },
   },
   {
     id: "restApi",
-    title: "REST API",
+    title: "Tião Carreiro API",
     description:
-      "RESTful API built with Node.js and Express, featuring JWT authentication, CRUD operations, database integration with PostgreSQL, and comprehensive error handling.",
-    techs: ["Node.js", "Typescript", "Git"],
+      "RESTful Laravel API for a music ranking platform, with Sanctum auth, YouTube integration, moderation and Docker.",
+    techs: ["Laravel", "PHP", "SQLite", "Docker"],
     links: {
-      github: personal.socials.github,
+      github: `${personal.socials.github}/tiao-carreiro-backend`,
     },
+  },
+  {
+    id: "astroSauce",
+    title: "astro-sauce",
+    description:
+      "Open-source CSS-in-JS runtime for Astro: write CSS inside JavaScript, without an SSR dependency.",
+    techs: ["TypeScript", "Astro", "npm"],
+    links: {
+      web: "https://www.npmjs.com/package/astro-sauce",
+      github: "https://github.com/AnakinSkyWalker-Dev/astro-sauce",
+    },
+  },
+  {
+    id: "laboratorioVisual",
+    title: "Laborátorio visual - Corte, revisão e montagem de Imagens",
+    description:
+      "Ferramenta interativa para corte, revisão e montagem de imagens de amostras para laboratório.",
+    techs: ["Python", "NumPy", "opencv-python"],
+    links: {},
   },
 ];
 

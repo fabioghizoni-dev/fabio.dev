@@ -1,0 +1,71 @@
+---
+import CircularImg from "@/ui/hero-section/CircularImg.astro";
+import HeroCard from "@/ui/hero-section/HeroCard.astro";
+import PatternBg from "@/ui/PatternBg.astro";
+import { removeSpaces } from "@/utils";
+import { technologiesData } from "@constants";
+import { Icon } from "astro-icon/components";
+
+const heroClass = removeSpaces(
+  `relative flex h-fit min-h-screen w-full flex-col items-center justify-center overflow-x-clip px-4 pt-28 pb-16 sm:px-6`,
+);
+
+const techNames = ["Astro", "React", "Typescript", "Node.js", "Tailwind CSS"];
+const techs = techNames.flatMap((name) => {
+  const tech = technologiesData.find(
+    (item) => item.name.toLowerCase() === name.toLowerCase(),
+  );
+  return tech ? [tech] : [];
+});
+
+const techColor: Record<string, string> = {
+  Astro: "text-purple-500",
+  "Node.js": "text-green-500",
+};
+
+const iconCurve = [
+  "-translate-y-4",
+  "-translate-y-1.5",
+  "translate-y-0",
+  "-translate-y-1.5",
+  "-translate-y-4",
+];
+---
+
+<section id="hero" class={heroClass}>
+  <PatternBg />
+
+  <div
+    class="z-10 relative items-stretch gap-20 lg:gap-4 grid lg:grid-cols-[minmax(0,1fr)_auto] w-full max-w-7xl"
+  >
+    <HeroCard />
+
+    <div
+      class="flex flex-col justify-center justify-self-center lg:justify-self-end items-center gap-8"
+    >
+      <CircularImg
+        isAnimated
+        class="justify-self-center lg:justify-self-end"
+      />
+
+      <div class="relative flex justify-between items-center gap-2 mt-3 w-64">
+        {techs.map((tech, index) => (
+          <span
+            class:list={[
+              "place-items-center grid bg-gray-default border border-white/35 hover:border-purple-blue rounded-full size-10 transition-all duration-300",
+              iconCurve[index],
+            ]}
+            title={tech.name}
+          >
+            <Icon
+              name={tech.icon}
+              aria-hidden="true"
+              class:list={["size-4.5", techColor[tech.name]]}
+            />
+            <span class="sr-only">{tech.name}</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,165 @@
+---
+export const prerender = false;
+
+import AdminLayout from "@/layouts/AdminLayout.astro";
+import { actions } from "astro:actions";
+import { Icon } from "astro-icon/components";
+import { getAdminProjects } from "@/lib/projects";
+
+const { supabase, user } = Astro.locals;
+if (!supabase || !user) return Astro.redirect("/admin/login");
+
+const projects = await getAdminProjects(supabase);
+const removeResult = Astro.getActionResult(actions.projects.remove);
+const seedResult = Astro.getActionResult(actions.projects.seed);
+const removed =
+  Boolean(removeResult?.data?.success) || Astro.url.searchParams.has("removed");
+const saved = Astro.url.searchParams.has("saved");
+const missing = Astro.url.searchParams.has("missing");
+---
+
+<AdminLayout title="Projetos" email={user.email}>
+  <div class="flex flex-col gap-6">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="font-cascadia-code text-xs uppercase tracking-[0.3em] text-fuchsia-300/70">
+          conteúdo
+        </p>
+        <h1 class="mt-1 font-space-grotesk text-3xl font-black text-white">
+          Projetos
+        </h1>
+        <p class="mt-1 text-sm text-white/45">
+          Adicione, edite ou remova os projetos exibidos na seção Projetos.
+        </p>
+      </div>
+      <a
+        href="/admin/projects/new"
+        class="inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-fuchsia-500 to-purple-600 px-4 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+      >
+        <Icon
+          name="material-symbols:add-rounded"
+          aria-hidden="true"
+          class="size-5"
+        />
+        Novo projeto
+      </a>
+    </div>
+
+    {(removeResult?.error || seedResult?.error) && (
+      <p
+        role="alert"
+        class="rounded-xl border border-red-400/20 bg-red-400/10 px-4 py-3 text-sm text-red-200"
+      >
+        {removeResult?.error?.message ?? seedResult?.error?.message}
+      </p>
+    )}
+
+    {removed && (
+      <p
+        role="status"
+        class="rounded-xl border border-emerald-400/20 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-200"
+      >
+        Projeto removido.
+      </p>
+    )}
+
+    {saved && (
+      <p
+        role="status"
+        class="rounded-xl border border-emerald-400/20 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-200"
+      >
+        Projeto salvo com sucesso.
+      </p>
+    )}
+
+    {missing && (
+      <p
+        role="alert"
+        class="rounded-xl border border-amber-400/20 bg-amber-400/10 px-4 py-3 text-sm text-amber-200"
+      >
+        O projeto solicitado não existe mais.
+      </p>
+    )}
+
+    {seedResult?.data?.success && (
+      <p
+        role="status"
+        class="rounded-xl border border-emerald-400/20 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-200"
+      >
+        {seedResult.data.imported} projetos importados.
+      </p>
+    )}
+
+    {projects.length === 0 ? (
+      <div class="rounded-2xl border border-dashed border-white/15 bg-white/[0.03] p-8 text-center">
+        <Icon
+          name="material-symbols:folder-off-rounded"
+          aria-hidden="true"
+          class="mx-auto size-10 text-white/25"
+        />
+        <h2 class="mt-3 font-space-grotesk text-lg font-bold text-white">
+          Nenhum projeto no banco ainda
+        </h2>
+        <p class="mx-auto mt-1 max-w-md text-sm text-white/45">
+          Importe os projetos atuais do código para começar a editar, ou crie um
+          projeto do zero.
+        </p>
+        <form method="post" action={actions.projects.seed} class="mt-5">
+          <button
+            type="submit"
+            class="inline-flex items-center gap-2 rounded-xl border border-fuchsia-400/30 bg-fuchsia-400/10 px-4 py-2.5 text-sm font-semibold text-fuchsia-100 transition-colors hover:bg-fuchsia-400/20"
+          >
+            <Icon
+              name="material-symbols:download-rounded"
+              aria-hidden="true"
+              class="size-4"
+            />
+            Importar projetos atuais
+          </button>
+        </form>
+      </div>
+    ) : (
+      <ul class="grid gap-3">
+        {projects.map((project) => (
+          <li class="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <h2 class="truncate font-space-grotesk text-base font-bold text-white">
+                  {project.title}
+                </h2>
+                <span class="rounded-full border border-white/10 px-2 py-0.5 font-cascadia-code text-[10px] text-white/40">
+                  {project.sortOrder ?? 0}
+                </span>
+              </div>
+              <p class="mt-1 line-clamp-2 max-w-2xl text-sm text-white/45">
+                {project.description}
+              </p>
+              <p class="mt-2 font-cascadia-code text-[11px] text-white/30">
+                {project.techs.join(" · ")}
+              </p>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <a
+                href={`/admin/projects/${project.id}`}
+                class="rounded-lg border border-white/10 px-3 py-2 text-xs font-semibold text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+              >
+                Editar
+              </a>
+              <form method="post" action={actions.projects.remove}>
+                <input type="hidden" name="id" value={project.id} />
+                <button
+                  type="submit"
+                  class="rounded-lg border border-red-400/20 px-3 py-2 text-xs font-semibold text-red-300/70 transition-colors hover:bg-red-400/10 hover:text-red-200"
+                  onclick="return confirm('Excluir este projeto?')"
+                >
+                  Excluir
+                </button>
+              </form>
+            </div>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</AdminLayout>

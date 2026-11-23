@@ -1,61 +1,115 @@
 const transition = "transition-[width] duration-300 ease-in-out";
 
-addEventListener("DOMContentLoaded", () => {
+const setupMenu = (): void => {
   const menu = document.getElementById("menu");
   const listMenu = document.getElementById("list-menu");
+  const closeBtn =
+    document.querySelector<HTMLButtonElement>("[data-menu-close]");
 
-  const closeBtn = document.querySelector("[data-menu-close]");
+  if (!menu || !listMenu || !closeBtn || menu.dataset.initialized) return;
+  menu.dataset.initialized = "true";
 
-  let isMenuVisible: boolean = false;
+  let isMenuVisible = false;
+  let previouslyFocused: HTMLElement | null = null;
 
-  if (menu && listMenu && closeBtn) {
-    const hide = (el: HTMLElement = listMenu) => {
-      isMenuVisible = false;
-      document.body.style.overflow = "";
-      el.classList.add("ml-auto");
-      el.classList.replace("fixed", "hidden");
-      el.classList.remove(
-        "ml-auto",
-        "z-10",
-        "inset-0",
-        "h-screen",
-        "w-screen",
-        "overflow-hidden",
-        "bg-gray-default",
-      );
-    };
+  const focusableElements = (): HTMLElement[] =>
+    Array.from(
+      listMenu.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ),
+    );
 
-    const show = (el: HTMLElement = listMenu) => {
-      isMenuVisible = true;
-      document.body.style.overflow = "hidden";
+  const hide = (returnFocus = false): void => {
+    isMenuVisible = false;
+    document.body.style.overflow = "";
+    menu.setAttribute("aria-expanded", "false");
+    listMenu.classList.replace("fixed", "hidden");
+    listMenu.classList.remove(
+      "z-10",
+      "inset-0",
+      "h-screen",
+      "w-screen",
+      "overflow-hidden",
+      "bg-gray-default",
+    );
 
-      const lines = menu.children;
-      const line1 = lines[0];
-      const line2 = lines[1];
+    if (returnFocus) {
+      (previouslyFocused ?? menu).focus();
+    }
+  };
 
-      line1.classList.add(...(transition.split(" ") + "w-full"));
-      line2.classList.add(...(transition.split(" ") + "w-9/12"));
+  const show = (): void => {
+    isMenuVisible = true;
+    previouslyFocused = document.activeElement as HTMLElement | null;
+    document.body.style.overflow = "hidden";
+    menu.setAttribute("aria-expanded", "true");
 
-      el.classList.remove("ml-auto");
-      el.classList.replace("hidden", "fixed");
-      el.classList.add(
-        "z-10",
-        "inset-0",
-        "h-screen",
-        "w-screen",
-        "overflow-hidden",
-        "bg-gray-default",
-      );
-    };
+    const [line1, line2] = Array.from(menu.children) as HTMLElement[];
 
-    closeBtn.addEventListener("click", () => hide());
+    line1?.classList.add(...(transition.split(" ") as string[]), "w-full");
+    line2?.classList.add(...(transition.split(" ") as string[]), "w-9/12");
 
-    document.querySelectorAll("[data-menu-link]").forEach((link) => {
-      link.addEventListener("click", () => hide());
+    listMenu.classList.replace("hidden", "fixed");
+    listMenu.classList.add(
+      "z-10",
+      "inset-0",
+      "h-screen",
+      "w-screen",
+      "overflow-hidden",
+      "bg-gray-default",
+    );
+
+    closeBtn.focus();
+  };
+
+  closeBtn.addEventListener("click", () => hide(true));
+
+  document.querySelectorAll("[data-menu-link]").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (isMenuVisible) hide();
     });
+  });
 
-    menu.addEventListener("click", () => {
-      isMenuVisible ? hide() : show();
-    });
-  }
-});
+  menu.addEventListener("click", () => {
+    if (isMenuVisible) hide(true);
+    else show();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (!isMenuVisible) return;
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      hide(true);
+      return;
+    }
+
+    if (event.key !== "Tab") return;
+
+    const elements = focusableElements();
+    if (!elements.length) return;
+
+    const first = elements[0];
+    const last = elements[elements.length - 1];
+    const active = document.activeElement;
+
+    if (event.shiftKey && active === first) {
+      event.preventDefault();
+      last?.focus();
+    } else if (!event.shiftKey && active === last) {
+      event.preventDefault();
+      first?.focus();
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (isMenuVisible && window.matchMedia("(min-width: 768px)").matches) {
+      hide();
+    }
+  });
+};
+
+addEventListener("DOMContentLoaded", setupMenu);
+addEventListener("astro:page-load", setupMenu);
+
+if (document.readyState !== "loading") setupMenu();

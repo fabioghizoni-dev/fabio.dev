@@ -16,12 +16,12 @@ const classes = {
   ),
 };
 
-const today = new Date();
-const showChristmasLights = today <= new Date("2026-01-31T23:59:59");
+const month = new Date().getMonth();
+const showChristmasLights = month === 11 || month === 0;
 ---
 
 <div id="div-header" class={classes.divHeader}>
-  <header id="header" role="heading" aria-level="1" class={classes.header}>
+  <header id="header" class={classes.header}>
     {showChristmasLights && <ChristmasLights />}
     <Logo />
     <Menu />
@@ -30,4 +30,4 @@ const showChristmasLights = today <= new Date("2026-01-31T23:59:59");
   </header>
 </div>
 
-<script src="../scripts/header.ts"></script>
+<script src="../../scripts/header.ts"></script>

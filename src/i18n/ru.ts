@@ -2,13 +2,6 @@ import { calculateAge } from "../scripts/about-me";
 
 export const ru = {
   name: "Русский",
-  ascii: {
-    sequences: [
-      { keyword: "давайте", word: "TALK?" },
-      { keyword: "вперёд", word: "BUILD!" },
-      { keyword: "располагайтесь", word: "RELAX!" },
-    ],
-  },
   actions: {
     email: {
       max: "Электронная почта слишком длинная",
@@ -30,6 +23,9 @@ export const ru = {
       text: `Hello!! My name is Fábio, I'm ${calculateAge("2005-05-30")} years old, and I live in Manoel Ribas, Paraná - Brazil. I'm a very curious guy who enjoys learning how everything works. That's why I'm passionate about technology, which is a very broad and interesting field. I'm a full-stack developer, creating intuitive and dynamic interfaces with interactivity and accessibility. My main experience is in the web, but I've also developed desktop and mobile applications. I graduated with a degree in Systems Analysis and Development and am now seeking to learn more about various technologies, such as Python, Kotlin, Swift, React Native, and more.`,
     },
     header: {
+      openMenu: "Открыть меню",
+      navigation: "Основная навигация",
+      closeMenu: "Закрыть меню",
       home: "Главная",
       about: "Обо мне",
       contact: "Контакты",
@@ -40,6 +36,7 @@ export const ru = {
     hero: {
       greeting: "Я",
       badge: "Full-Stack разработчик",
+      available: "Открыт",
       cvDownload: "Скачать резюме",
     },
     projects: {
@@ -47,26 +44,65 @@ export const ru = {
       seeProject: "Открыть проект",
       viewCode: "Посмотреть код",
       items: {
-        renext: { title: "Renext", description: "Renext — цифровое агентство, создающее современные сайты, вовлекающий контент и стратегии, которые конвертируют." },
-        jvmPortfolio: { title: "JVM Portfolio", description: "Современное адаптивное портфолио разработчика на React с анимациями и тёмной темой." },
-        qrGenerator: { title: "Генератор QR-кодов", description: "Настраиваемый инструмент QR-кодов с цветами, формами, размерами и экспортом SVG или canvas." },
-        gradientGenerator: { title: "Генератор градиентов", description: "Интерактивный инструмент с шумом, цветовыми точками, предпросмотром и экспортом." },
-        fabioDev: { title: "Fabio Dev", description: "Портфолио на Astro и React с i18n на 10 языков, тёмной темой и SSR." },
-        restApi: { title: "REST API", description: "REST API на Node.js и Express с JWT, CRUD, PostgreSQL и обработкой ошибок." },
+        renext: {
+          title: "Renext",
+          description:
+            "Renext — цифровое агентство, создающее современные сайты, вовлекающий контент и стратегии, которые конвертируют.",
+        },
+        jvmPortfolio: {
+          title: "JVM Portfolio",
+          description:
+            "Современное адаптивное портфолио разработчика на React с анимациями и тёмной темой.",
+        },
+        qrGenerator: {
+          title: "Генератор QR-кодов",
+          description:
+            "Настраиваемый инструмент QR-кодов с цветами, формами, размерами и экспортом SVG или canvas.",
+        },
+        gradientGenerator: {
+          title: "Генератор градиентов",
+          description:
+            "Интерактивный инструмент с шумом, цветовыми точками, предпросмотром и экспортом.",
+        },
+        fabioDev: {
+          title: "Fabio Dev",
+          description:
+            "Портфолио на Astro и React с i18n на 10 языков, тёмной темой и SSR.",
+        },
+        restApi: {
+          title: "Tião Carreiro API",
+          description:
+            "RESTful Laravel API for a music ranking platform, with Sanctum auth, YouTube integration, moderation and Docker.",
+        },
+        dailyRoutines: {
+          title: "Daily Routines",
+          description:
+            "Personal routines, tasks and study app for desktop, web/PWA and Android, with offline support and account sync.",
+        },
+        brava: {
+          title: "BRAVA",
+          description:
+            "Digital store for sports culture with catalog, cart, checkout and an admin dashboard for products, orders and stock.",
+        },
+        astroSauce: {
+          title: "astro-sauce",
+          description:
+            "Open-source CSS-in-JS runtime for Astro: write CSS inside JavaScript, without an SSR dependency.",
+        },
       },
     },
-    contactMe: {
-      title: "Get in touch",
+    contactMeActive: {
+      title: "Связаться со мной",
       subtitle:
-        "I'm always open to new opportunities and collaborations. Feel free to contact me through any of the channels below.",
+        "Я всегда открыт новым возможностям и сотрудничеству. Напишите мне одним из удобных способов ниже.",
       form: {
-        name: "Your name",
-        namePlaceholder: "Your name here",
-        email: "Your e-mail",
+        name: "Ваше имя",
+        namePlaceholder: "Введите ваше имя",
+        email: "Ваш e-mail",
         emailPlaceholder: "your.email@example.com",
-        message: "Your message",
-        messagePlaceholder: "Write your message here...",
-        submit: "Send message",
+        message: "Ваше сообщение",
+        messagePlaceholder: "Напишите сообщение здесь...",
+        submit: "Отправить сообщение",
       },
       social: {
         whatsapp: "Whatsapp",
@@ -74,12 +110,9 @@ export const ru = {
         github: "Github",
         linkedin: "LinkedIn",
       },
-    },
-    contactMeActive: {
-      title: "Связаться со мной", subtitle: "Я всегда открыт новым возможностям и сотрудничеству. Напишите мне одним из удобных способов ниже.",
-      form: { name: "Ваше имя", namePlaceholder: "Введите ваше имя", email: "Ваш e-mail", emailPlaceholder: "your.email@example.com", message: "Ваше сообщение", messagePlaceholder: "Напишите сообщение здесь...", submit: "Отправить сообщение" },
-      social: { whatsapp: "Whatsapp", instagram: "Instagram", github: "Github", linkedin: "LinkedIn" },
-      successTitle: "Письмо успешно отправлено!", successMessage: "Спасибо за сообщение. Я скоро отвечу.", ok: "Хорошо",
+      successTitle: "Письмо успешно отправлено!",
+      successMessage: "Спасибо за сообщение. Я скоро отвечу.",
+      ok: "Хорошо",
     },
     footer: {
       copyright: "© 2025 Fábio Ghizoni. All rights reserved.",
@@ -137,6 +170,7 @@ export const ru = {
     home: {},
   },
   ui: {
+    skipToContent: "Перейти к содержимому",
     modal: {
       title: "Welcome to my website",
       description:

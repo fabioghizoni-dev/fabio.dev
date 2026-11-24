@@ -7,7 +7,7 @@ import { technologiesData } from "@constants";
 import { Icon } from "astro-icon/components";
 
 const heroClass = removeSpaces(
-  `relative flex h-fit min-h-screen w-full flex-col items-center justify-center overflow-x-clip px-4 pt-28 pb-16 sm:px-6`,
+  `relative flex h-fit min-h-screen w-full flex-col items-center justify-center overflow-x-clip px-2 pt-28 pb-16`,
 );
 
 const techNames = ["Astro", "React", "Typescript", "Node.js", "Tailwind CSS"];
@@ -36,12 +36,12 @@ const iconCurve = [
   <PatternBg />
 
   <div
-    class="z-10 relative items-stretch gap-20 lg:gap-4 grid lg:grid-cols-[minmax(0,1fr)_auto] w-full max-w-7xl"
+    class="z-10 relative mx-auto items-stretch gap-20 lg:gap-4 grid lg:grid-cols-[minmax(0,1fr)_auto] w-full max-w-7xl"
   >
     <HeroCard />
 
     <div
-      class="flex flex-col justify-center justify-self-center lg:justify-self-end items-center gap-8"
+      class="flex flex-col justify-center justify-self-center lg:justify-self-end items-center gap-8 lg:pr-10"
     >
       <CircularImg
         isAnimated

@@ -1,13 +1,13 @@
 ---
-import Analytics from "@vercel/analytics/astro";
-import SpeedInsights from "@vercel/speed-insights/astro";
-import { ClientRouter } from "astro:transitions";
 import CopyRight from "@/components/layout/CopyRight.astro";
 import Header from "@/components/layout/Header.astro";
 import "@/styles/globals.css";
 import Modal from "@/ui/Modal.astro";
 import cn, { googleFontsUrl, removeSpaces } from "@/utils";
 import p from "@constants/personal";
+import Analytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   lang?: string;
@@ -105,6 +105,8 @@ const baseBodyClass = removeSpaces(
 
     {clientRouter && <ClientRouter />}
 
+    <meta name="google-site-verification" content="EpMhc15ZfKlbTiR3npnKkCzJ6HKggIC9dbzX6acD3DI" />
+
     <meta charset="UTF-8" />
     <meta name="language" content={lang} />
     <meta name="author" content={author} />
@@ -155,7 +157,7 @@ const baseBodyClass = removeSpaces(
   <body class={cn(baseBodyClass, bodyClass)}>
     <a
       href="#main"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-purple-blue focus:px-4 focus:py-2 focus:text-white focus:shadow-lg"
+      class="sr-only focus:not-sr-only focus:top-4 focus:left-4 focus:z-100 focus:fixed focus:bg-purple-blue focus:shadow-lg focus:px-4 focus:py-2 focus:rounded-lg focus:text-white"
     >
       <span data-i18n="ui.skipToContent">Pular para o conteúdo</span>
     </a>
